@@ -1,0 +1,37 @@
+
+# -- interactive shell --
+case "$-" in
+  *i*)
+    # -- prompt --
+    if [ -n "$KSH_VERSION" ]; then
+      PS1='[$USER@`hostname -s`:$PWD]# '
+    else
+      PS1="[$USER@`hostname -s`]# "
+    fi
+    
+    
+    # -- options --
+    set -o emacs
+    
+    if [ -z "$KSH_VERSION" ]; then
+      set -o tabcomplete
+    fi
+    if [ -n "$KSH_VERSION" ]; then
+      set -o braceexpand
+    fi
+    
+    
+    # -- disable history for ksh93 --
+    case "$KSH_VERSION" in Version*)
+      HISTFILE=/dev/null;;
+    esac
+    
+    
+    # -- aliases --
+    alias la='ls -A'
+    alias lf='ls -F'
+    alias ll='ls -l'
+    alias cp='cp -i'
+    alias mv='mv -i'
+    ;;
+esac

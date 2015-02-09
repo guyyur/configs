@@ -1,0 +1,153 @@
+#!/bin/sh
+
+# -- check for root --
+if [ "`id -u`" != "0" ]; then
+  echo "pacman.sh: sorry, this must be done as root." 1>&2
+  exit 1
+fi
+
+
+# -- set up dirs --
+install -d -m 755 -o root -g root /mnt/usr/db/pacman || exit 1
+ln -sfn /var/cache/pacman/sync /mnt/usr/db/pacman/sync || exit 1
+
+
+# -- install --
+pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
+  bash \
+  binutils \
+  bzip2 \
+  coreutils \
+  cronie \
+  dash \
+  device-mapper \
+  diffutils \
+  e2fsprogs \
+  dosfstools \
+  file \
+  filesystem \
+  findutils \
+  gawk \
+  gcc-libs \
+  gettext \
+  glibc \
+  grep \
+  gzip \
+  kmod \
+  linux \
+  linux-firmware \
+  less \
+  licenses \
+  logrotate \
+  man-db \
+  man-pages \
+  mkinitcpio \
+  nano \
+  pacman \
+  pacman-mirrorlist \
+  parted \
+  procps-ng \
+  psmisc \
+  sed \
+  shadow \
+  sysfsutils \
+  syslog-ng \
+  systemd \
+  systemd-sysvcompat \
+  tar \
+  tzdata \
+  util-linux \
+  vi \
+  which \
+  syslinux \
+  sharutils \
+  lsof \
+  pciutils \
+  libusb \
+  usbutils \
+  hdparm \
+  sdparm \
+  time \
+  openresolv \
+  dhcpcd \
+  dnsutils \
+  inetutils \
+  iputils \
+  iproute2 \
+  ethtool \
+  net-tools \
+  ndisc6 \
+  traceroute \
+  openssh \
+  rpcbind \
+  nfsidmap \
+  nfs-utils \
+  tcpdump \
+  gnu-netcat \
+  ca-certificates \
+  wget \
+  sg3_utils \
+  alsa-utils \
+  alsa-oss \
+  bc \
+  kbd \
+  hexedit \
+  unzip \
+  linux-api-headers \
+  linux-headers \
+  autoconf \
+  automake \
+  bison \
+  ed \
+  fakeroot \
+  flex \
+  gcc \
+  libtool \
+  m4 \
+  make \
+  patch \
+  pkgconfig \
+  bin86 \
+  indent \
+  python \
+  gdb \
+  strace \
+  cdrkit \
+  cifs-utils \
+  smbclient \
+  samba \
+  mercurial \
+  git \
+  dbus \
+  xorg-server \
+  xorg-xinit \
+  xorg-utils \
+  xorg-xkb-utils \
+  xorg-server-utils \
+  ttf-liberation \
+  ttf-dejavu \
+  ttf-junicode \
+  hicolor-icon-theme \
+  xterm \
+  libxss \
+  libnotify \
+  hsetroot \
+  virtualbox-guest-modules \
+  virtualbox-guest-utils \
+  gtk-engine-murrine \
+  gnome-icon-theme \
+  python2-xdg \
+  openbox \
+  obconf \
+  openbox-themes \
+  tint2 \
+  gsimplecal \
+  gmrun \
+  pcmanfm \
+  leafpad \
+  lxappearance \
+  lxrandr \
+  parcellite \
+  lxtask \
+  geany \
+  || exit 1

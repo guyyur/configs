@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+exec X "$@" -dpi 100 -nolisten tcp vt${XDG_VTNR}

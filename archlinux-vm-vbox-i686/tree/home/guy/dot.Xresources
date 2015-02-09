@@ -1,0 +1,11 @@
+
+Xft.dpi:    100
+
+XTerm*background:         black
+XTerm*cursorUnderLine:    true
+XTerm*faceName:           monospace
+XTerm*faceSize:           10
+XTerm*foreground:         gray
+XTerm*geometry:           132x30
+XTerm*saveLines:          3000
+XTerm*selectToClipboard:  true

@@ -1,0 +1,8 @@
+# replace ROUTER with real hostname
+# replace fd00:2001:db8:0:: with real ULA prefix
+
+# Host Database
+::1			localhost.localdomain localhost ROUTER.localdomain ROUTER
+127.0.0.1		localhost.localdomain localhost ROUTER.localdomain ROUTER
+
+fd00:2001:db8:0::3	fbsd-stuff.localdomain fbsd-stuff

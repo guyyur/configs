@@ -1,0 +1,25 @@
+
+# -- prompt --
+if [ -n "$KSH_VERSION" ]; then
+  PS1="[\\u@\\h:\\w]\\$ "
+else
+  PS1="[$USER@`hostname -s`]# "
+fi
+
+
+# -- options --
+if [ -r /usr/share/misc/terminfo.db ]; then
+  set -o emacs
+fi
+
+if [ -n "$KSH_VERSION" ]; then
+  set -o braceexpand
+fi
+
+
+# -- aliases --
+alias la='ls -A'
+alias lf='ls -F'
+alias ll='ls -l'
+alias cp='cp -i'
+alias mv='mv -i'

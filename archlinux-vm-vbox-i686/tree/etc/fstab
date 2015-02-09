@@ -1,0 +1,10 @@
+# 
+# /etc/fstab: static file system information
+#
+# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+/dev/sda1  /      ext4  defaults,noatime  0  1
+/dev/sda2  /var   ext4  defaults,noatime  0  2
+/dev/sda3  /tmp   ext4  defaults,noatime  0  2
+/dev/sdb1  swap   swap  defaults          0  0
+/dev/sdc1  /home  ext4  defaults,noatime  0  2
+/dev/sdd1  /var/cache/pacman  ext4  defaults,noatime  0  2

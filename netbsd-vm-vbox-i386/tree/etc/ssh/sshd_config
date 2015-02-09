@@ -1,0 +1,21 @@
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+Port 22
+Protocol 2
+
+UseDNS no
+
+PubkeyAuthentication yes
+
+PasswordAuthentication no
+PermitEmptyPasswords no
+
+ChallengeResponseAuthentication no
+
+PermitRootLogin no
+
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,aes192-cbc,aes256-cbc
+
+X11Forwarding no

@@ -1,0 +1,41 @@
+#!/bin/sh
+
+case $reason in
+  # BOUND|RENEW|REBIND|REBOOT|INFORM)
+  #   if [ "$interface" = "lan0" ]; then
+  #     if [ -n "${new_ip_address}" ]; then
+  #       # open ports
+  #       /usr/local/bin/natpmpc -a PORT PORT tcp "${new_dhcp_lease_time}"
+  #     fi
+  #   fi
+  #   ;;
+  ROUTEADVRERT)
+    if [ "$interface" = "lan0" ]; then
+      # get addresses without prefixlen and excluding ULA
+      new_global_addresses=""
+      for i in ${ra1_addr}; do
+        wo_fd=${i##fd}
+        if [ -z "${i%%$wo_fd}" ]; then
+          new_global_addresses="${new_global_addresses} ${i%%/*}"
+        fi
+      done
+      new_global_addresses="${new_global_addresses# }"
+      first_global_address="${new_global_addresses%% *}"
+      
+      # refresh
+      if [ -n "${first_global_address}" ]; then
+        # update firewall pinholes
+      fi
+      
+      # only if address changed
+      old_ra1_addr=$(cat /var/cache/dhcpcd-lan0-old_ra1_addr)
+      
+      if [ "${ra1_addr}" != "${old_ra1_addr}" ]; then
+        echo "${ra1_addr}" > /var/cache/dhcpcd-lan0-old_ra1_addr
+        
+        # update dynamic dns
+        /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv6.pid "${first_address}" /usr/local/etc/ddnshupd-ipv6.conf
+      fi
+    fi
+    ;;
+esac

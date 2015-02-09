@@ -1,0 +1,4 @@
+
+sendmail_flags=NO
+pf=NO
+inetd=NO

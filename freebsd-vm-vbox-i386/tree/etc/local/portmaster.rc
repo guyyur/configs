@@ -1,0 +1,3 @@
+
+PKG_DBDIR=/usr/local/db/pkg
+PORT_DBDIR=/usr/local/db/ports

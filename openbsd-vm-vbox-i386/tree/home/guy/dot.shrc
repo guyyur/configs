@@ -1,0 +1,28 @@
+
+# -- prompt --
+if [ -n "$KSH_VERSION" ]; then
+  PS1="[\\u@\\h:\\w]\\$ "
+else
+  PS1="[$USER@`hostname -s`]"
+  if [ ! "`id -u`" = "0" ]; then
+    PS1="${PS1}$ "
+  else
+    PS1="${PS1}# "
+  fi
+fi
+
+
+# -- options --
+set -o emacs
+
+if [ -n "$KSH_VERSION" ]; then
+  set -o braceexpand
+fi
+
+
+# -- aliases --
+alias la='ls -A'
+alias lf='ls -F'
+alias ll='ls -l'
+alias cp='cp -i'
+alias mv='mv -i'

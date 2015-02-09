@@ -1,0 +1,41 @@
+#!/bin/sh
+
+case $reason in
+  DELEGATED6)
+    if [ "$interface" = "lan0" ]; then
+      old_delegated_dhcp6_prefix=$(cat /var/cache/dhcpcd-lan0-old_delegated_dhcp6_prefix)
+      
+      if [ "${new_delegated_dhcp6_prefix}" != "${old_delegated_dhcp6_prefix}" ]; then
+        echo "${new_delegated_dhcp6_prefix}" > /var/cache/dhcpcd-lan0-old_delegated_dhcp6_prefix
+        
+        # get addresses without prefixlen
+        new_addresses=""
+        for i in ${new_delegated_dhcp6_prefix}; do
+          new_addresses="${new_addresses} ${i%%/*}"
+        done
+        new_addresses="${new_addresses# }"
+        first_address="${new_addresses%% *}"
+        
+        # update pf
+        sed -e "s@ROUTER_IPV6_ADDRESSES@${new_addresses}@" /etc/pf_anchor-router_ipv6.conf.in > /var/run/pf_anchor-router_ipv6.conf
+        if [ $? -eq 0 ]; then
+          pfctl -a router_ipv6 -F rules
+          pfctl -a router_ipv6 -f /var/run/pf_anchor-router_ipv6.conf
+        fi
+        
+        # update dynamic dns
+        /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv6.pid "${first_address}" /usr/local/etc/ddnshupd-ipv6.conf
+      fi
+    fi
+    ;;
+  NOCARRIER)
+    if [ "$interface" = "lan0" ]; then
+      ddnshupd_ipv6_pid=$(cat /var/run/ddnshupd-ipv6.pid 2>/dev/null)
+      [ -n "$ddnshupd_ipv6_pid" ] && kill -TERM "$ddnshupd_ipv6_pid"
+    fi
+    ;;
+  STOP6)
+    ddnshupd_ipv6_pid=$(cat /var/run/ddnshupd-ipv6.pid 2>/dev/null)
+    [ -n "$ddnshupd_ipv6_pid" ] && kill -TERM "$ddnshupd_ipv6_pid"
+    ;;
+esac

@@ -1,0 +1,8 @@
+/export -ro
+/export/public -maproot=root
+/export/shares -maproot=nobody
+/export/fbsd-ports -maproot=root
+/export/fbsd-src -ro -maproot=root
+/export/obj -ro -maproot=root
+/export/backup -maproot=nobody
+V4: /export

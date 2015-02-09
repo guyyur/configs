@@ -1,0 +1,12 @@
+
+Protocol 2
+# Port 22
+
+CheckHostIP no
+
+Host router router.localdomain server server.localdomain
+  CanonicalizeHostname yes
+  CanonicalizePermittedCNAMEs *:*
+
+Host *
+  Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,aes192-cbc,aes256-cbc
