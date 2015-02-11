@@ -354,10 +354,10 @@ add_port_option "[ ] DOCS"
 create_port_options
 
 
-# -- devel/llvm34 OPTIONS --
-init_port_options "devel_llvm34" "llvm34" "3.4.2"
+# -- devel/llvm35 OPTIONS --
+init_port_options "devel_llvm35" "llvm35" "3.5.1"
 add_port_option "[ ] ASSERTS"
-add_port_option "[x] CMAKE"
+add_port_option "[ ] CMAKE"
 add_port_option "[ ] DOCS"
 add_port_option "[x] LIT"
 add_port_option "[ ] LTOPLUGIN"
@@ -715,9 +715,13 @@ create_port_options
 
 
 # -- graphics/inkscape OPTIONS --
-init_port_options "graphics_inkscape" "inkscape" "0.48.4"
-add_port_option "[ ] GNOMEVFS"
+init_port_options "graphics_inkscape" "inkscape" "0.91"
+add_port_option "[ ] CDR"
+add_port_option "[ ] DBUS"
+add_port_option "[ ] OPENMP"
 add_port_option "[x] POPPLER"
+add_port_option "[ ] VISIO"
+add_port_option "[ ] WPG"
 create_port_options
 
 
@@ -789,7 +793,7 @@ add_port_option "[ ] DOCS"
 create_port_options
 
 
-# -- /graphics/p5-Image-ExifTool OPTIONS --
+# -- graphics/p5-Image-ExifTool OPTIONS --
 init_port_options "graphics_p5-Image-ExifTool" "p5-Image-ExifTool" "9.27"
 add_port_option "[ ] DOCS"
 create_port_options
@@ -940,7 +944,7 @@ create_port_options
 
 
 # -- net/wireshark OPTIONS --
-init_port_options "net_wireshark" "wireshark" "1.10.6"
+init_port_options "net_wireshark" "wireshark" "1.12.3"
 add_port_option "[x] ADNS"
 add_port_option "[ ] CARES"
 add_port_option "[ ] GCRYPT"
@@ -954,6 +958,8 @@ add_port_option "[ ] RTP"
 add_port_option "[ ] SNMP"
 add_port_option "[ ] THREADS"
 add_port_option "[x] X11"
+add_port_option "(*) GTK3"
+add_port_option "( ) QT5"
 create_port_options
 
 
@@ -1304,13 +1310,6 @@ create_port_options
 init_port_options "x11-toolkits_gtk30" "gtk3" "3.14.7"
 add_port_option "[ ] CLOUDPRINT"
 add_port_option "[x] COLORD"
-add_port_option "[ ] CUPS"
-add_port_option "[ ] DEBUG"
-create_port_options
-
-
-# -- x11-toolkits/gtk30 OPTIONS --
-init_port_options "x11-toolkits_gtk30" "gtk3" "3.8.8_1"
 add_port_option "[ ] CUPS"
 add_port_option "[ ] DEBUG"
 create_port_options
