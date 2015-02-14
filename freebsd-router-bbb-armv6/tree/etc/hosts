@@ -1,5 +1,5 @@
 # replace ROUTER with real hostname
-# replace fd00:2001:db8:0:: with real ULA prefix
+# replace fd00:2001:db8:0::3 with real ULA prefix+EUI-64 of nas
 
 # Host Database
 ::1			localhost.localdomain localhost ROUTER.localdomain ROUTER

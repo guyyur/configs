@@ -5,7 +5,7 @@ Protocol 2
 
 CheckHostIP no
 
-Host router router.localdomain server server.localdomain
+Host router router.localdomain nas nas.localdomain
   CanonicalizeHostname yes
   CanonicalizePermittedCNAMEs *:*
 
