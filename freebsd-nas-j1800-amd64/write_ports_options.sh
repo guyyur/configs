@@ -279,7 +279,7 @@ create_port_options
 
 
 # -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.35.0"
+init_port_options "ftp_curl" "curl" "7.40.0"
 add_port_option "[x] CA_BUNDLE"
 add_port_option "[ ] COOKIES"
 add_port_option "[ ] CURL_DEBUG"
@@ -287,14 +287,13 @@ add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] HTTP2"
-add_port_option "[x] IDN"
+add_port_option "[ ] IDN"
 add_port_option "[x] IPV6"
 add_port_option "[ ] LDAP"
 add_port_option "[ ] LDAPS"
 add_port_option "[ ] LIBSSH2"
 add_port_option "[x] PROXY"
 add_port_option "[ ] RTMP"
-add_port_option "[ ] SPNEGO"
 add_port_option "[x] TLS_SRP"
 add_port_option "( ) GSSAPI_BASE"
 add_port_option "( ) HEIMDAL_PORT"
@@ -311,7 +310,7 @@ create_port_options
 
 # -- ftp/wget OPTIONS --
 init_port_options "ftp_wget" "wget" "1.14_2"
-add_port_option "[x] IDN"
+add_port_option "[ ] IDN"
 add_port_option "[x] IPV6"
 add_port_option "[ ] NLS"
 add_port_option "[ ] PCRE"
