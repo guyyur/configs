@@ -165,7 +165,7 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.hgrc "${DESTDIR}"/home/guy/.hg
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba/private || exit 1
-# install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb-NAS.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
+# install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/smb.conf "${DESTDIR}"/etc/local/smb.conf || exit 1
 
 # install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1

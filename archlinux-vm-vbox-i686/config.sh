@@ -117,7 +117,7 @@ ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-daemon.service || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-daemon.socket || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-dnsconfd.service || exit 1
 
-# install -c -m 600 -o root -g root tree/var/lib/samba/private/passdb-VBOXVM.tdb "${DESTDIR}"/var/lib/samba/private/passdb.tdb || exit 1
+# install -c -m 600 -o root -g root tree/var/lib/samba/private/passdb.tdb "${DESTDIR}"/var/lib/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g root tree/etc/samba/smb.conf "${DESTDIR}"/etc/samba/smb.conf || exit 1
 ln -sfn /usr/lib/systemd/system/smbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/smbd.service || exit 1
 ln -sfn /usr/lib/systemd/system/nmbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nmbd.service || exit 1
