@@ -88,7 +88,7 @@ install -c -m 644 -o root -g wheel tree/etc/mk.conf "${DESTDIR}"/etc/mk.conf || 
 install -c -m 640 -o root -g wheel tree/etc/syslog.conf "${DESTDIR}"/etc/syslog.conf || exit 1
 install -c -m 640 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/newsyslog.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/daily.conf "${DESTDIR}"/etc/daily.conf || exit 1
+install -c -m 600 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
 
 # install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1

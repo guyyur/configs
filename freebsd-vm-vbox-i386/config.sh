@@ -108,8 +108,6 @@ install -c -m 640 -o root -g wheel tree/etc/dhclient.conf "${DESTDIR}"/etc/dhcli
 install -c -m 644 -o root -g wheel tree/etc/syslog.conf "${DESTDIR}"/etc/syslog.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/newsyslog.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/periodic.conf "${DESTDIR}"/etc/periodic.conf || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
 
 # install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
