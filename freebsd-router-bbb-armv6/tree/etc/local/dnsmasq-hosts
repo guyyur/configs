@@ -1,6 +1,8 @@
 # replace fd00:2001:db8:0::1 with real ULA prefix+EUI-64 of router
 # replace fd00:2001:db8:0::3 with real ULA prefix+EUI-64 of nas
 # replace fd00:2001:db8:0::3333 with real ULA RFC 7217 address of nas
+# replace fd00:2001:db8:0::4 with real ULA prefix+EUI-64 of server
+# replace fd00:2001:db8:0::4444 with real ULA RFC 7217 address of server
 # replace ROUTER, ACCESSPOINT, NAS with real hostnames
 
 192.168.1.1				ROUTER.localdomain ROUTER
@@ -10,6 +12,8 @@ fd00:2001:db8:0::1			ROUTER.localdomain ROUTER
 
 fd00:2001:db8:0::3			NAS.localdomain NAS
 fd00:2001:db8:0::3333			NAS.localdomain NAS
+fd00:2001:db8:0::4			SERVER.localdomain SERVER
+fd00:2001:db8:0::4444			SERVER.localdomain SERVER
 
 # manual aliases instead of using CNAME in dnsmasq.conf
 fd00:2001:db8:0::3			fbsd-stuff.localdomain fbsd-stuff
