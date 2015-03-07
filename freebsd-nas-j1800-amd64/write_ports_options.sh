@@ -380,22 +380,6 @@ add_port_option "[ ] GSSAPI"
 create_port_options
 
 
-# -- net/rsync OPTIONS --
-init_port_options "net_rsync" "rsync" "3.1.0_1"
-add_port_option "[ ] DOCS"
-add_port_option "[ ] ICONV"
-add_port_option "[x] POPT_PORT"
-add_port_option "[x] SSH"
-add_port_option "[x] ZLIB_BASE"
-add_port_option "( ) TIMELIMIT"
-add_port_option "( ) RENAMED"
-add_port_option "( ) FLAGS"
-add_port_option "( ) RENFL"
-add_port_option "( ) ATIMES"
-add_port_option "( ) ACL"
-create_port_options
-
-
 # -- net/samba41 OPTIONS --
 init_port_options "net_samba41" "samba41" "4.1.16"
 add_port_option "[ ] ACL_SUPPORT"

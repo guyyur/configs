@@ -29,7 +29,6 @@ cd /usr/ports/sysutils/smartmontools && make $target || exit 1
 cd /usr/ports/lang/python3 && make $target || exit 1
 cd /usr/ports/ftp/curl && make $target || exit 1
 cd /usr/ports/ftp/wget && make $target || exit 1
-cd /usr/ports/net/rsync && make $target || exit 1
 cd /usr/ports/net/samba41 && make $target || exit 1
 cd /usr/ports/www/fcgiwrap && make $target || exit 1
 cd /usr/ports/www/nginx && make $target || exit 1
