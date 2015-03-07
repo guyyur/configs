@@ -607,13 +607,3 @@ add_port_option "[ ] VIDEO"
 add_port_option "( ) HTTP_MP4"
 add_port_option "( ) HTTP_MP4_H264"
 create_port_options
-
-
-# -- www/youtube_dl OPTIONS --
-init_port_options "www_youtube_dl" "youtube_dl" "2015.01.25"
-add_port_option "[ ] BASH"
-add_port_option "[ ] FFMPEG"
-add_port_option "[ ] FISH"
-add_port_option "[ ] RTMPDUMP"
-add_port_option "[ ] ZSH"
-create_port_options

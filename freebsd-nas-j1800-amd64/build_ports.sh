@@ -36,5 +36,4 @@ cd /usr/ports/devel/mercurial && make $target || exit 1
 cd /usr/ports/devel/subversion && make $target || exit 1
 cd /usr/ports/devel/git && make $target || exit 1
 cd /usr/ports/devel/cscope && make $target || exit 1
-cd /usr/ports/www/youtube_dl && make $target || exit 1
 cd /usr/ports/benchmarks/iperf && make $target || exit 1
