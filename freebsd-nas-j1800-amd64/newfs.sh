@@ -55,8 +55,8 @@ disk1=ada1
 #   /
 #   swap
 #   /var
-#   /export/fbsd-ports
-#   /export/fbsd-src
+#   /usr/ports
+#   /usr/src
 #   /var/db/portsnap
 #   /usr/obj
 #   /home
@@ -65,7 +65,7 @@ my_prompt_to_newfs "${disk0}" || exit 1
 my_newfs /dev/"${disk0}"p2 131072 -U -n || exit 1
 my_newfs /dev/"${disk0}"p4 25600 -U -j || exit 1
 my_newfs /dev/"${disk0}"p5 196608 -U -n || exit 1
-my_newfs /dev/"${disk0}"p6 262144 -U -n || exit 1
+my_newfs /dev/"${disk0}"p6 131072 -U -n || exit 1
 my_newfs /dev/"${disk0}"p7 49152 -U -n || exit 1
 my_newfs /dev/"${disk0}"p8 524288 -U -n || exit 1
 my_newfs /dev/"${disk0}"p9 786432 -U -j || exit 1

@@ -12,8 +12,8 @@ umount /mnt/export/backup || exit 1
 umount /mnt/home || exit 1
 umount /mnt/usr/obj || exit 1
 umount /mnt/var/db/portsnap || exit 1
-umount /mnt/export/fbsd-src || exit 1
-umount /mnt/export/fbsd-ports || exit 1
+umount /mnt/usr/src || exit 1
+umount /mnt/usr/ports || exit 1
 umount /mnt/var || exit 1
 # umount /mnt/boot/esp || exit 1
 umount /mnt || exit 1

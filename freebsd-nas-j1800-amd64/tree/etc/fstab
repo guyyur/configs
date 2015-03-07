@@ -1,14 +1,14 @@
-# Device      Mountpoint           FStype  Options     Dump  Pass#
-/dev/ada0p3   none                 swap    sw          0     0
-/dev/ada0p2   /                    ufs     ro,noatime  0     0
-# /dev/ada0p1   /boot/esp            msdosfs ro,noatime  2     2
-/dev/ada0p4   /var                 ufs     rw,noatime  2     2
-/dev/ada0p5   /export/fbsd-ports   ufs     rw,noatime  2     2
-/dev/ada0p6   /export/fbsd-src     ufs     rw,noatime  2     2
-/dev/ada0p7   /var/db/portsnap     ufs     rw,noatime  2     2
-/dev/ada0p8   /usr/obj             ufs     rw,noatime  2     2
-/dev/ada0p9   /home                ufs     rw,noatime  2     2
-/dev/ada1p1   /export/backup       ufs     rw,noatime  2     2
+# Device      Mountpoint        FStype  Options     Dump  Pass#
+/dev/ada0p3   none              swap    sw          0     0
+/dev/ada0p2   /                 ufs     ro,noatime  0     0
+# /dev/ada0p1   /boot/esp         msdosfs ro,noatime  2     2
+/dev/ada0p4   /var              ufs     rw,noatime  2     2
+/dev/ada0p5   /usr/ports        ufs     rw,noatime  2     2
+/dev/ada0p6   /usr/src          ufs     rw,noatime  2     2
+/dev/ada0p7   /var/db/portsnap  ufs     rw,noatime  2     2
+/dev/ada0p8   /usr/obj          ufs     rw,noatime  2     2
+/dev/ada0p9   /home             ufs     rw,noatime  2     2
+/dev/ada1p1   /export/backup    ufs     rw,noatime  2     2
 
 tmpfs         /var/run          tmpfs   rw,size=8M,inodes=512      0  0
 tmpfs         /var/spool/lock   tmpfs   rw,size=1M,inodes=128      0  0
@@ -16,9 +16,8 @@ tmpfs         /tmp              tmpfs   rw,size=512M,inodes=16384  0  0
 
 tmpfs         /home/wrkdir      tmpfs   rw,size=256M   0  0
 
-/home/public           /export/public           nullfs    rw   0  0
-/home/shares           /export/shares           nullfs    rw   0  0
-/usr/obj               /export/obj              nullfs    ro   0  0
-
-/export/fbsd-ports     /usr/ports    nullfs  rw  0  0
-/export/fbsd-src       /usr/src      nullfs  ro  0  0
+/usr/ports    /export/fbsd-ports    nullfs    rw   0  0
+/usr/src      /export/fbsd-src      nullfs    ro   0  0
+/usr/obj      /export/obj           nullfs    ro   0  0
+/home/public  /export/public        nullfs    rw   0  0
+/home/shares  /export/shares        nullfs    rw   0  0

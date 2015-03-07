@@ -17,6 +17,7 @@ cd /usr/ports/ports-mgmt/pkg && make $target || exit 1
 cd /usr/ports/ports-mgmt/portmaster && make $target || exit 1
 cd /usr/ports/editors/nano && make $target || exit 1
 cd /usr/ports/sysutils/tmux && make $target || exit 1
+cd /usr/ports/net/svnup && make $target || exit 1
 cd /usr/ports/net/dhcpcd && make $target || exit 1
 cd /usr/ports/editors/hexedit && make $target || exit 1
 cd /usr/ports/archivers/gtar && make $target || exit 1

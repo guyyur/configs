@@ -40,8 +40,8 @@ disk1=ada1
 #   /
 #   swap
 #   /var
-#   /export/fbsd-ports
-#   /export/fbsd-src
+#   /usr/ports
+#   /usr/src
 #   /var/db/portsnap
 #   /usr/obj
 #   /home
@@ -54,9 +54,9 @@ gpart add -a 1m -b 100352 -s 4194304 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 8388608 -t freebsd-swap -l swap -f x "${disk0}" || exit 1
 gpart add -a 1m -s 262144 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 16777216 -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 786432 -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -s 67108864 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 my_commit_or_undo "${disk0}" || exit 1
 
