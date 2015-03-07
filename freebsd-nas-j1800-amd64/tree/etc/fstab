@@ -10,11 +10,11 @@
 /dev/ada0p9   /home                ufs     rw,noatime  2     2
 /dev/ada1p1   /export/backup       ufs     rw,noatime  2     2
 
-tmpfs         /var/run         tmpfs   rw,size=8M,inodes=512     0  0
-tmpfs         /var/spool/lock  tmpfs   rw,size=1M,inodes=128     0  0
-tmpfs         /tmp             tmpfs   rw,size=64M,inodes=16384  0  0
+tmpfs         /var/run          tmpfs   rw,size=8M,inodes=512      0  0
+tmpfs         /var/spool/lock   tmpfs   rw,size=1M,inodes=128      0  0
+tmpfs         /tmp              tmpfs   rw,size=512M,inodes=16384  0  0
 
-tmpfs  /home/wrkdir  tmpfs  rw,size=256M   0  0
+tmpfs         /home/wrkdir      tmpfs   rw,size=256M   0  0
 
 /home/public           /export/public           nullfs    rw   0  0
 /home/shares           /export/shares           nullfs    rw   0  0
