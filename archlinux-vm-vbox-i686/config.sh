@@ -18,6 +18,8 @@ DESTDIR=${1%/}
 #
 ln -sfn /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
+# install -c -m 644 -o root -g root tree/etc/login.defs "${DESTDIR}"/etc/login.defs || exit 1
+
 # install -c -m 600 -o root -g root tree/etc/gshadow "${DESTDIR}"/etc/gshadow || exit 1
 # rm -f "${DESTDIR}"/etc/gshadow- || exit 1
 # install -c -m 644 -o root -g root tree/etc/group "${DESTDIR}"/etc/group || exit 1
@@ -52,6 +54,9 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.bashrc "${DESTDIR}"/home/guy/.
 
 install -c -m 644 -o root -g root tree/boot/syslinux/syslinux.cfg "${DESTDIR}"/boot/syslinux/syslinux.cfg || exit 1
 
+install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system/remote-fs.target.wants || exit 1
+install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system/sockets.target.wants || exit 1
+
 install -c -m 644 -o root -g root tree/etc/modprobe.d/my_blacklist.conf "${DESTDIR}"/etc/modprobe.d/my_blacklist.conf || exit 1
 
 install -c -m 644 -o root -g root tree/etc/sysctl.d/40-ipv6.conf "${DESTDIR}"/etc/sysctl.d/40-ipv6.conf || exit 1
@@ -67,6 +72,8 @@ install -c -m 644 -o root -g root tree/etc/fstab "${DESTDIR}"/etc/fstab || exit 
 ln -sfn /run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
+
+# install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
 
@@ -102,6 +109,8 @@ ln -sfn /usr/lib/systemd/system/sshd.service "${DESTDIR}"/etc/systemd/system/mul
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
 # install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
 
+ln -sfn /usr/lib/systemd/system/rpcbind.socket "${DESTDIR}"/etc/systemd/system/sockets.target.wants/rpcbind.socket || exit 1
+
 ln -sfn /usr/lib/systemd/system/nfs-client.target "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-client.target || exit 1
 ln -sfn /usr/lib/systemd/system/nfs-client.target "${DESTDIR}"/etc/systemd/system/remote-fs.target.wants/nfs-client.target || exit 1
 
@@ -114,13 +123,12 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.hgrc "${DESTDIR}"/home/guy/.hg
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-daemon.service || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-daemon.socket || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-dnsconfd.service || exit 1
+ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/dbus-org.freedesktop.Avahi.service || exit 1
 
 # install -c -m 600 -o root -g root tree/var/lib/samba/private/passdb.tdb "${DESTDIR}"/var/lib/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g root tree/etc/samba/smb.conf "${DESTDIR}"/etc/samba/smb.conf || exit 1
 ln -sfn /usr/lib/systemd/system/smbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/smbd.service || exit 1
 ln -sfn /usr/lib/systemd/system/nmbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nmbd.service || exit 1
-
-# install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy/thumbnails || exit 1
 ln -sfn /var/xdg-cache/guy/thumbnails "${DESTDIR}"/home/guy/.thumbnails || exit 1
