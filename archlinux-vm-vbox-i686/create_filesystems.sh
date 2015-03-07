@@ -36,11 +36,9 @@ disk3=sdd
 # disk0:
 #   /
 #   /var
-#   /tmp
 my_prompt_to_create_filesystems "${disk0}" || exit 1
 mke2fs -t ext4 -N 262144 /dev/"${disk0}"1 || exit 1
 mke2fs -t ext4 -N 81920 /dev/"${disk0}"2 || exit 1
-mke2fs -t ext4 -N 65536 /dev/"${disk0}"3 || exit 1
 
 # disk1:
 #   swap
@@ -48,11 +46,11 @@ my_prompt_to_create_filesystems "${disk1}" || exit 1
 mkswap /dev/"${disk1}"1
 
 # disk2:
-#   /home
+#   /var/cache/pacman
 my_prompt_to_create_filesystems "${disk2}" || exit 1
-mke2fs -t ext4 -N 262144 /dev/"${disk2}"1 || exit 1
+mke2fs -t ext4 -N 16384 /dev/"${disk2}"1 || exit 1
 
 # disk3:
-#   /var/cache/pacman
+#   /home
 my_prompt_to_create_filesystems "${disk3}" || exit 1
-mke2fs -t ext4 -N 16384 /dev/"${disk3}"1 || exit 1
+mke2fs -t ext4 -N 262144 /dev/"${disk3}"1 || exit 1

@@ -105,8 +105,6 @@ install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
 ln -sfn /usr/lib/systemd/system/nfs-client.target "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-client.target || exit 1
 ln -sfn /usr/lib/systemd/system/nfs-client.target "${DESTDIR}"/etc/systemd/system/remote-fs.target.wants/nfs-client.target || exit 1
 
-install -d -m 1777 -o root -g users "${DESTDIR}"/export/public || exit 1
-install -d -m 1777 -o root -g users "${DESTDIR}"/export/shares || exit 1
 install -c -m 640 -o root -g root tree/etc/exports "${DESTDIR}"/etc/exports || exit 1
 
 ln -sfn /usr/lib/systemd/system/nfs-server.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-server.service || exit 1

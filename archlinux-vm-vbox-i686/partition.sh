@@ -36,14 +36,12 @@ disk3=sdd
 # disk0:
 #   /
 #   /var
-#   /tmp
 my_prompt_to_partition "${disk0}" || exit 1
 parted -s -a optimal /dev/"${disk0}" \
   mklabel msdos \
   unit s \
-  mkpart primary ext4 2048s 6293503s \
-  mkpart primary ext4 6293504s 6817791s \
-  mkpart primary ext4 6817792s 100% \
+  mkpart primary ext4 2048s 10487807s \
+  mkpart primary ext4 10487808s 100% \
   set 1 boot on \
   || exit 1
 parted -s -a optimal /dev/"${disk0}" unit s print || exit 1
@@ -59,7 +57,7 @@ parted -s -a optimal /dev/"${disk1}" \
 parted -s -a optimal /dev/"${disk1}" unit s print || exit 1
 
 # disk2:
-#   /home
+#   /var/cache/pacman
 my_prompt_to_partition "${disk2}" || exit 1
 parted -s -a optimal /dev/"${disk2}" \
   mklabel msdos \
@@ -69,7 +67,7 @@ parted -s -a optimal /dev/"${disk2}" \
 parted -s -a optimal /dev/"${disk2}" unit s print || exit 1
 
 # disk3:
-#   /var/cache/pacman
+#   /home
 my_prompt_to_partition "${disk3}" || exit 1
 parted -s -a optimal /dev/"${disk3}" \
   mklabel msdos \
