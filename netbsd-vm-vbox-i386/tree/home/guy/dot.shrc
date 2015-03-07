@@ -26,7 +26,8 @@ case "$-" in
     fi
     
     
-    # -- disable history for ksh93 --
+    # -- history --
+    HISTSIZE=500
     case "$KSH_VERSION" in Version*)
       HISTFILE=/dev/null;;
     esac

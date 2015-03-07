@@ -10,6 +10,10 @@ PS1="[$USER@`hostname -s`]# "
 set -o emacs
 
 
+# -- history --
+HISTSIZE=500
+
+
 # -- aliases --
 alias la='ls -A'
 alias lf='ls -F'

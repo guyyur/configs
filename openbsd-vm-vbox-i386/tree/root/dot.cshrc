@@ -14,8 +14,8 @@ if ($?prompt) then
   
   # -- shell vars --
   set filec
-  set history = 100
-  # set savehist = 100
+  set history = 500
+  # set savehist = (500 merge)
   set histdup = erase
   set ignoreeof
   set mail = (/var/mail/root)
