@@ -106,7 +106,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   m4 \
   make \
   patch \
-  pkgconfig \
+  pkg-config \
   bin86 \
   indent \
   python \
@@ -131,7 +131,6 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   xterm \
   libxss \
   libnotify \
-  hsetroot \
   virtualbox-guest-modules \
   virtualbox-guest-utils \
   gtk-engine-murrine \
@@ -151,3 +150,8 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   lxtask \
   geany \
   || exit 1
+
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/murrine-themes-collection-*-any.pkg.tar.xz || exit 1
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/hsetroot-*-i686.pkg.tar.xz || exit 1
