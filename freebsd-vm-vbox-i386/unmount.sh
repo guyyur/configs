@@ -8,8 +8,7 @@ fi
 
 
 # -- layout --
-umount /mnt/usr/obj || exit 1
 umount /mnt/home || exit 1
-umount /mnt/tmp || exit 1
+umount /mnt/usr/obj || exit 1
 umount /mnt/var || exit 1
 umount /mnt || exit 1

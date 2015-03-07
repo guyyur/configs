@@ -56,21 +56,19 @@ disk3=ada3
 #   freebsd-boot
 #   /
 #   /var
-#   /tmp
 my_prompt_to_newfs "${disk0}" || exit 1
 my_newfs /dev/"${disk0}"p2 131072 -U -n || exit 1
 my_newfs /dev/"${disk0}"p3 25600 -U -j || exit 1
-my_newfs /dev/"${disk0}"p4 52224 -U -n || exit 1
 
 # disk1:
 #   swap
 
 # disk2:
-#   /home
+#   /usr/obj
 my_prompt_to_newfs "${disk2}" || exit 1
-my_newfs /dev/"${disk2}"p1 524288 -U -j || exit 1
+my_newfs /dev/"${disk2}"p1 262144 -U -n || exit 1
 
 # disk3:
-#   /usr/obj
+#   /home
 my_prompt_to_newfs "${disk3}" || exit 1
-my_newfs /dev/"${disk3}"p1 262144 -U -n || exit 1
+my_newfs /dev/"${disk3}"p1 524288 -U -j || exit 1

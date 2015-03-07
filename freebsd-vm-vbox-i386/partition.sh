@@ -41,13 +41,11 @@ disk3=ada3
 #   freebsd-boot
 #   /
 #   /var
-#   /tmp
 gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
 gpart add -b 40 -s 88 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
 gpart add -a 1m -b 2048 -s 10485760 -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -s 1048576 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 my_commit_or_undo "${disk0}" || exit 1
 
@@ -58,13 +56,13 @@ gpart add -a 1m -b 2048 -t freebsd-swap -l swap -f x "${disk1}" || exit 1
 my_commit_or_undo "${disk1}" || exit 1
 
 # disk2:
-#   /home
+#   /usr/obj
 gpart create -s GPT -f x "${disk2}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
 my_commit_or_undo "${disk2}" || exit 1
 
 # disk3:
-#   /usr/obj
+#   /home
 gpart create -s GPT -f x "${disk3}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
 my_commit_or_undo "${disk3}" || exit 1
