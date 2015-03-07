@@ -234,8 +234,9 @@ create_port_options
 
 
 # -- devel/cmake OPTIONS --
-init_port_options "devel_cmake" "cmake" "2.8.12.1_2"
+init_port_options "devel_cmake" "cmake" "3.1.3"
 add_port_option "[ ] DOCS"
+add_port_option "[x] MANPAGES"
 create_port_options
 
 
