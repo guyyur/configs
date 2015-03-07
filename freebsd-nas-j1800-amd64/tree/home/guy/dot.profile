@@ -50,7 +50,7 @@ export LESS="-QR"
 export LESSHISTFILE="-"
 
 
-# -- set ENV to a file invoked each time sh is started interactively. --
+# -- set ENV to a file invoked each time sh is started interactively --
 export ENV=$HOME/.shrc
 
 

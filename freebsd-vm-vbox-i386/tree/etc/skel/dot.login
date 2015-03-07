@@ -23,5 +23,5 @@ setenv LC_TIME      en_GB.UTF-8
 setenv BLOCKSIZE  K
 
 
-# -- set ENV to a file invoked each time sh is started interactively. --
+# -- set ENV to a file invoked each time sh is started interactively --
 setenv ENV  $HOME/.shrc

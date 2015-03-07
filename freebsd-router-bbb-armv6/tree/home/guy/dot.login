@@ -50,7 +50,7 @@ setenv LESS "-QR"
 setenv LESSHISTFILE "-"
 
 
-# -- set ENV to a file invoked each time sh is started interactively. --
+# -- set ENV to a file invoked each time sh is started interactively --
 setenv ENV  $HOME/.shrc
 
 
