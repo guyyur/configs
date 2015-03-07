@@ -122,6 +122,10 @@ ln -sfn /usr/lib/systemd/system/nmbd.service "${DESTDIR}"/etc/systemd/system/mul
 
 # install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
 
+install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy/thumbnails || exit 1
+ln -sfn /var/xdg-cache/guy/thumbnails "${DESTDIR}"/home/guy/.thumbnails || exit 1
+chown -h guy:guy "${DESTDIR}"/home/guy/.thumbnails || exit 1
+
 install -d -m 755 -o root -g root "${DESTDIR}"/usr/db/fontconfig || exit 1
 mv -n "${DESTDIR}"/var/cache/fontconfig/* "${DESTDIR}"/usr/db/fontconfig 2>/dev/null
 install -d -m 755 -o root -g root "${DESTDIR}"/etc/fonts || exit 1

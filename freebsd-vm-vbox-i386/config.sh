@@ -169,6 +169,10 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/dbus || exit 1
 # install -c -m 644 -o root -g wheel tree/etc/local/machine-id "${DESTDIR}"/etc/local/machine-id || exit 1
 install -l s /etc/local/machine-id "${DESTDIR}"/var/db/dbus/machine-id || exit 1
 
+install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy/thumbnails || exit 1
+install -l s /var/xdg-cache/guy/thumbnails "${DESTDIR}"/home/guy/.thumbnails || exit 1
+chown -h guy "${DESTDIR}"/home/guy/.thumbnails || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/local/db/fontconfig || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/fonts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/fonts/local.conf "${DESTDIR}"/etc/local/fonts/local.conf || exit 1
