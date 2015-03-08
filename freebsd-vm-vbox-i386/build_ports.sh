@@ -100,7 +100,7 @@ cd /usr/ports/x11-wm/openbox && make $target || exit 1
 cd /usr/ports/x11-themes/openbox-themes && make $target || exit 1
 cd /usr/ports/x11-wm/obconf && make $target || exit 1
 cd /usr/ports/x11/tint && make $target || exit 1
-cd /usr/ports/local/gsimplecal && make $target || exit 1
+cd /usr/ports/deskutils/gsimplecal && make $target || exit 1
 cd /usr/ports/x11/gmrun && make $target || exit 1
 cd /usr/ports/x11-fm/pcmanfm && make $target || exit 1
 cd /usr/ports/editors/leafpad && make $target || exit 1
