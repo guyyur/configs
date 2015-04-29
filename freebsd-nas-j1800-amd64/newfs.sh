@@ -66,6 +66,23 @@ my_newfs /dev/"${disk0}"p5 524288 -U -n -t || exit 1
 my_newfs /dev/"${disk0}"p6 196608 -U -n -t || exit 1
 my_newfs /dev/"${disk0}"p7 786432 -U -n -t || exit 1
 
+# # disk0:
+# #   ESP
+# #   /
+# #   /var
+# #   /usr/src
+# #   /usr/obj
+# #   /usr/ports
+# #   /home
+# my_prompt_to_newfs "${disk0}" || exit 1
+# newfs_msdos -F 32 -c 8 -k 6 -r 7122 -o 2048 -m 0xF8 /dev/"${disk0}"p1 || exit 1
+# my_newfs /dev/"${disk0}"p2 131072 -U -n -t || exit 1
+# my_newfs /dev/"${disk0}"p3 65536 -U -n -t || exit 1
+# my_newfs /dev/"${disk0}"p4 131072 -U -n -t || exit 1
+# my_newfs /dev/"${disk0}"p5 524288 -U -n -t || exit 1
+# my_newfs /dev/"${disk0}"p6 196608 -U -n -t || exit 1
+# my_newfs /dev/"${disk0}"p7 786432 -U -n -t || exit 1
+
 # disk1:
 #   /export/backup
 my_prompt_to_newfs "${disk1}" || exit 1

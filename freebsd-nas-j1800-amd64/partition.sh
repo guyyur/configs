@@ -56,6 +56,24 @@ gpart add -a 1m -s 16777216 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 my_commit_or_undo "${disk0}" || exit 1
 
+# # disk0:
+# #   ESP
+# #   /
+# #   /var
+# #   /usr/src
+# #   /usr/obj
+# #   /usr/ports
+# #   /home
+# gpart create -s GPT -f x "${disk0}" || exit 1
+# gpart add -a 1m -b 2048 -s 555008 -t efi -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 4194304 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 16777216 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
+# my_commit_or_undo "${disk0}" || exit 1
+
 # disk1:
 #   /export/backup
 gpart create -s GPT -f x "${disk1}" || exit 1
