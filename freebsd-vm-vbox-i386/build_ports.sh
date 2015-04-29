@@ -84,7 +84,6 @@ cd /usr/ports/x11-fonts/sourcecodepro-ttf && make $target || exit 1
 cd /usr/ports/x11-fonts/liberation-fonts-ttf && make $target || exit 1
 cd /usr/ports/hebrew/culmus && make $target || exit 1
 cd /usr/ports/x11-fonts/junicode && make $target || exit 1
-cd /usr/ports/x11-fonts/code2001 && make $target || exit 1
 cd /usr/ports/x11/xsetroot && make $target || exit 1
 cd /usr/ports/graphics/hsetroot && make $target || exit 1
 cd /usr/ports/accessibility/atk && make $target || exit 1
