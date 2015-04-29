@@ -16,6 +16,8 @@ mount -o noatime /dev/"${disk0}"s2a /mnt || exit 1
 install -d -m 755 -o root -g wheel /mnt/boot || exit 1
 install -d -m 755 -o root -g wheel /mnt/boot/custom || exit 1
 install -d -m 755 -o root -g wheel /mnt/var || exit 1
+install -d -m 755 -o root -g wheel /mnt/usr || exit 1
+install -d -m 755 -o root -g wheel /mnt/usr/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
 
 mount -t msdosfs -o noatime,longnames /dev/"${disk0}"s1 /mnt/boot/custom || exit 1

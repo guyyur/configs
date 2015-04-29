@@ -19,6 +19,7 @@ mount -o noatime /dev/"${disk0}"p2 /mnt || exit 1
 install -d -m 755 -o root -g wheel /mnt/var || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/obj || exit 1
+install -d -m 755 -o root -g wheel /mnt/usr/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
 install -d -m 755 -o root -g wheel /mnt/export || exit 1
 install -d -m 755 -o root -g wheel /mnt/export/obj || exit 1
