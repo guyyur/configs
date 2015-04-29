@@ -20,6 +20,7 @@ my_commit_or_undo()
   case "${my_commit}" in
     Y|y)
       gpart commit "${my_disk}" || return 1
+      printf "\n"
       ;;
     *)
       gpart undo "${my_disk}"
