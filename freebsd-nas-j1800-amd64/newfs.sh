@@ -51,26 +51,22 @@ disk1=ada1
 
 # -- layout  --
 # disk0:
-#   freebsd-boot    # change to ESP for UEFI
+#   freebsd-boot
 #   /
-#   swap
 #   /var
-#   /usr/ports
 #   /usr/src
-#   /var/db/portsnap
 #   /usr/obj
+#   /usr/ports
 #   /home
 my_prompt_to_newfs "${disk0}" || exit 1
-# newfs_msdos -F 32 -c 8 -r 32 -o 2048 -m 0xF8 /dev/"${disk0}"p1 || exit 1
-my_newfs /dev/"${disk0}"p2 131072 -U -n || exit 1
-my_newfs /dev/"${disk0}"p4 25600 -U -j || exit 1
-my_newfs /dev/"${disk0}"p5 196608 -U -n || exit 1
-my_newfs /dev/"${disk0}"p6 131072 -U -n || exit 1
-my_newfs /dev/"${disk0}"p7 49152 -U -n || exit 1
-my_newfs /dev/"${disk0}"p8 524288 -U -n || exit 1
-my_newfs /dev/"${disk0}"p9 786432 -U -j || exit 1
+my_newfs /dev/"${disk0}"p2 131072 -U -n -t || exit 1
+my_newfs /dev/"${disk0}"p3 65536 -U -n -t || exit 1
+my_newfs /dev/"${disk0}"p4 131072 -U -n -t || exit 1
+my_newfs /dev/"${disk0}"p5 524288 -U -n -t || exit 1
+my_newfs /dev/"${disk0}"p6 196608 -U -n -t || exit 1
+my_newfs /dev/"${disk0}"p7 786432 -U -n -t || exit 1
 
 # disk1:
 #   /export/backup
 my_prompt_to_newfs "${disk1}" || exit 1
-my_newfs /dev/"${disk1}"p1 262144 -U -j || exit 1
+my_newfs /dev/"${disk1}"p1 262144 -U -n -j || exit 1
