@@ -87,6 +87,14 @@ add_port_option "[x] THREADS"
 create_port_options
 
 
+# -- converters/libiconv OPTIONS --
+init_port_options "converters_libiconv" "libiconv" "1.14_3"
+add_port_option "[ ] DOCS"
+add_port_option "[x] ENCODINGS"
+add_port_option "[ ] PATCHES"
+create_port_options
+
+
 # -- databases/ldb OPTIONS --
 init_port_options "databases_ldb" "ldb" "1.1.17"
 add_port_option "[ ] MANPAGES"
@@ -159,7 +167,7 @@ create_port_options
 
 
 # -- devel/git OPTIONS --
-init_port_options "devel_git" "git" "1.8.3.1"
+init_port_options "devel_git" "git" "2.3.5"
 add_port_option "[ ] CONTRIB"
 add_port_option "[x] CURL"
 add_port_option "[ ] CVS"
@@ -272,14 +280,15 @@ create_port_options
 
 
 # -- editors/nano OPTIONS --
-init_port_options "editors_nano" "nano" "2.2.6"
+init_port_options "editors_nano" "nano" "2.4.0"
 add_port_option "[ ] DOCS"
+add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] NLS"
 create_port_options
 
 
 # -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.40.0"
+init_port_options "ftp_curl" "curl" "7.42.0"
 add_port_option "[x] CA_BUNDLE"
 add_port_option "[ ] COOKIES"
 add_port_option "[ ] CURL_DEBUG"
@@ -296,15 +305,16 @@ add_port_option "[x] PROXY"
 add_port_option "[ ] RTMP"
 add_port_option "[x] TLS_SRP"
 add_port_option "( ) GSSAPI_BASE"
-add_port_option "( ) HEIMDAL_PORT"
-add_port_option "( ) KRB5_PORT"
+add_port_option "( ) GSSAPI_HEIMDAL"
+add_port_option "( ) GSSAPI_MIT"
+add_port_option "(*) GSSAPI_NONE"
 add_port_option "( ) CARES"
 add_port_option "(*) THREADED_RESOLVER"
-add_port_option "( ) CYASSL"
 add_port_option "( ) GNUTLS"
 add_port_option "( ) NSS"
 add_port_option "(*) OPENSSL"
 add_port_option "( ) POLARSSL"
+add_port_option "( ) WOLFSSL"
 create_port_options
 
 
@@ -518,7 +528,7 @@ create_port_options
 
 
 # -- www/nginx OPTIONS --
-init_port_options "www_nginx" "nginx" "1.4.4_2,1"
+init_port_options "www_nginx" "nginx" "1.8.0,2"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DEBUGLOG"
 add_port_option "[ ] FILE_AIO"
@@ -526,6 +536,7 @@ add_port_option "[x] IPV6"
 add_port_option "[ ] GOOGLE_PERFTOOLS"
 add_port_option "[x] HTTP"
 add_port_option "[ ] HTTP_ADDITION"
+add_port_option "[ ] HTTP_AUTH_REQ"
 add_port_option "[x] HTTP_CACHE"
 add_port_option "[x] HTTP_DAV"
 add_port_option "[ ] HTTP_FLV"
@@ -548,6 +559,7 @@ add_port_option "[ ] MAIL_POP3"
 add_port_option "[ ] MAIL_SMTP"
 add_port_option "[ ] MAIL_SSL"
 add_port_option "[ ] SPDY"
+add_port_option "[ ] THREADS"
 add_port_option "[x] WWW"
 add_port_option "[ ] CACHE_PURGE"
 add_port_option "[ ] CTPP2"
@@ -558,7 +570,6 @@ add_port_option "[ ] HTTP_ACCESSKEY"
 add_port_option "[ ] HTTP_AUTH_DIGEST"
 add_port_option "[ ] HTTP_AUTH_LDAP"
 add_port_option "[ ] HTTP_AUTH_PAM"
-add_port_option "[ ] HTTP_AUTH_REQ"
 add_port_option "[ ] HTTP_DAV_EXT"
 add_port_option "[ ] HTTP_EVAL"
 add_port_option "[ ] HTTP_FANCYINDEX"
@@ -573,7 +584,6 @@ add_port_option "[ ] HTTP_SUBS_FILTER"
 add_port_option "[ ] HTTP_UPLOAD"
 add_port_option "[ ] HTTP_UPLOAD_PROGRESS"
 add_port_option "[ ] HTTP_UPSTREAM_FAIR"
-add_port_option "[ ] HTTP_UPSTREAM_HASH"
 add_port_option "[ ] HTTP_UPSTREAM_STICKY"
 add_port_option "[ ] HTTP_ZIP"
 add_port_option "[ ] ARRAYVAR"
@@ -598,7 +608,6 @@ add_port_option "[ ] SFLOW"
 add_port_option "[ ] SLOWFS_CACHE"
 add_port_option "[ ] SRCACHE"
 add_port_option "[ ] SUPERVISORD"
-add_port_option "[ ] SYSLOG_SUPPORT"
 add_port_option "[ ] TCP_PROXY"
 add_port_option "[ ] UDPLOG"
 add_port_option "[ ] XRID_HEADER"

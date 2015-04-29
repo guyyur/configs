@@ -270,7 +270,7 @@ create_port_options
 
 
 # -- devel/git OPTIONS --
-init_port_options "devel_git" "git" "1.8.3.1"
+init_port_options "devel_git" "git" "2.3.5"
 add_port_option "[ ] CONTRIB"
 add_port_option "[x] CURL"
 add_port_option "[ ] CVS"
@@ -494,8 +494,9 @@ create_port_options
 
 
 # -- editors/nano OPTIONS --
-init_port_options "editors_nano" "nano" "2.2.6"
+init_port_options "editors_nano" "nano" "2.4.0"
 add_port_option "[ ] DOCS"
+add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] NLS"
 create_port_options
 
@@ -509,7 +510,7 @@ create_port_options
 
 
 # -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.40.0"
+init_port_options "ftp_curl" "curl" "7.42.0"
 add_port_option "[x] CA_BUNDLE"
 add_port_option "[ ] COOKIES"
 add_port_option "[ ] CURL_DEBUG"
@@ -526,15 +527,16 @@ add_port_option "[x] PROXY"
 add_port_option "[ ] RTMP"
 add_port_option "[x] TLS_SRP"
 add_port_option "( ) GSSAPI_BASE"
-add_port_option "( ) HEIMDAL_PORT"
-add_port_option "( ) KRB5_PORT"
+add_port_option "( ) GSSAPI_HEIMDAL"
+add_port_option "( ) GSSAPI_MIT"
+add_port_option "(*) GSSAPI_NONE"
 add_port_option "( ) CARES"
 add_port_option "(*) THREADED_RESOLVER"
-add_port_option "( ) CYASSL"
 add_port_option "( ) GNUTLS"
 add_port_option "( ) NSS"
 add_port_option "(*) OPENSSL"
 add_port_option "( ) POLARSSL"
+add_port_option "( ) WOLFSSL"
 create_port_options
 
 
@@ -579,10 +581,9 @@ create_port_options
 
 
 # -- graphics/dri OPTIONS --
-init_port_options "graphics_dri" "dri" "9.1.7_6,2"
+init_port_options "graphics_dri" "dri" "10.4.6,2"
 add_port_option "[x] GALLIUM"
-add_port_option "[ ] TEXTURE"
-add_port_option "[x] VDPAU"
+add_port_option "[x] TEXTURE"
 create_port_options
 
 
@@ -667,7 +668,7 @@ create_port_options
 
 
 # -- graphics/ImageMagick OPTIONS --
-init_port_options "graphics_ImageMagick" "ImageMagick" "6.8.9.8_3,1"
+init_port_options "graphics_ImageMagick" "ImageMagick" "6.9.1.1,1"
 add_port_option "[x] BZIP2"
 add_port_option "[ ] DJVU"
 add_port_option "[ ] DOCS"
@@ -690,7 +691,6 @@ add_port_option "[ ] PANGO"
 add_port_option "[ ] PDF"
 add_port_option "[x] PERL"
 add_port_option "[x] PNG"
-add_port_option "[ ] SIMD"
 add_port_option "[ ] SVG"
 add_port_option "[ ] TESTS"
 add_port_option "[ ] THREADS"
@@ -893,12 +893,6 @@ add_port_option "[ ] DOCS"
 add_port_option "[ ] DOXYGEN"
 add_port_option "[ ] HTMLDOCS"
 add_port_option "[ ] KATEDJ"
-create_port_options
-
-
-# -- multimedia/libvdpau OPTIONS --
-init_port_options "multimedia_libvdpau" "libvdpau" "0.8_1"
-add_port_option "[ ] DEBUG"
 create_port_options
 
 
@@ -1227,7 +1221,7 @@ create_port_options
 
 
 # -- x11/xterm OPTIONS --
-init_port_options "x11_xterm" "xterm" "312"
+init_port_options "x11_xterm" "xterm" "317"
 add_port_option "[x] 256COLOR"
 add_port_option "[ ] DABBREV"
 add_port_option "[ ] DECTERM"
@@ -1299,8 +1293,7 @@ create_port_options
 
 
 # -- x11-toolkits/gtk20 OPTIONS --
-init_port_options "x11-toolkits_gtk20" "gtk" "2.24.19"
-add_port_option "[x] COLORD"
+init_port_options "x11-toolkits_gtk20" "gtk" "2.24.27"
 add_port_option "[ ] CUPS"
 add_port_option "[ ] DEBUG"
 create_port_options

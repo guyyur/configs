@@ -72,7 +72,7 @@ create_port_options
 
 
 # -- dns/dnsmasq OPTIONS --
-init_port_options "dns_dnsmasq" "dnsmasq" "2.69,1"
+init_port_options "dns_dnsmasq" "dnsmasq" "2.72,1"
 add_port_option "[ ] DBUS"
 add_port_option "[ ] DNSSEC"
 add_port_option "[ ] DOCS"
@@ -84,8 +84,9 @@ create_port_options
 
 
 # -- editors/nano OPTIONS --
-init_port_options "editors_nano" "nano" "2.2.6"
+init_port_options "editors_nano" "nano" "2.4.0"
 add_port_option "[ ] DOCS"
+add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] NLS"
 create_port_options
 
@@ -115,12 +116,14 @@ create_port_options
 
 
 # -- security/openvpn OPTIONS --
-init_port_options "security_openvpn" "openvpn" "2.3.4"
+init_port_options "security_openvpn" "openvpn" "2.3.6_3"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EASYRSA"
+add_port_option "[ ] ENGINEFIX"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] PKCS11"
 add_port_option "[ ] PW_SAVE"
+add_port_option "[ ] X509ALTUSERNAME"
 add_port_option "(*) OPENSSL"
 add_port_option "( ) POLARSSL"
 create_port_options
