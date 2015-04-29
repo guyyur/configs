@@ -57,7 +57,7 @@ disk2=ada2
 #   /var
 my_prompt_to_newfs "${disk0}" || exit 1
 my_newfs /dev/"${disk0}"p2 131072 -U -n || exit 1
-my_newfs /dev/"${disk0}"p3 25600 -U -j || exit 1
+my_newfs /dev/"${disk0}"p3 25600 -U -n || exit 1
 
 # disk1:
 #   swap
@@ -65,4 +65,4 @@ my_newfs /dev/"${disk0}"p3 25600 -U -j || exit 1
 # disk2:
 #   /home
 my_prompt_to_newfs "${disk2}" || exit 1
-my_newfs /dev/"${disk2}"p1 524288 -U -j || exit 1
+my_newfs /dev/"${disk2}"p1 524288 -U -n || exit 1
