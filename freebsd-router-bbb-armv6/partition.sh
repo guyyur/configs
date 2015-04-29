@@ -38,7 +38,11 @@ disk0=mmcsd1
 # disk0:
 #   /boot/custom (msdosfs)
 #   freebsd label
-write_predefined_mbr fat16+freebsd /dev/zero /dev/"${disk0}" || exit 1
+gpart create -s MBR -f x "${disk0}" || exit 1
+gpart add -a 1m -b 2048 -s 31M -t '!4' -f x "${disk0}" || exit 1
+gpart set -a active -i 1 -f x "${disk0}" || exit 1
+gpart add -a 1m -t freebsd -f x "${disk0}" || exit 1
+my_commit_or_undo "${disk0}" || exit 1
 
 # disk0s2:
 #   /

@@ -30,7 +30,6 @@ cd /usr/ports/devel/mercurial && make $target || exit 1
 cd /usr/ports/devel/subversion && make $target || exit 1
 cd /usr/ports/devel/git && make $target || exit 1
 cd /usr/ports/net/dhcpdump && make $target || exit 1
-cd /usr/ports/local/write_predefined_mbr && make $target || exit 1
 cd /usr/ports/www/tidy-devel && make $target || exit 1
 cd /usr/ports/graphics/p5-Image-ExifTool && make $target || exit 1
 cd /usr/ports/print/freetype2 && make $target || exit 1
