@@ -1,5 +1,4 @@
 /export -ro
-/export/obj -maproot=root
 /export/public -maproot=root
 /export/shares -maproot=nobody
 V4: /export

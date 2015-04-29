@@ -34,7 +34,6 @@ my_commit_or_undo()
 disk0=ada0
 disk1=ada1
 disk2=ada2
-disk3=ada3
 
 
 # -- layout --
@@ -57,13 +56,7 @@ gpart add -a 1m -b 2048 -t freebsd-swap -l swap -f x "${disk1}" || exit 1
 my_commit_or_undo "${disk1}" || exit 1
 
 # disk2:
-#   /usr/obj
+#   /home
 gpart create -s GPT -f x "${disk2}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
 my_commit_or_undo "${disk2}" || exit 1
-
-# disk3:
-#   /home
-gpart create -s GPT -f x "${disk3}" || exit 1
-gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
-my_commit_or_undo "${disk3}" || exit 1

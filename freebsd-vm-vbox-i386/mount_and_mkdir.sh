@@ -11,22 +11,18 @@ fi
 disk0=ada0
 disk1=ada1
 disk2=ada2
-disk3=ada3
 
 
 # -- layout --
 mount -o noatime /dev/"${disk0}"p2 /mnt || exit 1
 install -d -m 755 -o root -g wheel /mnt/var || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr || exit 1
-install -d -m 755 -o root -g wheel /mnt/usr/obj || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
 install -d -m 755 -o root -g wheel /mnt/export || exit 1
-install -d -m 755 -o root -g wheel /mnt/export/obj || exit 1
 install -d -m 1777 -o root -g wheel /mnt/export/public || exit 1
 install -d -m 1777 -o root -g wheel /mnt/export/shares || exit 1
 
 mount -o noatime /dev/"${disk0}"p3 /mnt/var || exit 1
-mount -o noatime /dev/"${disk2}"p1 /mnt/usr/obj || exit 1
-mount -o noatime /dev/"${disk3}"p1 /mnt/home || exit 1
+mount -o noatime /dev/"${disk2}"p1 /mnt/home || exit 1

@@ -48,7 +48,6 @@ my_prompt_to_newfs()
 disk0=ada0
 disk1=ada1
 disk2=ada2
-disk3=ada3
 
 
 # -- layout  --
@@ -64,11 +63,6 @@ my_newfs /dev/"${disk0}"p3 25600 -U -j || exit 1
 #   swap
 
 # disk2:
-#   /usr/obj
-my_prompt_to_newfs "${disk2}" || exit 1
-my_newfs /dev/"${disk2}"p1 262144 -U -n || exit 1
-
-# disk3:
 #   /home
-my_prompt_to_newfs "${disk3}" || exit 1
-my_newfs /dev/"${disk3}"p1 524288 -U -j || exit 1
+my_prompt_to_newfs "${disk2}" || exit 1
+my_newfs /dev/"${disk2}"p1 524288 -U -j || exit 1
