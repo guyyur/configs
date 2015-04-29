@@ -21,6 +21,7 @@ install -d -m 755 -o root -g wheel /mnt/usr || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/src || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/obj || exit 1
+install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
 install -d -m 755 -o root -g wheel /mnt/export || exit 1
 install -d -m 755 -o root -g wheel /mnt/export/fbsd-ports || exit 1

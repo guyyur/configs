@@ -147,7 +147,6 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/local/db/pkg || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/pkg.conf "${DESTDIR}"/etc/local/pkg.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/local/db/ports || exit 1
-install -d -m 755 -o root -g wheel "${DESTDIR}"/home/wrkdir || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/local/portmaster.rc "${DESTDIR}"/etc/local/portmaster.rc || exit 1
 
