@@ -30,7 +30,7 @@ install -d -m 755 -o root -g wheel /mnt/export/backup || exit 1
 install -d -m 1777 -o root -g wheel /mnt/export/public || exit 1
 install -d -m 1777 -o root -g wheel /mnt/export/shares || exit 1
 
-# mount -t msdosfs -o noatime /dev/"${disk0}"p1 /mnt/boot/esp || exit 1
+# mount -t msdosfs -o noatime,longnames /dev/"${disk0}"p1 /mnt/boot/esp || exit 1
 
 mount -o noatime /dev/"${disk0}"p4 /mnt/var || exit 1
 install -d -m 755 -o root -g wheel /mnt/var/db || exit 1

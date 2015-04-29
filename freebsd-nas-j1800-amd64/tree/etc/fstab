@@ -1,7 +1,7 @@
 # Device      Mountpoint        FStype  Options     Dump  Pass#
 /dev/ada0p3   none              swap    sw          0     0
 /dev/ada0p2   /                 ufs     ro,noatime  0     0
-# /dev/ada0p1   /boot/esp         msdosfs ro,noatime  2     2
+# /dev/ada0p1   /boot/esp         msdosfs ro,noatime,longnames  2     2
 /dev/ada0p4   /var              ufs     rw,noatime  2     2
 /dev/ada0p5   /usr/ports        ufs     rw,noatime  2     2
 /dev/ada0p6   /usr/src          ufs     rw,noatime  2     2
