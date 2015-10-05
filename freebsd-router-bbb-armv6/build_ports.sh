@@ -16,6 +16,7 @@ target="install clean"
 cd /usr/ports/ports-mgmt/pkg && make $target || exit 1
 cd /usr/ports/ports-mgmt/portmaster && make $target || exit 1
 cd /usr/ports/editors/nano && make $target || exit 1
+cd /usr/ports/shells/zsh && make $target || exit 1
 cd /usr/ports/local/ddnshupd && make $target || exit 1
 cd /usr/ports/net/dhcpcd && make $target || exit 1
 cd /usr/ports/dns/dnsmasq && make $target || exit 1

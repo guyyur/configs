@@ -2,10 +2,10 @@
 # /etc/fstab: static file system information
 #
 # <file system>	<dir>	<type>	<options>	<dump>	<pass>
-/dev/sda1  /      ext4  defaults,noatime  0  1
-/dev/sda2  /var   ext4  defaults,noatime  0  2
-/dev/sdb1  swap   swap  defaults          0  0
+/dev/sda1  /      ext4  defaults,ro,noatime  0  1
+/dev/sda2  /var   ext4  defaults,noatime     0  2
+/dev/sdb1  swap   swap  defaults             0  0
 /dev/sdc1  /var/cache/pacman  ext4  defaults,noatime  0  2
-/dev/sdd1  /home  ext4  defaults,noatime  0  2
+/dev/sdd1  /home  ext4  defaults,noatime     0  2
 
 tmpfs      /tmp   tmpfs   mode=1777,noatime,noexec,nosuid,nodev,size=512m,nr_inodes=32k   0  0

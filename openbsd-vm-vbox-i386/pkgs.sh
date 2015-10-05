@@ -10,5 +10,5 @@ fi
 # -- install --
 export PKG_PATH=ftp://ftp.openbsd.org/pub/OpenBSD/"`uname -r`"/packages/"`uname -m`"/
 
-pkg_add tcsh
 pkg_add nano
+pkg_add zsh

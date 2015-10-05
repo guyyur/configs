@@ -57,7 +57,7 @@ EOF
 
 
 # -- archivers/lzo2 OPTIONS --
-init_port_options "archivers_lzo2" "lzo2" "2.06_2"
+init_port_options "archivers_lzo2" "lzo2" "2.09"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
 create_port_options
@@ -116,14 +116,29 @@ create_port_options
 
 
 # -- security/openvpn OPTIONS --
-init_port_options "security_openvpn" "openvpn" "2.3.6_3"
+init_port_options "security_openvpn" "openvpn" "2.3.6_5"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EASYRSA"
-add_port_option "[ ] ENGINEFIX"
+add_port_option "[ ] ENGINEFIX2"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] PKCS11"
 add_port_option "[ ] PW_SAVE"
+add_port_option "[ ] SUBNETFIX"
 add_port_option "[ ] X509ALTUSERNAME"
 add_port_option "(*) OPENSSL"
 add_port_option "( ) POLARSSL"
+create_port_options
+
+
+# -- shells/zsh OPTIONS --
+init_port_options "shells_zsh" "zsh" "5.0.7_3"
+add_port_option "[ ] DEBUG"
+add_port_option "[x] DOCS"
+add_port_option "[x] EXAMPLES"
+add_port_option "[ ] GDBM"
+add_port_option "[ ] MAILDIR"
+add_port_option "[ ] MEM"
+add_port_option "[ ] PCRE"
+add_port_option "[x] SECURE_FREE"
+add_port_option "[ ] STATIC"
 create_port_options

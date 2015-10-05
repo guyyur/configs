@@ -30,14 +30,13 @@ fi
 
 install -c -m 640 -o root -g wheel tree/etc/pw.conf "${DESTDIR}"/etc/pw.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
-# if [ -z "${DESTDIR}" ]; then
-#   pwd_mkdb -p /etc/master.passwd.new || exit 1
-# fi
-# if [ -n "${DESTDIR}" ]; then
-#   pwd_mkdb -d "${DESTDIR}"/etc -L -p "${DESTDIR}"/etc/master.passwd.new || exit 1
-# fi
+install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit 1
+install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
+if [ -n "${DESTDIR}" ]; then
+  pwd_mkdb -d "${DESTDIR}"/etc -p "${DESTDIR}"/etc/master.passwd.new || exit 1
+else
+  pwd_mkdb -p /etc/master.passwd.new || exit 1
+fi
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
 
@@ -62,7 +61,7 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.login "${DESTDIR}"/home/guy/.l
 
 install -c -m 644 -o root -g wheel tree/boot/loader.conf "${DESTDIR}"/boot/loader.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
+install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/devfs.conf "${DESTDIR}"/etc/devfs.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/devfs.rules "${DESTDIR}"/etc/devfs.rules || exit 1
@@ -75,6 +74,8 @@ install -c -m 644 -o root -g wheel tree/etc/fstab "${DESTDIR}"/etc/fstab || exit
 
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
+install -c -m 644 -o root -g wheel tree/etc/start_if.lan1 "${DESTDIR}"/etc/start_if.lan1 || exit 1
+
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
@@ -84,45 +85,45 @@ install -c -m 644 -o root -g wheel tree/etc/resolvconf.conf "${DESTDIR}"/etc/res
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/ssl/openssl.cnf "${DESTDIR}"/etc/ssl/openssl.cnf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssl/openssl.cnf "${DESTDIR}"/etc/ssl/openssl.cnf || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/ssl/certs || exit 1
 install -d -m 700 -o root -g wheel "${DESTDIR}"/etc/ssl/private || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/dot.init.ee "${DESTDIR}"/root/.init.ee || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.init.ee "${DESTDIR}"/home/guy/.init.ee || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
+install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/mergemaster.rc "${DESTDIR}"/etc/mergemaster.rc || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/make.conf "${DESTDIR}"/etc/make.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/src.conf "${DESTDIR}"/etc/src.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/ntp.conf "${DESTDIR}"/etc/ntp.conf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ntp.conf "${DESTDIR}"/etc/ntp.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/syslog.conf "${DESTDIR}"/etc/syslog.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/newsyslog.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-# install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-# install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/rtadvd.conf "${DESTDIR}"/etc/rtadvd.conf || exit 1
 
@@ -145,17 +146,20 @@ install -c -m 644 -o root -g wheel tree/etc/local/portmaster.rc "${DESTDIR}"/etc
 
 install -c -m 644 -o root -g wheel tree/etc/local/nanorc "${DESTDIR}"/etc/local/nanorc || exit 1
 
+install -c -m 640 -o root -g wheel tree/root/dot.zshrc "${DESTDIR}"/root/.zshrc || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
+
 install -c -m 644 -o root -g wheel /dev/null "${DESTDIR}"/var/cache/dnsmasq-resolv.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dnsmasq-hosts "${DESTDIR}"/etc/local/dnsmasq-hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dnsmasq.conf "${DESTDIR}"/etc/local/dnsmasq.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/local/miniupnpd.conf "${DESTDIR}"/etc/local/miniupnpd.conf || exit 1
 
-# install -c -m 640 -o ddnshupd -g ddnshupd tree/etc/local/ddnshupd-ipv4.conf "${DESTDIR}"/etc/local/ddnshupd-ipv4.conf || exit 1
-# install -c -m 640 -o ddnshupd -g ddnshupd tree/etc/local/ddnshupd-ipv6.conf "${DESTDIR}"/etc/local/ddnshupd-ipv6.conf || exit 1
+install -c -N "${DESTDIR}"/etc -m 640 -o ddnshupd -g ddnshupd tree/etc/local/ddnshupd-ipv4.conf "${DESTDIR}"/etc/local/ddnshupd-ipv4.conf || exit 1
+install -c -N "${DESTDIR}"/etc -m 640 -o ddnshupd -g ddnshupd tree/etc/local/ddnshupd-ipv6.conf "${DESTDIR}"/etc/local/ddnshupd-ipv6.conf || exit 1
 
 install -c -m 755 -o root -g wheel tree/etc/local/dhcpcd.exit-hook "${DESTDIR}"/etc/local/dhcpcd.exit-hook || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/mpd5 || exit 1
@@ -164,8 +168,8 @@ install -c -m 750 -o root -g wheel tree/etc/local/mpd5/mpd-down-script.sh "${DES
 install -c -m 640 -o root -g wheel tree/etc/local/mpd5/mpd.conf "${DESTDIR}"/etc/local/mpd5/mpd.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/openvpn || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/local/openvpn/dh.pem "${DESTDIR}"/etc/local/openvpn/dh.pem || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/local/openvpn/ca.crt "${DESTDIR}"/etc/local/openvpn/ca.crt || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/local/openvpn/server.crt "${DESTDIR}"/etc/local/openvpn/server.crt || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/local/openvpn/server.key "${DESTDIR}"/etc/local/openvpn/server.key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/openvpn/dh.pem "${DESTDIR}"/etc/local/openvpn/dh.pem || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/openvpn/ca.crt "${DESTDIR}"/etc/local/openvpn/ca.crt || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/openvpn/server.crt "${DESTDIR}"/etc/local/openvpn/server.crt || exit 1
+install -c -m 600 -o root -g wheel tree/etc/local/openvpn/server.key "${DESTDIR}"/etc/local/openvpn/server.key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/openvpn/openvpn.conf "${DESTDIR}"/etc/local/openvpn/openvpn.conf || exit 1

@@ -14,7 +14,7 @@ ttyC8	"/usr/libexec/getty std.9600"	wsvt25	off secure
 ttyC9	"/usr/libexec/getty std.9600"	wsvt25	off secure
 ttyCa	"/usr/libexec/getty std.9600"	wsvt25	off secure
 ttyCb	"/usr/libexec/getty std.9600"	wsvt25	off secure
-tty00	"/usr/libexec/getty std.9600"	unknown off
+tty00	"/usr/libexec/getty std.115200"	xterm	on  secure
 tty01	"/usr/libexec/getty std.9600"	unknown off
 tty02	"/usr/libexec/getty std.9600"	unknown off
 tty03	"/usr/libexec/getty std.9600"	unknown off

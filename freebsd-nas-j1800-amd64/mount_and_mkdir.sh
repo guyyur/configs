@@ -35,6 +35,7 @@ install -d -m 1777 -o root -g wheel /mnt/export/shares || exit 1
 
 mount -o noatime /dev/"${disk0}"p3 /mnt/var || exit 1
 dd if=/dev/zero of=/mnt/var/swap bs=1m count=256 || exit 1
+chmod 600 /mnt/var/swap || exit 1
 
 mount -o noatime /dev/"${disk0}"p4 /mnt/usr/src || exit 1
 mount -o noatime /dev/"${disk0}"p5 /mnt/usr/obj || exit 1

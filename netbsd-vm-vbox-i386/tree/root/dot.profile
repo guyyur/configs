@@ -3,11 +3,10 @@
 export TERM=${TERM:-wsvt25}
 export USER=${USER:-root}
 export HOME=${HOME:-/root}
+
+
+# -- path --
 export PATH=/sbin:/bin:/usr/pkg/sbin:/usr/pkg/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/X11R7/bin:$HOME/bin
-
-
-# -- BLOCKSIZE env var --
-export BLOCKSIZE=1k
 
 
 # -- locale --
@@ -19,6 +18,10 @@ export LC_MESSAGES=en_US.UTF-8
 export LC_MONETARY=he_IL.UTF-8
 export LC_NUMERIC=en_US.UTF-8
 export LC_TIME=en_GB.UTF-8
+
+
+# -- BLOCKSIZE env var --
+export BLOCKSIZE=1k
 
 
 # -- EDITOR, VISUAL env vars --

@@ -1,7 +1,8 @@
-          Router
-             \\
-ADSL Modem - Switch ---- Access Point
-            /   |  \
-           /    |   \
-          /     |    \
-      Server   NAS   Desktop + Virtual Machines
+
+ADSL Modem - Router
+               \
+             Switch ---- Access Point
+                |  \
+                |   \
+                |    \
+               NAS   Desktop + Virtual Machines

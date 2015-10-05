@@ -1,0 +1,86 @@
+
+# 5.7 i386
+
+installcd
+  (I)nstall, (U)pgrade or (S)hell? I
+  
+  Choose your keyboard layout ('?' or 'L' for list) [default]
+  System hostname? (short form, e.g. 'foo') vm6
+  
+  Which network interface do you wish to configure? (or 'done') [vio0]
+  IPv4 address for vio0? (or 'none' or 'dhcp') [dhcp]
+  IPv6 address for vio0? (or 'rtsol' or 'none') [none]
+  Which network interface do you wish to configure? (or 'done') [done]
+  
+  Password for root account? (will not echo)
+  Password for root account? (again)
+  
+  Start sshd(8) by default? [yes]
+  Start ntpd(8) by default? [no]
+  
+  Do you expect to run the X Window System? [yes] no
+  Do you want the X Window System to be started by xdm(1)? [no]
+  
+  Setup a user? (enter a lower-case loginname, or 'no') [no]
+  
+  Which one is the root disk? (or 'done') [sd0]
+  Use DUIDs rather than device names in fstab? [yes] no
+  Use (W)hole disk or (E)dit the MBR? [whole]
+  Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout? [a] C
+  
+  > a a
+    offset: [64]
+    size: [?] 14680064
+    FS type: [4.2BSD]
+    mount point: [none] /
+  > a d
+    offset: [14680128]
+    size: [?] 524288
+    FS type: [4.2BSD]
+    mount point: [none] /var
+  > a e
+    offset: [15204416]
+    size [?]
+    FS type: [4.2BSD]
+    mount point: [none] /home
+  > p m
+  > q
+  Write new label? [y]
+  
+  Which one do you wish to initialize? (or 'done') [done] sd1
+  Use (W)hole disk or (E)dit the MBR? [whole]
+  
+  > a b
+    offset: [64]
+    size: [?]
+    FS type: [swap]
+  > p m
+  > q
+  Write new label? [y]
+  
+  Location of sets? (cd disk ftp http or 'done') [cd]
+  Which one contains the install media? (or 'done') [cd0]
+  Pathname to the sets? (or 'done') [5.7/i386]
+  
+  Set name(s)? (or 'abort' or 'done') [done]
+  
+  Location of sets? (cd disk ftp http or 'done') [done]
+  
+  What timezone are you in? ('?' for list) [Asia/Jerusalem] Asia
+  What sub-timezone of 'Asia' are you in? ('?' for list) Jerusalem
+  
+  echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
+  
+  halt -p
+
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./config.sh /
+
+shutdown -r now
+
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./pkgs.sh
+
+shutdown -hp now

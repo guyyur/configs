@@ -15,6 +15,6 @@ proc          /proc            procfs  rw  0  0
 /home/public  /export/public   nullfs  rw  0  0
 /home/shares  /export/shares   nullfs  rw  0  0
 
-fbsd-stuff:/export/fbsd-src    /usr/src    nfs  ro,nfsv3,noauto  0  0
-fbsd-stuff:/export/obj         /usr/obj    nfs  rw,nfsv3,noauto  0  0
-fbsd-stuff:/export/fbsd-ports  /usr/ports  nfs  rw,nfsv3,noauto  0  0
+nas:/export/fbsd-src    /usr/src    nfs  ro,nfsv3,noauto  0  0
+nas:/export/obj         /usr/obj    nfs  rw,nfsv3,noauto  0  0
+nas:/export/fbsd-ports  /usr/ports  nfs  rw,nfsv3,noauto  0  0

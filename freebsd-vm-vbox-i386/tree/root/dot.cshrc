@@ -69,6 +69,7 @@ if ($?prompt) then
   alias ll  ls -l
   alias cp  cp -i
   alias mv  mv -i
+  alias grep  grep --color=auto
   alias whereis  whereis -x
   
   

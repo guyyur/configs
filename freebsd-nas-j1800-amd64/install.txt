@@ -1,0 +1,30 @@
+
+ifconfig re0 name lan0
+
+ifconfig lan0 up
+dhclient lan0
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./partition.sh
+./newfs.sh
+./mount_and_mkdir.sh
+
+./extract_dists.sh /mnt /path/to/releng-10.2-amd64-dists
+./bootfiles.sh /mnt
+./config.sh /mnt
+
+./unmount.sh
+
+shutdown -p now
+
+mount -t tmpfs -o size=... tmpfs /usr/wrkdir
+
+mount -u -o rw,noatime /
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./write_ports_options.sh
+./build_ports.sh
+
+mount -u -o ro,noatime /
+
+umount /usr/wrkdir

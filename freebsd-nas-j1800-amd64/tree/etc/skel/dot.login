@@ -23,5 +23,23 @@ setenv LC_TIME      en_GB.UTF-8
 setenv BLOCKSIZE  K
 
 
+# -- ncurses --
+setenv NCURSES_NO_UTF8_ACS 1
+
+
+# -- ls env vars --
+setenv LSCOLORS     ExFxGxdxCxDxDxhbadacad
+setenv CLICOLOR
+
+
+# -- PAGER env var --
+setenv PAGER        less
+
+
+# -- less env vars --
+setenv LESS "-QR"
+setenv LESSHISTFILE "-"
+
+
 # -- set ENV to a file invoked each time sh is started interactively --
 setenv ENV  $HOME/.shrc

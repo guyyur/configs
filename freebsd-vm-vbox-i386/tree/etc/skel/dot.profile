@@ -23,5 +23,23 @@ export LC_TIME=en_GB.UTF-8
 export BLOCKSIZE=K
 
 
+# -- ncurses --
+export NCURSES_NO_UTF8_ACS=1
+
+
+# -- ls env vars --
+export LSCOLORS=ExFxGxdxCxDxDxhbadacad
+export CLICOLOR
+
+
+# -- PAGER env var --
+export PAGER=less
+
+
+# -- less env vars --
+export LESS="-QR"
+export LESSHISTFILE="-"
+
+
 # -- set ENV to a file invoked each time sh is started interactively --
 export ENV=$HOME/.shrc

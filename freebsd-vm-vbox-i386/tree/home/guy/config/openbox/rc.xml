@@ -20,7 +20,7 @@
     <primaryMonitor>1</primaryMonitor>
   </placement>
   <theme>
-    <name>Onyx-Citrus</name>
+    <name>ob-in-dustry</name>
     <titleLayout>NLIMC</titleLayout>
     <keepBorder>yes</keepBorder>
     <animateIconify>yes</animateIconify>
@@ -48,7 +48,13 @@
       <weight>Normal</weight>
       <slant>Normal</slant>
     </font>
-    <font place="OnScreenDisplay">
+    <font place="ActiveOnScreenDisplay">
+      <name>sans-serif</name>
+      <size>11</size>
+      <weight>Bold</weight>
+      <slant>Normal</slant>
+    </font>
+    <font place="InactiveOnScreenDisplay">
       <name>sans-serif</name>
       <size>11</size>
       <weight>Bold</weight>
@@ -179,13 +185,26 @@
     </keybind>
     <!-- Keybindings for window switching -->
     <keybind key="A-Tab">
-      <action name="NextWindow"/>
+      <action name="NextWindow">
+        <raise>yes</raise>
+      </action>
     </keybind>
+<!-- A-S causes language switch
     <keybind key="A-S-Tab">
-      <action name="PreviousWindow"/>
+      <action name="PreviousWindow">
+        <raise>yes</raise>
+      </action>
     </keybind>
+-->
     <keybind key="W-Tab">
       <action name="NextWindow">
+        <raise>yes</raise>
+        <allDesktops>yes</allDesktops>
+      </action>
+    </keybind>
+    <keybind key="W-S-Tab">
+      <action name="PreviousWindow">
+        <raise>yes</raise>
         <allDesktops>yes</allDesktops>
       </action>
     </keybind>

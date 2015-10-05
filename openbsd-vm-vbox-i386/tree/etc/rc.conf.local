@@ -1,4 +1,4 @@
 
-sendmail_flags=NO
+smtpd=NO
 pf=NO
 inetd=NO

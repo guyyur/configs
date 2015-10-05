@@ -6,14 +6,17 @@
 export TERM=${TERM:-wsvt25}
 export USER=${USER:-root}
 export HOME=${HOME:-/root}
+
+
+# -- path --
 export PATH=/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/X11R6/bin:$HOME/bin
+
+
+# -- locale --
 
 
 # -- BLOCKSIZE env var --
 export BLOCKSIZE=1k
-
-
-# -- locale --
 
 
 # -- EDITOR, VISUAL env vars --

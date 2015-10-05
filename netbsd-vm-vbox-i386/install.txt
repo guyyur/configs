@@ -1,0 +1,174 @@
+
+# 6.1.5 i386
+
+installcd
+  * a: Installation messages in English
+  
+  Keyboard type
+    * b: US-English
+  
+  NetBSD-<ver> Install System
+    * a: Install NetBSD to hard disk
+  
+  Shall we continue?
+    * b: Yes
+  
+  Available disks
+    * a: wd0
+  
+  Select your distribution
+    * d: Custom installation
+  
+  The following is the list of distribution sets that will be used.
+    Distributuin set            Selected
+    --------------------------- --------
+    a: Kernel (GENERIC)            Yes
+    b: Kernel Modules              Yes
+    c: Base                        Yes
+    d: System (/etc)               Yes
+    e: Compiler Tools              Yes
+    f: Games                        No
+    g: Online Manual Pages         Yes
+    h: Miscellaneous               Yes
+    i: Text programs               Yes
+    j: Text Processing Tools       Yes
+    k: X11 sets                    None
+    l: Source sets                 None
+    * x: Install selected sets
+  
+  This disk matches the following BIOS disks:
+    * a: Use one of these disks
+    Choose disk:  [0]:
+  
+  Which would you like to do?
+    * b: Use the entire disk
+  
+  Do you want to install the NetBSD bootcode?
+    * a: Yes
+  
+  Choose your installation
+    * a: Set sizes of NetBSD partitions
+    * Change input units (sectors/cylinders/MB)
+      c: Sectors
+    MB      Sectors      Filesystem
+    2048    4194304      /
+    0       0            swap
+    0       0            tmp (tmpfs)
+    0       0            /usr
+    256     524288       /var
+    *       *            /home
+    * Accept partition sizes.  ...
+    * x: Partition sizes ok
+  
+  Please enter a name for your NetBSD disk []:
+  
+  Shall we continue?
+    * b: Yes
+  
+  Bootblocks selection
+    * a: Use BIOS console
+    * x: Exit
+  
+  Install from
+    * a: CD-ROM / DVD / install image media
+  
+  b: Timezone
+    * Asia/
+    * Asia/Jerusalem
+    * Exit
+  
+  d: Change root password
+    a: Yes
+    New password:
+  
+  x: Finished configuring
+
+  The installation ...
+    * Hit enter to continue
+  
+  NetBSD-<ver> Install System
+    * e: Utility menu
+  
+  NetBSD-<ver> Utilities
+    * a: Run /bin/sh
+    
+    fdisk -u -0 wd1
+      Do you want to change out idea of what BIOS thinks? [n]
+      sysid: [0..255 default: 169]
+      start: [...]
+      size: [...]
+      bootmenu: []
+      Should we write new partition table? [n] y
+    disklabel -i wd1
+      partition> a
+      Filesystem type [?] [4.2BSD]: unused
+      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 0
+      Partition size ('$' for all remaining) [?c, ?s, ?M]: 0
+      partition> e
+      Filesystem type [?] [4.2BSD]: unused
+      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 0
+      Partition size ('$' for all remaining) [?c, ?s, ?M]: 0
+      partition> b
+      Filesystem type [?] [unused]: swap
+      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]:
+      Partition size ('$' for all remaining) [0c, 0s, 0M]: $
+      partition> E
+      partition> W
+      Label disk [n]? y
+      partition> Q
+    
+    fdisk -u -0 wd2
+      Do you want to change out idea of what BIOS thinks? [n]
+      sysid: [0..255 default: 169]
+      start: [...]
+      size: [...]
+      bootmenu: []
+      Should we write new partition table? [n] y
+    disklabel -i wd2
+      partition> a
+      Filesystem type [?] [4.2BSD]: unused
+      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 0
+      Partition size ('$' for all remaining) [?c, ?s, ?M]: 0
+      partition> e
+      Filesystem type [?] [4.2BSD]:
+      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 1024s
+      Partition size ('$' for all remaining) [?c, ?s, ?M]: $
+      partition> E
+      partition> W
+      Label disk [n]? y
+      partition> Q
+    newfs -O 2 -n 262144 /dev/rwd2e
+    
+    mount -onoatime /dev/wd0a /mnt
+    mkdir /mnt/usr/pkgsrc
+    echo "/dev/wd1b  none  swap  sw,dp  0 0" >> /mnt/etc/fstab
+    echo "/dev/wd2e  /usr/pkgsrc  ffs  rw,log  1 2" >> /mnt/etc/fstab
+    echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
+    umount /mnt
+    exit
+    
+    * x: Back to main menu
+  
+  NetBSD-<ver> Install System
+    * d: Reboot the computer
+
+
+main configuration
+  # cd to config dir (mounted usb flash, nfs, smbfs, ...)
+  ./config.sh /
+  
+  vi /etc/fstab
+    add ,noatime to ffs filesystems
+  
+  shutdown -r now
+
+
+build pkgsrc
+  # mount nfs/smbfs/iso with pkgsrc
+  # tar -xpjf pkgsrc-*.tar.bz2 -C /usr
+  tar -xpzf pkgsrc-*.tar.gz -C /usr
+  
+  # restore distfiles
+  
+  # cd to config dir (mounted usb flash, nfs, smbfs, ...)
+  ./pkgsrc.sh

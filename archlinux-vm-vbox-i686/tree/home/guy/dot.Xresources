@@ -6,6 +6,6 @@ XTerm*cursorUnderLine:    true
 XTerm*faceName:           monospace
 XTerm*faceSize:           10
 XTerm*foreground:         gray
-XTerm*geometry:           132x30
+XTerm*geometry:           80x25
 XTerm*saveLines:          3000
 XTerm*selectToClipboard:  true

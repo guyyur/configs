@@ -28,18 +28,18 @@ fi
 
 install -c -m 640 -o root -g wheel tree/etc/pw.conf "${DESTDIR}"/etc/pw.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
-# if [ -z "${DESTDIR}" ]; then
-#   pwd_mkdb -p /etc/master.passwd.new || exit 1
-# fi
-# if [ -n "${DESTDIR}" ]; then
-#   pwd_mkdb -d "${DESTDIR}"/etc -L -p "${DESTDIR}"/etc/master.passwd.new || exit 1
-# fi
+install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit 1
+install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
+if [ -n "${DESTDIR}" ]; then
+  pwd_mkdb -d "${DESTDIR}"/etc -p "${DESTDIR}"/etc/master.passwd.new || exit 1
+else
+  pwd_mkdb -p /etc/master.passwd.new || exit 1
+fi
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/projects || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/sync || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
@@ -69,7 +69,7 @@ install -c -m 444 -o root -g wheel tree/boot/device.hints "${DESTDIR}"/boot/devi
 
 install -c -m 644 -o root -g wheel tree/boot/loader.conf "${DESTDIR}"/boot/loader.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
+install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/devfs.conf "${DESTDIR}"/etc/devfs.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/devfs.rules "${DESTDIR}"/etc/devfs.rules || exit 1
@@ -87,14 +87,14 @@ install -l s /var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/ssl/openssl.cnf "${DESTDIR}"/etc/ssl/openssl.cnf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssl/openssl.cnf "${DESTDIR}"/etc/ssl/openssl.cnf || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/ssl/certs || exit 1
 install -d -m 700 -o root -g wheel "${DESTDIR}"/etc/ssl/private || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/dot.init.ee "${DESTDIR}"/root/.init.ee || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.init.ee "${DESTDIR}"/home/guy/.init.ee || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
+install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/mergemaster.rc "${DESTDIR}"/etc/mergemaster.rc || exit 1
 
@@ -103,31 +103,31 @@ install -c -m 644 -o root -g wheel tree/etc/src.conf "${DESTDIR}"/etc/src.conf |
 
 install -c -m 640 -o root -g wheel tree/etc/dhclient.conf "${DESTDIR}"/etc/dhclient.conf || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/ntp.conf "${DESTDIR}"/etc/ntp.conf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ntp.conf "${DESTDIR}"/etc/ntp.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/syslog.conf "${DESTDIR}"/etc/syslog.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/newsyslog.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
 
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-# install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
-# install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-# install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
 
 install -c -m 640 -o root -g wheel tree/etc/exports "${DESTDIR}"/etc/exports || exit 1
 
@@ -147,15 +147,18 @@ install -c -m 644 -o root -g wheel tree/etc/local/portmaster.rc "${DESTDIR}"/etc
 
 install -c -m 644 -o root -g wheel tree/etc/local/nanorc "${DESTDIR}"/etc/local/nanorc || exit 1
 
+install -c -m 640 -o root -g wheel tree/root/dot.zshrc "${DESTDIR}"/root/.zshrc || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
+
 install -c -m 644 -o guy -g guy tree/home/guy/dot.hgrc "${DESTDIR}"/home/guy/.hgrc || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba/private || exit 1
-# install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
+install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/smb.conf "${DESTDIR}"/etc/local/smb.conf || exit 1
 
-# install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
+install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/polkit-1 || exit 1
@@ -164,7 +167,7 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/polkit-1/localauthorit
 install -c -m 644 -o root -g wheel tree/etc/local/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla "${DESTDIR}"/etc/local/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/dbus || exit 1
-# install -c -m 644 -o root -g wheel tree/etc/local/machine-id "${DESTDIR}"/etc/local/machine-id || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/machine-id "${DESTDIR}"/etc/local/machine-id || exit 1
 install -l s /etc/local/machine-id "${DESTDIR}"/var/db/dbus/machine-id || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy/thumbnails || exit 1
@@ -174,8 +177,6 @@ chown -h guy "${DESTDIR}"/home/guy/.thumbnails || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/local/db/fontconfig || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/fonts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/fonts/local.conf "${DESTDIR}"/etc/local/fonts/local.conf || exit 1
-
-install -c -m 644 -o root -g wheel tree/etc/X11/xorg.conf "${DESTDIR}"/etc/X11/xorg.conf || exit 1
 
 install -c -m 755 -o guy -g guy tree/home/guy/dot.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
 install -c -m 755 -o guy -g guy tree/home/guy/dot.xinitrc "${DESTDIR}"/home/guy/.xinitrc || exit 1
@@ -206,4 +207,4 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.gmrunrc "${DESTDIR}"/home/guy/
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
-# install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1

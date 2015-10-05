@@ -8,5 +8,5 @@ fi
 
 
 # -- build and install --
-cd /usr/pkgsrc/shells/tcsh && make install clean || exit 1
 cd /usr/pkgsrc/editors/nano && make install clean || exit 1
+cd /usr/pkgsrc/shells/zsh && make install clean || exit 1

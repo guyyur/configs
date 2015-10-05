@@ -18,20 +18,21 @@ DESTDIR=${1%/}
 #
 ln -sfn /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
-# install -c -m 644 -o root -g root tree/etc/login.defs "${DESTDIR}"/etc/login.defs || exit 1
+install -c -m 644 -o root -g root tree/etc/login.defs "${DESTDIR}"/etc/login.defs || exit 1
 
-# install -c -m 600 -o root -g root tree/etc/gshadow "${DESTDIR}"/etc/gshadow || exit 1
-# rm -f "${DESTDIR}"/etc/gshadow- || exit 1
-# install -c -m 644 -o root -g root tree/etc/group "${DESTDIR}"/etc/group || exit 1
-# rm -f "${DESTDIR}"/etc/group- || exit 1
-# install -c -m 600 -o root -g root tree/etc/shadow "${DESTDIR}"/etc/shadow || exit 1
-# rm -f "${DESTDIR}"/etc/shadow- || exit 1
-# install -c -m 644 -o root -g root tree/etc/passwd "${DESTDIR}"/etc/passwd || exit 1
-# rm -f "${DESTDIR}"/etc/passwd- || exit 1
+install -c -m 600 -o root -g root tree/etc/gshadow "${DESTDIR}"/etc/gshadow || exit 1
+rm -f "${DESTDIR}"/etc/gshadow- || exit 1
+install -c -m 644 -o root -g root tree/etc/group "${DESTDIR}"/etc/group || exit 1
+rm -f "${DESTDIR}"/etc/group- || exit 1
+install -c -m 600 -o root -g root tree/etc/shadow "${DESTDIR}"/etc/shadow || exit 1
+rm -f "${DESTDIR}"/etc/shadow- || exit 1
+install -c -m 644 -o root -g root tree/etc/passwd "${DESTDIR}"/etc/passwd || exit 1
+rm -f "${DESTDIR}"/etc/passwd- || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/projects || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/sync || exit 1
 
 install -d -m 755 -o root -g root "${DESTDIR}"/var/xdg-cache || exit 1
@@ -67,18 +68,23 @@ install -c -m 644 -o root -g root tree/etc/security/limits.conf "${DESTDIR}"/etc
 
 install -c -m 644 -o root -g root tree/etc/fstab "${DESTDIR}"/etc/fstab || exit 1
 
-# install -c -m 644 -o root -g root tree/etc/hostname "${DESTDIR}"/etc/hostname || exit 1
+install -c -m 644 -o root -g root tree/etc/hostname "${DESTDIR}"/etc/hostname || exit 1
 
 ln -sfn /run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 
-# install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
+install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
 
-# install -c -m 644 -o root -g root tree/etc/dhcpcd.duid "${DESTDIR}"/etc/dhcpcd.duid || exit 1
-# install -c -m 400 -o root -g root tree/etc/dhcpcd.secret "${DESTDIR}"/etc/dhcpcd.secret || exit 1
+install -c -m 640 -o root -g root tree/root/dot.zprofile "${DESTDIR}"/root/.zprofile || exit 1
+install -c -m 640 -o root -g root tree/root/dot.zshrc "${DESTDIR}"/root/.zshrc || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/dot.zprofile "${DESTDIR}"/home/guy/.zprofile || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
+
+install -c -m 644 -o root -g root tree/etc/dhcpcd.duid "${DESTDIR}"/etc/dhcpcd.duid || exit 1
+install -c -m 400 -o root -g root tree/etc/dhcpcd.secret "${DESTDIR}"/etc/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g root tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
 ln -sfn /usr/lib/systemd/system/dhcpcd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/dhcpcd.service || exit 1
 
@@ -87,27 +93,28 @@ ln -sfn /usr/lib/systemd/system/syslog-ng.service "${DESTDIR}"/etc/systemd/syste
 
 ln -sfn /usr/lib/systemd/system/cronie.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/cronie.service || exit 1
 
-# install -c -m 644 -o root -g root tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
+install -c -m 644 -o root -g root tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g root tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-# install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-# install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-# install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-# install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-# install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
-# install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
-# install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
-# install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
-# install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
-# install -c -m 600 -o root -g root /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key || exit 1
-# install -c -m 644 -o root -g root /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key.pub || exit 1
+install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
+install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
+install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
+install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
+install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
+install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
+install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
+install -c -m 600 -o root -g root /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key || exit 1
+install -c -m 644 -o root -g root /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key.pub || exit 1
 install -c -m 640 -o root -g root tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
 ln -sfn /usr/lib/systemd/system/sshd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/sshd.service || exit 1
+# ln -sfn /usr/lib/systemd/system/sshdgenkeys.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/sshdgenkeys.service || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-# install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
 
 ln -sfn /usr/lib/systemd/system/rpcbind.socket "${DESTDIR}"/etc/systemd/system/sockets.target.wants/rpcbind.socket || exit 1
 
@@ -118,6 +125,9 @@ install -c -m 640 -o root -g root tree/etc/exports "${DESTDIR}"/etc/exports || e
 
 ln -sfn /usr/lib/systemd/system/nfs-server.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-server.service || exit 1
 
+install -c -m 644 -o root -g root tree/root/dot.toprc "${DESTDIR}"/root/.toprc || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/dot.toprc "${DESTDIR}"/home/guy/.toprc || exit 1
+
 install -c -m 644 -o guy -g guy tree/home/guy/dot.hgrc "${DESTDIR}"/home/guy/.hgrc || exit 1
 
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-daemon.service || exit 1
@@ -125,7 +135,7 @@ ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-daemon.socket || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/avahi-dnsconfd.service || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/dbus-org.freedesktop.Avahi.service || exit 1
 
-# install -c -m 600 -o root -g root tree/var/lib/samba/private/passdb.tdb "${DESTDIR}"/var/lib/samba/private/passdb.tdb || exit 1
+install -c -m 600 -o root -g root tree/var/lib/samba/private/passdb.tdb "${DESTDIR}"/var/lib/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g root tree/etc/samba/smb.conf "${DESTDIR}"/etc/samba/smb.conf || exit 1
 ln -sfn /usr/lib/systemd/system/smbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/smbd.service || exit 1
 ln -sfn /usr/lib/systemd/system/nmbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nmbd.service || exit 1
@@ -138,9 +148,6 @@ install -d -m 755 -o root -g root "${DESTDIR}"/usr/db/fontconfig || exit 1
 mv -n "${DESTDIR}"/var/cache/fontconfig/* "${DESTDIR}"/usr/db/fontconfig 2>/dev/null
 install -d -m 755 -o root -g root "${DESTDIR}"/etc/fonts || exit 1
 install -c -m 644 -o root -g root tree/etc/fonts/local.conf "${DESTDIR}"/etc/fonts/local.conf || exit 1
-
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/X11 || exit 1
-install -c -m 644 -o root -g root tree/etc/X11/xorg.conf "${DESTDIR}"/etc/X11/xorg.conf || exit 1
 
 install -c -m 755 -o guy -g guy tree/home/guy/dot.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
 install -c -m 755 -o guy -g guy tree/home/guy/dot.xinitrc "${DESTDIR}"/home/guy/.xinitrc || exit 1
@@ -169,4 +176,4 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.gmrunrc "${DESTDIR}"/home/guy/
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
-# install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1

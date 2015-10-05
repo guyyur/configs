@@ -70,5 +70,20 @@ if ($?prompt) then
   alias ll  ls -l
   alias cp  cp -i
   alias mv  mv -i
+  alias grep  grep --color=auto
   alias whereis  whereis -x
+  
+  
+  # -- completions --
+  if ( $?tcsh ) then
+    complete cd         p/1/d/          # Directories only
+    complete chdir      p/1/d/
+    complete pushd      p/1/d/
+    complete popd       p/1/d/
+    
+    complete set        'c/*=/f/' 'p/1/s/=' 'n/=/f/'
+    complete unset      'n/*/s/'
+    complete setenv     'p/1/e/' 'c/*:/f/'
+    complete unsetenv   'n/*/e/'
+  endif
 endif

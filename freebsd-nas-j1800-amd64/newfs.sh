@@ -64,7 +64,7 @@ my_newfs /dev/"${disk0}"p3 65536 -U -n -t || exit 1
 my_newfs /dev/"${disk0}"p4 131072 -U -n -t || exit 1
 my_newfs /dev/"${disk0}"p5 524288 -U -n -t || exit 1
 my_newfs /dev/"${disk0}"p6 196608 -U -n -t || exit 1
-my_newfs /dev/"${disk0}"p7 786432 -U -n -t || exit 1
+my_newfs /dev/"${disk0}"p7 393216 -U -n -t || exit 1
 
 # # disk0:
 # #   ESP
@@ -81,7 +81,7 @@ my_newfs /dev/"${disk0}"p7 786432 -U -n -t || exit 1
 # my_newfs /dev/"${disk0}"p4 131072 -U -n -t || exit 1
 # my_newfs /dev/"${disk0}"p5 524288 -U -n -t || exit 1
 # my_newfs /dev/"${disk0}"p6 196608 -U -n -t || exit 1
-# my_newfs /dev/"${disk0}"p7 786432 -U -n -t || exit 1
+# my_newfs /dev/"${disk0}"p7 393216 -U -n -t || exit 1
 
 # disk1:
 #   /export/backup

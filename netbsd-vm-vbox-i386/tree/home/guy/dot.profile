@@ -9,8 +9,8 @@
 #
 
 
-# -- BLOCKSIZE env var --
-export BLOCKSIZE=1k
+# -- path --
+export PATH=/sbin:/bin:/usr/pkg/sbin:/usr/pkg/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/X11R7/bin:$HOME/bin
 
 
 # -- locale --
@@ -22,6 +22,10 @@ export LC_MESSAGES=en_US.UTF-8
 export LC_MONETARY=he_IL.UTF-8
 export LC_NUMERIC=en_US.UTF-8
 export LC_TIME=en_GB.UTF-8
+
+
+# -- BLOCKSIZE env var --
+export BLOCKSIZE=1k
 
 
 # -- EDITOR, VISUAL env vars --
@@ -49,3 +53,12 @@ export ENV=$HOME/.shrc
 # -- set XDG env vars --
 export XDG_CONFIG_HOME=$HOME/config
 export XDG_CACHE_HOME=/var/xdg-cache/"$USER"
+
+
+# -- run zsh if exists --
+if [ -x /usr/pkg/bin/zsh ]; then
+  export SHELL=/usr/pkg/bin/zsh
+  case "$-" in
+    *i*) exec $SHELL ;;
+  esac
+fi

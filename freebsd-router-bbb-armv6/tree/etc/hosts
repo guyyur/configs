@@ -5,4 +5,4 @@
 ::1			localhost.localdomain localhost ROUTER.localdomain ROUTER
 127.0.0.1		localhost.localdomain localhost ROUTER.localdomain ROUTER
 
-fd00:2001:db8:0::3	fbsd-stuff.localdomain fbsd-stuff
+fd00:2001:db8:0::3	nas-static.localdomain nas-static

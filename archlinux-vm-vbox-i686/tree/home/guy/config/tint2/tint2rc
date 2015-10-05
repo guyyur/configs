@@ -24,7 +24,7 @@ border_color = #FFFFFF 68
 # ID 4
 rounded = 7
 border_width = 2
-background_color = #000000 60
+background_color = #FDF6E3 90
 border_color = #FFFFFF 16
 
 # Panel
@@ -35,7 +35,7 @@ panel_margin = 0 0
 panel_padding = 7 0
 panel_dock = 0
 wm_menu = 1
-panel_layer = bottom
+panel_layer = top
 panel_background_id = 1
 
 # Panel Autohide
@@ -98,7 +98,7 @@ clock_lclick_command = gsimplecal
 clock_tooltip = %A, %d %B, %Y
 
 # Tooltips
-tooltip = 0
+tooltip = 1
 tooltip_padding = 2 2
 tooltip_show_timeout = 0.7
 tooltip_hide_timeout = 0.3

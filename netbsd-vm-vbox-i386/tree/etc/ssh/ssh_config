@@ -4,9 +4,5 @@ Protocol 2
 
 CheckHostIP no
 
-Host router router.localdomain nas nas.localdomain server server.localdomain
-  CanonicalizeHostname yes
-  CanonicalizePermittedCNAMEs *:*
-
 Host *
   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,aes192-cbc,aes256-cbc

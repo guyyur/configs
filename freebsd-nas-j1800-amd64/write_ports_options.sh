@@ -60,6 +60,20 @@ add_port_option "[ ] STATIC"
 create_port_options
 
 
+# -- archivers/libarchive2 OPTIONS --
+init_port_options "archivers_libarchive" "libarchive" "3.1.2_4,1"
+add_port_option "[x] LZO"
+add_port_option "[ ] NETTLE"
+create_port_options
+
+
+# -- archivers/lzo2 OPTIONS --
+init_port_options "archivers_lzo2" "lzo2" "2.09"
+add_port_option "[ ] DOCS"
+add_port_option "[ ] EXAMPLES"
+create_port_options
+
+
 # -- archivers/p7zip OPTIONS --
 init_port_options "archivers_p7zip" "p7zip" "9.20.1_1"
 add_port_option "[ ] DOCS"
@@ -108,8 +122,9 @@ create_port_options
 
 
 # -- databases/sqlite3 OPTIONS --
-init_port_options "databases_sqlite3" "sqlite3" "3.8.8"
+init_port_options "databases_sqlite3" "sqlite3" "3.8.10.1"
 add_port_option "[ ] ARMOR"
+add_port_option "[ ] DBSTAT"
 add_port_option "[ ] DIRECT_READ"
 add_port_option "[ ] EXTENSION"
 add_port_option "[x] FTS4"
@@ -143,26 +158,24 @@ add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- devel/apr1 OPTIONS --
-init_port_options "devel_apr1" "apr" "1.5.1.1.5.4"
-add_port_option "[x] IPV6"
-add_port_option "[x] DEVRANDOM"
-add_port_option "[ ] BDB"
-add_port_option "[ ] GDBM"
-add_port_option "[ ] LDAP"
-add_port_option "[ ] MYSQL"
-add_port_option "[ ] NDBM"
-add_port_option "[ ] PGSQL"
-add_port_option "[ ] SQLITE"
-add_port_option "[ ] FREETDS"
-add_port_option "(*) SSL"
-add_port_option "( ) NSS"
-create_port_options
-
-
 # -- devel/cscope OPTIONS --
 init_port_options "devel_cscope" "cscope" "15.8a"
 add_port_option "[ ] XCSCOPE"
+create_port_options
+
+
+# -- devel/fossil OPTIONS --
+init_port_options "devel_fossil" "fossil" "1.33_1,2"
+add_port_option "[ ] FUSE"
+add_port_option "[x] JSON"
+add_port_option "[ ] STATIC"
+create_port_options
+
+
+# -- devel/gettext-tools OPTIONS --
+init_port_options "devel_gettext-tools" "gettext-tools" "0.19.5.1"
+add_port_option "[ ] DOCS"
+add_port_option "[x] THREADS"
 create_port_options
 
 
@@ -172,13 +185,13 @@ add_port_option "[ ] CONTRIB"
 add_port_option "[x] CURL"
 add_port_option "[ ] CVS"
 add_port_option "[ ] ETCSHELLS"
-add_port_option "[x] GITWEB"
+add_port_option "[ ] GITWEB"
 add_port_option "[ ] GUI"
 add_port_option "[ ] HTMLDOCS"
 add_port_option "[x] ICONV"
 add_port_option "[ ] NLS"
 add_port_option "[ ] P4"
-add_port_option "[x] PERL"
+add_port_option "[ ] PERL"
 add_port_option "[ ] SVN"
 create_port_options
 
@@ -232,23 +245,6 @@ create_port_options
 # -- devel/popt OPTIONS --
 init_port_options "devel_popt" "popt" "1.16"
 add_port_option "[ ] NLS"
-create_port_options
-
-
-# -- devel/subversion OPTIONS --
-init_port_options "devel_subversion" "subversion" "1.8.9_7"
-add_port_option "[ ] BDB"
-add_port_option "[ ] DOCS"
-add_port_option "[x] FREEBSD_TEMPLATE"
-add_port_option "[ ] MAINTAINER_DEBUG"
-add_port_option "[ ] NLS"
-add_port_option "[x] P4_STYLE_MARKERS"
-add_port_option "[ ] SASL"
-add_port_option "[ ] SERF"
-add_port_option "[ ] STATIC"
-add_port_option "[ ] SVNSERVE_WRAPPER"
-add_port_option "[ ] TEST"
-add_port_option "[ ] TOOLS"
 create_port_options
 
 
@@ -329,15 +325,14 @@ add_port_option "(*) OPENSSL"
 create_port_options
 
 
-# -- lang/perl5.18 OPTIONS --
-init_port_options "lang_perl5.18" "perl5" "5.18.4_5"
+# -- lang/perl5.20 OPTIONS --
+init_port_options "lang_perl5.20" "perl5" "5.20.2_4"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] GDBM"
 add_port_option "[x] MULTIPLICITY"
 add_port_option "[x] PERL_64BITINT"
 add_port_option "[x] PTHREAD"
 add_port_option "[ ] SITECUSTOMIZE"
-add_port_option "[x] USE_PERL"
 add_port_option "(*) THREADS"
 add_port_option "( ) PERL_MALLOC"
 create_port_options
@@ -350,7 +345,7 @@ add_port_option "[x] IPV6"
 add_port_option "[x] LIBFFI"
 add_port_option "[ ] NLS"
 add_port_option "[x] PYMALLOC"
-add_port_option "[ ] SEM"
+add_port_option "[x] SEM"
 add_port_option "[x] THREADS"
 add_port_option "( ) UCS2"
 add_port_option "(*) UCS4"
@@ -384,14 +379,15 @@ create_port_options
 
 
 # -- net/openldap24-client OPTIONS --
-init_port_options "net_openldap24-client" "openldap-client" "2.4.39"
+init_port_options "net_openldap24-client" "openldap-client" "2.4.40_1"
+add_port_option "[ ] DEBUG"
 add_port_option "[ ] FETCH"
 add_port_option "[ ] GSSAPI"
 create_port_options
 
 
-# -- net/samba41 OPTIONS --
-init_port_options "net_samba41" "samba41" "4.1.16"
+# -- net/samba42 OPTIONS --
+init_port_options "net_samba42" "samba42" "4.2.2_1"
 add_port_option "[ ] ACL_SUPPORT"
 add_port_option "[ ] ADS"
 add_port_option "[ ] AD_DC"
@@ -469,30 +465,24 @@ add_port_option "[ ] EXAMPLES"
 create_port_options
 
 
-# -- security/p5-Authen-SASL OPTIONS --
-init_port_options "security_p5-Authen-SASL" "p5-Authen-SASL" "2.16"
-add_port_option "[ ] KERBEROS"
-create_port_options
-
-
-# -- security/p5-IO-Socket-SSL OPTIONS --
-init_port_options "security_p5-IO-Socket-SSL" "p5-IO-Socket-SSL" "1.94"
-add_port_option "[ ] EXAMPLES"
-add_port_option "[ ] IDN"
-add_port_option "[ ] IPV6"
-create_port_options
-
-
-# -- security/p5-Net-SSLeay OPTIONS --
-init_port_options "security_p5-Net-SSLeay" "p5-Net-SSLeay" "1.55"
-add_port_option "[ ] EXAMPLES"
-create_port_options
-
-
 # -- security/trousers OPTIONS --
 init_port_options "security_trousers" "trousers-tddl" "0.3.10_7"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] EMULATOR"
+create_port_options
+
+
+# -- shells/zsh OPTIONS --
+init_port_options "shells_zsh" "zsh" "5.0.7_3"
+add_port_option "[ ] DEBUG"
+add_port_option "[x] DOCS"
+add_port_option "[x] EXAMPLES"
+add_port_option "[ ] GDBM"
+add_port_option "[ ] MAILDIR"
+add_port_option "[ ] MEM"
+add_port_option "[ ] PCRE"
+add_port_option "[x] SECURE_FREE"
+add_port_option "[ ] STATIC"
 create_port_options
 
 
@@ -527,8 +517,14 @@ add_port_option "[ ] LIBEVENT_STATIC"
 create_port_options
 
 
+# -- textproc/py-genshi OPTIONS --
+init_port_options "textproc_py-genshi" "py27-Genshi" "0.7_1"
+add_port_option "[ ] BABEL"
+create_port_options
+
+
 # -- www/nginx OPTIONS --
-init_port_options "www_nginx" "nginx" "1.8.0,2"
+init_port_options "www_nginx" "nginx" "1.8.0_3,2"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DEBUGLOG"
 add_port_option "[ ] FILE_AIO"
@@ -561,13 +557,15 @@ add_port_option "[ ] MAIL_SSL"
 add_port_option "[ ] SPDY"
 add_port_option "[ ] THREADS"
 add_port_option "[x] WWW"
+add_port_option "[ ] AJP"
 add_port_option "[ ] CACHE_PURGE"
-add_port_option "[ ] CTPP2"
+add_port_option "[ ] CLOJURE"
 add_port_option "[ ] ECHO"
 add_port_option "[ ] HEADERS_MORE"
 add_port_option "[ ] HTTP_ACCEPT_LANGUAGE"
 add_port_option "[ ] HTTP_ACCESSKEY"
 add_port_option "[ ] HTTP_AUTH_DIGEST"
+add_port_option "[ ] HTTP_AUTH_KRB5"
 add_port_option "[ ] HTTP_AUTH_LDAP"
 add_port_option "[ ] HTTP_AUTH_PAM"
 add_port_option "[ ] HTTP_DAV_EXT"
@@ -606,13 +604,24 @@ add_port_option "[ ] RTMP"
 add_port_option "[ ] SET_MISC"
 add_port_option "[ ] SFLOW"
 add_port_option "[ ] SLOWFS_CACHE"
+add_port_option "[ ] SMALL_LIGHT"
 add_port_option "[ ] SRCACHE"
-add_port_option "[ ] SUPERVISORD"
-add_port_option "[ ] TCP_PROXY"
+add_port_option "[ ] STATSD"
 add_port_option "[ ] UDPLOG"
 add_port_option "[ ] XRID_HEADER"
 add_port_option "[ ] XSS"
 add_port_option "[ ] VIDEO"
 add_port_option "( ) HTTP_MP4"
 add_port_option "( ) HTTP_MP4_H264"
+create_port_options
+
+
+# -- www/trac OPTIONS --
+init_port_options "www_trac" "trac" "1.0.4"
+add_port_option "[ ] DOCUTILS"
+add_port_option "[x] PYGMENTS"
+add_port_option "[ ] SVN"
+add_port_option "[x] TZ"
+add_port_option "( ) PGSQL"
+add_port_option "(*) SQLITE"
 create_port_options

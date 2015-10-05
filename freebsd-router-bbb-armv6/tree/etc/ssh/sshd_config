@@ -7,15 +7,15 @@ Protocol 2
 
 UseDNS no
 
-PubkeyAuthentication yes
+PermitRootLogin no
+
+AuthorizedKeysFile .ssh/authorized_keys
 
 PasswordAuthentication no
-PermitEmptyPasswords no
 
 ChallengeResponseAuthentication no
-UsePAM no
 
-PermitRootLogin no
+UsePAM no
 
 Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,aes192-cbc,aes256-cbc
 

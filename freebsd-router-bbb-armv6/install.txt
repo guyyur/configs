@@ -1,0 +1,27 @@
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./partition.sh
+./newfs.sh
+./mount_and_mkdir.sh
+
+./extract_dists.sh /mnt /path/to/head-armv6hf-dists
+./bootfiles.sh /mnt
+./config.sh /mnt
+
+./unmount.sh
+
+shutdown -p now
+
+mount /usr/ports
+mount -t tmpfs -o size=... tmpfs /usr/wrkdir
+
+mount -u -o rw,noatime /
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./write_ports_options.sh
+./build_ports.sh
+
+mount -u -o ro,noatime /
+
+umount /usr/wrkdir
+umount /usr/ports

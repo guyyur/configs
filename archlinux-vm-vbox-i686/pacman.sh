@@ -53,13 +53,13 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   sysfsutils \
   syslog-ng \
   systemd \
-  systemd-sysvcompat \
   tar \
   tzdata \
   util-linux \
   vi \
   which \
   syslinux \
+  zsh \
   sharutils \
   lsof \
   pciutils \
@@ -70,7 +70,6 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   time \
   openresolv \
   dhcpcd \
-  dnsutils \
   inetutils \
   iputils \
   iproute2 \
@@ -124,6 +123,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   xorg-utils \
   xorg-xkb-utils \
   xorg-server-utils \
+  libxkbcommon-x11 \
   ttf-liberation \
   ttf-dejavu \
   ttf-junicode \
@@ -133,7 +133,8 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   libnotify \
   virtualbox-guest-modules \
   virtualbox-guest-utils \
-  gtk-engine-murrine \
+  gtk-engines \
+  adwaita-icon-theme \
   gnome-icon-theme \
   python2-xdg \
   openbox \
@@ -152,6 +153,12 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   || exit 1
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/murrine-themes-collection-*-any.pkg.tar.xz || exit 1
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/hsetroot-*-i686.pkg.tar.xz || exit 1
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/compton-*-i686.pkg.tar.xz || exit 1
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/ttf-caladea-*-any.pkg.tar.xz || exit 1
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/ttf-carlito-*-any.pkg.tar.xz || exit 1
