@@ -122,18 +122,22 @@ create_port_options
 
 
 # -- databases/sqlite3 OPTIONS --
-init_port_options "databases_sqlite3" "sqlite3" "3.8.10.1"
+init_port_options "databases_sqlite3" "sqlite3" "3.10.0"
 add_port_option "[ ] ARMOR"
-add_port_option "[ ] DBSTAT"
+add_port_option "[x] DBSTAT"
 add_port_option "[ ] DIRECT_READ"
 add_port_option "[ ] EXTENSION"
 add_port_option "[x] FTS4"
+add_port_option "[ ] FTS5"
+add_port_option "[ ] JSON1"
+add_port_option "[ ] LIKENOTBLOB"
 add_port_option "[ ] MEMMAN"
 add_port_option "[x] METADATA"
-add_port_option "[x] READLINE"
+add_port_option "[ ] RBU"
 add_port_option "[x] SECURE_DELETE"
 add_port_option "[ ] SOUNDEX"
 add_port_option "[ ] STMT"
+add_port_option "[x] STSHELL"
 add_port_option "[x] THREADS"
 add_port_option "[x] UNLOCK_NOTIFY"
 add_port_option "[ ] UPD_DEL_LIMIT"
@@ -149,6 +153,9 @@ add_port_option "( ) TS2"
 add_port_option "( ) TS3"
 add_port_option "( ) STAT3"
 add_port_option "( ) STAT4"
+add_port_option "( ) READLINES"
+add_port_option "( ) READLINEP"
+add_port_option "( ) EDITLINE"
 create_port_options
 
 
@@ -180,7 +187,7 @@ create_port_options
 
 
 # -- devel/git OPTIONS --
-init_port_options "devel_git" "git" "2.3.5"
+init_port_options "devel_git" "git" "2.7.0"
 add_port_option "[ ] CONTRIB"
 add_port_option "[x] CURL"
 add_port_option "[ ] CVS"
@@ -191,7 +198,8 @@ add_port_option "[ ] HTMLDOCS"
 add_port_option "[x] ICONV"
 add_port_option "[ ] NLS"
 add_port_option "[ ] P4"
-add_port_option "[ ] PERL"
+add_port_option "[x] PERL"
+add_port_option "[ ] SEND_EMAIL"
 add_port_option "[ ] SVN"
 create_port_options
 
@@ -284,7 +292,7 @@ create_port_options
 
 
 # -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.42.0"
+init_port_options "ftp_curl" "curl" "7.47.0"
 add_port_option "[x] CA_BUNDLE"
 add_port_option "[ ] COOKIES"
 add_port_option "[ ] CURL_DEBUG"
@@ -297,7 +305,9 @@ add_port_option "[x] IPV6"
 add_port_option "[ ] LDAP"
 add_port_option "[ ] LDAPS"
 add_port_option "[ ] LIBSSH2"
+add_port_option "[ ] METALINK"
 add_port_option "[x] PROXY"
+add_port_option "[ ] PSL"
 add_port_option "[ ] RTMP"
 add_port_option "[x] TLS_SRP"
 add_port_option "( ) GSSAPI_BASE"
@@ -386,8 +396,8 @@ add_port_option "[ ] GSSAPI"
 create_port_options
 
 
-# -- net/samba42 OPTIONS --
-init_port_options "net_samba42" "samba42" "4.2.2_1"
+# -- net/samba43 OPTIONS --
+init_port_options "net_samba43" "samba43" "4.3.1"
 add_port_option "[ ] ACL_SUPPORT"
 add_port_option "[ ] ADS"
 add_port_option "[ ] AD_DC"
@@ -517,14 +527,8 @@ add_port_option "[ ] LIBEVENT_STATIC"
 create_port_options
 
 
-# -- textproc/py-genshi OPTIONS --
-init_port_options "textproc_py-genshi" "py27-Genshi" "0.7_1"
-add_port_option "[ ] BABEL"
-create_port_options
-
-
 # -- www/nginx OPTIONS --
-init_port_options "www_nginx" "nginx" "1.8.0_3,2"
+init_port_options "www_nginx" "nginx" "1.8.1,2"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DEBUGLOG"
 add_port_option "[ ] FILE_AIO"
@@ -560,6 +564,7 @@ add_port_option "[x] WWW"
 add_port_option "[ ] AJP"
 add_port_option "[ ] CACHE_PURGE"
 add_port_option "[ ] CLOJURE"
+add_port_option "[ ] CT"
 add_port_option "[ ] ECHO"
 add_port_option "[ ] HEADERS_MORE"
 add_port_option "[ ] HTTP_ACCEPT_LANGUAGE"
@@ -579,6 +584,7 @@ add_port_option "[ ] HTTP_PUSH_STREAM"
 add_port_option "[ ] HTTP_REDIS"
 add_port_option "[ ] HTTP_RESPONSE"
 add_port_option "[ ] HTTP_SUBS_FILTER"
+add_port_option "[ ] HTTP_TARANTOOL"
 add_port_option "[ ] HTTP_UPLOAD"
 add_port_option "[ ] HTTP_UPLOAD_PROGRESS"
 add_port_option "[ ] HTTP_UPSTREAM_FAIR"
@@ -603,6 +609,7 @@ add_port_option "[ ] REDIS2"
 add_port_option "[ ] RTMP"
 add_port_option "[ ] SET_MISC"
 add_port_option "[ ] SFLOW"
+add_port_option "[ ] SHIBBOLETH"
 add_port_option "[ ] SLOWFS_CACHE"
 add_port_option "[ ] SMALL_LIGHT"
 add_port_option "[ ] SRCACHE"
@@ -616,12 +623,7 @@ add_port_option "( ) HTTP_MP4_H264"
 create_port_options
 
 
-# -- www/trac OPTIONS --
-init_port_options "www_trac" "trac" "1.0.4"
-add_port_option "[ ] DOCUTILS"
-add_port_option "[x] PYGMENTS"
-add_port_option "[ ] SVN"
-add_port_option "[x] TZ"
-add_port_option "( ) PGSQL"
-add_port_option "(*) SQLITE"
+# -- www/uwsgi OPTIONS --
+init_port_options "www_uwsgi" "uwsgi" "2.0.11.2_2"
+add_port_option "[ ] DEBUG"
 create_port_options

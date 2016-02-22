@@ -189,13 +189,13 @@
         <raise>yes</raise>
       </action>
     </keybind>
-<!-- A-S causes language switch
-    <keybind key="A-S-Tab">
-      <action name="PreviousWindow">
-        <raise>yes</raise>
-      </action>
-    </keybind>
--->
+    <!-- A-S causes language switch
+      <keybind key="A-S-Tab">
+        <action name="PreviousWindow">
+          <raise>yes</raise>
+        </action>
+      </keybind>
+    -->
     <keybind key="W-Tab">
       <action name="NextWindow">
         <raise>yes</raise>

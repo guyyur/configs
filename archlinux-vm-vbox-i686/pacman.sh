@@ -7,18 +7,15 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- set up dirs --
-install -d -m 755 -o root -g root /mnt/usr/db/pacman || exit 1
-ln -sfn /var/cache/pacman/sync /mnt/usr/db/pacman/sync || exit 1
-
-
 # -- install --
+pacman --root /mnt --dbpath /mnt/usr/db/pacman -Sy || exit 1
 pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   bash \
   binutils \
   bzip2 \
   coreutils \
   cronie \
+  cryptsetup \
   dash \
   device-mapper \
   diffutils \
@@ -29,6 +26,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   findutils \
   gawk \
   gcc-libs \
+  gdisk \
   gettext \
   glibc \
   grep \
@@ -82,7 +80,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   nfsidmap \
   nfs-utils \
   tcpdump \
-  gnu-netcat \
+  openbsd-netcat \
   ca-certificates \
   wget \
   sg3_utils \
@@ -117,13 +115,16 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   samba \
   mercurial \
   git \
+  abs \
   dbus \
+  xf86-input-libinput \
   xorg-server \
   xorg-xinit \
   xorg-utils \
   xorg-xkb-utils \
   xorg-server-utils \
   libxkbcommon-x11 \
+  compton \
   ttf-liberation \
   ttf-dejavu \
   ttf-junicode \
@@ -142,6 +143,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   openbox-themes \
   tint2 \
   gsimplecal \
+  lxqt-notificationd \
   gmrun \
   pcmanfm \
   leafpad \
@@ -154,8 +156,6 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/hsetroot-*-i686.pkg.tar.xz || exit 1
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/compton-*-i686.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \

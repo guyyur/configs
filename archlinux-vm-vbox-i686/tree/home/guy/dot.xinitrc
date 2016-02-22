@@ -18,7 +18,7 @@ xrandr --addmode VGA-0 "1280x800_60.00"
 
 xrandr --output VGA-0 --mode "1024x640_60.00"
 
-compton -CGb
+compton -CGb --config=/dev/null
 hsetroot -solid "#202020"
 
 tint2 &

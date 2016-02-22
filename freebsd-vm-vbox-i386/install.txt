@@ -9,7 +9,8 @@ dhclient lan0
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-./extract_dists.sh /mnt /path/to/releng-10.2-i386-dists
+#   releng/10.2 i386
+./extract_dists.sh /mnt /path/to/dists
 ./bootfiles.sh /mnt
 ./config.sh /mnt
 
@@ -37,6 +38,3 @@ service dbus start
 
 config Parcellite
 config PCManFM
-config GIMP
-config Inkscape
-config fontforge

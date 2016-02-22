@@ -1,9 +1,6 @@
 
 # i686
 
-ip link set dev enp0s3 up
-dhcpcd enp0s3
-
 useradd -u 1001 -U -G wheel,games,users -c "Guy Yur" guy
 
 # cd to config dir (mounted usb flash, nfs, cifs, ...)
@@ -12,9 +9,9 @@ useradd -u 1001 -U -G wheel,games,users -c "Guy Yur" guy
 ./mount_and_mkdir.sh
 
 nano /etc/pacman.conf
-  uncomment CacheDir
-  
   CleanMethod = KeepCurrent
+  
+  comment CheckSpace
   
   change SigLevel to
     SigLevel = Never
@@ -25,17 +22,6 @@ mount ? /var/cache/pacman
 ./pacman.sh
 
 umount /var/cache/pacman
-
-nano /mnt/etc/locale.gen
-  en_AU.UTF-8 UTF-8
-  #...
-  en_GB.UTF-8 UTF-8
-  #...
-  en_US.UTF-8 UTF-8
-  #en_US ISO-8859-1
-  #...
-  he_IL.UTF-8 UTF-8
-  #...
 
 nano /mnt/etc/pacman.conf
   DBPath = /usr/db/pacman/
@@ -63,5 +49,6 @@ chroot /mnt /usr/bin/mkinitcpio -p linux
 systemctl poweroff
 
 
+config lxqt-notificationd
 config Parcellite
 config PCManFM

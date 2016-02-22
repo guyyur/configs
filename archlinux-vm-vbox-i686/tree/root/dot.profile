@@ -27,3 +27,7 @@ export PAGER=less
 # -- less env vars --
 export LESS="-QR"
 export LESSHISTFILE="-"
+
+
+# -- systemd env vars --
+export SYSTEMD_LESS="QRSMK"

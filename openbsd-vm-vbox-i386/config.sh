@@ -41,6 +41,8 @@ install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/projects || exit 1
 
+install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/config || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g users "${DESTDIR}"/var/xdg-cache/guy || exit 1
 
@@ -83,8 +85,6 @@ install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
-install -c -m 600 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key || exit 1
-install -c -m 644 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key.pub || exit 1
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
 
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1

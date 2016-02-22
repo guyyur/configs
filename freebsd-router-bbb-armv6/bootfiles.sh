@@ -18,5 +18,6 @@ DESTDIR=${1%/}
 # -- copy files --
 install -c /boot/custom/MLO "${DESTDIR}"/boot/custom/MLO || exit 1
 install -c /boot/custom/u-boot.img "${DESTDIR}"/boot/custom/u-boot.img || exit 1
+install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
 install -c "${DESTDIR}"/boot/ubldr "${DESTDIR}"/boot/custom/ubldr || exit 1
 install -c "${DESTDIR}"/boot/dtb/beaglebone-black.dtb "${DESTDIR}"/boot/custom/beaglebone-black.dtb || exit 1

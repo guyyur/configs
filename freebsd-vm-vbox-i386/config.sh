@@ -42,6 +42,8 @@ install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/projects || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/sync || exit 1
 
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy || exit 1
 
@@ -87,7 +89,6 @@ install -l s /var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/ssl/openssl.cnf "${DESTDIR}"/etc/ssl/openssl.cnf || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/ssl/certs || exit 1
 install -d -m 700 -o root -g wheel "${DESTDIR}"/etc/ssl/private || exit 1
 
@@ -116,10 +117,6 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
 install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
@@ -157,8 +154,8 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba/private || exit 1
 install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/smb.conf "${DESTDIR}"/etc/local/smb.conf || exit 1
 
-install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
+install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/polkit-1 || exit 1
@@ -187,24 +184,23 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/xdg || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/xdg/menus || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/xdg/menus/all-applications.menu "${DESTDIR}"/etc/local/xdg/menus/all-applications.menu || exit 1
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-2.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkfilechooser.ini "${DESTDIR}"/home/guy/config/gtk-2.0/gtkfilechooser.ini || exit 1
 
 install -c -m 644 -o guy -g guy tree/home/guy/dot.gtkrc-2.0 "${DESTDIR}"/home/guy/.gtkrc-2.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.gtk-bookmarks "${DESTDIR}"/home/guy/.gtk-bookmarks || exit 1
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-3.0 || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/settings.ini "${DESTDIR}"/home/guy/config/gtk-3.0/settings.ini || exit 1
+
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/openbox || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/menu.xml "${DESTDIR}"/home/guy/config/openbox/menu.xml || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/rc.xml "${DESTDIR}"/home/guy/config/openbox/rc.xml || exit 1
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/tint2 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/tint2/tint2rc "${DESTDIR}"/home/guy/config/tint2/tint2rc || exit 1
 
 install -c -m 644 -o guy -g guy tree/home/guy/dot.gmrunrc "${DESTDIR}"/home/guy/.gmrunrc || exit 1
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1

@@ -23,7 +23,7 @@ cd /usr/ports/sysutils/cdrtools && make $target || exit 1
 cd /usr/ports/sysutils/dmidecode && make $target || exit 1
 cd /usr/ports/lang/python3 && make $target || exit 1
 cd /usr/ports/ftp/wget && make $target || exit 1
-cd /usr/ports/net/samba42 && make $target || exit 1
+cd /usr/ports/net/samba43 && make $target || exit 1
 cd /usr/ports/textproc/aspell && make $target || exit 1
 cd /usr/ports/textproc/en-aspell && make $target || exit 1
 cd /usr/ports/hebrew/aspell && make $target || exit 1
@@ -35,14 +35,6 @@ cd /usr/ports/www/tidy-devel && make $target || exit 1
 cd /usr/ports/graphics/p5-Image-ExifTool && make $target || exit 1
 cd /usr/ports/print/freetype2 && make $target || exit 1
 cd /usr/ports/x11-fonts/fontconfig && make $target || exit 1
-cd /usr/ports/multimedia/mp4v2 && make $target || exit 1
-cd /usr/ports/audio/flac && make $target || exit 1
-cd /usr/ports/audio/faac && make $target || exit 1
-cd /usr/ports/audio/faad && make $target || exit 1
-cd /usr/ports/audio/vorbis-tools && make $target || exit 1
-cd /usr/ports/multimedia/xvid && make $target || exit 1
-cd /usr/ports/audio/lame && make $target || exit 1
-cd /usr/ports/audio/fluidsynth && make $target || exit 1
 cd /usr/ports/devel/dbus && make $target || exit 1
 cd /usr/ports/sysutils/consolekit && make $target || exit 1
 cd /usr/ports/x11-servers/xorg-server && make $target || exit 1
@@ -95,6 +87,7 @@ cd /usr/ports/x11-toolkits/gtk20 && make $target || exit 1
 cd /usr/ports/x11-themes/adwaita-icon-theme && make $target || exit 1
 cd /usr/ports/x11-toolkits/gtk30 && make $target || exit 1
 cd /usr/ports/x11-themes/gtk-engines2 && make $target || exit 1
+cd /usr/ports/x11-themes/clearlooks-phenix-theme && make $target || exit 1
 cd /usr/ports/devel/py-xdg && make $target || exit 1
 cd /usr/ports/x11-wm/openbox && make $target || exit 1
 cd /usr/ports/x11-themes/openbox-themes && make $target || exit 1
@@ -109,13 +102,6 @@ cd /usr/ports/x11/lxrandr && make $target || exit 1
 cd /usr/ports/deskutils/parcellite && make $target || exit 1
 cd /usr/ports/emulators/virtualbox-ose-additions && make $target || exit 1
 cd /usr/ports/graphics/scrot && make $target || exit 1
-cd /usr/ports/graphics/gpicview && make $target || exit 1
 cd /usr/ports/devel/geany && make $target || exit 1
-cd /usr/ports/net/wireshark && make $target || exit 1
-cd /usr/ports/graphics/autotrace && make $target || exit 1
-cd /usr/ports/graphics/gimp && make $target || exit 1
-cd /usr/ports/graphics/inkscape && make $target || exit 1
-cd /usr/ports/print/fontforge && make $target || exit 1
-cd /usr/ports/devel/arm-none-eabi-gcc492 && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-rpi && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-beaglebone && make $target || exit 1

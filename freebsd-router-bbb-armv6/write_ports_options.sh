@@ -116,14 +116,12 @@ create_port_options
 
 
 # -- security/openvpn OPTIONS --
-init_port_options "security_openvpn" "openvpn" "2.3.6_5"
+init_port_options "security_openvpn" "openvpn" "2.3.9"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EASYRSA"
-add_port_option "[ ] ENGINEFIX2"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] PKCS11"
-add_port_option "[ ] PW_SAVE"
-add_port_option "[ ] SUBNETFIX"
+add_port_option "[ ] TUNNELBLICK"
 add_port_option "[ ] X509ALTUSERNAME"
 add_port_option "(*) OPENSSL"
 add_port_option "( ) POLARSSL"

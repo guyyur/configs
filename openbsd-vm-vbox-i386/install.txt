@@ -1,5 +1,5 @@
 
-# 5.7 i386
+# 5.8 i386
 
 installcd
   (I)nstall, (U)pgrade or (S)hell? I
@@ -16,16 +16,15 @@ installcd
   Password for root account? (again)
   
   Start sshd(8) by default? [yes]
-  Start ntpd(8) by default? [no]
   
   Do you expect to run the X Window System? [yes] no
-  Do you want the X Window System to be started by xdm(1)? [no]
+  Change the default console to com0? [no]
   
   Setup a user? (enter a lower-case loginname, or 'no') [no]
+  Allow root ssh login? [no]
   
-  Which one is the root disk? (or 'done') [sd0]
-  Use DUIDs rather than device names in fstab? [yes] no
-  Use (W)hole disk or (E)dit the MBR? [whole]
+  Which disk is the root disk? (or 'done') [sd0]
+  Use (W)hole disk or (E)dit the MBR? W
   Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout? [a] C
   
   > a a
@@ -48,7 +47,7 @@ installcd
   Write new label? [y]
   
   Which one do you wish to initialize? (or 'done') [done] sd1
-  Use (W)hole disk or (E)dit the MBR? [whole]
+  Use (W)hole disk or (E)dit the MBR? W
   
   > a b
     offset: [64]
@@ -58,9 +57,8 @@ installcd
   > q
   Write new label? [y]
   
-  Location of sets? (cd disk ftp http or 'done') [cd]
-  Which one contains the install media? (or 'done') [cd0]
-  Pathname to the sets? (or 'done') [5.7/i386]
+  Location of sets? (cd disk ftp http or 'done') [cd0]
+  Pathname to the sets? (or 'done') [5.8/i386]
   
   Set name(s)? (or 'abort' or 'done') [done]
   

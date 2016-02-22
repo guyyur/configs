@@ -4,7 +4,8 @@
 
 #Port 22
 
-UseDNS no
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
 
 PermitRootLogin no
 
@@ -14,6 +15,7 @@ PasswordAuthentication no
 
 ChallengeResponseAuthentication no
 
+UsePrivilegeSeparation sandbox
 UsePAM no
 
-Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,aes192-cbc,aes256-cbc
+Ciphers chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc

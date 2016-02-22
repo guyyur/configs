@@ -40,6 +40,8 @@ fi
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
 
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy || exit 1
 
@@ -74,7 +76,7 @@ install -c -m 644 -o root -g wheel tree/etc/fstab "${DESTDIR}"/etc/fstab || exit
 
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/start_if.lan1 "${DESTDIR}"/etc/start_if.lan1 || exit 1
+install -c -m 644 -o root -g wheel tree/etc/start_if.wan0 "${DESTDIR}"/etc/start_if.wan0 || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
@@ -85,7 +87,6 @@ install -c -m 644 -o root -g wheel tree/etc/resolvconf.conf "${DESTDIR}"/etc/res
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/ssl/openssl.cnf "${DESTDIR}"/etc/ssl/openssl.cnf || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/ssl/certs || exit 1
 install -d -m 700 -o root -g wheel "${DESTDIR}"/etc/ssl/private || exit 1
 
@@ -112,10 +113,6 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
 install -c -m 600 -o guy -g guy tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
@@ -160,12 +157,13 @@ install -c -N "${DESTDIR}"/etc -m 640 -o ddnshupd -g ddnshupd tree/etc/local/ddn
 
 install -c -m 755 -o root -g wheel tree/etc/local/dhcpcd.exit-hook "${DESTDIR}"/etc/local/dhcpcd.exit-hook || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
+install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/mpd5 || exit 1
+install -c -m 640 -o root -g wheel tree/etc/local/mpd5/mpd.conf "${DESTDIR}"/etc/local/mpd5/mpd.conf || exit 1
 install -c -m 750 -o root -g wheel tree/etc/local/mpd5/mpd-up-script.sh "${DESTDIR}"/etc/local/mpd5/mpd-up-script.sh || exit 1
 install -c -m 750 -o root -g wheel tree/etc/local/mpd5/mpd-down-script.sh "${DESTDIR}"/etc/local/mpd5/mpd-down-script.sh || exit 1
-install -c -m 640 -o root -g wheel tree/etc/local/mpd5/mpd.conf "${DESTDIR}"/etc/local/mpd5/mpd.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/openvpn || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/openvpn/dh.pem "${DESTDIR}"/etc/local/openvpn/dh.pem || exit 1

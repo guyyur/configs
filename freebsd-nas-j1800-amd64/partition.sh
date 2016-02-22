@@ -48,7 +48,7 @@ gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
 gpart add -b 40 -s 88 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1m -b 557056 -s 4194304 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -b 557056 -s 3637248 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1
@@ -66,7 +66,7 @@ my_commit_or_undo "${disk0}" || exit 1
 # #   /home
 # gpart create -s GPT -f x "${disk0}" || exit 1
 # gpart add -a 1m -b 2048 -s 555008 -t efi -f x "${disk0}" || exit 1
-# gpart add -a 1m -s 4194304 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 3637248 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1

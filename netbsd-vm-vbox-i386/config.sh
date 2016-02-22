@@ -39,6 +39,8 @@ install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/projects || exit 1
 
+install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/config || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g users "${DESTDIR}"/var/xdg-cache/guy || exit 1
 
@@ -76,7 +78,9 @@ install -c -m 640 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/news
 
 install -c -m 600 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/dhcpcd.duid "${DESTDIR}"/etc/dhcpcd.duid || exit 1
+install -c -m 400 -o root -g wheel tree/etc/dhcpcd.secret "${DESTDIR}"/etc/dhcpcd.secret || exit 1
+install -c -m 644 -o root -g wheel tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
@@ -92,6 +96,8 @@ install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/et
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
+install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key || exit 1

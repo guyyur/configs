@@ -4,7 +4,8 @@
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-./extract_dists.sh /mnt /path/to/head-armv6hf-dists
+#   head armv6hf
+./extract_dists.sh /mnt /path/to/dists
 ./bootfiles.sh /mnt
 ./config.sh /mnt
 

@@ -1,5 +1,0 @@
-# replace 16:11:12:13:14:15 with a locally administered addresses
-
-ifconfig lan1 ether 16:11:12:13:14:15
-ifconfig lan1 inet6 ifdisabled -auto_linklocal
-ifconfig lan1 up
