@@ -1,5 +1,5 @@
 
-# i686
+# x86_64
 
 useradd -u 1001 -U -G wheel,games,users -c "Guy Yur" guy
 

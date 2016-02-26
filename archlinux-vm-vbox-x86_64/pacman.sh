@@ -155,7 +155,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   || exit 1
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/hsetroot-*-i686.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR/pkg/hsetroot-*-x86_64.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
