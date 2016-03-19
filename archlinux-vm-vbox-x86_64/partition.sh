@@ -46,6 +46,8 @@ parted -s -a optimal /dev/"${disk0}" \
   || exit 1
 parted -s -a optimal /dev/"${disk0}" unit s print || exit 1
 
+dd bs=446 count=1 conv=notrunc if="${DESTDIR}/usr/lib/syslinux/bios/mbr.bin" of=/dev/"${disk0}" || exit 1
+
 # disk1:
 #   swap
 my_prompt_to_partition "${disk1}" || exit 1

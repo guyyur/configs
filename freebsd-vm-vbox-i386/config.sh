@@ -186,12 +186,11 @@ install -c -m 644 -o root -g wheel tree/etc/local/xdg/menus/all-applications.men
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-2.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkfilechooser.ini "${DESTDIR}"/home/guy/config/gtk-2.0/gtkfilechooser.ini || exit 1
-
-install -c -m 644 -o guy -g guy tree/home/guy/dot.gtkrc-2.0 "${DESTDIR}"/home/guy/.gtkrc-2.0 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/dot.gtk-bookmarks "${DESTDIR}"/home/guy/.gtk-bookmarks || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkrc "${DESTDIR}"/home/guy/config/gtk-2.0/gtkrc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-3.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/settings.ini "${DESTDIR}"/home/guy/config/gtk-3.0/settings.ini || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/bookmarks "${DESTDIR}"/home/guy/config/gtk-3.0/bookmarks || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/openbox || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/menu.xml "${DESTDIR}"/home/guy/config/openbox/menu.xml || exit 1

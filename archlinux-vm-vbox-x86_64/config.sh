@@ -16,6 +16,10 @@ DESTDIR=${1%/}
 
 
 #
+"${DESTDIR}"/usr/bin/extlinux --install "${DESTDIR}"/boot/syslinux || exit 1
+ln -sfn /usr/lib/syslinux/bios/libutil.c32 "${DESTDIR}"/boot/syslinux/libutil.c32 || exit 1
+ln -sfn /usr/lib/syslinux/bios/menu.c32 "${DESTDIR}"/boot/syslinux/menu.c32 || exit 1
+
 ln -sfn /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
 install -c -m 644 -o root -g root tree/etc/login.defs "${DESTDIR}"/etc/login.defs || exit 1
@@ -149,12 +153,11 @@ install -c -m 644 -o root -g root tree/etc/xdg/menus/all-applications.menu "${DE
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-2.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkfilechooser.ini "${DESTDIR}"/home/guy/config/gtk-2.0/gtkfilechooser.ini || exit 1
-
-install -c -m 644 -o guy -g guy tree/home/guy/dot.gtkrc-2.0 "${DESTDIR}"/home/guy/.gtkrc-2.0 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/dot.gtk-bookmarks "${DESTDIR}"/home/guy/.gtk-bookmarks || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkrc "${DESTDIR}"/home/guy/config/gtk-2.0/gtkrc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-3.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/settings.ini "${DESTDIR}"/home/guy/config/gtk-3.0/settings.ini || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/bookmarks "${DESTDIR}"/home/guy/config/gtk-3.0/bookmarks || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/openbox || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/menu.xml "${DESTDIR}"/home/guy/config/openbox/menu.xml || exit 1

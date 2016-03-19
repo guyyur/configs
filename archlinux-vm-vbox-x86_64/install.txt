@@ -42,8 +42,6 @@ chroot /mnt locale-gen
 
 chroot /mnt /usr/bin/mkinitcpio -p linux
 
-./bootloader.sh /mnt
-
 ./unmount.sh
 
 systemctl poweroff

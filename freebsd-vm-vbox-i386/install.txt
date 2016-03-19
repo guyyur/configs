@@ -11,7 +11,6 @@ dhclient lan0
 
 #   releng/10.2 i386
 ./extract_dists.sh /mnt /path/to/dists
-./bootfiles.sh /mnt
 ./config.sh /mnt
 
 ./unmount.sh

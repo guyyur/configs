@@ -99,6 +99,7 @@ add_port_option "[ ] ARMOR"
 add_port_option "[x] DBSTAT"
 add_port_option "[ ] DIRECT_READ"
 add_port_option "[ ] EXTENSION"
+add_port_option "[ ] FTS3_TOKEN"
 add_port_option "[x] FTS4"
 add_port_option "[ ] FTS5"
 add_port_option "[ ] JSON1"
@@ -119,15 +120,15 @@ add_port_option "[ ] ICU"
 add_port_option "[ ] UNICODE61"
 add_port_option "[ ] RTREE"
 add_port_option "[ ] RTREE_INT"
+add_port_option "( ) READLINES"
+add_port_option "( ) READLINEP"
+add_port_option "( ) EDITLINE"
 add_port_option "( ) TS0"
 add_port_option "(*) TS1"
 add_port_option "( ) TS2"
 add_port_option "( ) TS3"
 add_port_option "( ) STAT3"
 add_port_option "( ) STAT4"
-add_port_option "( ) READLINES"
-add_port_option "( ) READLINEP"
-add_port_option "( ) EDITLINE"
 create_port_options
 
 
@@ -587,12 +588,6 @@ create_port_options
 init_port_options "graphics_png" "png" "1.5.18"
 add_port_option "[ ] APNG"
 add_port_option "[ ] PNGTEST"
-create_port_options
-
-
-# -- graphics/scrot --
-init_port_options "graphics_scrot" "scrot" "0.8_6"
-add_port_option "[ ] DOCS"
 create_port_options
 
 

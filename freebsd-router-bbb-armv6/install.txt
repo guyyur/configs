@@ -6,7 +6,6 @@
 
 #   head armv6hf
 ./extract_dists.sh /mnt /path/to/dists
-./bootfiles.sh /mnt
 ./config.sh /mnt
 
 ./unmount.sh

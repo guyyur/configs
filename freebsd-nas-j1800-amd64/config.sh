@@ -16,6 +16,10 @@ DESTDIR=${1%/}
 
 
 #
+# install -d "${DESTDIR}"/boot/esp/EFI || exit 1
+# install -d "${DESTDIR}"/boot/esp/EFI/BOOT || exit 1
+# install -c "${DESTDIR}"/boot/boot1.efi "${DESTDIR}"/boot/esp/EFI/BOOT/BOOTX64.EFI || exit 1
+
 install -l s /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/login.conf "${DESTDIR}"/etc/login.conf || exit 1

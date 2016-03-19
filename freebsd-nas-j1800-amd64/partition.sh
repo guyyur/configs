@@ -7,23 +7,18 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- commit_or_undo(disk) --
-my_commit_or_undo()
+# -- my_prompt_to_partition(dev) --
+my_prompt_to_partition()
 {
-  local my_disk=$1
-  local my_commit
+  local my_devname=$1
+  local my_continue
   
-  gpart show "${my_disk}" || return 1
-  gpart show -l "${my_disk}" || return 1
-  
-  read -p "commit? [N/y] " my_commit || return 1
-  case "${my_commit}" in
-    Y|y)
-      gpart commit "${my_disk}" || return 1
-      printf "\n"
+  read -p "partition ${my_devname}? [No/yes] " my_continue || return 1
+  case "${my_continue}" in
+    [Yy][Ee][Ss])
+      return 0
       ;;
     *)
-      gpart undo "${my_disk}"
       return 1
       ;;
   esac
@@ -44,17 +39,19 @@ disk1=ada1
 #   /usr/obj
 #   /usr/ports
 #   /home
+my_prompt_to_partition "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
-gpart add -b 40 -s 88 -t freebsd-boot -f x "${disk0}" || exit 1
+gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1m -b 557056 -s 3637248 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -b 589824 -s 3604480 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 16777216 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
-my_commit_or_undo "${disk0}" || exit 1
+gpart commit "${disk0}" || exit 1
+gpart show "${disk0}" || exit 1
 
 # # disk0:
 # #   ESP
@@ -65,17 +62,20 @@ my_commit_or_undo "${disk0}" || exit 1
 # #   /usr/ports
 # #   /home
 # gpart create -s GPT -f x "${disk0}" || exit 1
-# gpart add -a 1m -b 2048 -s 555008 -t efi -f x "${disk0}" || exit 1
-# gpart add -a 1m -s 3637248 -t freebsd-ufs -f x "${disk0}" || exit 1
+# gpart add -a 1m -b 2048 -s 587776 -t efi -f x "${disk0}" || exit 1
+# gpart add -a 1m -s 3604480 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -s 16777216 -t freebsd-ufs -f x "${disk0}" || exit 1
 # gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
-# my_commit_or_undo "${disk0}" || exit 1
+# gpart commit "${disk0}" || exit 1
+# gpart show "${disk0}" || exit 1
 
 # disk1:
 #   /export/backup
+my_prompt_to_partition "${disk1}" || exit 1
 gpart create -s GPT -f x "${disk1}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk1}" || exit 1
-my_commit_or_undo "${disk1}" || exit 1
+gpart commit "${disk1}" || exit 1
+gpart show "${disk1}" || exit 1

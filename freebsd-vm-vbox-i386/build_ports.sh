@@ -101,7 +101,7 @@ cd /usr/ports/x11-themes/lxappearance && make $target || exit 1
 cd /usr/ports/x11/lxrandr && make $target || exit 1
 cd /usr/ports/deskutils/parcellite && make $target || exit 1
 cd /usr/ports/emulators/virtualbox-ose-additions && make $target || exit 1
-cd /usr/ports/graphics/scrot && make $target || exit 1
 cd /usr/ports/devel/geany && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-rpi && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-beaglebone && make $target || exit 1
+cd /usr/ports/local/u-boot-odroid-c1 && make $target || exit 1

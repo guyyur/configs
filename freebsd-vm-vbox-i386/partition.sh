@@ -7,23 +7,18 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- commit_or_undo(disk) --
-my_commit_or_undo()
+# -- my_prompt_to_partition(dev) --
+my_prompt_to_partition()
 {
-  local my_disk=$1
-  local my_commit
+  local my_devname=$1
+  local my_continue
   
-  gpart show "${my_disk}" || return 1
-  gpart show -l "${my_disk}" || return 1
-  
-  read -p "commit? [N/y] " my_commit || return 1
-  case "${my_commit}" in
-    Y|y)
-      gpart commit "${my_disk}" || return 1
-      printf "\n"
+  read -p "partition ${my_devname}? [No/yes] " my_continue || return 1
+  case "${my_continue}" in
+    [Yy][Ee][Ss])
+      return 0
       ;;
     *)
-      gpart undo "${my_disk}"
       return 1
       ;;
   esac
@@ -41,22 +36,29 @@ disk2=ada2
 #   freebsd-boot
 #   /
 #   /var
+my_prompt_to_partition "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
-gpart add -b 40 -s 88 -t freebsd-boot -f x "${disk0}" || exit 1
+gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
 gpart add -a 1m -b 2048 -s 10485760 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
-my_commit_or_undo "${disk0}" || exit 1
+gpart commit "${disk0}" || exit 1
+gpart show "${disk0}" || exit 1
 
 # disk1:
 #   swap
+my_prompt_to_partition "${disk1}" || exit 1
 gpart create -s GPT -f x "${disk1}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-swap -l swap -f x "${disk1}" || exit 1
-my_commit_or_undo "${disk1}" || exit 1
+gpart commit "${disk1}" || exit 1
+gpart show "${disk1}" || exit 1
+gpart show -l "${disk1}" || exit 1
 
 # disk2:
 #   /home
+my_prompt_to_partition "${disk2}" || exit 1
 gpart create -s GPT -f x "${disk2}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
-my_commit_or_undo "${disk2}" || exit 1
+gpart commit "${disk2}" || exit 1
+gpart show "${disk2}" || exit 1

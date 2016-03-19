@@ -132,7 +132,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   xterm \
   libxss \
   libnotify \
-  virtualbox-guest-modules \
+  virtualbox-guest-dkms \
   virtualbox-guest-utils \
   gtk-engines \
   adwaita-icon-theme \
@@ -156,6 +156,8 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/hsetroot-*-x86_64.pkg.tar.xz || exit 1
+pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
+  /var/cache/pacman/AUR/pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \

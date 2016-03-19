@@ -30,7 +30,11 @@ xrandr --addmode VGA-0 "1280x800_60.00"
 xrandr --output VGA-0 --mode "1280x800_60.00"
 
 compton -CGb --config=/dev/null
-hsetroot -solid "#202020"
+if [ -e "$XDG_CONFIG_HOME"/wallpaper.jpg ]; then
+  hsetroot -full "$XDG_CONFIG_HOME"/wallpaper.jpg
+else
+  hsetroot -solid "#202020"
+fi
 
 tint2 &
 /usr/local/libexec/openbox-xdg-autostart OPENBOX
