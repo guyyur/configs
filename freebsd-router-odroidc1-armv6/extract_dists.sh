@@ -22,4 +22,3 @@ cd $distsdir || exit 1
 tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
 # tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
 tar -Uxp -C "${DESTDIR}" -f kernel-ROUTER.txz || exit 1
-install -c -m 555 -o root -g wheel ubldr-0x88000000 "${DESTDIR}"/boot/ubldr || exit 1

@@ -26,16 +26,27 @@ my_prompt_to_partition()
 
 
 # -- disk names --
-disk0=mmcsd1
+if [ -z "$1" ]; then
+  echo "disk device not specified" 1>&2
+  exit 1
+fi
+
+disk0=$1
 
 
 # -- layout --
 # disk0:
+#   MBR + U-Boot
 #   /boot/custom (msdosfs)
 #   freebsd label
 my_prompt_to_partition "${disk0}" || exit 1
+dd if=/usr/local/share/u-boot/u-boot-odroid-c1/bl1.bin.hardkernel of=/dev/"${disk0}" bs=512 skip=1 seek=1 || exit 1
+dd if=/usr/local/share/u-boot/u-boot-odroid-c1/u-boot.bin of=/dev/"${disk0}" bs=512 seek=64 conv=sync || exit 1
+dd if=/dev/zero of=/dev/"${disk0}" bs=32768 seek=1024 count=1 || exit 1
+
 gpart create -s MBR -f x "${disk0}" || exit 1
-gpart add -a 1m -b 2048 -s 31M -t '!4' -f x "${disk0}" || exit 1
+gpart bootcode -b /usr/local/share/u-boot/u-boot-odroid-c1/bl1-mbr.tmp -f x "${disk0}" || exit 1
+gpart add -a 1m -b 8192 -s 28M -t '!4' -f x "${disk0}" || exit 1
 gpart set -a active -i 1 -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1

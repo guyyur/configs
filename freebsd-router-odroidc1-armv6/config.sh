@@ -16,13 +16,9 @@ DESTDIR=${1%/}
 
 
 #
-install -c /boot/custom/MLO "${DESTDIR}"/boot/custom/MLO || exit 1
-install -c /boot/custom/u-boot.img "${DESTDIR}"/boot/custom/u-boot.img || exit 1
+install -c "${DESTDIR}"/boot/kernel/kernel.bin "${DESTDIR}"/boot/custom/kernel.bin || exit 1
 
 install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
-install -c "${DESTDIR}"/boot/ubldr "${DESTDIR}"/boot/custom/ubldr || exit 1
-
-install -c "${DESTDIR}"/boot/dtb/beaglebone-black.dtb "${DESTDIR}"/boot/custom/beaglebone-black.dtb || exit 1
 
 install -c -m 755 -o root -g wheel tree/etc/mtree/LOCAL.var.sh "${DESTDIR}"/etc/mtree/LOCAL.var.sh || exit 1
 
@@ -70,6 +66,8 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.cshrc "${DESTDIR}"/home/guy/.c
 install -c -m 644 -o guy -g guy tree/home/guy/dot.login "${DESTDIR}"/home/guy/.login || exit 1
 
 install -c -m 644 -o root -g wheel tree/boot/loader.conf "${DESTDIR}"/boot/loader.conf || exit 1
+
+install -c -m 644 -o root -g wheel tree/boot/custom/boot.ini "${DESTDIR}"/boot/custom/boot.ini || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
 

@@ -45,7 +45,12 @@ my_prompt_to_newfs()
 
 
 # -- disk names --
-disk0=mmcsd1
+if [ -z "$1" ]; then
+  echo "disk device not specified" 1>&2
+  exit 1
+fi
+
+disk0=$1
 
 
 # -- layout  --

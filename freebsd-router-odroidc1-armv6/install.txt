@@ -1,16 +1,14 @@
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./partition.sh
-./newfs.sh
-./mount_and_mkdir.sh
+./partition.sh dev
+./newfs.sh dev
+./mount_and_mkdir.sh dev
 
 #   head armv6hf
 ./extract_dists.sh /mnt /path/to/dists
 ./config.sh /mnt
 
 ./unmount.sh
-
-shutdown -p now
 
 mount /usr/ports
 mount -t tmpfs -o size=... tmpfs /usr/wrkdir
