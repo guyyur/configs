@@ -21,7 +21,6 @@ cd /usr/ports/sysutils/tmux && make $target || exit 1
 cd /usr/ports/net/svnup && make $target || exit 1
 cd /usr/ports/net/dhcpcd && make $target || exit 1
 cd /usr/ports/editors/hexedit && make $target || exit 1
-cd /usr/ports/archivers/gtar && make $target || exit 1
 cd /usr/ports/archivers/unrar && make $target || exit 1
 cd /usr/ports/archivers/p7zip && make $target || exit 1
 cd /usr/ports/sysutils/cdrtools && make $target || exit 1
@@ -29,8 +28,6 @@ cd /usr/ports/sysutils/dmidecode && make $target || exit 1
 cd /usr/ports/sysutils/smartmontools && make $target || exit 1
 cd /usr/ports/lang/python3 && make $target || exit 1
 cd /usr/ports/lang/python && make $target || exit 1
-cd /usr/ports/ftp/curl && make $target || exit 1
-cd /usr/ports/ftp/wget && make $target || exit 1
 cd /usr/ports/net/samba43 && make $target || exit 1
 cd /usr/ports/www/fcgiwrap && make $target || exit 1
 cd /usr/ports/www/uwsgi && make $target || exit 1

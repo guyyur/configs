@@ -53,13 +53,6 @@ EOF
 }
 
 
-# -- archivers/gtar OPTIONS --
-init_port_options "archivers_gtar" "gtar" "1.28_1"
-add_port_option "[ ] NLS"
-add_port_option "[ ] STATIC"
-create_port_options
-
-
 # -- archivers/libarchive2 OPTIONS --
 init_port_options "archivers_libarchive" "libarchive" "3.1.2_4,1"
 add_port_option "[x] LZO"
@@ -325,17 +318,6 @@ add_port_option "( ) WOLFSSL"
 create_port_options
 
 
-# -- ftp/wget OPTIONS --
-init_port_options "ftp_wget" "wget" "1.14_2"
-add_port_option "[ ] IDN"
-add_port_option "[x] IPV6"
-add_port_option "[ ] NLS"
-add_port_option "[ ] PCRE"
-add_port_option "( ) GNUTLS"
-add_port_option "(*) OPENSSL"
-create_port_options
-
-
 # -- lang/perl5.20 OPTIONS --
 init_port_options "lang_perl5.20" "perl5" "5.20.2_4"
 add_port_option "[ ] DEBUG"
@@ -439,10 +421,11 @@ create_port_options
 
 
 # -- security/gnutls OPTIONS --
-init_port_options "security_gnutls" "gnutls" "3.2.16_3"
+init_port_options "security_gnutls" "gnutls" "3.4.10"
 add_port_option "[x] CRYWRAP"
+add_port_option "[ ] DANE"
 add_port_option "[ ] EXAMPLES"
-add_port_option "[ ] LIBDANE"
+add_port_option "[x] IDN"
 add_port_option "[ ] NLS"
 add_port_option "[x] P11KIT"
 add_port_option "[x] TPM"
@@ -578,6 +561,7 @@ add_port_option "[ ] HTTP_DAV_EXT"
 add_port_option "[ ] HTTP_EVAL"
 add_port_option "[ ] HTTP_FANCYINDEX"
 add_port_option "[ ] HTTP_FOOTER"
+add_port_option "[ ] HTTP_JSON_STATUS"
 add_port_option "[ ] HTTP_MOGILEFS"
 add_port_option "[ ] HTTP_NOTICE"
 add_port_option "[ ] HTTP_PUSH"
@@ -590,8 +574,10 @@ add_port_option "[ ] HTTP_UPLOAD"
 add_port_option "[ ] HTTP_UPLOAD_PROGRESS"
 add_port_option "[ ] HTTP_UPSTREAM_FAIR"
 add_port_option "[ ] HTTP_UPSTREAM_STICKY"
+add_port_option "[ ] HTTP_VIDEO_THUMBEXTRACTOR"
 add_port_option "[ ] HTTP_ZIP"
 add_port_option "[ ] ARRAYVAR"
+add_port_option "[ ] BROTLI"
 add_port_option "[ ] DRIZZLE"
 add_port_option "[ ] ENCRYPTSESSION"
 add_port_option "[ ] FORMINPUT"
