@@ -82,6 +82,8 @@ install -c -m 644 -o root -g wheel tree/etc/fstab "${DESTDIR}"/etc/fstab || exit
 
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
+install -c -m 644 -o root -g wheel tree/etc/start_if.lan0 "${DESTDIR}"/etc/start_if.lan0 || exit 1
+
 install -c -m 644 -o root -g wheel tree/etc/start_if.wan0 "${DESTDIR}"/etc/start_if.wan0 || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1

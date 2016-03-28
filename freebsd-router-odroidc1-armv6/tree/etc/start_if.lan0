@@ -1,0 +1,3 @@
+# replace 16:11:12:13:14:17 with a locally administered address
+
+ifconfig wan0 ether 16:11:12:13:14:17
