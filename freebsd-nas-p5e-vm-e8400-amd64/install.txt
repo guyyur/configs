@@ -1,5 +1,5 @@
 
-ifconfig re0 name lan0
+ifconfig age0 name lan0
 
 ifconfig lan0 up
 dhclient lan0
