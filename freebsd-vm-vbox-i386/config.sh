@@ -130,6 +130,8 @@ install -c -m 640 -o root -g wheel tree/etc/exports "${DESTDIR}"/etc/exports || 
 
 install -c -m 644 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 
+install -c -m 644 -o root -g wheel tree/etc/portsnap.conf "${DESTDIR}"/etc/portsnap.conf || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local || exit 1
 install -l s /etc/local "${DESTDIR}"/usr/local/etc || exit 1
 

@@ -35,9 +35,6 @@ disk1=ada1
 #   freebsd-boot
 #   /
 #   /var
-#   /usr/src
-#   /usr/obj
-#   /usr/ports
 #   /home
 my_prompt_to_partition "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
@@ -46,9 +43,6 @@ gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
 gpart add -a 1m -b 589824 -s 3604480 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -s 6291456 -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -s 20971520 -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -s 16777216 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1

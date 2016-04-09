@@ -108,12 +108,6 @@ add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- databases/ntdb OPTIONS --
-init_port_options "databases_ntdb" "ntdb" "1.0"
-add_port_option "[ ] MANPAGES"
-create_port_options
-
-
 # -- databases/sqlite3 OPTIONS --
 init_port_options "databases_sqlite3" "sqlite3" "3.10.0"
 add_port_option "[ ] ARMOR"
@@ -159,24 +153,11 @@ add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- devel/cscope OPTIONS --
-init_port_options "devel_cscope" "cscope" "15.8a"
-add_port_option "[ ] XCSCOPE"
-create_port_options
-
-
 # -- devel/fossil OPTIONS --
 init_port_options "devel_fossil" "fossil" "1.33_1,2"
 add_port_option "[ ] FUSE"
 add_port_option "[x] JSON"
 add_port_option "[ ] STATIC"
-create_port_options
-
-
-# -- devel/gettext-tools OPTIONS --
-init_port_options "devel_gettext-tools" "gettext-tools" "0.19.5.1"
-add_port_option "[ ] DOCS"
-add_port_option "[x] THREADS"
 create_port_options
 
 
@@ -236,11 +217,11 @@ create_port_options
 
 
 # -- devel/pcre OPTIONS --
-init_port_options "devel_pcre" "pcre" "8.34"
+init_port_options "devel_pcre" "pcre" "8.38"
 add_port_option "[ ] DOCS"
-add_port_option "[ ] LIBEDIT"
-add_port_option "[ ] READLINE"
 add_port_option "[x] STACK_RECURSION"
+add_port_option "( ) LIBEDIT"
+add_port_option "( ) READLINE"
 create_port_options
 
 
@@ -480,16 +461,6 @@ add_port_option "[ ] STATIC"
 create_port_options
 
 
-# -- sysutils/cdrtools OPTIONS --
-init_port_options "sysutils_cdrtools" "cdrtools" "3.00_2"
-add_port_option "[ ] CDDA2MP3"
-add_port_option "[ ] CDDA2OGG"
-add_port_option "[ ] DOCS"
-add_port_option "[ ] NLS"
-add_port_option "[ ] RSCSI"
-create_port_options
-
-
 # -- sysutils/dmidecode OPTIONS --
 init_port_options "sysutils_dmidecode" "dmidecode" "2.12"
 add_port_option "[ ] DOCS"
@@ -614,3 +585,5 @@ create_port_options
 init_port_options "www_uwsgi" "uwsgi" "2.0.11.2_2"
 add_port_option "[ ] DEBUG"
 create_port_options
+
+

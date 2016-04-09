@@ -73,6 +73,14 @@ add_port_option "[ ] DOCS"
 create_port_options
 
 
+# -- benchmarks/iperf OPTIONS --
+init_port_options "benchmarks_iperf" "iperf" "2.0.5"
+add_port_option "[ ] DOCS"
+add_port_option "[x] IPV6"
+add_port_option "[x] THREADS"
+create_port_options
+
+
 # -- converters/libiconv OPTIONS --
 init_port_options "converters_libiconv" "libiconv" "1.14_3"
 add_port_option "[ ] DOCS"
@@ -83,12 +91,6 @@ create_port_options
 
 # -- databases/ldb OPTIONS --
 init_port_options "databases_ldb" "ldb" "1.1.17"
-add_port_option "[ ] MANPAGES"
-create_port_options
-
-
-# -- databases/ntdb OPTIONS --
-init_port_options "databases_ntdb" "ntdb" "1.0"
 add_port_option "[ ] MANPAGES"
 create_port_options
 
@@ -182,6 +184,12 @@ add_port_option "[x] MANPAGES"
 create_port_options
 
 
+# -- devel/cscope OPTIONS --
+init_port_options "devel_cscope" "cscope" "15.8a"
+add_port_option "[ ] XCSCOPE"
+create_port_options
+
+
 # -- devel/dbus OPTIONS --
 init_port_options "devel_dbus" "dbus" "1.8.0"
 add_port_option "[ ] MANPAGES"
@@ -200,13 +208,6 @@ init_port_options "devel_fossil" "fossil" "1.33_1,2"
 add_port_option "[ ] FUSE"
 add_port_option "[x] JSON"
 add_port_option "[ ] STATIC"
-create_port_options
-
-
-# -- devel/gettext-tools OPTIONS --
-init_port_options "devel_gettext-tools" "gettext-tools" "0.19.5.1"
-add_port_option "[ ] DOCS"
-add_port_option "[x] THREADS"
 create_port_options
 
 
@@ -293,14 +294,16 @@ add_port_option "[x] PYTHON"
 create_port_options
 
 
-# -- devel/llvm36 OPTIONS --
-init_port_options "devel_llvm36" "llvm36" "3.6.2_2"
-add_port_option "[ ] ASSERTS"
-add_port_option "[ ] CMAKE"
-add_port_option "[ ] DOCS"
+# -- devel/llvm37 OPTIONS --
+init_port_options "devel_llvm37" "llvm37" "3.7.1"
+add_port_option "[x] CLANG"
+add_port_option "[x] COMPILER_RT"
+add_port_option "[x] DOCS"
+add_port_option "[x] EXTRAS"
+add_port_option "[x] GOLD"
 add_port_option "[x] LIT"
-add_port_option "[ ] LTOPLUGIN"
-add_port_option "[x] MANPAGES"
+add_port_option "[x] LLD"
+add_port_option "[x] LLDB"
 create_port_options
 
 
@@ -343,11 +346,11 @@ create_port_options
 
 
 # -- devel/pcre OPTIONS --
-init_port_options "devel_pcre" "pcre" "8.34"
+init_port_options "devel_pcre" "pcre" "8.38"
 add_port_option "[ ] DOCS"
-add_port_option "[ ] LIBEDIT"
-add_port_option "[ ] READLINE"
 add_port_option "[x] STACK_RECURSION"
+add_port_option "( ) LIBEDIT"
+add_port_option "( ) READLINE"
 create_port_options
 
 
@@ -384,6 +387,14 @@ add_port_option "[ ] STATIC"
 add_port_option "[ ] SVNSERVE_WRAPPER"
 add_port_option "[ ] TEST"
 add_port_option "[ ] TOOLS"
+create_port_options
+
+
+# -- devel/swig13 OPTIONS --
+init_port_options "devel_swig13" "swig13" "1.3.40_1"
+add_port_option "[ ] DOCS"
+add_port_option "[ ] EXAMPLES"
+add_port_option "[ ] LUA"
 create_port_options
 
 
@@ -715,6 +726,12 @@ add_port_option "( ) MDNSRESPONDER"
 create_port_options
 
 
+# -- net/svnup OPTIONS --
+init_port_options "net_svnup" "svnup" "1.07_2"
+add_port_option "[ ] DOCS"
+create_port_options
+
+
 # -- ports-mgmt/portmaster OPTIONS --
 init_port_options "ports-mgmt_portmaster" "portmaster" "3.17"
 add_port_option "[ ] BASH"
@@ -736,10 +753,11 @@ create_port_options
 
 
 # -- security/gnutls OPTIONS --
-init_port_options "security_gnutls" "gnutls" "3.2.16_3"
+init_port_options "security_gnutls" "gnutls" "3.4.10"
 add_port_option "[x] CRYWRAP"
+add_port_option "[ ] DANE"
 add_port_option "[ ] EXAMPLES"
-add_port_option "[ ] LIBDANE"
+add_port_option "[x] IDN"
 add_port_option "[ ] NLS"
 add_port_option "[x] P11KIT"
 add_port_option "[x] TPM"
@@ -875,9 +893,11 @@ create_port_options
 
 
 # -- www/serf OPTIONS --
-init_port_options "www_serf" "serf" "1.3.8"
+init_port_options "www_serf" "serf" "1.3.8_1"
 add_port_option "[ ] DOCS"
-add_port_option "[ ] GSSAPI"
+add_port_option "( ) MIT"
+add_port_option "( ) HEIMDAL"
+add_port_option "( ) HEIMDAL_BASE"
 create_port_options
 
 
@@ -940,7 +960,7 @@ create_port_options
 
 
 # -- x11/xterm OPTIONS --
-init_port_options "x11_xterm" "xterm" "317"
+init_port_options "x11_xterm" "xterm" "324"
 add_port_option "[x] 256COLOR"
 add_port_option "[ ] DABBREV"
 add_port_option "[ ] DECTERM"
@@ -948,6 +968,7 @@ add_port_option "[ ] GNOME"
 add_port_option "[ ] LOGGING"
 add_port_option "[ ] LUIT"
 add_port_option "[ ] PCRE"
+add_port_option "[ ] SCRNDUMP"
 add_port_option "[ ] SIXEL"
 add_port_option "[x] WCHAR"
 add_port_option "( ) XAW3D"
@@ -1054,3 +1075,5 @@ add_port_option "[x] NOTIFY"
 add_port_option "[x] PANGO"
 add_port_option "[x] SVG"
 create_port_options
+
+

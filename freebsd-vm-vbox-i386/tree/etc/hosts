@@ -1,6 +1,6 @@
-# replace VBOXVM with real hostname
+# replace FREEBSD-VM with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost VBOXVM.localdomain VBOXVM
-127.0.0.1		localhost.localdomain localhost VBOXVM.localdomain VBOXVM
+::1			localhost.localdomain localhost FREEBSD-VM.localdomain FREEBSD-VM
+127.0.0.1		localhost.localdomain localhost FREEBSD-VM.localdomain FREEBSD-VM
 

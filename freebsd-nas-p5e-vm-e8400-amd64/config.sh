@@ -44,6 +44,8 @@ install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/repos || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/sync || exit 1
 
+install -d -m 750 -o guy -g guy "${DESTDIR}"/var/log/guy || exit 1
+
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
@@ -132,8 +134,6 @@ install -c -m 640 -o root -g wheel tree/etc/exports "${DESTDIR}"/etc/exports || 
 
 install -c -m 644 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/portsnap.conf "${DESTDIR}"/etc/portsnap.conf || exit 1
-
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local || exit 1
 install -l s /etc/local "${DESTDIR}"/usr/local/etc || exit 1
 
@@ -169,7 +169,5 @@ install -c -m 644 -o guy -g guy tree/home/guy/config/hgweb.config "${DESTDIR}"/h
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/nginx || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/nginx/mime.types "${DESTDIR}"/etc/local/nginx/mime.types || exit 1
 
-install -d -m 750 -o guy -g guy "${DESTDIR}"/var/log/guy || exit 1
 install -c -m 600 -o guy -g guy tree/etc/local/nginx/htpasswd_guy_vcs "${DESTDIR}"/etc/local/nginx/htpasswd_guy_vcs || exit 1
-install -c -m 600 -o guy -g guy tree/etc/local/nginx/htpasswd_guy_nas "${DESTDIR}"/etc/local/nginx/htpasswd_guy_nas || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/nginx/nginx_guy.conf "${DESTDIR}"/etc/local/nginx/nginx_guy.conf || exit 1

@@ -1,6 +1,7 @@
 # replace fd00:2001:db8:0::1 with real ULA prefix+EUI-64 of router
 # replace fd00:2001:db8:0::3 with real ULA prefix+EUI-64 of nas
-# replace ROUTER, ACCESSPOINT, NAS with real hostnames
+# replace fd00:2001:db8:0::9 with real ULA prefix+EUI-64 of freebsd vm
+# replace ROUTER, ACCESSPOINT, NAS, FREEBSD-VM with real hostnames
 
 192.168.1.1				ROUTER.localdomain ROUTER
 fd00:2001:db8:0::1			ROUTER.localdomain ROUTER
@@ -8,3 +9,8 @@ fd00:2001:db8:0::1			ROUTER.localdomain ROUTER
 192.168.1.2				ACCESSPOINT.localdomain ACCESSPOINT
 
 fd00:2001:db8:0::3			NAS.localdomain NAS
+fd00:2001:db8:0::9			FREEBSD-VM.localdomain FREEBSD-VM
+
+fd00:2001:db8:0::3			nas.localdomain nas
+fd00:2001:db8:0::3			vcs.localdomain vcs
+fd00:2001:db8:0::9			fbsd-files.localdomain fbsd-files

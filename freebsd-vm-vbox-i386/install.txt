@@ -17,8 +17,6 @@ dhclient lan0
 
 shutdown -p now
 
-mount /usr/ports
-mount /usr/src
 mount -t tmpfs -o size=... tmpfs /usr/wrkdir
 
 mount -u -o rw,noatime /
@@ -30,10 +28,9 @@ mount -u -o rw,noatime /
 mount -u -o ro,noatime /
 
 umount /usr/wrkdir
-umount /usr/src
-umount /usr/ports
 
 service dbus start
 
 config Parcellite
 config PCManFM
+config Meld

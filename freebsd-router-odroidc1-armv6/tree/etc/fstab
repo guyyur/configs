@@ -7,4 +7,4 @@ tmpfs           /tmp          tmpfs    rw,size=64M,inodes=16384   0     0
 
 tmpfs           /usr/wrkdir   tmpfs    rw,size=128M               0     0
 
-nas-static:/export/fbsd-ports  /usr/ports  nfs  rw,nfsv3,noauto  0  0
+fbsd-files-static:/export/ports  /usr/ports  nfs  rw,nfsv3,noauto  0  0

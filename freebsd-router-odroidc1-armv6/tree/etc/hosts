@@ -1,8 +1,8 @@
 # replace ROUTER with real hostname
-# replace fd00:2001:db8:0::3 with real ULA prefix+EUI-64 of nas
+# replace fd00:2001:db8:0::9 with real ULA prefix+EUI-64 of freebsd vm
 
 # Host Database
 ::1			localhost.localdomain localhost ROUTER.localdomain ROUTER
 127.0.0.1		localhost.localdomain localhost ROUTER.localdomain ROUTER
 
-fd00:2001:db8:0::3	nas-static.localdomain nas-static
+fd00:2001:db8:0::9	fbsd-files-static.localdomain fbsd-files-static

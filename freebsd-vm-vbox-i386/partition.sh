@@ -29,6 +29,9 @@ my_prompt_to_partition()
 disk0=ada0
 disk1=ada1
 disk2=ada2
+disk3=ada3
+disk4=ada4
+disk5=ada5
 
 
 # -- layout --
@@ -41,7 +44,7 @@ gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
 gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1m -b 2048 -s 10485760 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -b 2048 -s 9435136 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
@@ -56,9 +59,33 @@ gpart show "${disk1}" || exit 1
 gpart show -l "${disk1}" || exit 1
 
 # disk2:
-#   /home
+#   /usr/src
 my_prompt_to_partition "${disk2}" || exit 1
 gpart create -s GPT -f x "${disk2}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
 gpart commit "${disk2}" || exit 1
 gpart show "${disk2}" || exit 1
+
+# disk3:
+#   /usr/obj
+my_prompt_to_partition "${disk3}" || exit 1
+gpart create -s GPT -f x "${disk3}" || exit 1
+gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
+gpart commit "${disk3}" || exit 1
+gpart show "${disk3}" || exit 1
+
+# disk4:
+#   /usr/ports
+my_prompt_to_partition "${disk4}" || exit 1
+gpart create -s GPT -f x "${disk4}" || exit 1
+gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk4}" || exit 1
+gpart commit "${disk4}" || exit 1
+gpart show "${disk4}" || exit 1
+
+# disk5:
+#   /home
+my_prompt_to_partition "${disk5}" || exit 1
+gpart create -s GPT -f x "${disk5}" || exit 1
+gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk5}" || exit 1
+gpart commit "${disk5}" || exit 1
+gpart show "${disk5}" || exit 1

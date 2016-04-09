@@ -17,11 +17,13 @@ cd /usr/ports/ports-mgmt/pkg && make $target || exit 1
 cd /usr/ports/ports-mgmt/portmaster && make $target || exit 1
 cd /usr/ports/editors/nano && make $target || exit 1
 cd /usr/ports/shells/zsh && make $target || exit 1
+cd /usr/ports/net/svnup && make $target || exit 1
 cd /usr/ports/net/dhcpcd && make $target || exit 1
 cd /usr/ports/editors/hexedit && make $target || exit 1
 cd /usr/ports/sysutils/cdrtools && make $target || exit 1
 cd /usr/ports/sysutils/dmidecode && make $target || exit 1
 cd /usr/ports/lang/python3 && make $target || exit 1
+cd /usr/ports/ftp/curl && make $target || exit 1
 cd /usr/ports/ftp/wget && make $target || exit 1
 cd /usr/ports/net/samba43 && make $target || exit 1
 cd /usr/ports/textproc/aspell && make $target || exit 1
@@ -31,6 +33,8 @@ cd /usr/ports/devel/mercurial && make $target || exit 1
 cd /usr/ports/devel/subversion && make $target || exit 1
 cd /usr/ports/devel/git && make $target || exit 1
 cd /usr/ports/devel/fossil && make $target || exit 1
+cd /usr/ports/devel/cscope && make $target || exit 1
+cd /usr/ports/benchmarks/iperf && make $target || exit 1
 cd /usr/ports/www/tidy-devel && make $target || exit 1
 cd /usr/ports/graphics/p5-Image-ExifTool && make $target || exit 1
 cd /usr/ports/print/freetype2 && make $target || exit 1
@@ -102,6 +106,7 @@ cd /usr/ports/x11/lxrandr && make $target || exit 1
 cd /usr/ports/deskutils/parcellite && make $target || exit 1
 cd /usr/ports/emulators/virtualbox-ose-additions && make $target || exit 1
 cd /usr/ports/devel/geany && make $target || exit 1
+cd /usr/ports/textproc/meld && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-rpi && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-beaglebone && make $target || exit 1
 cd /usr/ports/local/u-boot-odroid-c1 && make $target || exit 1

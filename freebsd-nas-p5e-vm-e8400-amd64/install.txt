@@ -17,6 +17,7 @@ dhclient lan0
 
 shutdown -p now
 
+mount /usr/ports
 mount -t tmpfs -o size=... tmpfs /usr/wrkdir
 
 mount -u -o rw,noatime /
@@ -28,3 +29,4 @@ mount -u -o rw,noatime /
 mount -u -o ro,noatime /
 
 umount /usr/wrkdir
+umount /usr/ports

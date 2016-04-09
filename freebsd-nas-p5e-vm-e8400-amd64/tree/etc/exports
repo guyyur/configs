@@ -1,7 +1,4 @@
 /export -ro
-/export/fbsd-src -ro -maproot=root
-/export/obj -ro -maproot=root
-/export/fbsd-ports -maproot=root
 /export/backup -maproot=nobody
 /export/public -maproot=root
 /export/shares -maproot=nobody

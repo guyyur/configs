@@ -53,9 +53,6 @@ EOF
 }
 
 
-# -- archivers/gtar OPTIONS --
-
-
 # -- archivers/lzo2 OPTIONS --
 init_port_options "archivers_lzo2" "lzo2" "2.09"
 add_port_option "[ ] DOCS"
@@ -140,3 +137,5 @@ add_port_option "[ ] PCRE"
 add_port_option "[x] SECURE_FREE"
 add_port_option "[ ] STATIC"
 create_port_options
+
+
