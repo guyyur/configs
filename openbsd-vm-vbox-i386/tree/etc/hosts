@@ -1,6 +1,5 @@
-# replace VBOXVM with real hostname
+# replace OPENBSD-VM with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost VBOXVM.localdomain VBOXVM
-127.0.0.1		localhost.localdomain localhost VBOXVM.localdomain VBOXVM
-
+::1			localhost.localdomain localhost OPENBSD-VM.localdomain OPENBSD-VM
+127.0.0.1		localhost.localdomain localhost OPENBSD-VM.localdomain OPENBSD-VM

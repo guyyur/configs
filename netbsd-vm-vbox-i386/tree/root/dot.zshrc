@@ -40,6 +40,12 @@ if [[ -n "${terminfo[rmkx]}" ]]; then
   zle -N zle-line-finish
 fi
 
+# -- builtins --
+disable kill
+disable history
+disable where
+disable which
+
 # -- aliases --
 alias la='ls -A'
 alias lf='ls -F'

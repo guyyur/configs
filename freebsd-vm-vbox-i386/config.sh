@@ -205,3 +205,5 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.gmrunrc "${DESTDIR}"/home/guy/
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
+
+

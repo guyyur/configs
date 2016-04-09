@@ -2,14 +2,14 @@
 ifconfig vtnet0 name lan0
 
 ifconfig lan0 up
-dhclient lan0
+dhcpcd lan0
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./partition.sh
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   releng/10.2 i386
+#   releng/10.3 i386
 ./extract_dists.sh /mnt /path/to/dists
 ./config.sh /mnt
 

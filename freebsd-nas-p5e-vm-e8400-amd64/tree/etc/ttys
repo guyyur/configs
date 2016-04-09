@@ -37,7 +37,7 @@ ttyv6	"/usr/libexec/getty Pc"		xterm	on  secure
 ttyv7	"/usr/libexec/getty Pc"		xterm	on  secure
 ttyv8	"/usr/local/bin/xdm -nodaemon"	xterm	off secure
 # Serial terminals
-ttyu0	"/usr/libexec/getty std.115200"	xterm	off secure
+ttyu0	"/usr/libexec/getty std.115200"	xterm	onifconsole secure
 ttyu1	"/usr/libexec/getty std.115200"	xterm	off secure
 ttyu2	"/usr/libexec/getty std.115200"	xterm	off secure
 ttyu3	"/usr/libexec/getty std.115200"	xterm	off secure

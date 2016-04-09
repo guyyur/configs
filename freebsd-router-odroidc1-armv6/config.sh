@@ -16,10 +16,6 @@ DESTDIR=${1%/}
 
 
 #
-install -c "${DESTDIR}"/boot/kernel/kernel.bin "${DESTDIR}"/boot/custom/kernel.bin || exit 1
-
-install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
-
 install -c -m 755 -o root -g wheel tree/etc/mtree/LOCAL.var.sh "${DESTDIR}"/etc/mtree/LOCAL.var.sh || exit 1
 
 install -l s /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
@@ -179,3 +175,5 @@ install -c -m 644 -o root -g wheel tree/etc/local/openvpn/ca.crt "${DESTDIR}"/et
 install -c -m 644 -o root -g wheel tree/etc/local/openvpn/server.crt "${DESTDIR}"/etc/local/openvpn/server.crt || exit 1
 install -c -m 600 -o root -g wheel tree/etc/local/openvpn/server.key "${DESTDIR}"/etc/local/openvpn/server.key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/openvpn/openvpn.conf "${DESTDIR}"/etc/local/openvpn/openvpn.conf || exit 1
+
+

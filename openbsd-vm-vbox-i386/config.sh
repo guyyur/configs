@@ -101,3 +101,5 @@ install -c -m 644 -o guy -g users tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/
 
 rm -f "${DESTDIR}"/etc/skel/.Xdefaults || exit 1
 rm -f "${DESTDIR}"/root/.Xdefaults || exit 1
+
+

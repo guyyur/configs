@@ -8,6 +8,10 @@ unset HISTFILE
 export HISTCONTROL=erasedups
 
 
+# -- builtins --
+enable -n kill
+
+
 # -- aliases --
 alias ls='ls --color=auto'
 alias la='ls -A'

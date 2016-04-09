@@ -55,10 +55,9 @@ disk0=$1
 
 # -- layout  --
 # disk0:
-#   msdos slice
-#     /boot/custom
-#   freebsd slice
+#   /boot/custom (msdosfs)
+#   freebsd label
 #     /
 my_prompt_to_newfs "${disk0}" || exit 1
-newfs_msdos -F 16 -c 8 -r 2 -o 2048 -m 0xF8 /dev/"${disk0}"s1 || exit 1
+newfs_msdos -F 16 -c 8 -r 2 -o 8192 -m 0xF8 /dev/"${disk0}"s1 || exit 1
 my_newfs /dev/"${disk0}"s2a 131072 -U -n || exit 1

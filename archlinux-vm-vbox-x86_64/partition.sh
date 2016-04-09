@@ -40,8 +40,8 @@ my_prompt_to_partition "${disk0}" || exit 1
 parted -s -a optimal /dev/"${disk0}" \
   mklabel msdos \
   unit s \
-  mkpart primary ext4 2048s 10487807s \
-  mkpart primary ext4 10487808s 100% \
+  mkpart primary ext4 2048s 10485759s \
+  mkpart primary ext4 10485760s 100% \
   set 1 boot on \
   || exit 1
 parted -s -a optimal /dev/"${disk0}" unit s print || exit 1

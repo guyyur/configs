@@ -152,6 +152,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   parcellite \
   lxtask \
   geany \
+  meld \
   || exit 1
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
@@ -164,3 +165,9 @@ pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/ttf-caladea-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
   /var/cache/pacman/AUR/pkg/ttf-carlito-*-any.pkg.tar.xz || exit 1
+
+chroot /mnt locale-gen
+chroot /mnt /usr/bin/mkinitcpio -p linux
+/mnt/usr/bin/extlinux --install /mnt/boot/syslinux || exit 1
+ln -sfn /usr/lib/syslinux/bios/libutil.c32 /mnt/boot/syslinux/libutil.c32 || exit 1
+ln -sfn /usr/lib/syslinux/bios/menu.c32 /mnt/boot/syslinux/menu.c32 || exit 1

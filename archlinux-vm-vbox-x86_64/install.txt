@@ -38,10 +38,6 @@ nano /mnt/etc/pacman.d/mirrorlist
 
 restore users and groups added by pacman packages
 
-chroot /mnt locale-gen
-
-chroot /mnt /usr/bin/mkinitcpio -p linux
-
 ./unmount.sh
 
 systemctl poweroff
@@ -50,3 +46,4 @@ systemctl poweroff
 config lxqt-notificationd
 config Parcellite
 config PCManFM
+config Meld

@@ -16,10 +16,6 @@ DESTDIR=${1%/}
 
 
 #
-"${DESTDIR}"/usr/bin/extlinux --install "${DESTDIR}"/boot/syslinux || exit 1
-ln -sfn /usr/lib/syslinux/bios/libutil.c32 "${DESTDIR}"/boot/syslinux/libutil.c32 || exit 1
-ln -sfn /usr/lib/syslinux/bios/menu.c32 "${DESTDIR}"/boot/syslinux/menu.c32 || exit 1
-
 ln -sfn /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
 install -c -m 644 -o root -g root tree/etc/login.defs "${DESTDIR}"/etc/login.defs || exit 1
@@ -172,3 +168,5 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.gmrunrc "${DESTDIR}"/home/guy/
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
+
+
