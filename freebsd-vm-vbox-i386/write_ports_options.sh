@@ -147,23 +147,6 @@ add_port_option "[x] NLS"
 create_port_options
 
 
-# -- devel/apr1 OPTIONS --
-init_port_options "devel_apr1" "apr" "1.5.1.1.5.4"
-add_port_option "[x] IPV6"
-add_port_option "[x] DEVRANDOM"
-add_port_option "[ ] BDB"
-add_port_option "[ ] GDBM"
-add_port_option "[ ] LDAP"
-add_port_option "[ ] MYSQL"
-add_port_option "[ ] NDBM"
-add_port_option "[ ] PGSQL"
-add_port_option "[ ] SQLITE"
-add_port_option "[ ] FREETDS"
-add_port_option "(*) SSL"
-add_port_option "( ) NSS"
-create_port_options
-
-
 # -- devel/binutils OPTIONS --
 init_port_options "devel_binutils" "binutils" "2.23.2"
 add_port_option "[ ] NLS"
@@ -216,6 +199,13 @@ init_port_options "devel_geany" "geany" "1.23.1_2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] NLS"
 add_port_option "[ ] VTE"
+create_port_options
+
+
+# -- devel/gettext-tools OPTIONS --
+init_port_options "devel_gettext-tools" "gettext-tools" "0.19.5.1"
+add_port_option "[ ] DOCS"
+add_port_option "[x] THREADS"
 create_port_options
 
 
@@ -360,33 +350,10 @@ add_port_option "[ ] NLS"
 create_port_options
 
 
-# -- devel/py-babel OPTIONS --
-init_port_options "devel_py-babel" "py27-Babel" "2.0"
-add_port_option "[ ] DOCS"
-create_port_options
-
-
 # -- devel/py-Jinja2 OPTIONS --
 init_port_options "devel_py-Jinja2" "py27-Jinja2" "2.7.3"
 add_port_option "[x] BABEL"
 add_port_option "[ ] EXAMPLES"
-create_port_options
-
-
-# -- devel/subversion OPTIONS --
-init_port_options "devel_subversion" "subversion" "1.8.9_7"
-add_port_option "[ ] BDB"
-add_port_option "[ ] DOCS"
-add_port_option "[x] FREEBSD_TEMPLATE"
-add_port_option "[ ] MAINTAINER_DEBUG"
-add_port_option "[ ] NLS"
-add_port_option "[x] P4_STYLE_MARKERS"
-add_port_option "[ ] SASL"
-add_port_option "[x] SERF"
-add_port_option "[ ] STATIC"
-add_port_option "[ ] SVNSERVE_WRAPPER"
-add_port_option "[ ] TEST"
-add_port_option "[ ] TOOLS"
 create_port_options
 
 
@@ -530,12 +497,6 @@ add_port_option "[x] TIFF"
 create_port_options
 
 
-# -- graphics/giblib --
-init_port_options "graphics_giblib" "giblib" "1.2.4_11"
-add_port_option "[ ] DOCS"
-create_port_options
-
-
 # -- graphics/imlib2 OPTIONS --
 init_port_options "graphics_imlib2" "imlib2" "1.4.5_2,2"
 add_port_option "[ ] GIF"
@@ -604,13 +565,6 @@ create_port_options
 
 # -- graphics/tiff OPTIONS --
 init_port_options "graphics_tiff" "tiff" "4.0.3_4"
-add_port_option "[ ] DOCS"
-create_port_options
-
-
-# -- lang/clang36 OPTIONS --
-init_port_options "lang_clang36" "clang36" "3.6.2"
-add_port_option "[ ] ASSERTS"
 add_port_option "[ ] DOCS"
 create_port_options
 
@@ -889,15 +843,6 @@ create_port_options
 # -- textproc/xmlcatmgr --
 init_port_options "textproc_xmlcatmgr" "xmlcatmgr" "2.2"
 add_port_option "[ ] DOCS"
-create_port_options
-
-
-# -- www/serf OPTIONS --
-init_port_options "www_serf" "serf" "1.3.8_1"
-add_port_option "[ ] DOCS"
-add_port_option "( ) MIT"
-add_port_option "( ) HEIMDAL"
-add_port_option "( ) HEIMDAL_BASE"
 create_port_options
 
 

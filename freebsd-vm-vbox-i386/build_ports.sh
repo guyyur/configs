@@ -30,7 +30,6 @@ cd /usr/ports/textproc/aspell && make $target || exit 1
 cd /usr/ports/textproc/en-aspell && make $target || exit 1
 cd /usr/ports/hebrew/aspell && make $target || exit 1
 cd /usr/ports/devel/mercurial && make $target || exit 1
-cd /usr/ports/devel/subversion && make $target || exit 1
 cd /usr/ports/devel/git && make $target || exit 1
 cd /usr/ports/devel/fossil && make $target || exit 1
 cd /usr/ports/devel/cscope && make $target || exit 1
