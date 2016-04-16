@@ -40,6 +40,7 @@ disk0=$1
 #   /boot/custom (msdosfs)
 #   freebsd label
 #     /
+#     /misc
 my_prompt_to_partition "${disk0}" || exit 1
 
 dd if=/usr/local/share/u-boot/u-boot-odroid-c1/bl1.bin.hardkernel of=/dev/"${disk0}" bs=512 skip=1 seek=1 || exit 1
@@ -55,6 +56,7 @@ gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
 
 gpart create -s BSD -f x "${disk0}"s2 || exit 1
-gpart add -t freebsd-ufs -f x "${disk0}"s2 || exit 1
+gpart add -s 1G -t freebsd-ufs -f x "${disk0}"s2 || exit 1
+gpart add -i 4 -t freebsd-ufs -f x "${disk0}"s2 || exit 1
 gpart commit "${disk0}"s2 || exit 1
 gpart show "${disk0}"s2 || exit 1

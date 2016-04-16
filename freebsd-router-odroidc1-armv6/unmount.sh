@@ -8,6 +8,7 @@ fi
 
 
 # -- layout --
+umount /mnt/misc || exit 1
 umount /mnt/var || exit 1
 umount /mnt/boot/custom || exit 1
 umount /mnt || exit 1

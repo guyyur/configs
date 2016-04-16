@@ -67,38 +67,11 @@ add_port_option "[ ] EXAMPLES"
 create_port_options
 
 
-# -- archivers/p7zip OPTIONS --
-init_port_options "archivers_p7zip" "p7zip" "9.20.1_1"
-add_port_option "[ ] DOCS"
-create_port_options
-
-
-# -- archivers/unrar OPTIONS --
-init_port_options "archivers_unrar" "unrar" "4.20_1,5"
-add_port_option "[ ] DOCS"
-add_port_option "[x] OPENSSL_AES"
-create_port_options
-
-
-# -- archivers/zip OPTIONS --
-init_port_options "archivers_zip" "zip" "3.0"
-add_port_option "[ ] DOCS"
-create_port_options
-
-
 # -- benchmarks/iperf OPTIONS --
 init_port_options "benchmarks_iperf" "iperf" "2.0.5"
 add_port_option "[ ] DOCS"
 add_port_option "[x] IPV6"
 add_port_option "[x] THREADS"
-create_port_options
-
-
-# -- converters/libiconv OPTIONS --
-init_port_options "converters_libiconv" "libiconv" "1.14_3"
-add_port_option "[ ] DOCS"
-add_port_option "[x] ENCODINGS"
-add_port_option "[ ] PATCHES"
 create_port_options
 
 
@@ -108,74 +81,9 @@ add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- databases/sqlite3 OPTIONS --
-init_port_options "databases_sqlite3" "sqlite3" "3.10.0"
-add_port_option "[ ] ARMOR"
-add_port_option "[x] DBSTAT"
-add_port_option "[ ] DIRECT_READ"
-add_port_option "[ ] EXTENSION"
-add_port_option "[ ] FTS3_TOKEN"
-add_port_option "[x] FTS4"
-add_port_option "[ ] FTS5"
-add_port_option "[ ] JSON1"
-add_port_option "[ ] LIKENOTBLOB"
-add_port_option "[ ] MEMMAN"
-add_port_option "[x] METADATA"
-add_port_option "[ ] RBU"
-add_port_option "[x] SECURE_DELETE"
-add_port_option "[ ] SOUNDEX"
-add_port_option "[ ] STMT"
-add_port_option "[x] STSHELL"
-add_port_option "[x] THREADS"
-add_port_option "[x] UNLOCK_NOTIFY"
-add_port_option "[ ] UPD_DEL_LIMIT"
-add_port_option "[ ] URI"
-add_port_option "[ ] URI_AUTHORITY"
-add_port_option "[ ] ICU"
-add_port_option "[ ] UNICODE61"
-add_port_option "[ ] RTREE"
-add_port_option "[ ] RTREE_INT"
-add_port_option "( ) READLINES"
-add_port_option "( ) READLINEP"
-add_port_option "( ) EDITLINE"
-add_port_option "( ) TS0"
-add_port_option "(*) TS1"
-add_port_option "( ) TS2"
-add_port_option "( ) TS3"
-add_port_option "( ) STAT3"
-add_port_option "( ) STAT4"
-create_port_options
-
-
 # -- databases/tdb OPTIONS --
 init_port_options "databases_tdb" "tdb" "1.2.13,1"
 add_port_option "[ ] MANPAGES"
-create_port_options
-
-
-# -- devel/fossil OPTIONS --
-init_port_options "devel_fossil" "fossil" "1.33_1,2"
-add_port_option "[ ] FUSE"
-add_port_option "[x] JSON"
-add_port_option "[ ] STATIC"
-create_port_options
-
-
-# -- devel/git OPTIONS --
-init_port_options "devel_git" "git" "2.7.0"
-add_port_option "[ ] CONTRIB"
-add_port_option "[x] CURL"
-add_port_option "[ ] CVS"
-add_port_option "[ ] ETCSHELLS"
-add_port_option "[ ] GITWEB"
-add_port_option "[ ] GUI"
-add_port_option "[ ] HTMLDOCS"
-add_port_option "[x] ICONV"
-add_port_option "[ ] NLS"
-add_port_option "[ ] P4"
-add_port_option "[x] PERL"
-add_port_option "[ ] SEND_EMAIL"
-add_port_option "[ ] SVN"
 create_port_options
 
 
@@ -202,26 +110,6 @@ create_port_options
 init_port_options "devel_m4" "m4" "1.4.17_1,1"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] LIBSIGSEGV"
-create_port_options
-
-
-# -- devel/mercurial OPTIONS --
-init_port_options "devel_mercurial" "mercurial" "3.0.2"
-add_port_option "[ ] CA_BUNDLE"
-add_port_option "[x] DATA"
-add_port_option "[ ] DOCS"
-add_port_option "[x] EXAMPLES"
-add_port_option "[ ] FREEBSD"
-add_port_option "[ ] NLS"
-create_port_options
-
-
-# -- devel/pcre OPTIONS --
-init_port_options "devel_pcre" "pcre" "8.38"
-add_port_option "[ ] DOCS"
-add_port_option "[x] STACK_RECURSION"
-add_port_option "( ) LIBEDIT"
-add_port_option "( ) READLINE"
 create_port_options
 
 
@@ -266,39 +154,6 @@ add_port_option "[ ] NLS"
 create_port_options
 
 
-# -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.47.0"
-add_port_option "[x] CA_BUNDLE"
-add_port_option "[ ] COOKIES"
-add_port_option "[ ] CURL_DEBUG"
-add_port_option "[ ] DEBUG"
-add_port_option "[ ] DOCS"
-add_port_option "[ ] EXAMPLES"
-add_port_option "[ ] HTTP2"
-add_port_option "[ ] IDN"
-add_port_option "[x] IPV6"
-add_port_option "[ ] LDAP"
-add_port_option "[ ] LDAPS"
-add_port_option "[ ] LIBSSH2"
-add_port_option "[ ] METALINK"
-add_port_option "[x] PROXY"
-add_port_option "[ ] PSL"
-add_port_option "[ ] RTMP"
-add_port_option "[x] TLS_SRP"
-add_port_option "( ) GSSAPI_BASE"
-add_port_option "( ) GSSAPI_HEIMDAL"
-add_port_option "( ) GSSAPI_MIT"
-add_port_option "(*) GSSAPI_NONE"
-add_port_option "( ) CARES"
-add_port_option "(*) THREADED_RESOLVER"
-add_port_option "( ) GNUTLS"
-add_port_option "( ) NSS"
-add_port_option "(*) OPENSSL"
-add_port_option "( ) POLARSSL"
-add_port_option "( ) WOLFSSL"
-create_port_options
-
-
 # -- lang/perl5.20 OPTIONS --
 init_port_options "lang_perl5.20" "perl5" "5.20.2_4"
 add_port_option "[ ] DEBUG"
@@ -326,29 +181,9 @@ add_port_option "(*) UCS4"
 create_port_options
 
 
-# -- lang/python34 OPTIONS --
-init_port_options "lang_python34" "python34" "3.4.2_1"
-add_port_option "[ ] DEBUG"
-add_port_option "[x] IPV6"
-add_port_option "[x] LIBFFI"
-add_port_option "[ ] NLS"
-add_port_option "[x] PYMALLOC"
-add_port_option "[x] THREADS"
-add_port_option "[ ] TSC"
-add_port_option "( ) FNV"
-add_port_option "( ) SIPHASH"
-create_port_options
-
-
 # -- math/gmp OPTIONS --
 init_port_options "math_gmp" "gmp" "5.1.3_1"
 add_port_option "[ ] CPU_OPTS"
-create_port_options
-
-
-# -- misc/help2man OPTIONS --
-init_port_options "misc_help2man" "help2man" "1.43.2"
-add_port_option "[ ] NLS"
 create_port_options
 
 
@@ -479,111 +314,6 @@ add_port_option "[ ] BACKSPACE"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] LIBEVENT_STATIC"
-create_port_options
-
-
-# -- www/nginx OPTIONS --
-init_port_options "www_nginx" "nginx" "1.8.1,2"
-add_port_option "[ ] DEBUG"
-add_port_option "[ ] DEBUGLOG"
-add_port_option "[ ] FILE_AIO"
-add_port_option "[x] IPV6"
-add_port_option "[ ] GOOGLE_PERFTOOLS"
-add_port_option "[x] HTTP"
-add_port_option "[ ] HTTP_ADDITION"
-add_port_option "[ ] HTTP_AUTH_REQ"
-add_port_option "[x] HTTP_CACHE"
-add_port_option "[x] HTTP_DAV"
-add_port_option "[ ] HTTP_FLV"
-add_port_option "[ ] HTTP_GEOIP"
-add_port_option "[ ] HTTP_GZIP_STATIC"
-add_port_option "[ ] HTTP_GUNZIP_FILTER"
-add_port_option "[ ] HTTP_IMAGE_FILTER"
-add_port_option "[ ] HTTP_PERL"
-add_port_option "[ ] HTTP_RANDOM_INDEX"
-add_port_option "[ ] HTTP_REALIP"
-add_port_option "[x] HTTP_REWRITE"
-add_port_option "[ ] HTTP_SECURE_LINK"
-add_port_option "[x] HTTP_SSL"
-add_port_option "[x] HTTP_STATUS"
-add_port_option "[ ] HTTP_SUB"
-add_port_option "[ ] HTTP_XSLT"
-add_port_option "[ ] MAIL"
-add_port_option "[ ] MAIL_IMAP"
-add_port_option "[ ] MAIL_POP3"
-add_port_option "[ ] MAIL_SMTP"
-add_port_option "[ ] MAIL_SSL"
-add_port_option "[ ] SPDY"
-add_port_option "[ ] THREADS"
-add_port_option "[x] WWW"
-add_port_option "[ ] AJP"
-add_port_option "[ ] CACHE_PURGE"
-add_port_option "[ ] CLOJURE"
-add_port_option "[ ] CT"
-add_port_option "[ ] ECHO"
-add_port_option "[ ] HEADERS_MORE"
-add_port_option "[ ] HTTP_ACCEPT_LANGUAGE"
-add_port_option "[ ] HTTP_ACCESSKEY"
-add_port_option "[ ] HTTP_AUTH_DIGEST"
-add_port_option "[ ] HTTP_AUTH_KRB5"
-add_port_option "[ ] HTTP_AUTH_LDAP"
-add_port_option "[ ] HTTP_AUTH_PAM"
-add_port_option "[ ] HTTP_DAV_EXT"
-add_port_option "[ ] HTTP_EVAL"
-add_port_option "[ ] HTTP_FANCYINDEX"
-add_port_option "[ ] HTTP_FOOTER"
-add_port_option "[ ] HTTP_JSON_STATUS"
-add_port_option "[ ] HTTP_MOGILEFS"
-add_port_option "[ ] HTTP_NOTICE"
-add_port_option "[ ] HTTP_PUSH"
-add_port_option "[ ] HTTP_PUSH_STREAM"
-add_port_option "[ ] HTTP_REDIS"
-add_port_option "[ ] HTTP_RESPONSE"
-add_port_option "[ ] HTTP_SUBS_FILTER"
-add_port_option "[ ] HTTP_TARANTOOL"
-add_port_option "[ ] HTTP_UPLOAD"
-add_port_option "[ ] HTTP_UPLOAD_PROGRESS"
-add_port_option "[ ] HTTP_UPSTREAM_FAIR"
-add_port_option "[ ] HTTP_UPSTREAM_STICKY"
-add_port_option "[ ] HTTP_VIDEO_THUMBEXTRACTOR"
-add_port_option "[ ] HTTP_ZIP"
-add_port_option "[ ] ARRAYVAR"
-add_port_option "[ ] BROTLI"
-add_port_option "[ ] DRIZZLE"
-add_port_option "[ ] ENCRYPTSESSION"
-add_port_option "[ ] FORMINPUT"
-add_port_option "[ ] GRIDFS"
-add_port_option "[ ] ICONV"
-add_port_option "[ ] LET"
-add_port_option "[ ] LUA"
-add_port_option "[ ] MEMC"
-add_port_option "[ ] MODSECURITY"
-add_port_option "[ ] NAXSI"
-add_port_option "[ ] PASSENGER"
-add_port_option "[ ] POSTGRES"
-add_port_option "[ ] RDS_CSV"
-add_port_option "[ ] RDS_JSON"
-add_port_option "[ ] REDIS2"
-add_port_option "[ ] RTMP"
-add_port_option "[ ] SET_MISC"
-add_port_option "[ ] SFLOW"
-add_port_option "[ ] SHIBBOLETH"
-add_port_option "[ ] SLOWFS_CACHE"
-add_port_option "[ ] SMALL_LIGHT"
-add_port_option "[ ] SRCACHE"
-add_port_option "[ ] STATSD"
-add_port_option "[ ] UDPLOG"
-add_port_option "[ ] XRID_HEADER"
-add_port_option "[ ] XSS"
-add_port_option "[ ] VIDEO"
-add_port_option "( ) HTTP_MP4"
-add_port_option "( ) HTTP_MP4_H264"
-create_port_options
-
-
-# -- www/uwsgi OPTIONS --
-init_port_options "www_uwsgi" "uwsgi" "2.0.11.2_2"
-add_port_option "[ ] DEBUG"
 create_port_options
 
 

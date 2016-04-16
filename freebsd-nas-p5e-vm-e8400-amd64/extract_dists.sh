@@ -21,4 +21,4 @@ cd $distsdir || exit 1
 
 tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
 # tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
-tar -Uxp -C "${DESTDIR}" -f kernel-MYNAS.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f kernel-MYP5EVMHDMI.txz || exit 1

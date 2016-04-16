@@ -46,7 +46,6 @@ my_prompt_to_newfs()
 
 # -- disk names --
 disk0=ada0
-disk1=ada1
 
 
 # -- layout  --
@@ -54,13 +53,8 @@ disk1=ada1
 #   freebsd-boot
 #   /
 #   /var
-#   /home
+#   /export/backup
 my_prompt_to_newfs "${disk0}" || exit 1
 my_newfs /dev/"${disk0}"p2 131072 -U -n || exit 1
-my_newfs /dev/"${disk0}"p3 65536 -U -n || exit 1
-my_newfs /dev/"${disk0}"p4 393216 -U -n || exit 1
-
-# disk1:
-#   /export/backup
-my_prompt_to_newfs "${disk1}" || exit 1
-my_newfs /dev/"${disk1}"p1 262144 -U -n || exit 1
+my_newfs /dev/"${disk0}"p3 49152 -U -n || exit 1
+my_newfs /dev/"${disk0}"p4 262144 -U -n || exit 1

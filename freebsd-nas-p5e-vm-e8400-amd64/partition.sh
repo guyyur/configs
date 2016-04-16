@@ -27,7 +27,6 @@ my_prompt_to_partition()
 
 # -- disk names --
 disk0=ada0
-disk1=ada1
 
 
 # -- layout --
@@ -35,7 +34,7 @@ disk1=ada1
 #   freebsd-boot
 #   /
 #   /var
-#   /home
+#   /export/backup
 my_prompt_to_partition "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
@@ -46,11 +45,3 @@ gpart add -a 1m -s 8388608 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
-
-# disk1:
-#   /export/backup
-my_prompt_to_partition "${disk1}" || exit 1
-gpart create -s GPT -f x "${disk1}" || exit 1
-gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk1}" || exit 1
-gpart commit "${disk1}" || exit 1
-gpart show "${disk1}" || exit 1

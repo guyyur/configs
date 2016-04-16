@@ -25,6 +25,8 @@ install -d -m 755 -o root -g wheel /mnt/usr || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
+install -d -m 755 -o root -g wheel /mnt/misc || exit 1
 
 mount -t msdosfs -o noatime,longnames /dev/"${disk0}"s1 /mnt/boot/custom || exit 1
 mount -t tmpfs tmpfs /mnt/var || exit 1
+mount -o noatime /dev/"${disk0}"s2d /mnt/misc || exit 1

@@ -9,7 +9,6 @@ fi
 
 # -- disk names --
 disk0=ada0
-disk1=ada1
 
 
 # -- layout --
@@ -21,12 +20,9 @@ install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
 install -d -m 755 -o root -g wheel /mnt/export || exit 1
 install -d -m 755 -o root -g wheel /mnt/export/backup || exit 1
-install -d -m 1777 -o root -g wheel /mnt/export/public || exit 1
-install -d -m 1777 -o root -g wheel /mnt/export/shares || exit 1
 
 mount -o noatime /dev/"${disk0}"p3 /mnt/var || exit 1
 dd if=/dev/zero of=/mnt/var/swap bs=1m count=256 || exit 1
 chmod 600 /mnt/var/swap || exit 1
 
-mount -o noatime /dev/"${disk0}"p4 /mnt/home || exit 1
-mount -o noatime /dev/"${disk1}"p1 /mnt/export/backup || exit 1
+mount -o noatime /dev/"${disk0}"p4 /mnt/export/backup || exit 1

@@ -1,0 +1,6 @@
+# replace VCS with real hostname
+
+# Host Database
+::1			localhost.localdomain localhost VCS.localdomain VCS
+127.0.0.1		localhost.localdomain localhost VCS.localdomain VCS
+

@@ -36,24 +36,11 @@ else
 fi
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/bugreports || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/checksums || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/misc || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/projects || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/repos || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/sync || exit 1
-
-install -d -m 750 -o guy -g guy "${DESTDIR}"/var/log/guy || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy || exit 1
-
-install -d -m 1777 -o root -g wheel "${DESTDIR}"/home/public || exit 1
-install -d -m 1777 -o root -g wheel "${DESTDIR}"/home/shares || exit 1
-install -d -m 0700 -o guy -g guy "${DESTDIR}"/home/shares/guy || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/dot.profile "${DESTDIR}"/root/.profile || exit 1
 install -c -m 640 -o root -g wheel tree/root/dot.shrc "${DESTDIR}"/root/.shrc || exit 1
@@ -153,8 +140,6 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/.z
 
 install -c -m 644 -o root -g wheel tree/etc/local/tmux.conf "${DESTDIR}"/etc/local/tmux.conf || exit 1
 
-install -c -m 644 -o guy -g guy tree/home/guy/dot.hgrc "${DESTDIR}"/home/guy/.hgrc || exit 1
-
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba/private || exit 1
 install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
@@ -163,11 +148,3 @@ install -c -m 644 -o root -g wheel tree/etc/local/smb.conf "${DESTDIR}"/etc/loca
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
 install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
-
-install -c -m 644 -o guy -g guy tree/home/guy/config/hgweb.config "${DESTDIR}"/home/guy/config/hgweb.config || exit 1
-
-install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/nginx || exit 1
-install -c -m 644 -o root -g wheel tree/etc/local/nginx/mime.types "${DESTDIR}"/etc/local/nginx/mime.types || exit 1
-
-install -c -m 600 -o guy -g guy tree/etc/local/nginx/htpasswd_guy_vcs "${DESTDIR}"/etc/local/nginx/htpasswd_guy_vcs || exit 1
-install -c -m 644 -o root -g wheel tree/etc/local/nginx/nginx_guy.conf "${DESTDIR}"/etc/local/nginx/nginx_guy.conf || exit 1
