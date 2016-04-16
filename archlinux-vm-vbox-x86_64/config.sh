@@ -65,6 +65,8 @@ install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system/sockets.target
 
 install -c -m 644 -o root -g root tree/etc/modprobe.d/my_blacklist.conf "${DESTDIR}"/etc/modprobe.d/my_blacklist.conf || exit 1
 
+install -c -m 644 -o root -g root tree/etc/udev/rules.d/81-network-names.rules "${DESTDIR}"/etc/udev/rules.d/81-network-names.rules || exit 1
+
 install -c -m 644 -o root -g root tree/etc/sysctl.d/40-ipv6.conf "${DESTDIR}"/etc/sysctl.d/40-ipv6.conf || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/sysctl.d/50-coredump.conf || exit 1
 install -c -m 644 -o root -g root tree/etc/sysctl.d/99-sysctl.conf "${DESTDIR}"/etc/sysctl.d/99-sysctl.conf || exit 1
