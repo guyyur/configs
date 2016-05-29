@@ -1,6 +1,0 @@
-# replace NAS with real hostname
-
-# Host Database
-::1			localhost.localdomain localhost NAS.localdomain NAS
-127.0.0.1		localhost.localdomain localhost NAS.localdomain NAS
-

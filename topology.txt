@@ -2,7 +2,7 @@
 VDSL Modem - Router
                \
              Switch ---- Access Point
-            /   |  \
-           /    |   \
-          /     |    \
-        VCS    NAS   Desktop + Virtual Machines
+            /      \
+           /        \
+          /          \
+        VCS           Desktop + Virtual Machines
