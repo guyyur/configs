@@ -215,6 +215,11 @@
       </action>
     </keybind>
     <!-- Keybindings for running applications -->
+    <keybind key="W-A-BackSpace">
+      <action name="Exit">
+        <prompt>no</prompt>
+      </action>
+    </keybind>
     <keybind key="W-r">
       <action name="Execute">
         <command>gmrun</command>

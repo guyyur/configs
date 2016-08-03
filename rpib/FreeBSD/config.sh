@@ -38,12 +38,12 @@ else
 fi
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/bugreports || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/checksums || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/projects || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/repos || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/tests || exit 1
 
 install -d -m 750 -o guy -g guy "${DESTDIR}"/var/log/guy || exit 1
 
@@ -61,12 +61,9 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.profile "${DESTDIR}"/home/guy/
 install -c -m 644 -o guy -g guy tree/home/guy/dot.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/dot.cshrc "${DESTDIR}"/root/.cshrc || exit 1
-install -c -m 640 -o root -g wheel tree/root/dot.login "${DESTDIR}"/root/.login || exit 1
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
 install -c -m 644 -o root -g wheel tree/etc/skel/dot.cshrc "${DESTDIR}"/etc/skel/dot.cshrc || exit 1
-install -c -m 644 -o root -g wheel tree/etc/skel/dot.login "${DESTDIR}"/etc/skel/dot.login || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/dot.login "${DESTDIR}"/home/guy/.login || exit 1
 
 install -c -m 644 -o root -g wheel tree/boot/loader.conf "${DESTDIR}"/boot/loader.conf || exit 1
 

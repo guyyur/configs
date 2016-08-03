@@ -1,8 +1,8 @@
-# replace ROUTER with real hostname
-# replace fd00:2001:db8:0::9 with real ULA prefix+EUI-64 of freebsd vm
+# replace odroid-c1 with real hostname
+# replace fd00:2001:db8:0::X with real ULA prefix+EUI-64
 
 # Host Database
-::1			localhost.localdomain localhost ROUTER.localdomain ROUTER
-127.0.0.1		localhost.localdomain localhost ROUTER.localdomain ROUTER
+::1			localhost.localdomain localhost odroid-c1.localdomain odroid-c1
+127.0.0.1		localhost.localdomain localhost odroid-c1.localdomain odroid-c1
 
-fd00:2001:db8:0::9	fbsd-files-static.localdomain fbsd-files-static
+fd00:2001:db8:0::21	fbsd-files-static.localdomain fbsd-files-static

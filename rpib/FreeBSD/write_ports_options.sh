@@ -2,7 +2,7 @@
 
 # -- check for root --
 if [ "`id -u`" != "0" ]; then
-  echo "ports.sh: sorry, this must be done as root." 1>&2
+  echo "write_ports_options.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
@@ -119,8 +119,9 @@ create_port_options
 
 
 # -- devel/pcre OPTIONS --
-init_port_options "devel_pcre" "pcre" "8.38"
+init_port_options "devel_pcre" "pcre" "8.39"
 add_port_option "[ ] DOCS"
+add_port_option "[x] MAN3"
 add_port_option "[x] STACK_RECURSION"
 add_port_option "( ) LIBEDIT"
 add_port_option "( ) READLINE"
@@ -143,9 +144,9 @@ create_port_options
 
 
 # -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.47.0"
+init_port_options "ftp_curl" "curl" "7.49.1"
 add_port_option "[x] CA_BUNDLE"
-add_port_option "[ ] COOKIES"
+add_port_option "[x] COOKIES"
 add_port_option "[ ] CURL_DEBUG"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
@@ -216,9 +217,10 @@ create_port_options
 
 
 # -- shells/zsh OPTIONS --
-init_port_options "shells_zsh" "zsh" "5.0.7_3"
+init_port_options "shells_zsh" "zsh" "5.2_2"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] DOCS"
+add_port_option "[ ] ETCDIR"
 add_port_option "[x] EXAMPLES"
 add_port_option "[ ] GDBM"
 add_port_option "[ ] MAILDIR"
@@ -239,7 +241,8 @@ create_port_options
 
 
 # -- www/nginx OPTIONS --
-init_port_options "www_nginx" "nginx" "1.8.1_2,2"
+init_port_options "www_nginx" "nginx" "1.10.0_2,2"
+add_port_option "[x] DSO"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DEBUGLOG"
 add_port_option "[ ] FILE_AIO"
@@ -255,11 +258,13 @@ add_port_option "[ ] HTTP_GEOIP"
 add_port_option "[ ] HTTP_GZIP_STATIC"
 add_port_option "[ ] HTTP_GUNZIP_FILTER"
 add_port_option "[ ] HTTP_IMAGE_FILTER"
+add_port_option "[ ] HTTP_MP4"
 add_port_option "[ ] HTTP_PERL"
 add_port_option "[ ] HTTP_RANDOM_INDEX"
 add_port_option "[ ] HTTP_REALIP"
 add_port_option "[x] HTTP_REWRITE"
 add_port_option "[ ] HTTP_SECURE_LINK"
+add_port_option "[ ] HTTP_SLICE"
 add_port_option "[x] HTTP_SSL"
 add_port_option "[x] HTTP_STATUS"
 add_port_option "[ ] HTTP_SUB"
@@ -269,7 +274,10 @@ add_port_option "[ ] MAIL_IMAP"
 add_port_option "[ ] MAIL_POP3"
 add_port_option "[ ] MAIL_SMTP"
 add_port_option "[ ] MAIL_SSL"
-add_port_option "[ ] SPDY"
+add_port_option "[x] HTTPV2"
+add_port_option "[ ] NJS"
+add_port_option "[ ] STREAM"
+add_port_option "[ ] STREAM_SSL"
 add_port_option "[ ] THREADS"
 add_port_option "[x] WWW"
 add_port_option "[ ] AJP"
@@ -291,6 +299,7 @@ add_port_option "[ ] HTTP_FANCYINDEX"
 add_port_option "[ ] HTTP_FOOTER"
 add_port_option "[ ] HTTP_JSON_STATUS"
 add_port_option "[ ] HTTP_MOGILEFS"
+add_port_option "[ ] HTTP_MP4_H264"
 add_port_option "[ ] HTTP_NOTICE"
 add_port_option "[ ] HTTP_PUSH"
 add_port_option "[ ] HTTP_PUSH_STREAM"
@@ -300,6 +309,7 @@ add_port_option "[ ] HTTP_SUBS_FILTER"
 add_port_option "[ ] HTTP_TARANTOOL"
 add_port_option "[ ] HTTP_UPLOAD"
 add_port_option "[ ] HTTP_UPLOAD_PROGRESS"
+add_port_option "[ ] HTTP_UPSTREAM_CHECK"
 add_port_option "[ ] HTTP_UPSTREAM_FAIR"
 add_port_option "[ ] HTTP_UPSTREAM_STICKY"
 add_port_option "[ ] HTTP_VIDEO_THUMBEXTRACTOR"
@@ -307,6 +317,7 @@ add_port_option "[ ] HTTP_ZIP"
 add_port_option "[ ] ARRAYVAR"
 add_port_option "[ ] BROTLI"
 add_port_option "[ ] DRIZZLE"
+add_port_option "[ ] DYNAMIC_UPSTREAM"
 add_port_option "[ ] ENCRYPTSESSION"
 add_port_option "[ ] FORMINPUT"
 add_port_option "[ ] GRIDFS"
@@ -336,8 +347,11 @@ create_port_options
 
 
 # -- www/uwsgi OPTIONS --
-init_port_options "www_uwsgi" "uwsgi" "2.0.11.2_2"
+init_port_options "www_uwsgi" "uwsgi" "2.0.13_1"
 add_port_option "[ ] DEBUG"
+add_port_option "[ ] JSON"
+add_port_option "[ ] PCRE"
+add_port_option "[ ] XML"
 create_port_options
 
 

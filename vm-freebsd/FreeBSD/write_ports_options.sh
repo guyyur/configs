@@ -2,7 +2,7 @@
 
 # -- check for root --
 if [ "`id -u`" != "0" ]; then
-  echo "ports.sh: sorry, this must be done as root." 1>&2
+  echo "write_ports_options.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
@@ -54,7 +54,8 @@ EOF
 
 
 # -- archivers/libarchive2 OPTIONS --
-init_port_options "archivers_libarchive" "libarchive" "3.1.2_4,1"
+init_port_options "archivers_libarchive" "libarchive" "3.2.0_1,1"
+add_port_option "[x] LZ4"
 add_port_option "[x] LZO"
 add_port_option "[ ] NETTLE"
 create_port_options
@@ -96,7 +97,7 @@ create_port_options
 
 
 # -- databases/sqlite3 OPTIONS --
-init_port_options "databases_sqlite3" "sqlite3" "3.10.0"
+init_port_options "databases_sqlite3" "sqlite3" "3.13.0"
 add_port_option "[ ] ARMOR"
 add_port_option "[x] DBSTAT"
 add_port_option "[ ] DIRECT_READ"
@@ -110,6 +111,7 @@ add_port_option "[ ] MEMMAN"
 add_port_option "[x] METADATA"
 add_port_option "[ ] RBU"
 add_port_option "[x] SECURE_DELETE"
+add_port_option "[ ] SESSION"
 add_port_option "[ ] SOUNDEX"
 add_port_option "[ ] STMT"
 add_port_option "[x] STSHELL"
@@ -191,6 +193,21 @@ init_port_options "devel_fossil" "fossil" "1.33_1,2"
 add_port_option "[ ] FUSE"
 add_port_option "[x] JSON"
 add_port_option "[ ] STATIC"
+create_port_options
+
+
+# -- devel/gdb OPTIONS --
+init_port_options "devel_gdb" "gdb" "7.11.1"
+add_port_option "[ ] DEBUG"
+add_port_option "[ ] EXPAT"
+add_port_option "[x] GDB_LINK"
+add_port_option "[ ] GUILE"
+add_port_option "[x] KGDB"
+add_port_option "[ ] PYTHON"
+add_port_option "[x] TUI"
+add_port_option "( ) BASE_READLINE"
+add_port_option "( ) BUNDLED_READLINE"
+add_port_option "(*) PORT_READLINE"
 create_port_options
 
 
@@ -336,8 +353,9 @@ create_port_options
 
 
 # -- devel/pcre OPTIONS --
-init_port_options "devel_pcre" "pcre" "8.38"
+init_port_options "devel_pcre" "pcre" "8.39"
 add_port_option "[ ] DOCS"
+add_port_option "[x] MAN3"
 add_port_option "[x] STACK_RECURSION"
 add_port_option "( ) LIBEDIT"
 add_port_option "( ) READLINE"
@@ -350,10 +368,29 @@ add_port_option "[ ] NLS"
 create_port_options
 
 
+# -- devel/py-babel OPTIONS --
+init_port_options "devel_py-babel" "py27-Babel" "2.3.3"
+add_port_option "[ ] DOCS"
+create_port_options
+
+
+# -- devel/py-enum34 OPTIONS --
+init_port_options "devel_py-enum34" "py27-enum34" "1.1.6"
+add_port_option "[ ] DOCS"
+create_port_options
+
+
 # -- devel/py-Jinja2 OPTIONS --
 init_port_options "devel_py-Jinja2" "py27-Jinja2" "2.7.3"
 add_port_option "[x] BABEL"
 add_port_option "[ ] EXAMPLES"
+create_port_options
+
+
+# -- devel/readline OPTIONS --
+init_port_options "devel_readline" "readline" "6.3.6_1"
+add_port_option "[ ] DOCS"
+add_port_option "[x] TERMCAP"
 create_port_options
 
 
@@ -413,7 +450,8 @@ create_port_options
 
 
 # -- emulators/virtualbox-ose-additions OPTIONS --
-init_port_options "emulators_virtualbox-ose-additions" "virtualbox-ose-additions" "4.2.14"
+init_port_options "emulators_virtualbox-ose-additions" "virtualbox-ose-additions" "5.0.26"
+add_port_option "[x] DBUS"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] OPENGL"
 add_port_option "[x] X11"
@@ -421,9 +459,9 @@ create_port_options
 
 
 # -- ftp/curl OPTIONS --
-init_port_options "ftp_curl" "curl" "7.47.0"
+init_port_options "ftp_curl" "curl" "7.49.1"
 add_port_option "[x] CA_BUNDLE"
-add_port_option "[ ] COOKIES"
+add_port_option "[x] COOKIES"
 add_port_option "[ ] CURL_DEBUG"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
@@ -753,9 +791,10 @@ create_port_options
 
 
 # -- shells/zsh OPTIONS --
-init_port_options "shells_zsh" "zsh" "5.0.7_3"
+init_port_options "shells_zsh" "zsh" "5.2_2"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] DOCS"
+add_port_option "[ ] ETCDIR"
 add_port_option "[x] EXAMPLES"
 add_port_option "[ ] GDBM"
 add_port_option "[ ] MAILDIR"
@@ -828,12 +867,6 @@ add_port_option "[ ] PYGMENTS"
 create_port_options
 
 
-# -- textproc/py-pygments OPTIONS --
-init_port_options "textproc_py-pygments" "py27-pygments" "1.6_2"
-add_port_option "[ ] DOCS"
-create_port_options
-
-
 # -- textproc/py-snowballstemmer OPTIONS --
 init_port_options "textproc_py-snowballstemmer" "py27-snowballstemmer" "1.2.0_1"
 add_port_option "[x] PYSTEMMER"
@@ -891,10 +924,9 @@ create_port_options
 
 
 # -- x11/tint OPTIONS --
-init_port_options "x11_tint" "tint2" "0.11_2"
-add_port_option "[ ] DOCS"
+init_port_options "x11_tint" "tint2" "0.12.9"
 add_port_option "[ ] EXAMPLES"
-add_port_option "[ ] PYCONF"
+add_port_option "[ ] NLS"
 create_port_options
 
 
@@ -905,7 +937,7 @@ create_port_options
 
 
 # -- x11/xterm OPTIONS --
-init_port_options "x11_xterm" "xterm" "324"
+init_port_options "x11_xterm" "xterm" "325"
 add_port_option "[x] 256COLOR"
 add_port_option "[ ] DABBREV"
 add_port_option "[ ] DECTERM"
@@ -913,9 +945,11 @@ add_port_option "[ ] GNOME"
 add_port_option "[ ] LOGGING"
 add_port_option "[ ] LUIT"
 add_port_option "[ ] PCRE"
+add_port_option "[ ] REGIS"
 add_port_option "[ ] SCRNDUMP"
 add_port_option "[ ] SIXEL"
 add_port_option "[x] WCHAR"
+add_port_option "[ ] XINERAMA"
 add_port_option "( ) XAW3D"
 add_port_option "( ) XAW3DXFT"
 add_port_option "( ) NEXTAW"

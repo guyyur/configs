@@ -56,8 +56,6 @@ install -c -m 644 -o guy -g users tree/home/guy/dot.shrc "${DESTDIR}"/home/guy/.
 
 install -c -m 644 -o root -g wheel tree/boot.cfg "${DESTDIR}"/boot.cfg || exit 1
 
-install -c -m 640 -o root -g wheel tree/etc/sysctl.conf "${DESTDIR}"/etc/sysctl.conf || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1

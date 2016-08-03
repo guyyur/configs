@@ -1,6 +1,6 @@
-# replace FREEBSD-VM with real hostname
+# replace vm-freebsd with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost FREEBSD-VM.localdomain FREEBSD-VM
-127.0.0.1		localhost.localdomain localhost FREEBSD-VM.localdomain FREEBSD-VM
+::1			localhost.localdomain localhost vm-freebsd.localdomain vm-freebsd
+127.0.0.1		localhost.localdomain localhost vm-freebsd.localdomain vm-freebsd
 

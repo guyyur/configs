@@ -1,5 +1,5 @@
-# replace OPENBSD-VM with real hostname
+# replace vm-openbsd with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost OPENBSD-VM.localdomain OPENBSD-VM
-127.0.0.1		localhost.localdomain localhost OPENBSD-VM.localdomain OPENBSD-VM
+::1			localhost.localdomain localhost vm-openbsd.localdomain vm-openbsd
+127.0.0.1		localhost.localdomain localhost vm-openbsd.localdomain vm-openbsd

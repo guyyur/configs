@@ -2,7 +2,7 @@
 
 # -- check for root --
 if [ "`id -u`" != "0" ]; then
-  echo "ports.sh: sorry, this must be done as root." 1>&2
+  echo "build_ports.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 

@@ -7,8 +7,8 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- my_prompt_to_create_filesystems(dev) --
-my_prompt_to_create_filesystems()
+# -- my_prompt(dev) --
+my_prompt()
 {
   local my_devname=$1
   local my_continue
@@ -36,21 +36,21 @@ disk3=sdd
 # disk0:
 #   /
 #   /var
-my_prompt_to_create_filesystems "${disk0}" || exit 1
+my_prompt "${disk0}" || exit 1
 mke2fs -t ext4 -N 262144 /dev/"${disk0}"1 || exit 1
 mke2fs -t ext4 -N 81920 /dev/"${disk0}"2 || exit 1
 
 # disk1:
 #   swap
-my_prompt_to_create_filesystems "${disk1}" || exit 1
+my_prompt "${disk1}" || exit 1
 mkswap /dev/"${disk1}"1
 
 # disk2:
 #   /var/cache/pacman
-my_prompt_to_create_filesystems "${disk2}" || exit 1
+my_prompt "${disk2}" || exit 1
 mke2fs -t ext4 -N 16384 /dev/"${disk2}"1 || exit 1
 
 # disk3:
 #   /home
-my_prompt_to_create_filesystems "${disk3}" || exit 1
+my_prompt "${disk3}" || exit 1
 mke2fs -t ext4 -N 262144 /dev/"${disk3}"1 || exit 1

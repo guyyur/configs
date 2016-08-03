@@ -56,8 +56,6 @@ ln -f "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
 install -c -m 644 -o guy -g users tree/home/guy/dot.profile "${DESTDIR}"/home/guy/.profile || exit 1
 install -c -m 644 -o guy -g users tree/home/guy/dot.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
 
-install -c -m 640 -o root -g wheel tree/etc/sysctl.conf "${DESTDIR}"/etc/sysctl.conf || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1

@@ -26,8 +26,8 @@ my_newfs()
 }
 
 
-# -- my_prompt_to_newfs(dev) --
-my_prompt_to_newfs()
+# -- my_prompt(dev) --
+my_prompt()
 {
   local my_devname=$1
   local my_continue
@@ -55,11 +55,11 @@ disk0=$1
 
 # -- layout  --
 # disk0:
-#   /boot/custom (msdosfs)
+#   /boot/custom
 #   freebsd label
 #     /
 #     /home
-my_prompt_to_newfs "${disk0}" || exit 1
+my_prompt "${disk0}" || exit 1
 newfs_msdos -F 16 -c 8 -r 2 -o 8192 -m 0xF8 /dev/"${disk0}"s1 || exit 1
 my_newfs /dev/"${disk0}"s2a 131072 -U -n || exit 1
 my_newfs /dev/"${disk0}"s2d 131072 -U -n || exit 1

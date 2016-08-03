@@ -1,6 +1,6 @@
 
 # -- prompt --
-PS1='[\u@\h:\w]# '
+PS1='[\h:\w]# '
 
 
 # -- history --

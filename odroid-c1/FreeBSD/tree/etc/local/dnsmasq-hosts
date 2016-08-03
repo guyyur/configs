@@ -1,15 +1,27 @@
-# replace fd00:2001:db8:0::1 with real ULA prefix+EUI-64 of router
-# replace fd00:2001:db8:0::4 with real ULA prefix+EUI-64 of vcs
-# replace fd00:2001:db8:0::9 with real ULA prefix+EUI-64 of freebsd vm
-# replace ROUTER, ACCESSPOINT, VCS, FREEBSD-VM with real hostnames
+# replace rpib, cubieboard, bbb, edimax-ew7416apn, odroid-c1, qnap-ts-112p, orange-pi-one-dead-tf-slot with real hostnames
+# replace vm-freebsd, vm-freebsd-head, vm-netbsd, vm-openbsd, vm-arch-linux with real hostnames
+# replace fd00:2001:db8:0::X with real ULA prefix+EUI-64
 
-192.168.1.1				ROUTER.localdomain ROUTER
-fd00:2001:db8:0::1			ROUTER.localdomain ROUTER
+fd00:2001:db8:0::1			rpib.localdomain rpib
 
-192.168.1.2				ACCESSPOINT.localdomain ACCESSPOINT
+fd00:2001:db8:0::2			cubieboard.localdomain cubieboard
 
-fd00:2001:db8:0::4			VCS.localdomain VCS
-fd00:2001:db8:0::9			FREEBSD-VM.localdomain FREEBSD-VM
+fd00:2001:db8:0::3			bbb.localdomain bbb
 
-fd00:2001:db8:0::4			vcs.localdomain vcs
-fd00:2001:db8:0::9			fbsd-files.localdomain fbsd-files
+192.168.1.4				edimax-ew7416apn.localdomain edimax-ew7416apn
+
+192.168.1.5				odroid-c1.localdomain odroid-c1
+fd00:2001:db8:0::5			odroid-c1.localdomain odroid-c1
+
+fd00:2001:db8:0::6			qnap-ts-112p.localdomain qnap-ts-112p
+
+fd00:2001:db8:0::7			orange-pi-one-dead-tf-slot.localdomain orange-pi-one-dead-tf-slot
+
+fd00:2001:db8:0::21			vm-freebsd.localdomain vm-freebsd
+fd00:2001:db8:0::22			vm-freebsd-head.localdomain vm-freebsd-head
+fd00:2001:db8:0::23			vm-netbsd.localdomain vm-netbsd
+fd00:2001:db8:0::24			vm-openbsd.localdomain vm-openbsd
+fd00:2001:db8:0::25			vm-arch-linux.localdomain vm-arch-linux
+
+fd00:2001:db8:0::1			vcs.localdomain vcs
+fd00:2001:db8:0::21			fbsd-files.localdomain fbsd-files

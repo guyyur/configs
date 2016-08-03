@@ -7,8 +7,8 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- my_prompt_to_partition(dev) --
-my_prompt_to_partition()
+# -- my_prompt(dev) --
+my_prompt()
 {
   local my_devname=$1
   local my_continue
@@ -36,7 +36,7 @@ disk3=sdd
 # disk0:
 #   /
 #   /var
-my_prompt_to_partition "${disk0}" || exit 1
+my_prompt "${disk0}" || exit 1
 parted -s -a optimal /dev/"${disk0}" \
   mklabel msdos \
   unit s \
@@ -46,11 +46,9 @@ parted -s -a optimal /dev/"${disk0}" \
   || exit 1
 parted -s -a optimal /dev/"${disk0}" unit s print || exit 1
 
-dd bs=446 count=1 conv=notrunc if="${DESTDIR}/usr/lib/syslinux/bios/mbr.bin" of=/dev/"${disk0}" || exit 1
-
 # disk1:
 #   swap
-my_prompt_to_partition "${disk1}" || exit 1
+my_prompt "${disk1}" || exit 1
 parted -s -a optimal /dev/"${disk1}" \
   mklabel msdos \
   unit s \
@@ -60,7 +58,7 @@ parted -s -a optimal /dev/"${disk1}" unit s print || exit 1
 
 # disk2:
 #   /var/cache/pacman
-my_prompt_to_partition "${disk2}" || exit 1
+my_prompt "${disk2}" || exit 1
 parted -s -a optimal /dev/"${disk2}" \
   mklabel msdos \
   unit s \
@@ -70,7 +68,7 @@ parted -s -a optimal /dev/"${disk2}" unit s print || exit 1
 
 # disk3:
 #   /home
-my_prompt_to_partition "${disk3}" || exit 1
+my_prompt "${disk3}" || exit 1
 parted -s -a optimal /dev/"${disk3}" \
   mklabel msdos \
   unit s \

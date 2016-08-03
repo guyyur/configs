@@ -26,8 +26,8 @@ my_newfs()
 }
 
 
-# -- my_prompt_to_newfs(dev) --
-my_prompt_to_newfs()
+# -- my_prompt(dev) --
+my_prompt()
 {
   local my_devname=$1
   local my_continue
@@ -58,7 +58,7 @@ disk5=ada5
 #   freebsd-boot
 #   /
 #   /var
-my_prompt_to_newfs "${disk0}" || exit 1
+my_prompt "${disk0}" || exit 1
 my_newfs /dev/"${disk0}"p2 131072 -U -n || exit 1
 my_newfs /dev/"${disk0}"p3 65536 -U -n || exit 1
 
@@ -67,20 +67,20 @@ my_newfs /dev/"${disk0}"p3 65536 -U -n || exit 1
 
 # disk2:
 #   /usr/src
-my_prompt_to_newfs "${disk2}" || exit 1
+my_prompt "${disk2}" || exit 1
 my_newfs /dev/"${disk2}"p1 131072 -U -n || exit 1
 
 # disk3:
 #   /usr/obj
-my_prompt_to_newfs "${disk3}" || exit 1
+my_prompt "${disk3}" || exit 1
 my_newfs /dev/"${disk3}"p1 262144 -U -n || exit 1
 
 # disk4:
 #   /usr/ports
-my_prompt_to_newfs "${disk4}" || exit 1
+my_prompt "${disk4}" || exit 1
 my_newfs /dev/"${disk4}"p1 196608 -U -n || exit 1
 
 # disk5:
 #   /home
-my_prompt_to_newfs "${disk5}" || exit 1
+my_prompt "${disk5}" || exit 1
 my_newfs /dev/"${disk5}"p1 524288 -U -n || exit 1

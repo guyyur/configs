@@ -1,8 +1,15 @@
 
-VDSL Modem - Router
-               \
-             Switch ---- Access Point ~~~~ Notebook
-            /      \
-           /        \
-          /          \
-        VCS           Desktop + Virtual Machines
+tp-link-td-w9970 (vdsl modem)
+     |
+odroid-c1 (router)
+     |
+d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspire-es1-131 (notebook)
+  /  ||||||
+ |   msi-h97m-g43 (desktop), rpib (devel), cubieboard (storage), qnap-ts-112p (nas)
+  \
+   vm-freebsd (devel), vm-freebsd-head (devel), vm-netbsd (devel), vm-openbsd (devel), vm-arch-linux (devel)
+
+asus-k8s-mx (devel)
+asus-p5e-vm-hdmi (devel)
+bbb (devel)
+orange-pi-one-dead-tf-slot (devel)

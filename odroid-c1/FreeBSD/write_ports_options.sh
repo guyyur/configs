@@ -2,7 +2,7 @@
 
 # -- check for root --
 if [ "`id -u`" != "0" ]; then
-  echo "ports.sh: sorry, this must be done as root." 1>&2
+  echo "write_ports_options.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
@@ -126,9 +126,10 @@ create_port_options
 
 
 # -- shells/zsh OPTIONS --
-init_port_options "shells_zsh" "zsh" "5.0.7_3"
+init_port_options "shells_zsh" "zsh" "5.2_2"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] DOCS"
+add_port_option "[ ] ETCDIR"
 add_port_option "[x] EXAMPLES"
 add_port_option "[ ] GDBM"
 add_port_option "[ ] MAILDIR"

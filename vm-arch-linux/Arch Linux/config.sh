@@ -30,10 +30,12 @@ install -c -m 644 -o root -g root tree/etc/passwd "${DESTDIR}"/etc/passwd || exi
 rm -f "${DESTDIR}"/etc/passwd- || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/github || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/projects || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/sync || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/tests || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 
@@ -49,11 +51,7 @@ install -c -m 644 -o root -g root tree/etc/locale.conf "${DESTDIR}"/etc/locale.c
 
 install -c -m 644 -o root -g root tree/etc/inputrc "${DESTDIR}"/etc/inputrc || exit 1
 
-install -c -m 640 -o root -g root tree/root/dot.profile "${DESTDIR}"/root/.profile || exit 1
-install -c -m 640 -o root -g root tree/root/dot.bash_profile "${DESTDIR}"/root/.bash_profile || exit 1
 install -c -m 640 -o root -g root tree/root/dot.bashrc "${DESTDIR}"/root/.bashrc || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/dot.profile "${DESTDIR}"/home/guy/.profile || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/dot.bash_profile "${DESTDIR}"/home/guy/.bash_profile || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.bashrc "${DESTDIR}"/home/guy/.bashrc || exit 1
 
 install -c -m 644 -o root -g root tree/boot/syslinux/syslinux.cfg "${DESTDIR}"/boot/syslinux/syslinux.cfg || exit 1
@@ -83,7 +81,14 @@ ln -sfn /run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 
+install -c -m 755 -o root -g root tree/etc/network-start.sh "${DESTDIR}"/etc/network-start.sh || exit 1
+install -c -m 644 -o root -g root tree/etc/systemd/system/network.service "${DESTDIR}"/etc/systemd/system/network.service || exit 1
+ln -sfn /etc/systemd/system/network.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/network.service || exit 1
+
 install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
+
+ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.timer || exit 1
+ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.service || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
 

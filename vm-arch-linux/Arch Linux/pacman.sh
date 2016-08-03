@@ -132,7 +132,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   xterm \
   libxss \
   libnotify \
-  virtualbox-guest-dkms \
+  virtualbox-guest-modules-arch \
   virtualbox-guest-utils \
   gtk-engines \
   adwaita-icon-theme \
@@ -156,15 +156,15 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   || exit 1
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/hsetroot-*-x86_64.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR_pkg/hsetroot-*-x86_64.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR_pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR_pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/ttf-caladea-*-any.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR_pkg/ttf-caladea-*-any.pkg.tar.xz || exit 1
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR/pkg/ttf-carlito-*-any.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR_pkg/ttf-carlito-*-any.pkg.tar.xz || exit 1
 
 chroot /mnt locale-gen
 chroot /mnt /usr/bin/mkinitcpio -p linux

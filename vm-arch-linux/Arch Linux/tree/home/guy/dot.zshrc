@@ -1,7 +1,7 @@
 
 # -- parameters --
 HISTSIZE=500
-PS1='[%n@%m:%~]%# '
+PS1='[%m:%~]%# '
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # -- options --

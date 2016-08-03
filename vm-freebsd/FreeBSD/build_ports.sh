@@ -2,7 +2,7 @@
 
 # -- check for root --
 if [ "`id -u`" != "0" ]; then
-  echo "ports.sh: sorry, this must be done as root." 1>&2
+  echo "build_ports.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
@@ -33,6 +33,7 @@ cd /usr/ports/devel/mercurial && make $target || exit 1
 cd /usr/ports/devel/git && make $target || exit 1
 cd /usr/ports/devel/fossil && make $target || exit 1
 cd /usr/ports/devel/cscope && make $target || exit 1
+cd /usr/ports/devel/gdb && make $target || exit 1
 cd /usr/ports/benchmarks/iperf && make $target || exit 1
 cd /usr/ports/www/tidy-devel && make $target || exit 1
 cd /usr/ports/graphics/p5-Image-ExifTool && make $target || exit 1
@@ -107,5 +108,7 @@ cd /usr/ports/emulators/virtualbox-ose-additions && make $target || exit 1
 cd /usr/ports/devel/geany && make $target || exit 1
 cd /usr/ports/textproc/meld && make $target || exit 1
 cd /usr/ports/sysutils/u-boot-rpi && make $target || exit 1
-cd /usr/ports/sysutils/u-boot-beaglebone && make $target || exit 1
-cd /usr/ports/local/u-boot-odroid-c1 && make $target || exit 1
+cd /usr/ports/local/rpi-boot-files && make $target || exit 1
+cd /usr/ports/local/odroid-c1-boot-files && make $target || exit 1
+cd /usr/ports/local/u-boot && make $target || exit 1
+cd /usr/ports/local/dtb && make $target || exit 1

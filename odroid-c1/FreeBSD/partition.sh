@@ -7,8 +7,8 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- my_prompt_to_partition(dev) --
-my_prompt_to_partition()
+# -- my_prompt(dev) --
+my_prompt()
 {
   local my_devname=$1
   local my_continue
@@ -36,19 +36,13 @@ disk0=$1
 
 # -- layout --
 # disk0:
-#   MBR + U-Boot
-#   /boot/custom (msdosfs)
+#   /boot/custom
 #   freebsd label
 #     /
 #     /misc
-my_prompt_to_partition "${disk0}" || exit 1
-
-dd if=/usr/local/share/u-boot/u-boot-odroid-c1/bl1.bin.hardkernel of=/dev/"${disk0}" bs=512 skip=1 seek=1 || exit 1
-dd if=/usr/local/share/u-boot/u-boot-odroid-c1/u-boot.bin of=/dev/"${disk0}" bs=512 seek=64 conv=sync || exit 1
-dd if=/dev/zero of=/dev/"${disk0}" bs=32768 seek=1024 count=1 || exit 1
+my_prompt "${disk0}" || exit 1
 
 gpart create -s MBR -f x "${disk0}" || exit 1
-gpart bootcode -b /usr/local/share/u-boot/u-boot-odroid-c1/bl1-mbr.tmp -f x "${disk0}" || exit 1
 gpart add -a 1m -b 8192 -s 28M -t '!4' -f x "${disk0}" || exit 1
 gpart set -a active -i 1 -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd -f x "${disk0}" || exit 1
@@ -56,7 +50,7 @@ gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
 
 gpart create -s BSD -f x "${disk0}"s2 || exit 1
-gpart add -s 1G -t freebsd-ufs -f x "${disk0}"s2 || exit 1
+gpart add -s 992M -t freebsd-ufs -f x "${disk0}"s2 || exit 1
 gpart add -i 4 -t freebsd-ufs -f x "${disk0}"s2 || exit 1
 gpart commit "${disk0}"s2 || exit 1
 gpart show "${disk0}"s2 || exit 1

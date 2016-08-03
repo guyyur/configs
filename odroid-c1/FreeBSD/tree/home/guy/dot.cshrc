@@ -8,10 +8,10 @@
 if ($?prompt) then
   # -- prompt --
   if ( $?tcsh ) then
-    set prompt = "[%n@%m:%~]%# "
+    set prompt = "[%m:%~]%# "
     set promptchars = ">#"
   else
-    set prompt = "[$USER@`hostname -s`]% "
+    set prompt = "[`hostname -s`]% "
   endif
   
   
