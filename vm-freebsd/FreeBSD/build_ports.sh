@@ -107,8 +107,7 @@ cd /usr/ports/deskutils/parcellite && make $target || exit 1
 cd /usr/ports/emulators/virtualbox-ose-additions && make $target || exit 1
 cd /usr/ports/devel/geany && make $target || exit 1
 cd /usr/ports/textproc/meld && make $target || exit 1
-cd /usr/ports/sysutils/u-boot-rpi && make $target || exit 1
-cd /usr/ports/local/rpi-boot-files && make $target || exit 1
+cd /usr/ports/local/raspberrypi-firmware-boot && make $target || exit 1
 cd /usr/ports/local/odroid-c1-boot-files && make $target || exit 1
 cd /usr/ports/local/u-boot && make $target || exit 1
 cd /usr/ports/local/dtb && make $target || exit 1

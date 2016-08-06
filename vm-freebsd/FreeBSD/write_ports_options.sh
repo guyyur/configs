@@ -227,7 +227,7 @@ create_port_options
 
 
 # -- devel/git OPTIONS --
-init_port_options "devel_git" "git" "2.7.0"
+init_port_options "devel_git" "git" "2.9.2_1"
 add_port_option "[ ] CONTRIB"
 add_port_option "[x] CURL"
 add_port_option "[ ] CVS"
@@ -238,6 +238,7 @@ add_port_option "[ ] HTMLDOCS"
 add_port_option "[x] ICONV"
 add_port_option "[ ] NLS"
 add_port_option "[ ] P4"
+add_port_option "[x] PCRE"
 add_port_option "[x] PERL"
 add_port_option "[ ] SEND_EMAIL"
 add_port_option "[ ] SVN"

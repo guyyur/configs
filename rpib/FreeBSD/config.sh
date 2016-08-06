@@ -69,8 +69,6 @@ install -c -m 644 -o root -g wheel tree/boot/loader.conf "${DESTDIR}"/boot/loade
 
 install -c -m 644 -o root -g wheel tree/boot/custom/config.txt "${DESTDIR}"/boot/custom/config.txt || exit 1
 
-install -c -m 644 -o root -g wheel tree/boot/custom/uEnv.txt "${DESTDIR}"/boot/custom/uEnv.txt || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/devfs.conf "${DESTDIR}"/etc/devfs.conf || exit 1

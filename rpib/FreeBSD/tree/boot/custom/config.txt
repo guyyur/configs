@@ -7,8 +7,7 @@ sdtv_aspect=3
 hdmi_drive=1
 disable_overscan=1
 
-disable_commandline_tags=1
-kernel=u-boot.img
+kernel=u-boot.bin
 
 device_tree=rpi.dtb
 device_tree_address=0x100

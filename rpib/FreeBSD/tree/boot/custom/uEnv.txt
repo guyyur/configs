@@ -1,2 +1,0 @@
-bootfile=ubldr.bin
-UserFatboot=fatload ${fatdev} ${loadaddr} ${bootfile}; go ${loadaddr}
