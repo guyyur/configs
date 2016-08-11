@@ -11,5 +11,5 @@ d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspi
 
 asus-k8s-mx (devel)
 asus-p5e-vm-hdmi (devel)
-bbb (devel)
+beaglebone-black (devel) / beaglebone-black-sd (devel)
 orange-pi-one-dead-tf-slot (devel)

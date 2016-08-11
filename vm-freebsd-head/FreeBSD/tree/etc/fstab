@@ -1,0 +1,17 @@
+# Device      Mountpoint       FStype  Options     Dump  Pass#
+/dev/ada1p1   none             swap    sw          0     0
+/dev/ada0p2   /                ufs     ro,noatime  1     1
+/dev/ada0p3   /var             ufs     rw,noatime  2     2
+/dev/ada2p1   /usr/obj         ufs     rw,noatime  0     0
+/dev/ada3p1   /home            ufs     rw,noatime  2     2
+
+tmpfs         /var/run         tmpfs   rw,size=8M,inodes=256      0  0
+tmpfs         /var/spool/lock  tmpfs   rw,size=1M,inodes=128      0  0
+tmpfs         /tmp             tmpfs   rw,size=768M,inodes=49152  0  0
+
+tmpfs         /usr/wrkdir      tmpfs   rw,size=256M   0  0
+
+/home/public  /export/public   nullfs  rw  0  0
+/home/shares  /export/shares   nullfs  rw  0  0
+
+fbsd-files:/export/ports  /usr/ports  nfs  rw,nfsv3,noauto  0  0

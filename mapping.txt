@@ -2,7 +2,7 @@
 Acer Aspire ES1-131-C5FK Notebook + Kingston DTMC3/32GB USB Flash Drive -> acer-aspire-es1-131 (notebook)
 ASUS K8S-MX Motherboard + Hitachi HDT722525DLA380 HDD + Hitachi HDT722516DLA380 HDD -> asus-k8s-mx (devel)
 ASUS P5E-VM HDMI + Western Digital WD30EFRX-68AX9N0 HDD -> asus-p5e-vm-hdmi (devel)
-BeagleBone Black Board + SanDisk SDSDQM-002G-B35 microSD Card -> bbb (devel)
+BeagleBone Black Board + SanDisk SDSDQM-002G-B35 microSD Card -> beaglebone-black (devel) / beaglebone-black-sd (devel)
 Cubieboard Board + SanDisk SDSDQM-004G-B35 microSDHC Card + Western Digital WD5000BPKT-22PK4T0 HDD -> cubieboard (storage)
 Hardkernel ODROID C1+ Board + Kingston SDC10G2/8GB microSDHC Card -> odroid-c1 (router)
 MSI H97M-G43 Motherboard + Samsung MZ-7TE120BW SSD + Western Digital WD1003FZEX-00MK2A0 HDD + Western Digital WD60EZRZ-00GZ5B1 HDD -> msi-h97m-g43 (desktop)

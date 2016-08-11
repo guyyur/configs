@@ -1,0 +1,4 @@
+/export -ro
+/export/public -maproot=root
+/export/shares -maproot=nobody
+V4: /export

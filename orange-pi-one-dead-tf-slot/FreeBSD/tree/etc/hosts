@@ -1,0 +1,6 @@
+# replace orange-pi-one-dead-tf-slot with real hostname
+
+# Host Database
+::1			localhost.localdomain localhost orange-pi-one-dead-tf-slot.localdomain orange-pi-one-dead-tf-slot
+127.0.0.1		localhost.localdomain localhost orange-pi-one-dead-tf-slot.localdomain orange-pi-one-dead-tf-slot
+
