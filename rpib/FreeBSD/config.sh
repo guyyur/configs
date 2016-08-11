@@ -62,6 +62,7 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.shrc "${DESTDIR}"/home/guy/.sh
 
 install -c -m 640 -o root -g wheel tree/root/dot.cshrc "${DESTDIR}"/root/.cshrc || exit 1
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
+rm -f "${DESTDIR}"/root/.login || exit 1
 install -c -m 644 -o root -g wheel tree/etc/skel/dot.cshrc "${DESTDIR}"/etc/skel/dot.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 

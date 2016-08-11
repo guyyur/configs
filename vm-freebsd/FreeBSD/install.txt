@@ -9,7 +9,7 @@ dhcpcd lan0
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   releng/10.3 i386
+#   releng/10.3 amd64
 ./extract_dists.sh /mnt /path/to/dists
 ./config.sh /mnt
 

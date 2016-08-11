@@ -26,5 +26,4 @@ cd /usr/ports/www/nginx && make $target || exit 1
 cd /usr/ports/devel/mercurial && make $target || exit 1
 cd /usr/ports/local/hgweb_config_file_from_env && make $target || exit 1
 cd /usr/ports/devel/git && make $target || exit 1
-cd /usr/ports/devel/fossil && make $target || exit 1
 cd /usr/ports/benchmarks/iperf && make $target || exit 1

@@ -61,14 +61,6 @@ add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- devel/fossil OPTIONS --
-init_port_options "devel_fossil" "fossil" "1.33_1,2"
-add_port_option "[ ] FUSE"
-add_port_option "[x] JSON"
-add_port_option "[ ] STATIC"
-create_port_options
-
-
 # -- devel/git OPTIONS --
 init_port_options "devel_git" "git" "2.9.2_1"
 add_port_option "[ ] CONTRIB"

@@ -36,7 +36,7 @@ disk0=$1
 
 # -- write boot blocks --
 my_prompt "${disk0}" || exit 1
-dd if=/usr/local/share/odroid-c1-boot-files/bl1-mbr.tmp of=/dev/"${disk0}" bs=446 count=1 conv=sync,notrunc || exit 1
+# dd if=/usr/local/share/odroid-c1-boot-files/bl1-mbr.tmp of=/dev/"${disk0}" bs=446 count=1 conv=sync,notrunc || exit 1
 dd if=/usr/local/share/odroid-c1-boot-files/bl1.bin.hardkernel of=/dev/"${disk0}" bs=512 skip=1 seek=1 conv=sync,notrunc || exit 1
 dd if=/usr/local/share/odroid-c1-boot-files/u-boot.bin of=/dev/"${disk0}" bs=512 seek=64 conv=sync,notrunc || exit 1
 dd if=/dev/zero of=/dev/"${disk0}" bs=32768 seek=1024 count=1 conv=sync,notrunc || exit 1

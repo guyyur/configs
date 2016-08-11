@@ -303,7 +303,7 @@ create_port_options
 
 
 # -- devel/llvm37 OPTIONS --
-init_port_options "devel_llvm37" "llvm37" "3.7.1"
+init_port_options "devel_llvm37" "llvm37" "3.7.1_2"
 add_port_option "[x] CLANG"
 add_port_option "[x] COMPILER_RT"
 add_port_option "[x] DOCS"
@@ -312,6 +312,7 @@ add_port_option "[x] GOLD"
 add_port_option "[x] LIT"
 add_port_option "[x] LLD"
 add_port_option "[x] LLDB"
+add_port_option "[x] OPENMP"
 create_port_options
 
 

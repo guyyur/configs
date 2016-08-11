@@ -43,6 +43,7 @@ disk0=$1
 my_prompt "${disk0}" || exit 1
 
 gpart create -s MBR -f x "${disk0}" || exit 1
+gpart bootcode -b /usr/local/share/odroid-c1-boot-files/bl1-mbr.tmp "${disk0}" || exit 1
 gpart add -a 1m -b 8192 -s 28M -t '!4' -f x "${disk0}" || exit 1
 gpart set -a active -i 1 -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd -f x "${disk0}" || exit 1
