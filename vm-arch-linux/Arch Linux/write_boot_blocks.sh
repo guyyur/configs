@@ -34,4 +34,4 @@ disk3=sdd
 
 # -- write boot blocks --
 my_prompt "${disk0}" || exit 1
-dd if="${DESTDIR}/usr/lib/syslinux/bios/mbr.bin" of=/dev/"${disk0}" bs=446 count=1 conv=notrunc || exit 1
+dd if="/mnt/usr/lib/syslinux/bios/mbr.bin" of=/dev/"${disk0}" bs=440 count=1 conv=notrunc || exit 1

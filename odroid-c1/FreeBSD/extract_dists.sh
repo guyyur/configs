@@ -20,6 +20,7 @@ distsdir=$2
 cd $distsdir || exit 1
 
 tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
+rm -f "${DESTDIR}"/root/.login || exit 1
 # tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
 tar -Uxp -C "${DESTDIR}" -f kernel-MYODROIDC1-ROUTER.txz || exit 1
 install -c "${DESTDIR}"/boot/kernel/kernel.bin "${DESTDIR}"/boot/custom/kernel.bin || exit 1

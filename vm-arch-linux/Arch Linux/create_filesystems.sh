@@ -37,8 +37,8 @@ disk3=sdd
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
-mke2fs -t ext4 -N 262144 /dev/"${disk0}"1 || exit 1
-mke2fs -t ext4 -N 81920 /dev/"${disk0}"2 || exit 1
+mke2fs -t ext4 -N 262144 -O ^64bit /dev/"${disk0}"1 || exit 1
+mke2fs -t ext4 -N 81920 -O ^64bit /dev/"${disk0}"2 || exit 1
 
 # disk1:
 #   swap
@@ -48,9 +48,9 @@ mkswap /dev/"${disk1}"1
 # disk2:
 #   /var/cache/pacman
 my_prompt "${disk2}" || exit 1
-mke2fs -t ext4 -N 16384 /dev/"${disk2}"1 || exit 1
+mke2fs -t ext4 -N 16384 -O ^64bit /dev/"${disk2}"1 || exit 1
 
 # disk3:
 #   /home
 my_prompt "${disk3}" || exit 1
-mke2fs -t ext4 -N 262144 /dev/"${disk3}"1 || exit 1
+mke2fs -t ext4 -N 262144 -O ^64bit /dev/"${disk3}"1 || exit 1

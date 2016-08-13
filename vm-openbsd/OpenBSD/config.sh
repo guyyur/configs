@@ -71,10 +71,6 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1
 install -c -m 600 -o guy -g users tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-rm -f "${DESTDIR}"/etc/skel/.ssh/authorized_keys || exit 1
-if [ -d "${DESTDIR}"/etc/skel/.ssh ]; then
-  rmdir "${DESTDIR}"/etc/skel/.ssh || exit 1
-fi
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
@@ -96,8 +92,3 @@ install -c -m 644 -o root -g wheel tree/etc/nanorc "${DESTDIR}"/etc/nanorc || ex
 
 install -c -m 640 -o root -g wheel tree/root/dot.zshrc "${DESTDIR}"/root/.zshrc || exit 1
 install -c -m 644 -o guy -g users tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
-
-rm -f "${DESTDIR}"/etc/skel/.Xdefaults || exit 1
-rm -f "${DESTDIR}"/root/.Xdefaults || exit 1
-
-

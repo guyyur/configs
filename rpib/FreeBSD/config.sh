@@ -45,13 +45,6 @@ install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/remove || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/repos || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/tests || exit 1
 
-install -d -m 750 -o guy -g guy "${DESTDIR}"/var/log/guy || exit 1
-
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
-
-install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
-install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy || exit 1
-
 install -c -m 640 -o root -g wheel tree/root/dot.profile "${DESTDIR}"/root/.profile || exit 1
 install -c -m 640 -o root -g wheel tree/root/dot.shrc "${DESTDIR}"/root/.shrc || exit 1
 install -l h "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
@@ -62,7 +55,6 @@ install -c -m 644 -o guy -g guy tree/home/guy/dot.shrc "${DESTDIR}"/home/guy/.sh
 
 install -c -m 640 -o root -g wheel tree/root/dot.cshrc "${DESTDIR}"/root/.cshrc || exit 1
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
-rm -f "${DESTDIR}"/root/.login || exit 1
 install -c -m 644 -o root -g wheel tree/etc/skel/dot.cshrc "${DESTDIR}"/etc/skel/dot.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/dot.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 
@@ -132,7 +124,14 @@ install -c -m 644 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local || exit 1
 install -l s /etc/local "${DESTDIR}"/usr/local/etc || exit 1
 
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
+
+install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
+install -d -m 700 -o guy -g guy "${DESTDIR}"/var/xdg-cache/guy || exit 1
+
 install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/local/db || exit 1
+
+install -d -m 750 -o guy -g guy "${DESTDIR}"/var/log/guy || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/local/db/pkg || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/pkg.conf "${DESTDIR}"/etc/local/pkg.conf || exit 1

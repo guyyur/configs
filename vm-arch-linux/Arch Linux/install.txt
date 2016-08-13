@@ -4,7 +4,6 @@
 useradd -u 1001 -U -G wheel,games,users -c "Guy Yur" guy
 
 # cd to config dir (mounted usb flash, nfs, cifs, ...)
-./write_boot_blocks.sh
 ./partition.sh
 ./create_filesystems.sh
 ./mount_and_mkdir.sh
@@ -20,7 +19,9 @@ nano /etc/pacman.conf
 
 mount ? /var/cache/pacman
 
+./config.sh /mnt
 ./pacman.sh
+./write_boot_blocks.sh
 
 umount /var/cache/pacman
 
@@ -34,12 +35,6 @@ nano /mnt/etc/pacman.conf
 
 nano /mnt/etc/pacman.d/mirrorlist
   uncomment lines
-
-backup /mnt/etc/{shadow,passwd,gshadow,group}
-
-./config.sh /mnt
-
-restore users and groups added by pacman packages
 
 ./unmount.sh
 

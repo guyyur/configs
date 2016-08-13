@@ -20,6 +20,7 @@ distsdir=$2
 cd $distsdir || exit 1
 
 tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
+rm -f "${DESTDIR}"/root/.login || exit 1
 # tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
 tar -Uxp -C "${DESTDIR}" -f kernel-MYRPIB.txz || exit 1
 install -c /usr/local/share/raspberrypi-firmware-boot/bootcode.bin "${DESTDIR}"/boot/custom/bootcode.bin || exit 1

@@ -73,6 +73,7 @@ installcd
 
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./cleanup.sh /
 ./config.sh /
 
 shutdown -r now

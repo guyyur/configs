@@ -154,6 +154,7 @@ installcd
 
 main configuration
   # cd to config dir (mounted usb flash, nfs, smbfs, ...)
+  ./cleanup.sh /
   ./config.sh /
   
   vi /etc/fstab

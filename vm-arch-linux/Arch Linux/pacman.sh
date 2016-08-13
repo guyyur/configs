@@ -33,6 +33,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   gzip \
   kmod \
   linux \
+  linux-lts \
   linux-firmware \
   less \
   licenses \
@@ -156,18 +157,15 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   || exit 1
 
 pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR_pkg/hsetroot-*-x86_64.pkg.tar.xz || exit 1
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR_pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz || exit 1
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR_pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz || exit 1
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR_pkg/ttf-caladea-*-any.pkg.tar.xz || exit 1
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR_pkg/ttf-carlito-*-any.pkg.tar.xz || exit 1
+  /var/cache/pacman/AUR_pkg/hsetroot-*-x86_64.pkg.tar.xz \
+  /var/cache/pacman/AUR_pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz \
+  /var/cache/pacman/AUR_pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz \
+  /var/cache/pacman/AUR_pkg/ttf-caladea-*-any.pkg.tar.xz \
+  /var/cache/pacman/AUR_pkg/ttf-carlito-*-any.pkg.tar.xz \
+  || exit 1
 
-chroot /mnt locale-gen
-chroot /mnt /usr/bin/mkinitcpio -p linux
+ln -sfn ../proc/self/mounts /mnt/etc/mtab || exit 1
+
 /mnt/usr/bin/extlinux --install /mnt/boot/syslinux || exit 1
 ln -sfn /usr/lib/syslinux/bios/libutil.c32 /mnt/boot/syslinux/libutil.c32 || exit 1
 ln -sfn /usr/lib/syslinux/bios/menu.c32 /mnt/boot/syslinux/menu.c32 || exit 1
