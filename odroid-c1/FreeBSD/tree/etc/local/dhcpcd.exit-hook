@@ -1,31 +1,38 @@
 #!/bin/sh
 
+# get addresses without prefixlen and excluding ULA
+if [ "$reason" = "DELEGATED6" -a "$interface" = "lan0" ]; then
+  new_global_ipv6_addresses=""
+  for i in ${new_delegated_dhcp6_prefix}; do
+    first_byte=${i%%??:*/*}
+    case $first_byte in
+      fc|fd|fe|ff) ;;
+      *) new_global_ipv6_addresses="${new_global_ipv6_addresses} ${i%%/*}" ;;
+    esac
+  done
+  new_global_ipv6_addresses="${new_global_ipv6_addresses# }"
+  new_first_global_ipv6_address="${new_global_ipv6_addresses%% *}"
+  
+  old_global_ipv6_addresses=$(cat /var/run/dhcpcd-"$interface"-old_global_ipv6_addresses 2>/dev/null)
+  echo "${new_global_ipv6_addresses}" > /var/run/dhcpcd-"$interface"-old_global_ipv6_addresses
+fi
+
+# open own ipv6 ports
+if [ "$reason" = "DELEGATED6" -a "$interface" = "lan0" ]; then
+  if [ "${old_global_ipv6_addresses}" != "${new_global_ipv6_addresses}" ]; then
+    sed -e "s@OWN_IPV6_ADDRESSES@${new_global_ipv6_addresses}@" /etc/pf_anchor-own_ipv6.conf.in > /var/run/pf_anchor-own_ipv6.conf
+    if [ $? -eq 0 ]; then
+      pfctl -a own_ipv6 -F rules
+      pfctl -a own_ipv6 -f /var/run/pf_anchor-own_ipv6.conf
+    fi
+  fi
+fi
+
+# update dynamic dns
 case $reason in
-  DELEGATED6)
-    if [ "$interface" = "lan0" ]; then
-      old_delegated_dhcp6_prefix=$(cat /var/cache/dhcpcd-lan0-old_delegated_dhcp6_prefix)
-      
-      if [ "${new_delegated_dhcp6_prefix}" != "${old_delegated_dhcp6_prefix}" ]; then
-        echo "${new_delegated_dhcp6_prefix}" > /var/cache/dhcpcd-lan0-old_delegated_dhcp6_prefix
-        
-        # get addresses without prefixlen
-        new_addresses=""
-        for i in ${new_delegated_dhcp6_prefix}; do
-          new_addresses="${new_addresses} ${i%%/*}"
-        done
-        new_addresses="${new_addresses# }"
-        first_address="${new_addresses%% *}"
-        
-        # update pf
-        sed -e "s@ROUTER_IPV6_ADDRESSES@${new_addresses}@" /etc/pf_anchor-router_ipv6.conf.in > /var/run/pf_anchor-router_ipv6.conf
-        if [ $? -eq 0 ]; then
-          pfctl -a router_ipv6 -F rules
-          pfctl -a router_ipv6 -f /var/run/pf_anchor-router_ipv6.conf
-        fi
-        
-        # update dynamic dns
-        /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv6.pid "${first_address}" /usr/local/etc/ddnshupd-ipv6.conf
-      fi
+  DELEGATED6|ROUTERADVERT|BOUND6|RENEW6|REBIND6|REBOOT6|INFORM6)
+    if [ "$interface" = "lan0" -a -n "${new_first_global_ipv6_address}" -a "${old_global_ipv6_addresses}" != "${new_global_ipv6_addresses}" ]; then
+      /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv6.pid "${new_first_global_ipv6_address}" /usr/local/etc/ddnshupd-ipv6.conf
     fi
     ;;
   NOCARRIER)

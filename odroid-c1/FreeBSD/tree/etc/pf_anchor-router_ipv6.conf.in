@@ -1,7 +1,0 @@
-
-router_ipv6_address = "{ ROUTER_IPV6_ADDRESSES }"
-router_ipv6_tcp_ports = "{ 22 }"
-router_ipv6_udp_ports = "{ 1194 }"
-
-pass in quick inet6 proto tcp from any to $router_ipv6_address port $router_ipv6_tcp_ports
-pass in quick inet6 proto udp from any to $router_ipv6_address port $router_ipv6_udp_ports

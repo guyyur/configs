@@ -1,0 +1,12 @@
+
+update ports / packages
+  mount /usr/ports
+  mount -u -o rw,noatime /
+  
+  portmaster -gB ...
+  portmaster -agB
+  portmaster --clean-packages
+  pkg repo $(cd /usr/ports && make -V PACKAGES)
+  
+  mount -u -o ro,noatime /
+  umount /usr/ports

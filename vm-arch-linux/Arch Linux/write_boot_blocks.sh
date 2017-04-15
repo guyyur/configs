@@ -29,7 +29,6 @@ my_prompt()
 disk0=sda
 disk1=sdb
 disk2=sdc
-disk3=sdd
 
 
 # -- write boot blocks --

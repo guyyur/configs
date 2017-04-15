@@ -1,5 +1,6 @@
 
-# 7.0 i386
+# 7.0
+# i386
 
 installcd
   * a: Installation messages in English
@@ -152,23 +153,20 @@ installcd
     * d: Reboot the computer
 
 
-main configuration
-  # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-  ./cleanup.sh /
-  ./config.sh /
-  
-  vi /etc/fstab
-    add ,noatime to ffs filesystems
-  
-  shutdown -r now
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+useradd -d /home/guy -g users -u 1001 guy
+./cleanup.sh /
+./mkdir.sh /
+./config.sh /
+
+vi /etc/fstab
+  add ,noatime to ffs filesystems
+
+shutdown -r now
 
 
-build pkgsrc
-  # mount nfs/smbfs/iso with pkgsrc
-  # tar -xpjf pkgsrc-*.tar.bz2 -C /usr
-  tar -xpzf pkgsrc-*.tar.gz -C /usr
-  
-  # restore distfiles
-  
-  # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-  ./pkgsrc.sh
+tar -xpzf pkgsrc-*.tar.gz -C /usr
+# restore distfiles
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./build_pkgsrc_packages.sh

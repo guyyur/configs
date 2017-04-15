@@ -1,5 +1,4 @@
 /export -ro
-/export/src -ro -maproot=root
 /export/ports -maproot=root
 /export/public -maproot=root
 /export/shares -maproot=nobody

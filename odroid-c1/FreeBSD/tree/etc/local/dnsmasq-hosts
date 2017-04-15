@@ -1,27 +1,29 @@
-# replace rpib, cubieboard, bbb, edimax-ew7416apn, odroid-c1, qnap-ts-112p, orange-pi-one-dead-tf-slot with real hostnames
+# replace edimax-ew7416apn with real hostnames
+# replace odroid-c1, bbb, cubieboard, orange-pi-one-tf-slot-occasionally-works, rpib, qnap-ts-112p, orange-pi-pc, orange-pi-one-dead-tf-slot with real hostnames
+# replace beaglebone-black-sd with real hostnames
 # replace vm-freebsd, vm-freebsd-head, vm-netbsd, vm-openbsd, vm-arch-linux with real hostnames
-# replace fd00:2001:db8:0::X with real ULA prefix+EUI-64
-
-fd00:2001:db8:0::1			rpib.localdomain rpib
-
-fd00:2001:db8:0::2			cubieboard.localdomain cubieboard
-
-fd00:2001:db8:0::3			bbb.localdomain bbb
+# replace fd00:2001:db8:0::1NNN with real ULA prefix+EUI-64
+# replace fd00:2001:db8:0::20NN with real ULA
 
 192.168.1.4				edimax-ew7416apn.localdomain edimax-ew7416apn
 
-192.168.1.5				odroid-c1.localdomain odroid-c1
-fd00:2001:db8:0::5			odroid-c1.localdomain odroid-c1
+fd00:2001:db8:0::1001			odroid-c1.localdomain odroid-c1
+fd00:2001:db8:0::1011			bbb.localdomain bbb
+fd00:2001:db8:0::1021			cubieboard.localdomain cubieboard
+fd00:2001:db8:0::1031			orange-pi-one-tf-slot-occasionally-works.localdomain orange-pi-one-tf-slot-occasionally-works
+fd00:2001:db8:0::1041			rpib.localdomain rpib
+fd00:2001:db8:0::1051			qnap-ts-112p.localdomain qnap-ts-112p
+fd00:2001:db8:0::1061			orange-pi-pc.localdomain orange-pi-pc
+fd00:2001:db8:0::1071			orange-pi-one-dead-tf-slot.localdomain orange-pi-one-dead-tf-slot
 
-fd00:2001:db8:0::6			qnap-ts-112p.localdomain qnap-ts-112p
+fd00:2001:db8:0::2001			beaglebone-black-sd.localdomain beaglebone-black-sd
 
-fd00:2001:db8:0::7			orange-pi-one-dead-tf-slot.localdomain orange-pi-one-dead-tf-slot
+fd00:2001:db8:0::1101			vm-freebsd.localdomain vm-freebsd
+fd00:2001:db8:0::1102			vm-freebsd-head.localdomain vm-freebsd-head
+fd00:2001:db8:0::1103			vm-netbsd.localdomain vm-netbsd
+fd00:2001:db8:0::1104			vm-openbsd.localdomain vm-openbsd
+fd00:2001:db8:0::1105			vm-arch-linux.localdomain vm-arch-linux
 
-fd00:2001:db8:0::21			vm-freebsd.localdomain vm-freebsd
-fd00:2001:db8:0::22			vm-freebsd-head.localdomain vm-freebsd-head
-fd00:2001:db8:0::23			vm-netbsd.localdomain vm-netbsd
-fd00:2001:db8:0::24			vm-openbsd.localdomain vm-openbsd
-fd00:2001:db8:0::25			vm-arch-linux.localdomain vm-arch-linux
-
-fd00:2001:db8:0::1			vcs.localdomain vcs
-fd00:2001:db8:0::21			fbsd-files.localdomain fbsd-files
+fd00:2001:db8:0::1061			packages.localdomain packages
+fd00:2001:db8:0::1101			fbsd-ports.localdomain fbsd-ports
+fd00:2001:db8:0::1011			vcs.localdomain vcs

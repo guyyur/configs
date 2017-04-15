@@ -9,7 +9,8 @@ dhcpcd lan0
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   head amd64
+#   head
+#   amd64
 ./extract_dists.sh /mnt /path/to/dists
 ./config.sh /mnt
 
@@ -17,16 +18,13 @@ dhcpcd lan0
 
 shutdown -p now
 
-mount /usr/ports
-mount -t tmpfs -o size=... tmpfs /usr/wrkdir
+mount /usr/local/db/local_pkg_repos
 
 mount -u -o rw,noatime /
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./write_ports_options.sh
-./build_ports.sh
+./add_pkgs.sh
 
 mount -u -o ro,noatime /
 
-umount /usr/wrkdir
-umount /usr/ports
+umount /usr/local/db/local_pkg_repos

@@ -1,5 +1,6 @@
 
-# 5.8 i386
+# 6.0
+# amd64
 
 installcd
   (I)nstall, (U)pgrade or (S)hell? I
@@ -22,6 +23,8 @@ installcd
   
   Setup a user? (enter a lower-case loginname, or 'no') [no]
   Allow root ssh login? [no]
+  
+  Which timezone are you in? [Asia/Jerusalem]
   
   Which disk is the root disk? (or 'done') [sd0]
   Use (W)hole disk or (E)dit the MBR? W
@@ -58,28 +61,27 @@ installcd
   Write new label? [y]
   
   Location of sets? (cd disk ftp http or 'done') [cd0]
-  Pathname to the sets? (or 'done') [5.8/i386]
+  Pathname to the sets? (or 'done') [6.0/amd64]
   
   Set name(s)? (or 'abort' or 'done') [done]
   
   Location of sets? (cd disk ftp http or 'done') [done]
   
-  What timezone are you in? ('?' for list) [Asia/Jerusalem] Asia
-  What sub-timezone of 'Asia' are you in? ('?' for list) Jerusalem
-  
-  echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
+  # echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
+  echo "swap /tmp mfs rw,nodev,nosuid,-s=131072 0 0" >> /mnt/etc/fstab
   
   halt -p
 
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
+useradd -d /home/guy -g users -u 1001 guy
 ./cleanup.sh /
+./mkdir.sh /
 ./config.sh /
 
 shutdown -r now
 
-
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./pkgs.sh
+./add_pkgs.sh
 
 shutdown -hp now

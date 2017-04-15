@@ -31,6 +31,14 @@
 </menu>
 
 <menu id="root-menu" label="Openbox 3">
+  <item label="Terminator">
+    <action name="Execute">
+      <command>terminator</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
   <item label="Xterm">
     <action name="Execute">
       <command>xterm</command>
@@ -38,7 +46,7 @@
   </item>
   <item label="PCManFM">
     <action name="Execute">
-      <command>pcmanfm</command>
+      <command>pcmanfm-qt</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -55,7 +63,7 @@
   <separator />
   <item label="Applications">
     <action name="Execute">
-      <command>pcmanfm -n menu://applications/</command>
+      <command>pcmanfm-qt -n menu://applications/</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>

@@ -7,25 +7,6 @@ if [ "`id -u`" != "0" ]; then
 fi
 
 
-# -- my_newfs(partition, num_inodes, [flags ...,]) --
-my_newfs()
-{
-  local my_partition=$1
-  local my_inodes=$2
-  local my_mediasize
-  local my_density
-  shift
-  shift
-  
-  my_mediasize=`diskinfo "${my_partition}" | tr '\t' ' ' | cut -d\  -f 3`
-  [ -z "${my_mediasize}" ] && return 1
-  
-  my_density=$(($my_mediasize / $my_inodes / 512 * 512))
-  
-  newfs -i "${my_density}" "$@" "${my_partition}" || return 1
-}
-
-
 # -- my_prompt(dev) --
 my_prompt()
 {
@@ -58,8 +39,9 @@ disk0=$1
 #   /boot/custom
 #   freebsd label
 #     /
+#     dump
 #     /home
 my_prompt "${disk0}" || exit 1
 newfs_msdos -F 16 -c 8 -r 2 -o 8192 -m 0xF8 /dev/"${disk0}"s1 || exit 1
-my_newfs /dev/"${disk0}"s2a 131072 -U -n || exit 1
-my_newfs /dev/"${disk0}"s2d 131072 -U -n || exit 1
+newfs -U -n /dev/"${disk0}"s2a || exit 1  # ~131072 for 992M
+newfs -U -n /dev/"${disk0}"s2d || exit 1  # ~131072 for 826M

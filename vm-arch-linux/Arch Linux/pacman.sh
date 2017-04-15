@@ -8,13 +8,12 @@ fi
 
 
 # -- install --
-pacman --root /mnt --dbpath /mnt/usr/db/pacman -Sy || exit 1
-pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
+pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/pkg -Sy || exit 1
+pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/pkg -S \
   bash \
   binutils \
   bzip2 \
   coreutils \
-  cronie \
   cryptsetup \
   dash \
   device-mapper \
@@ -34,6 +33,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   kmod \
   linux \
   linux-lts \
+  linux-api-headers \
   linux-firmware \
   less \
   licenses \
@@ -50,7 +50,6 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   sed \
   shadow \
   sysfsutils \
-  syslog-ng \
   systemd \
   tar \
   tzdata \
@@ -64,8 +63,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   pciutils \
   libusb \
   usbutils \
-  hdparm \
-  sdparm \
+  dmidecode \
   time \
   openresolv \
   dhcpcd \
@@ -83,40 +81,28 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   tcpdump \
   openbsd-netcat \
   ca-certificates \
-  wget \
-  sg3_utils \
   alsa-utils \
   alsa-oss \
   bc \
   kbd \
-  hexedit \
-  unzip \
-  linux-api-headers \
-  linux-headers \
   autoconf \
   automake \
   bison \
   ed \
   fakeroot \
   flex \
-  gcc \
   libtool \
   m4 \
   make \
   patch \
   pkg-config \
-  bin86 \
-  indent \
-  python \
   gdb \
   strace \
-  cdrkit \
-  cifs-utils \
-  smbclient \
+  gcc \
+  indent \
+  python \
   samba \
-  mercurial \
   git \
-  abs \
   dbus \
   xf86-input-libinput \
   xorg-server \
@@ -128,10 +114,9 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   compton \
   ttf-liberation \
   ttf-dejavu \
-  ttf-junicode \
   hicolor-icon-theme \
   xterm \
-  libxss \
+  ttf-junicode \
   libnotify \
   virtualbox-guest-modules-arch \
   virtualbox-guest-utils \
@@ -145,24 +130,28 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman -S \
   tint2 \
   gsimplecal \
   lxqt-notificationd \
+  terminator \
   gmrun \
-  pcmanfm \
+  pcmanfm-qt \
   leafpad \
   lxappearance \
   lxrandr \
   parcellite \
   lxtask \
-  geany \
   meld \
+  geany \
   || exit 1
 
-pacman -U --root /mnt --dbpath /mnt/usr/db/pacman \
-  /var/cache/pacman/AUR_pkg/hsetroot-*-x86_64.pkg.tar.xz \
-  /var/cache/pacman/AUR_pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz \
-  /var/cache/pacman/AUR_pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz \
-  /var/cache/pacman/AUR_pkg/ttf-caladea-*-any.pkg.tar.xz \
-  /var/cache/pacman/AUR_pkg/ttf-carlito-*-any.pkg.tar.xz \
-  || exit 1
+echo -n > /tmp/aur_pkg_list
+ls /mnt/var/cache/pacman/AUR_pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
+ls /mnt/var/cache/pacman/AUR_pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
+ls /mnt/var/cache/pacman/AUR_pkg/ttf-caladea-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
+ls /mnt/var/cache/pacman/AUR_pkg/ttf-carlito-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
+ls /mnt/var/cache/pacman/AUR_pkg/hsetroot-*-x86_64.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
+
+if [ -s /tmp/aur_pkg_list ]; then
+  cat /tmp/aur_pkg_list | pacman -U --root /mnt --dbpath /mnt/usr/db/pacman - || exit 1
+fi
 
 ln -sfn ../proc/self/mounts /mnt/etc/mtab || exit 1
 

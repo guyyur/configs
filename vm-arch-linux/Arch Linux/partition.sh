@@ -29,7 +29,6 @@ my_prompt()
 disk0=sda
 disk1=sdb
 disk2=sdc
-disk3=sdd
 
 
 # -- layout --
@@ -57,7 +56,7 @@ parted -s -a optimal /dev/"${disk1}" \
 parted -s -a optimal /dev/"${disk1}" unit s print || exit 1
 
 # disk2:
-#   /var/cache/pacman
+#   /home
 my_prompt "${disk2}" || exit 1
 parted -s -a optimal /dev/"${disk2}" \
   mklabel msdos \
@@ -65,13 +64,3 @@ parted -s -a optimal /dev/"${disk2}" \
   mkpart primary ext4 2048s 100% \
   || exit 1
 parted -s -a optimal /dev/"${disk2}" unit s print || exit 1
-
-# disk3:
-#   /home
-my_prompt "${disk3}" || exit 1
-parted -s -a optimal /dev/"${disk3}" \
-  mklabel msdos \
-  unit s \
-  mkpart primary ext4 2048s 100% \
-  || exit 1
-parted -s -a optimal /dev/"${disk3}" unit s print || exit 1

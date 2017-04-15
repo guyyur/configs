@@ -5,22 +5,22 @@
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   head armv6
+#   head
+#   armv6
 ./extract_dists.sh /mnt /path/to/dists
 ./config.sh /mnt
 
 ./unmount.sh
 
-mount /usr/ports
-mount -t tmpfs -o size=... tmpfs /usr/wrkdir
+shutdown -p now
+
+mount /usr/local/db/local_pkg_repos
 
 mount -u -o rw,noatime /
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./write_ports_options.sh
-./build_ports.sh
+./add_pkgs.sh
 
 mount -u -o ro,noatime /
 
-umount /usr/wrkdir
-umount /usr/ports
+umount /usr/local/db/local_pkg_repos

@@ -5,11 +5,24 @@ odroid-c1 (router)
      |
 d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspire-es1-131 (notebook)
   /  ||||||
- |   msi-h97m-g43 (desktop), rpib (devel), cubieboard (storage), qnap-ts-112p (nas)
+ |   msi-h97m-g43 (desktop)
+ |   beaglebone-black (vcs)
+ |   orange-pi-pc (storage)
+ |   cubieboard (storage)
+ |   qnap-ts-112p (nas)
   \
-   vm-freebsd (devel), vm-freebsd-head (devel), vm-netbsd (devel), vm-openbsd (devel), vm-arch-linux (devel)
+   vm-freebsd (devel, export ports)
+     chroot-freebsd-build-ports-releng
+   vm-freebsd-head (devel)
+     chroot-freebsd-build-ports-head
+   vm-netbsd (devel)
+   vm-openbsd (devel)
+   vm-arch-linux (devel)
 
 asus-k8s-mx (devel)
 asus-p5e-vm-hdmi (devel)
-beaglebone-black (devel) / beaglebone-black-sd (devel)
+gigabyte-ga-j1800n-d2h (devel)
 orange-pi-one-dead-tf-slot (devel)
+orange-pi-one-tf-slot-occasionally-works (router)
+rpib (devel)
+beaglebone-black-sd (installation)

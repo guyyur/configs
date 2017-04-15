@@ -38,11 +38,13 @@ disk0=$1
 # disk0:
 #   /boot/custom
 #   /
+#   dump
 #   /home
 my_prompt "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
 gpart add -b 8192 -s 28M -t ms-basic-data -f x "${disk0}" || exit 1
-gpart add -a 1m -s 992M -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 4M -s 992M -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 4M -s 64M -t freebsd-swap -f x "${disk0}" || exit 1
+gpart add -a 4M -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1

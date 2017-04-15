@@ -30,6 +30,7 @@ disk0=ada0
 disk1=ada1
 disk2=ada2
 disk3=ada3
+disk4=ada4
 
 
 # -- layout --
@@ -71,3 +72,11 @@ gpart create -s GPT -f x "${disk3}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
 gpart commit "${disk3}" || exit 1
 gpart show "${disk3}" || exit 1
+
+# disk4:
+#   /chroots
+my_prompt "${disk4}" || exit 1
+gpart create -s GPT -f x "${disk4}" || exit 1
+gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk4}" || exit 1
+gpart commit "${disk4}" || exit 1
+gpart show "${disk4}" || exit 1

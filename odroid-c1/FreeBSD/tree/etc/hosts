@@ -5,4 +5,4 @@
 ::1			localhost.localdomain localhost odroid-c1.localdomain odroid-c1
 127.0.0.1		localhost.localdomain localhost odroid-c1.localdomain odroid-c1
 
-fd00:2001:db8:0::21	fbsd-files-static.localdomain fbsd-files-static
+fd00:2001:db8:0::1061	packages.localdomain packages

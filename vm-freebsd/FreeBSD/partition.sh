@@ -44,7 +44,7 @@ gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
 gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1m -b 2048 -s 9435136 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -b 2048 -s 10483712 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
@@ -59,7 +59,7 @@ gpart show "${disk1}" || exit 1
 gpart show -l "${disk1}" || exit 1
 
 # disk2:
-#   /usr/src
+#   /usr/obj
 my_prompt "${disk2}" || exit 1
 gpart create -s GPT -f x "${disk2}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
@@ -67,7 +67,7 @@ gpart commit "${disk2}" || exit 1
 gpart show "${disk2}" || exit 1
 
 # disk3:
-#   /usr/obj
+#   /home
 my_prompt "${disk3}" || exit 1
 gpart create -s GPT -f x "${disk3}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
@@ -75,7 +75,7 @@ gpart commit "${disk3}" || exit 1
 gpart show "${disk3}" || exit 1
 
 # disk4:
-#   /usr/ports
+#   /chroots
 my_prompt "${disk4}" || exit 1
 gpart create -s GPT -f x "${disk4}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk4}" || exit 1
@@ -83,7 +83,7 @@ gpart commit "${disk4}" || exit 1
 gpart show "${disk4}" || exit 1
 
 # disk5:
-#   /home
+#   /export/ports
 my_prompt "${disk5}" || exit 1
 gpart create -s GPT -f x "${disk5}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk5}" || exit 1

@@ -1,0 +1,6 @@
+
+update packages
+  mount /var/cache/pacman
+  pacman -Sc
+  pacman -Syu
+  umount /var/cache/pacman

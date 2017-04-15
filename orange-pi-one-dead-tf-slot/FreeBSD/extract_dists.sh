@@ -21,8 +21,8 @@ cd $distsdir || exit 1
 
 tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
 rm -f "${DESTDIR}"/root/.login || exit 1
+# tar -Uxp -C "${DESTDIR}" -f base-dbg.txz || exit 1
 # tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
-tar -Uxp -C "${DESTDIR}" -f kernel-MYALLWINNER.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f kernel-MYHW.txz || exit 1
 install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
-# install -c /usr/local/share/dtb/arm/sun8i-h3-orangepi-one.dtb "${DESTDIR}"/boot/custom/sun8i-h3-orangepi-one.dtb || exit 1
-install -c /usr/ports/distfiles/sun8i-h3-orangepi-one-no-mmc.dtb "${DESTDIR}"/boot/custom/sun8i-h3-orangepi-one.dtb || exit 1
+install -c /usr/local/share/dtb/arm/sun8i-h3-orangepi-one.dtb "${DESTDIR}"/boot/custom/sun8i-h3-orangepi-one.dtb || exit 1

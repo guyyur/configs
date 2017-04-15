@@ -35,25 +35,6 @@ if [ -n "${DESTDIR}" ]; then
   pwd_mkdb -d "${DESTDIR}" -L -p "${DESTDIR}"/etc/master.passwd.new || exit 1
 fi
 
-install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy || exit 1
-install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/misc || exit 1
-install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/projects || exit 1
-
-install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/config || exit 1
-
-install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
-install -d -m 700 -o guy -g users "${DESTDIR}"/var/xdg-cache/guy || exit 1
-
-install -d -m 1777 -o root -g users "${DESTDIR}"/home/public || exit 1
-install -d -m 1777 -o root -g users "${DESTDIR}"/home/shares || exit 1
-install -d -m 0700 -o guy -g users "${DESTDIR}"/home/shares/guy || exit 1
-
-install -c -m 640 -o root -g wheel tree/root/dot.profile "${DESTDIR}"/root/.profile || exit 1
-install -c -m 640 -o root -g wheel tree/root/dot.shrc "${DESTDIR}"/root/.shrc || exit 1
-install -l h "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/dot.profile "${DESTDIR}"/home/guy/.profile || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/dot.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
-
 install -c -m 644 -o root -g wheel tree/boot.cfg "${DESTDIR}"/boot.cfg || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
@@ -76,6 +57,12 @@ install -c -m 640 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/news
 
 install -c -m 600 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
 
+install -c -m 640 -o root -g wheel tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
+install -c -m 640 -o root -g wheel tree/root/.shrc "${DESTDIR}"/root/.shrc || exit 1
+install -l h "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
+install -c -m 644 -o guy -g users tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
+install -c -m 644 -o guy -g users tree/home/guy/.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
+
 install -c -m 644 -o root -g wheel tree/etc/dhcpcd.duid "${DESTDIR}"/etc/dhcpcd.duid || exit 1
 install -c -m 400 -o root -g wheel tree/etc/dhcpcd.secret "${DESTDIR}"/etc/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
@@ -84,12 +71,12 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1
-install -c -m 600 -o guy -g users tree/home/guy/dot.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
 
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_dsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ecdsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
+install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
+install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
+install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
+install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
@@ -98,13 +85,13 @@ install -c -m 600 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key |
 install -c -m 644 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key.pub || exit 1
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
 
-install -c -m 600 -o guy -g users tree/home/guy/dot.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+install -c -m 600 -o guy -g users tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
 
 install -c -m 640 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 
-install -d -m 755 -o root -g wheel "${DESTDIR}"/usr/pkg || exit 1
+install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/config || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
 
-install -c -m 640 -o root -g wheel tree/root/dot.zshrc "${DESTDIR}"/root/.zshrc || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/dot.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
+install -c -m 640 -o root -g wheel tree/root/.zshrc "${DESTDIR}"/root/.zshrc || exit 1
+install -c -m 644 -o guy -g users tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1

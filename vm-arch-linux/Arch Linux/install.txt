@@ -17,13 +17,9 @@ nano /etc/pacman.conf
     SigLevel = Never
 
 
-mount ? /var/cache/pacman
-
 ./config.sh /mnt
 ./pacman.sh
 ./write_boot_blocks.sh
-
-umount /var/cache/pacman
 
 nano /mnt/etc/pacman.conf
   DBPath = /usr/db/pacman/
@@ -42,6 +38,7 @@ systemctl poweroff
 
 
 config lxqt-notificationd
-config Parcellite
+config Terminator
 config PCManFM
+config Parcellite
 config Meld

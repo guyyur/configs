@@ -21,7 +21,8 @@ cd $distsdir || exit 1
 
 tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
 rm -f "${DESTDIR}"/root/.login || exit 1
+# tar -Uxp -C "${DESTDIR}" -f base-dbg.txz || exit 1
 # tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
-tar -Uxp -C "${DESTDIR}" -f kernel-MYBBB.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f kernel-MYHW.txz || exit 1
 install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
-install -c "${DESTDIR}"/boot/dtb/beaglebone-black.dtb "${DESTDIR}"/boot/custom/am335x-boneblack.dtb || exit 1
+install -c "${DESTDIR}"/boot/dtb/am335x-boneblack.dtb "${DESTDIR}"/boot/custom/am335x-boneblack.dtb || exit 1

@@ -37,20 +37,14 @@ disk0=$1
 # -- layout --
 # disk0:
 #   /boot/custom
-#   freebsd label
-#     /
-#     /home
+#   /
+#   dump
+#   /home
 my_prompt "${disk0}" || exit 1
-
-gpart create -s MBR -f x "${disk0}" || exit 1
-gpart add -a 1m -b 8192 -s 28M -t '!4' -f x "${disk0}" || exit 1
-gpart set -a active -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1m -t freebsd -f x "${disk0}" || exit 1
+gpart create -s GPT -f x "${disk0}" || exit 1
+gpart add -b 8192 -s 28M -t ms-basic-data -f x "${disk0}" || exit 1
+gpart add -a 4M -s 992M -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 4M -s 64M -t freebsd-swap -f x "${disk0}" || exit 1
+gpart add -a 4M -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
-
-gpart create -s BSD -f x "${disk0}"s2 || exit 1
-gpart add -s 608M -t freebsd-ufs -f x "${disk0}"s2 || exit 1
-gpart add -i 4 -t freebsd-ufs -f x "${disk0}"s2 || exit 1
-gpart commit "${disk0}"s2 || exit 1
-gpart show "${disk0}"s2 || exit 1

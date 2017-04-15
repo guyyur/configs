@@ -4,14 +4,16 @@
 ./newfs.sh dev
 ./mount_and_mkdir.sh dev
 
-#   head armv6
+#   head
+#   armv6
 ./extract_dists.sh /mnt /path/to/dists
 ./config.sh /mnt
 
 ./unmount.sh
 
 mount /usr/ports
-mount -t tmpfs -o size=... tmpfs /usr/wrkdir
+
+mount /usr/local/db/local_pkg_repos
 
 mount -u -o rw,noatime /
 
@@ -21,5 +23,6 @@ mount -u -o rw,noatime /
 
 mount -u -o ro,noatime /
 
-umount /usr/wrkdir
+umount /usr/local/db/local_pkg_repos
+
 umount /usr/ports
