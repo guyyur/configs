@@ -8,7 +8,7 @@ Gigabyte GA-J1800N-D2H + Transcend TS128GSSD370 SSD -> gigabyte-ga-j1800n-d2h (d
 Hardkernel ODROID C1+ Board + Kingston SDC10G2/8GB microSDHC Card -> odroid-c1 (router)
 MSI H97M-G43 Motherboard + Samsung MZ-7TE120BW SSD + Western Digital WD1003FZEX-00MK2A0 HDD + Western Digital WD60EZRZ-00GZ5B1 HDD -> msi-h97m-g43 (desktop)
 Raspberry Pi Model B Board + SanDisk SDSDH-2048-902 SD Card -> rpib (devel)
-Xunlong Orange Pi One Board + SanDisk SDCZ4-1024 USB Flash Drive -> orange-pi-one-dead-tf-slot (devel)
+Xunlong Orange Pi One Board + SanDisk SDCZ4-1024 USB Flash Drive -> orange-pi-one-tf-slot-dead (devel)
 Xunlong Orange Pi One Board + SanDisk SDSDQM-008G-B35 microSDHC Card -> orange-pi-one-tf-slot-occasionally-works (router)
 Xunlong Orange Pi PC Board + SanDisk SDSQUNB-016G-GN3MN microSDHC Card -> orange-pi-pc (storage)
 
@@ -18,10 +18,10 @@ D-Link DGS-1008A/B1 Switch -> d-link-dgs-1008a-b1 (switch)
 Edimax EW-7416APn V2 Access Point -> edimax-ew7416apn (access point)
 TP-Link TD-W9970 VDSL Wireless Router -> tp-link-td-w9970 (vdsl modem)
 
-VirtualBox VM - FreeBSD (64-bit) -> vm-freebsd (devel)
+VirtualBox VM - FreeBSD (64-bit) -> vm-freebsd-releng (devel)
 VirtualBox VM - FreeBSD (64-bit) -> vm-freebsd-head (devel)
 VirtualBox VM - NetBSD (32-bit) -> vm-netbsd (devel)
 VirtualBox VM - OpenBSD (64-bit) -> vm-openbsd (devel)
 VirtualBox VM - Arch Linux (64-bit) -> vm-arch-linux (devel)
 
-SanDisk SDSDQM-002G-B35 microSD Card -> beaglebone-black-sd
+SanDisk SDSDQM-002G-B35 microSD Card -> sdcard-for-beaglebone-black

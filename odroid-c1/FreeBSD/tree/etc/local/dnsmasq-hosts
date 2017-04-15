@@ -1,7 +1,7 @@
 # replace edimax-ew7416apn with real hostnames
-# replace odroid-c1, bbb, cubieboard, orange-pi-one-tf-slot-occasionally-works, rpib, qnap-ts-112p, orange-pi-pc, orange-pi-one-dead-tf-slot with real hostnames
-# replace beaglebone-black-sd with real hostnames
-# replace vm-freebsd, vm-freebsd-head, vm-netbsd, vm-openbsd, vm-arch-linux with real hostnames
+# replace odroid-c1, bbb, cubieboard, orange-pi-one-tf-slot-occasionally-works, rpib, qnap-ts-112p, orange-pi-pc, orange-pi-one-tf-slot-dead with real hostnames
+# replace sdcard-for-beaglebone-black with real hostnames
+# replace vm-freebsd-releng, vm-freebsd-head, vm-netbsd, vm-openbsd, vm-arch-linux with real hostnames
 # replace fd00:2001:db8:0::1NNN with real ULA prefix+EUI-64
 # replace fd00:2001:db8:0::20NN with real ULA
 
@@ -14,11 +14,11 @@ fd00:2001:db8:0::1031			orange-pi-one-tf-slot-occasionally-works.localdomain ora
 fd00:2001:db8:0::1041			rpib.localdomain rpib
 fd00:2001:db8:0::1051			qnap-ts-112p.localdomain qnap-ts-112p
 fd00:2001:db8:0::1061			orange-pi-pc.localdomain orange-pi-pc
-fd00:2001:db8:0::1071			orange-pi-one-dead-tf-slot.localdomain orange-pi-one-dead-tf-slot
+fd00:2001:db8:0::1071			orange-pi-one-tf-slot-dead.localdomain orange-pi-one-tf-slot-dead
 
-fd00:2001:db8:0::2001			beaglebone-black-sd.localdomain beaglebone-black-sd
+fd00:2001:db8:0::2001			sdcard-for-beaglebone-black.localdomain sdcard-for-beaglebone-black
 
-fd00:2001:db8:0::1101			vm-freebsd.localdomain vm-freebsd
+fd00:2001:db8:0::1101			vm-freebsd-releng.localdomain vm-freebsd-releng
 fd00:2001:db8:0::1102			vm-freebsd-head.localdomain vm-freebsd-head
 fd00:2001:db8:0::1103			vm-netbsd.localdomain vm-netbsd
 fd00:2001:db8:0::1104			vm-openbsd.localdomain vm-openbsd

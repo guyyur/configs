@@ -11,7 +11,7 @@ d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspi
  |   cubieboard (storage)
  |   qnap-ts-112p (nas)
   \
-   vm-freebsd (devel, export ports)
+   vm-freebsd-releng (devel, export ports)
      chroot-freebsd-build-ports-releng
    vm-freebsd-head (devel)
      chroot-freebsd-build-ports-head
@@ -22,7 +22,7 @@ d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspi
 asus-k8s-mx (devel)
 asus-p5e-vm-hdmi (devel)
 gigabyte-ga-j1800n-d2h (devel)
-orange-pi-one-dead-tf-slot (devel)
+orange-pi-one-tf-slot-dead (devel)
 orange-pi-one-tf-slot-occasionally-works (router)
 rpib (devel)
-beaglebone-black-sd (installation)
+sdcard-for-beaglebone-black (installation)
