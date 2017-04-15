@@ -12,9 +12,9 @@ d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspi
  |   qnap-ts-112p (nas)
   \
    vm-freebsd-releng (devel, export ports)
-     chroot-freebsd-build-ports-releng
+     chroot-fbsd-build-ports-releng-amd64
    vm-freebsd-head (devel)
-     chroot-freebsd-build-ports-head
+     chroot-fbsd-build-ports-head-amd64
    vm-netbsd (devel)
    vm-openbsd (devel)
    vm-arch-linux (devel)

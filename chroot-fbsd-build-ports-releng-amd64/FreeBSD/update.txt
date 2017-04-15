@@ -1,0 +1,17 @@
+
+update ports / packages
+  ./remount.sh
+  
+  cp -f /var/run/resolv.conf /mnt/var/run/resolv.conf
+  
+  chroot /mnt su -
+  PS1="[chroot@$(hostname -s)]# "
+  
+  portmaster -gB ...
+  portmaster -agB
+  portmaster --clean-packages
+  pkg repo $(cd /usr/ports && make -V PACKAGES)
+  
+  exit
+  
+  ./unmount.sh

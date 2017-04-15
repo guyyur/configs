@@ -1,0 +1,26 @@
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./mount_and_mkdir.sh
+
+#   releng/11.0
+#   amd64
+./extract_dists.sh /mnt /path/to/dists
+./config.sh /mnt
+
+./unmount.sh
+
+./remount.sh
+
+cp -f /var/run/resolv.conf /mnt/var/run/resolv.conf
+
+chroot /mnt su -
+/etc/rc.d/ldconfig restart
+PS1="[chroot@$(hostname -s)]# "
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./write_ports_options.sh
+./build_ports.sh
+
+exit
+
+./unmount.sh

@@ -1,0 +1,5 @@
+
+PORT_DBDIR=/usr/local/db/ports
+PKG_DBDIR=/usr/local/db/pkg
+
+PACKAGES=$(cd /usr/ports && make -V PACKAGES 2>/dev/null)
