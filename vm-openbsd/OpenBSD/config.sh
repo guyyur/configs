@@ -34,7 +34,7 @@ install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
-ln -sfh /var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
+ln -sfh ../var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 chown -h root:wheel "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1

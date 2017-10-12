@@ -1,0 +1,27 @@
+# replace hostnames with real hostnames
+# replace fd00:2001:db8:0::1NNN with real ULA prefix+EUI-64
+# replace fd00:2001:db8:0::20NN with real ULA
+
+192.168.1.4				edimax-ew7416apn.localdomain edimax-ew7416apn
+
+fd00:2001:db8:0::1001			beaglebone-black.localdomain beaglebone-black
+fd00:2001:db8:0::1011			cubieboard.localdomain cubieboard
+fd00:2001:db8:0::1021			nanopi-neo.localdomain nanopi-neo
+fd00:2001:db8:0::1031			odroid-c1.localdomain odroid-c1
+fd00:2001:db8:0::1041			rpib.localdomain rpib
+fd00:2001:db8:0::1051			orange-pi-one-tf-slot-dead.localdomain orange-pi-one-tf-slot-dead
+fd00:2001:db8:0::1061			orange-pi-one.localdomain orange-pi-one
+fd00:2001:db8:0::1071			orange-pi-pc.localdomain orange-pi-pc
+fd00:2001:db8:0::1081			qnap-ts-112p.localdomain qnap-ts-112p
+
+fd00:2001:db8:0::2001			sdcard-for-beaglebone-black.localdomain sdcard-for-beaglebone-black
+
+fd00:2001:db8:0::1101			vm-freebsd-releng.localdomain vm-freebsd-releng
+fd00:2001:db8:0::1102			vm-freebsd-head.localdomain vm-freebsd-head
+fd00:2001:db8:0::1103			vm-netbsd.localdomain vm-netbsd
+fd00:2001:db8:0::1104			vm-openbsd.localdomain vm-openbsd
+fd00:2001:db8:0::1105			vm-arch-linux.localdomain vm-arch-linux
+
+fd00:2001:db8:0::1061			packages.localdomain packages
+fd00:2001:db8:0::1061			fbsd-ports.localdomain fbsd-ports
+fd00:2001:db8:0::1061			vcs.localdomain vcs

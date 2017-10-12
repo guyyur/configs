@@ -53,7 +53,7 @@ EOF
 }
 
 
-# -- archivers/libarchive OPTIONS --
+# -- OPTIONS --
 init_port_options "archivers_libarchive" "libarchive" "3.2.0_1,1"
 add_port_option "[x] LZ4"
 add_port_option "[x] LZO"
@@ -61,14 +61,11 @@ add_port_option "[ ] NETTLE"
 create_port_options
 
 
-# -- archivers/unrar OPTIONS --
-init_port_options "archivers_unrar" "unrar" "4.20_1,5"
-add_port_option "[ ] DOCS"
+init_port_options "archivers_unrar" "unrar" "5.50b4,5"
 add_port_option "[x] OPENSSL_AES"
 create_port_options
 
 
-# -- archivers/unzip OPTIONS --
 init_port_options "archivers_unzip" "unzip" "6.0_2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] ICONV"
@@ -78,13 +75,11 @@ add_port_option "( ) RUSSIAN"
 create_port_options
 
 
-# -- audio/alsa-lib OPTIONS --
 init_port_options "audio_alsa-lib" "alsa-lib" "1.0.27.2"
 add_port_option "[ ] PYTHON"
 create_port_options
 
 
-# -- audio/alsa-plugins OPTIONS --
 init_port_options "audio_alsa-plugins" "alsa-plugins" "1.0.27_2"
 add_port_option "[ ] FFMPEG"
 add_port_option "[ ] JACK"
@@ -98,7 +93,6 @@ add_port_option "[ ] VERBOSE"
 create_port_options
 
 
-# -- audio/audacity OPTIONS --
 init_port_options "audio_audacity" "audacity" "2.1.2_5"
 add_port_option "[ ] ALSA"
 add_port_option "[ ] DEBUG"
@@ -122,20 +116,24 @@ add_port_option "[x] VST"
 create_port_options
 
 
-# -- audio/libcanberra-gtk3 OPTIONS --
+init_port_options "audio_liba52" "liba52" "0.7.4_3"
+add_port_option "[ ] DJBFFT"
+add_port_option "[ ] DOCS"
+add_port_option "[ ] OPTIMIZED_CFLAGS"
+create_port_options
+
+
 init_port_options "audio_libcanberra-gtk3" "libcanberra-gtk3" "0.30_4"
 add_port_option "[ ] GSTREAMER"
 add_port_option "[ ] PULSEAUDIO"
 create_port_options
 
 
-# -- audio/libmad OPTIONS --
 init_port_options "audio_libmad" "libmad" "0.15.1b_6"
 add_port_option "[ ] SPEED"
 create_port_options
 
 
-# -- audio/libsidplayfp OPTIONS --
 init_port_options "audio_libsidplayfp" "libsidplayfp" "1.8.6"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
@@ -146,7 +144,6 @@ add_port_option "[ ] MMX"
 create_port_options
 
 
-# -- audio/libsndfile OPTIONS --
 init_port_options "audio_libsndfile" "libsndfile" "1.0.27"
 add_port_option "[ ] CPU_CLIP"
 add_port_option "[ ] DOCS"
@@ -154,7 +151,6 @@ add_port_option "[x] EXTERNAL"
 create_port_options
 
 
-# -- audio/libsoxr OPTIONS --
 init_port_options "audio_libsoxr" "libsoxr" "0.1.2.20160529_2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
@@ -165,25 +161,28 @@ add_port_option "( ) PFFFT"
 create_port_options
 
 
-# -- audio/openal-soft OPTIONS --
-init_port_options "audio_openal-soft" "openal-soft" "1.17.2_2"
+init_port_options "audio_mpg123" "mpg123" "1.25.6"
+add_port_option "[ ] SNDIO"
+create_port_options
+
+
+init_port_options "audio_openal-soft" "openal-soft" "1.18.0_1"
 add_port_option "[ ] CONFIG"
 add_port_option "[ ] FLUIDSYNTH"
 add_port_option "[ ] JACK"
+add_port_option "[x] OSS"
 add_port_option "[ ] PORTAUDIO"
 add_port_option "[ ] PULSEAUDIO"
 add_port_option "[ ] SNDIO"
 create_port_options
 
 
-# -- audio/opusfile OPTIONS --
 init_port_options "audio_opusfile" "opusfile" "0.8"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] DOXYGEN"
 create_port_options
 
 
-# -- audio/sdl_sound OPTIONS --
 init_port_options "audio_sdl_sound" "sdl_sound" "1.0.3_13"
 add_port_option "[x] FLAC"
 add_port_option "[x] MIDI"
@@ -196,7 +195,6 @@ add_port_option "[x] VORBIS"
 create_port_options
 
 
-# -- audio/soundtouch OPTIONS --
 init_port_options "audio_soundtouch" "soundtouch" "1.9.0_1"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] INTEGER_SAMPLES"
@@ -205,26 +203,22 @@ add_port_option "[x] SSE"
 create_port_options
 
 
-# -- audio/taglib OPTIONS --
 init_port_options "audio_taglib" "taglib" "1.10"
 add_port_option "[ ] RCC"
 create_port_options
 
 
-# -- audio/timidity OPTIONS --
 init_port_options "audio_timidity" "timidity" "0.2i_1"
 add_port_option "(*) GOEMON"
 add_port_option "( ) GUSPAT"
 create_port_options
 
 
-# -- audio/wavpack OPTIONS --
 init_port_options "audio_wavpack" "wavpack" "5.1.0"
 add_port_option "[x] ASM"
 create_port_options
 
 
-# -- audio/wildmidi OPTIONS --
 init_port_options "audio_wildmidi" "wildmidi" "0.4.0"
 add_port_option "[x] PLAYER"
 add_port_option "[ ] PLAYERSTATIC"
@@ -235,7 +229,6 @@ add_port_option "( ) OSS"
 create_port_options
 
 
-# -- benchmarks/iperf OPTIONS --
 init_port_options "benchmarks_iperf" "iperf" "2.0.5"
 add_port_option "[ ] DOCS"
 add_port_option "[x] IPV6"
@@ -243,7 +236,6 @@ add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- converters/libiconv OPTIONS --
 init_port_options "converters_libiconv" "libiconv" "1.14_3"
 add_port_option "[ ] DOCS"
 add_port_option "[x] ENCODINGS"
@@ -251,20 +243,17 @@ add_port_option "[ ] PATCHES"
 create_port_options
 
 
-# -- databases/leveldb OPTIONS --
 init_port_options "databases_leveldb" "leveldb" "1.20_1"
 add_port_option "[ ] GPERFTOOLS"
 add_port_option "[x] SNAPPY"
 create_port_options
 
 
-# -- databases/ldb OPTIONS --
 init_port_options "databases_ldb" "ldb" "1.1.17"
 add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- databases/sqlite3 OPTIONS --
 init_port_options "databases_sqlite3" "sqlite3" "3.17.0"
 add_port_option "[ ] ARMOR"
 add_port_option "[x] DBSTAT"
@@ -306,20 +295,17 @@ add_port_option "( ) STAT4"
 create_port_options
 
 
-# -- databases/tdb OPTIONS --
 init_port_options "databases_tdb" "tdb" "1.2.13,1"
 add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- deskutils/parcellite OPTIONS --
 init_port_options "deskutils_parcellite" "parcellite" "1.1.7,1"
 add_port_option "[ ] DOCS"
 add_port_option "[x] NLS"
 create_port_options
 
 
-# -- deskutils/spice-gtk OPTIONS --
 init_port_options "deskutils_spice-gtk" "spice-gtk" "0.33"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] NLS"
@@ -330,15 +316,15 @@ add_port_option "( ) NOAUDIO"
 create_port_options
 
 
-# -- devel/apr1 OPTIONS --
-init_port_options "devel_apr1" "apr" "1.5.2.1.5.4_2"
-add_port_option "[x] IPV6"
+init_port_options "devel_apr1" "apr" "1.6.2.1.6.0"
 add_port_option "[x] DEVRANDOM"
+add_port_option "[x] IPV6"
 add_port_option "[ ] BDB"
 add_port_option "[ ] GDBM"
 add_port_option "[ ] LDAP"
 add_port_option "[ ] MYSQL"
 add_port_option "[ ] NDBM"
+add_port_option "[ ] ODBC"
 add_port_option "[ ] PGSQL"
 add_port_option "[ ] SQLITE"
 add_port_option "[ ] FREETDS"
@@ -347,14 +333,12 @@ add_port_option "( ) NSS"
 create_port_options
 
 
-# -- devel/arm-none-eabi-binutils OPTIONS --
 init_port_options "devel_arm-none-eabi-binutils" "arm-none-eabi-binutils" "2.27_5,1"
 add_port_option "[ ] RELRO"
 add_port_option "[ ] STATIC"
 create_port_options
 
 
-# -- devel/binutils OPTIONS --
 init_port_options "devel_binutils" "binutils" "2.27_5,1"
 add_port_option "[ ] NLS"
 add_port_option "[ ] RELRO"
@@ -362,21 +346,18 @@ add_port_option "[ ] STATIC"
 create_port_options
 
 
-# -- devel/boehm-gc OPTIONS --
 init_port_options "devel_boehm-gc" "boehm-gc" "7.6.0"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
 create_port_options
 
 
-# -- devel/boehm-gc-threaded OPTIONS --
 init_port_options "devel_boehm-gc-threaded" "boehm-gc-threaded" "7.6.0_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] PARALLEL_MARK"
 create_port_options
 
 
-# -- devel/boost-libs OPTIONS --
 init_port_options "devel_boost-libs" "boost-libs" "1.63.0_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] OPTIMIZED_CFLAGS"
@@ -385,50 +366,42 @@ add_port_option "[x] ICU"
 create_port_options
 
 
-# -- devel/cargo OPTIONS --
 init_port_options "devel_cargo" "cargo" "0.15.0_2"
 add_port_option "[x] BOOTSTRAP"
 create_port_options
 
 
-# -- devel/cmake OPTIONS --
 init_port_options "devel_cmake" "cmake" "3.6.2"
 add_port_option "[ ] DOCS"
 add_port_option "[x] MANPAGES"
 create_port_options
 
 
-# -- devel/cppunit OPTIONS --
 init_port_options "devel_cppunit" "cppunit" "1.13.2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] DOXYGEN"
 create_port_options
 
 
-# -- devel/cscope OPTIONS --
 init_port_options "devel_cscope" "cscope" "15.8a"
 add_port_option "[ ] XCSCOPE"
 create_port_options
 
 
-# -- devel/dbus OPTIONS --
 init_port_options "devel_dbus" "dbus" "1.8.0"
 add_port_option "[ ] MANPAGES"
 add_port_option "[x] X11"
 create_port_options
 
 
-# -- devel/gconf2 OPTIONS --
 init_port_options "devel_gconf2" "gconf2" "3.2.6_4"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] LDAP"
 create_port_options
 
 
-# -- devel/gdb OPTIONS --
-init_port_options "devel_gdb" "gdb" "7.11.1"
+init_port_options "devel_gdb" "gdb" "8.0_3"
 add_port_option "[ ] DEBUG"
-add_port_option "[ ] EXPAT"
 add_port_option "[x] GDB_LINK"
 add_port_option "[ ] GUILE"
 add_port_option "[x] KGDB"
@@ -440,7 +413,6 @@ add_port_option "(*) PORT_READLINE"
 create_port_options
 
 
-# -- devel/geany OPTIONS --
 init_port_options "devel_geany" "geany" "1.23.1_2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] NLS"
@@ -448,14 +420,12 @@ add_port_option "[ ] VTE"
 create_port_options
 
 
-# -- devel/gettext-tools OPTIONS --
 init_port_options "devel_gettext-tools" "gettext-tools" "0.19.5.1"
 add_port_option "[ ] DOCS"
 add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- devel/git OPTIONS --
 init_port_options "devel_git" "git" "2.11.0_3"
 add_port_option "[ ] CONTRIB"
 add_port_option "[x] CURL"
@@ -474,7 +444,6 @@ add_port_option "[ ] SVN"
 create_port_options
 
 
-# -- devel/glib20 OPTIONS --
 init_port_options "devel_glib20" "glib" "2.42.0"
 add_port_option "[ ] COLLATION_FIX"
 add_port_option "[ ] DEBUG"
@@ -482,38 +451,32 @@ add_port_option "[ ] GDB"
 create_port_options
 
 
-# -- devel/icu OPTIONS --
 init_port_options "devel_icu" "icu" "50.1.2"
 add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- devel/libdevq OPTIONS --
 init_port_options "devel_libdevq" "libdevq" "0.0.2"
 add_port_option "[ ] PROGRAMS"
 create_port_options
 
 
-# -- devel/libevent OPTIONS --
 init_port_options "devel_libevent" "libevent" "2.1.8"
 add_port_option "[x] OPENSSL"
 add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- devel/libffi OPTIONS --
 init_port_options "devel_libffi" "libffi" "3.0.13"
 add_port_option "[ ] TESTS"
 create_port_options
 
 
-# -- devel/libglade2 OPTIONS --
 init_port_options "devel_libglade2" "libglade2" "2.6.4_5"
 add_port_option "[x] PYTHON"
 create_port_options
 
 
-# -- devel/libvirt OPTIONS --
 init_port_options "devel_libvirt" "libvirt" "3.2.0"
 add_port_option "[x] BHYVE"
 add_port_option "[ ] DOCS"
@@ -528,13 +491,11 @@ add_port_option "[ ] ZFS"
 create_port_options
 
 
-# -- devel/libvirt-glib OPTIONS --
 init_port_options "devel_libvirt-glib" "libvirt-glib" "1.0.0"
 add_port_option "[ ] VALA"
 create_port_options
 
 
-# -- devel/llvm40 OPTIONS --
 init_port_options "devel_llvm40" "llvm40" "4.0.0_1"
 add_port_option "[x] CLANG"
 add_port_option "[x] COMPILER_RT"
@@ -548,14 +509,12 @@ add_port_option "[x] OPENMP"
 create_port_options
 
 
-# -- devel/m4 OPTIONS --
 init_port_options "devel_m4" "m4" "1.4.17_1,1"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] LIBSIGSEGV"
 create_port_options
 
 
-# -- devel/mercurial OPTIONS --
 init_port_options "devel_mercurial" "mercurial" "3.9.1"
 add_port_option "[ ] CA_BUNDLE"
 add_port_option "[x] DATA"
@@ -565,21 +524,18 @@ add_port_option "[ ] NLS"
 create_port_options
 
 
-# -- devel/nasm OPTIONS --
 init_port_options "devel_nasm" "nasm" "2.11.05,1"
 add_port_option "[ ] DOCS"
 add_port_option "[x] RDOFF"
 create_port_options
 
 
-# -- devel/nspr OPTIONS --
 init_port_options "devel_nspr" "nspr" "4.10.10_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] TEST"
 create_port_options
 
 
-# -- devel/pcre OPTIONS --
 init_port_options "devel_pcre" "pcre" "8.39"
 add_port_option "[ ] DOCS"
 add_port_option "[x] MAN3"
@@ -589,7 +545,6 @@ add_port_option "( ) READLINE"
 create_port_options
 
 
-# -- devel/pcre2 OPTIONS --
 init_port_options "devel_pcre2" "pcre2" "10.21"
 add_port_option "[ ] DOCS"
 add_port_option "[x] STACK_RECURSION"
@@ -598,27 +553,23 @@ add_port_option "( ) READLINE"
 create_port_options
 
 
-# -- devel/pydbus-common OPTIONS --
 init_port_options "devel_pydbus-common" "pydbus-common" "1.2.0_1"
 add_port_option "[ ] HTMLDOCS"
 create_port_options
 
 
-# -- devel/py-Jinja2 OPTIONS --
 init_port_options "devel_py-Jinja2" "py27-Jinja2" "2.7.3"
 add_port_option "[x] BABEL"
 add_port_option "[ ] EXAMPLES"
 create_port_options
 
 
-# -- devel/readline OPTIONS --
 init_port_options "devel_readline" "readline" "6.3.6_1"
 add_port_option "[ ] DOCS"
 add_port_option "[x] TERMCAP"
 create_port_options
 
 
-# -- devel/sdl12 OPTIONS --
 init_port_options "devel_sdl12" "sdl" "1.2.15_7,2"
 add_port_option "[ ] AALIB"
 add_port_option "[ ] DOCS"
@@ -634,16 +585,32 @@ add_port_option "[x] X11"
 create_port_options
 
 
-# -- devel/sdl20 OPTIONS --
-init_port_options "devel_sdl20" "sdl2" "2.0.5"
+init_port_options "devel_sdl12" "sdl" "1.2.15_9,2"
+add_port_option "[ ] AALIB"
+add_port_option "[ ] DOCS"
+add_port_option "[ ] EXAMPLES"
+add_port_option "[x] OPENGL"
+add_port_option "[ ] SVGALIB"
+add_port_option "[x] VGL"
+add_port_option "[x] X11"
+add_port_option "[ ] ESOUND"
+add_port_option "[ ] NAS"
+add_port_option "[x] OSS"
+add_port_option "[ ] PULSEAUDIO"
+add_port_option "[ ] SNDIO"
+create_port_options
+
+init_port_options "devel_sdl20" "sdl2" "2.0.6"
 add_port_option "[ ] ALSA"
 add_port_option "[x] ASM"
 add_port_option "[x] DLOPEN"
 add_port_option "[ ] ESOUND"
+add_port_option "[ ] JACK"
 add_port_option "[ ] NAS"
 add_port_option "[x] OSS"
 add_port_option "[x] PTHREADS"
 add_port_option "[ ] PULSEAUDIO"
+add_port_option "[ ] SAMPLERATE"
 add_port_option "[x] SDL_ATOMIC"
 add_port_option "[x] SDL_AUDIO"
 add_port_option "[x] SDL_CPUINFO"
@@ -658,12 +625,12 @@ add_port_option "[x] SDL_THREADS"
 add_port_option "[x] SDL_TIMERS"
 add_port_option "[x] SDL_VIDEO"
 add_port_option "[ ] SNDIO"
+add_port_option "[x] VIDEO_KMSDRM"
 add_port_option "[x] VIDEO_OPENGL"
 add_port_option "[x] VIDEO_X11"
 create_port_options
 
 
-# -- devel/subversion OPTIONS --
 init_port_options "devel_subversion" "subversion" "1.9.5"
 add_port_option "[ ] BDB"
 add_port_option "[ ] DOCS"
@@ -679,7 +646,6 @@ add_port_option "[ ] TOOLS"
 create_port_options
 
 
-# -- devel/swig13 OPTIONS --
 init_port_options "devel_swig13" "swig13" "1.3.40_1"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
@@ -687,19 +653,16 @@ add_port_option "[ ] LUA"
 create_port_options
 
 
-# -- devel/talloc OPTIONS --
 init_port_options "devel_talloc" "talloc" "2.1.0"
 add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- devel/tevent OPTIONS --
 init_port_options "devel_tevent" "tevent" "0.9.21"
 add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- dns/dnsmasq OPTIONS --
 init_port_options "dns_dnsmasq" "dnsmasq" "2.76,1"
 add_port_option "[ ] DBUS"
 add_port_option "[ ] DNSSEC"
@@ -712,15 +675,12 @@ add_port_option "( ) NLS"
 create_port_options
 
 
-# -- dns/py-dnspython OPTIONS --
-init_port_options "dns_py-dnspython" "py27-dnspython" "1.12.0"
-add_port_option "[ ] DOCS"
+init_port_options "dns_py-dnspython" "py27-dnspython" "1.15.0"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] PYCRYPTO"
 create_port_options
 
 
-# -- editors/libreoffice OPTIONS --
 init_port_options "editors_libreoffice" "libreoffice" "5.2.5_5"
 add_port_option "[x] CUPS"
 add_port_option "[ ] GNOME"
@@ -738,18 +698,16 @@ add_port_option "[ ] WEBDAV"
 create_port_options
 
 
-# -- emulators/dosbox OPTIONS --
 init_port_options "emulators_dosbox" "dosbox" "0.74_11"
 add_port_option "( ) DEBUGGER_ENABLE"
 add_port_option "( ) DEBUGGER_HEAVY"
 create_port_options
 
 
-# -- emulators/qemu OPTIONS --
-init_port_options "emulators_qemu" "qemu" "2.6.1_1"
+init_port_options "emulators_qemu" "qemu" "2.9.0"
 add_port_option "[x] CDROM_DMA"
 add_port_option "[x] CURL"
-add_port_option "[ ] DOCS"
+add_port_option "[x] DOCS"
 add_port_option "[x] GNS3"
 add_port_option "[ ] GNUTLS"
 add_port_option "[x] GTK2"
@@ -762,12 +720,12 @@ add_port_option "[ ] SAMBA"
 add_port_option "[ ] SASL"
 add_port_option "[ ] STATIC_LINK"
 add_port_option "[ ] USBREDIR"
+add_port_option "[x] VDE"
 add_port_option "[x] X11"
 add_port_option "[ ] X86_TARGETS"
 create_port_options
 
 
-# -- emulators/virtualbox-ose-additions OPTIONS --
 init_port_options "emulators_virtualbox-ose-additions" "virtualbox-ose-additions" "5.0.26"
 add_port_option "[x] DBUS"
 add_port_option "[ ] DEBUG"
@@ -776,7 +734,6 @@ add_port_option "[x] X11"
 create_port_options
 
 
-# -- ftp/curl OPTIONS --
 init_port_options "ftp_curl" "curl" "7.51.0_1"
 add_port_option "[x] CA_BUNDLE"
 add_port_option "[x] COOKIES"
@@ -810,10 +767,11 @@ add_port_option "( ) WOLFSSL"
 create_port_options
 
 
-# -- ftp/wget OPTIONS --
-init_port_options "ftp_wget" "wget" "1.18"
+init_port_options "ftp_wget" "wget" "1.19.1_1"
+add_port_option "[ ] DOCS"
 add_port_option "[ ] IDN"
 add_port_option "[x] IPV6"
+add_port_option "[x] MANPAGES"
 add_port_option "[ ] METALINK"
 add_port_option "[ ] NLS"
 add_port_option "[ ] PCRE"
@@ -823,7 +781,6 @@ add_port_option "(*) OPENSSL"
 create_port_options
 
 
-# -- graphics/blender OPTIONS --
 init_port_options "graphics_blender" "blender" "2.78c_1"
 add_port_option "[x] AVI"
 add_port_option "[x] BULLET"
@@ -870,7 +827,6 @@ add_port_option "[x] XINPUT"
 create_port_options
 
 
-# -- graphics/cairo OPTIONS --
 init_port_options "graphics_cairo" "cairo" "1.10.2_5,2"
 add_port_option "[x] GLIB"
 add_port_option "[ ] OPENGL"
@@ -879,14 +835,12 @@ add_port_option "[x] XCB"
 create_port_options
 
 
-# -- graphics/colord OPTIONS --
 init_port_options "graphics_colord" "colord" "1.2.11"
 add_port_option "[ ] MANPAGES"
 add_port_option "[ ] PPROFILES"
 create_port_options
 
 
-# -- graphics/dri OPTIONS --
 init_port_options "graphics_dri" "dri" "17.0.3,2"
 add_port_option "[x] TEXTURE"
 add_port_option "[ ] VAAPI"
@@ -894,14 +848,12 @@ add_port_option "[ ] VDPAU"
 create_port_options
 
 
-# -- graphics/epdfview OPTIONS --
 init_port_options "graphics_epdfview" "epdfview" "0.1.8_4"
 add_port_option "[ ] CUPS"
 add_port_option "[ ] NLS"
 create_port_options
 
 
-# -- graphics/gdk-pixbuf2 OPTIONS --
 init_port_options "graphics_gdk-pixbuf2" "gdk-pixbuf2" "2.31.5"
 add_port_option "[x] JASPER"
 add_port_option "[x] JPEG"
@@ -911,7 +863,6 @@ add_port_option "[x] TIFF"
 create_port_options
 
 
-# -- graphics/gegl OPTIONS --
 init_port_options "graphics_gegl" "gegl" "0.2.0_19"
 add_port_option "[x] CAIRO"
 add_port_option "[ ] DOCS"
@@ -936,7 +887,6 @@ add_port_option "[x] V4L"
 create_port_options
 
 
-# -- graphics/giflib OPTIONS --
 init_port_options "graphics_giflib" "giflib-nox11" "4.2.3"
 add_port_option "[ ] DOCBOOK"
 add_port_option "[ ] DOCS"
@@ -944,7 +894,6 @@ add_port_option "[ ] X11"
 create_port_options
 
 
-# -- graphics/gimp OPTIONS --
 init_port_options "graphics_gimp" "gimp" "2.8.18,2"
 add_port_option "[ ] HELP"
 add_port_option "[ ] PRINT"
@@ -952,7 +901,6 @@ add_port_option "[ ] PYTHON"
 create_port_options
 
 
-# -- graphics/gimp-app OPTIONS --
 init_port_options "graphics_gimp-app" "gimp-app" "2.8.18_2,2"
 add_port_option "[ ] AA"
 add_port_option "[x] DBUS"
@@ -969,7 +917,6 @@ add_port_option "[ ] WMF"
 create_port_options
 
 
-# -- graphics/ImageMagick OPTIONS --
 init_port_options "graphics_ImageMagick" "ImageMagick" "6.9.1.1,1"
 add_port_option "[x] BZIP2"
 add_port_option "[ ] DJVU"
@@ -1005,7 +952,6 @@ add_port_option "[ ] HDRI"
 create_port_options
 
 
-# -- graphics/imlib2 OPTIONS --
 init_port_options "graphics_imlib2" "imlib2" "1.4.5_2,2"
 add_port_option "[ ] GIF"
 add_port_option "[ ] ID3"
@@ -1016,7 +962,6 @@ add_port_option "[x] X11"
 create_port_options
 
 
-# -- graphics/inkscape OPTIONS --
 init_port_options "graphics_inkscape" "inkscape" "0.92.0"
 add_port_option "[ ] CDR"
 add_port_option "[ ] DBUS"
@@ -1026,7 +971,6 @@ add_port_option "[ ] WPG"
 create_port_options
 
 
-# -- graphics/jasper OPTIONS --
 init_port_options "graphics_jasper" "jasper" "1.900.1_14"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] OPENGL"
@@ -1034,7 +978,6 @@ add_port_option "[ ] UUID"
 create_port_options
 
 
-# -- graphics/lcms OPTIONS --
 init_port_options "graphics_lcms" "lcms" "1.19_6,1"
 add_port_option "[ ] DOCS"
 add_port_option "[x] JPEGICC"
@@ -1042,7 +985,6 @@ add_port_option "[x] TIFFICC"
 create_port_options
 
 
-# -- graphics/lcms2 OPTIONS --
 init_port_options "graphics_lcms2" "lcms2" "2.4"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] JPEGICC"
@@ -1050,46 +992,57 @@ add_port_option "[ ] TIFFICC"
 create_port_options
 
 
-# -- graphics/libdrm OPTIONS --
-init_port_options "graphics_libdrm" "libdrm" "2.4.17_1"
+init_port_options "graphics_libdrm" "libdrm" "2.4.81,1"
 add_port_option "[ ] MANPAGES"
+add_port_option "[ ] TESTS"
 create_port_options
 
 
-# -- graphics/libetonyek01 OPTIONS --
+init_port_options "graphics_libepoxy" "libepoxy" "1.4.3"
+add_port_option "[x] EGL"
+create_port_options
+
+
 init_port_options "graphics_libetonyek01" "libetonyek01" "0.1.6_3,1"
 add_port_option "[ ] TEST"
 create_port_options
 
 
-# -- graphics/liblqr-1 OPTIONS --
 init_port_options "graphics_liblqr-1" "liblqr-1" "0.4.1_8"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] HTMLDOCS"
 create_port_options
 
 
-# -- graphics/libmng OPTIONS --
 init_port_options "graphics_libmng" "libmng" "1.0.10_3"
 add_port_option "[ ] MNG_OPTIMIZE"
 create_port_options
 
 
-# -- graphics/libopenraw OPTIONS --
 init_port_options "graphics_libopenraw" "libopenraw" "0.1.1"
 add_port_option "[ ] GNOME"
 add_port_option "[ ] TEST"
 create_port_options
 
 
-# -- graphics/libpotrace OPTIONS --
 init_port_options "graphics_libpotrace" "libpotrace" "1.12"
 add_port_option "[x] A4"
 add_port_option "[x] METRIC"
 create_port_options
 
 
-# -- graphics/OpenEXR OPTIONS --
+init_port_options "graphics_mesa-dri" "mesa-dri" "17.0.4"
+add_port_option "[x] TEXTURE"
+add_port_option "[ ] VAAPI"
+add_port_option "[ ] VDPAU"
+create_port_options
+
+
+init_port_options "graphics_mesa-libs" "mesa-libs" "17.0.4"
+add_port_option "[ ] WAYLAND"
+create_port_options
+
+
 init_port_options "graphics_OpenEXR" "OpenEXR" "2.2.0_7"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
@@ -1097,7 +1050,6 @@ add_port_option "[ ] LARGE_STACK"
 create_port_options
 
 
-# -- graphics/openimageio OPTIONS --
 init_port_options "graphics_openimageio" "openimageio" "1.6.12_8"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] FFMPEG"
@@ -1112,14 +1064,12 @@ add_port_option "[ ] TEST"
 create_port_options
 
 
-# -- graphics/png OPTIONS --
 init_port_options "graphics_png" "png" "1.5.18"
 add_port_option "[x] APNG"
 add_port_option "[ ] PNGTEST"
 create_port_options
 
 
-# -- graphics/poppler OPTIONS --
 init_port_options "graphics_poppler" "poppler" "0.26.3"
 add_port_option "[x] CAIRO"
 add_port_option "[ ] CURL"
@@ -1127,7 +1077,6 @@ add_port_option "[x] OPENJPEG"
 create_port_options
 
 
-# -- graphics/rawtherapee OPTIONS --
 init_port_options "graphics_rawtherapee" "rawtherapee" "5.0.1"
 add_port_option "[ ] NATIVE"
 add_port_option "[x] OPENMP"
@@ -1135,7 +1084,6 @@ add_port_option "[x] OPTIMIZED_CFLAGS"
 create_port_options
 
 
-# -- graphics/sane-backends OPTIONS --
 init_port_options "graphics_sane-backends" "sane-backends" "1.0.25"
 add_port_option "[ ] AVAHI"
 add_port_option "[ ] DOCS"
@@ -1149,37 +1097,36 @@ add_port_option "[ ] V4L"
 create_port_options
 
 
-# -- graphics/vigra OPTIONS --
-init_port_options "graphics_vigra" "vigra" "1.11.0_5"
+init_port_options "graphics_vigra" "vigra" "1.11.0_10"
 add_port_option "[ ] DOCS"
+add_port_option "[x] FFTW"
 add_port_option "[ ] HDF5"
 add_port_option "[ ] NUMPY"
 add_port_option "[ ] OPENEXR"
+add_port_option "[x] PNG"
+add_port_option "[x] JPEG"
+add_port_option "[x] TIFF"
 create_port_options
 
 
-# -- graphics/webp OPTIONS --
 init_port_options "graphics_webp" "webp" "0.3.1_4"
 add_port_option "[ ] X11"
 create_port_options
 
 
-# -- lang/gcc OPTIONS --
-init_port_options "lang_gcc" "gcc" "5.4.0"
+init_port_options "lang_gcc6" "gcc6" "6.4.0_1"
 add_port_option "[x] BOOTSTRAP"
 add_port_option "[ ] GRAPHITE"
 add_port_option "[ ] JAVA"
 create_port_options
 
 
-# -- lang/guile2 OPTIONS --
 init_port_options "lang_guile2" "guile2" "2.0.14"
 add_port_option "[ ] NLS"
 add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- lang/perl5.24 OPTIONS --
 init_port_options "lang_perl5.24" "perl5" "5.24.1.r4_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DTRACE"
@@ -1193,7 +1140,6 @@ add_port_option "( ) PERL_MALLOC"
 create_port_options
 
 
-# -- lang/python27 OPTIONS --
 init_port_options "lang_python27" "python27" "2.7.8_6"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] IPV6"
@@ -1207,21 +1153,18 @@ add_port_option "(*) UCS4"
 create_port_options
 
 
-# -- lang/python35 OPTIONS --
-init_port_options "lang_python35" "python35" "3.5.2"
+init_port_options "lang_python36" "python36" "3.6.1_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] IPV6"
 add_port_option "[x] LIBFFI"
 add_port_option "[ ] NLS"
 add_port_option "[x] PYMALLOC"
 add_port_option "[x] THREADS"
-add_port_option "[ ] TSC"
 add_port_option "( ) FNV"
 add_port_option "( ) SIPHASH"
 create_port_options
 
 
-# -- lang/ruby23 OPTIONS --
 init_port_options "lang_ruby23" "ruby" "2.3.3_2,1"
 add_port_option "[ ] CAPIDOCS"
 add_port_option "[ ] DEBUG"
@@ -1234,16 +1177,15 @@ add_port_option "( ) READLINE"
 create_port_options
 
 
-# -- lang/rust OPTIONS --
-init_port_options "lang_rust" "rust" "1.15.1"
+init_port_options "lang_rust" "rust" "1.19.0_2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] GDB"
 add_port_option "[ ] LLNEXTGEN"
 add_port_option "[ ] PORT_LLVM"
+add_port_option "[ ] SOURCES"
 create_port_options
 
 
-# -- lang/spidermonkey170 OPTIONS --
 init_port_options "lang_spidermonkey170" "spidermonkey170" "17.0.0_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DTRACE"
@@ -1258,7 +1200,6 @@ add_port_option "[x] UTF8"
 create_port_options
 
 
-# -- mail/thunderbird OPTIONS --
 init_port_options "mail_thunderbird" "thunderbird" "45.7.1_1"
 add_port_option "[x] BUNDLED_CAIRO"
 add_port_option "[x] CANBERRA"
@@ -1284,7 +1225,6 @@ add_port_option "( ) GTK3"
 create_port_options
 
 
-# -- math/coinmp OPTIONS --
 init_port_options "math_coinmp" "CoinMP" "1.83"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
@@ -1292,7 +1232,6 @@ add_port_option "[ ] GLPK"
 create_port_options
 
 
-# -- math/fftw3 OPTIONS --
 init_port_options "math_fftw3" "fftw3" "3.3.6.p1"
 add_port_option "[ ] G77_WRAPPERS"
 add_port_option "[ ] OPENMP"
@@ -1302,7 +1241,6 @@ add_port_option "[x] SIMD"
 create_port_options
 
 
-# -- math/fftw3-float OPTIONS --
 init_port_options "math_fftw3-float" "fftw3-float" "3.3.6.p1"
 add_port_option "[ ] G77_WRAPPERS"
 add_port_option "[ ] OPENMP"
@@ -1312,20 +1250,17 @@ add_port_option "[x] SIMD"
 create_port_options
 
 
-# -- math/galculator OPTIONS --
 init_port_options "math_galculator" "galculator" "2.1.4"
 add_port_option "( ) GTK2"
 add_port_option "(*) GTK3"
 create_port_options
 
 
-# -- math/gmp OPTIONS --
 init_port_options "math_gmp" "gmp" "5.1.3_1"
 add_port_option "[ ] CPU_OPTS"
 create_port_options
 
 
-# -- multimedia/avidemux OPTIONS --
 init_port_options "multimedia_avidemux" "avidemux" "2.6.11_5"
 add_port_option "[ ] AMR"
 add_port_option "[ ] CLI"
@@ -1355,8 +1290,7 @@ add_port_option "[x] XVIDEO"
 create_port_options
 
 
-# -- multimedia/ffmpeg OPTIONS --
-init_port_options "multimedia_ffmpeg" "ffmpeg" "3.2.4_4,1"
+init_port_options "multimedia_ffmpeg" "ffmpeg" "3.3.4,1"
 add_port_option "[ ] ALSA"
 add_port_option "[ ] AMR_NB"
 add_port_option "[ ] AMR_WB"
@@ -1369,8 +1303,7 @@ add_port_option "[ ] CHROMAPRINT"
 add_port_option "[ ] DC1394"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
-add_port_option "[ ] EBUR128"
-add_port_option "[ ] FDK_AAC"
+add_port_option "[X] FDK_AAC"
 add_port_option "[ ] FFSERVER"
 add_port_option "[ ] FLITE"
 add_port_option "[x] FONTCONFIG"
@@ -1385,7 +1318,7 @@ add_port_option "[ ] JACK"
 add_port_option "[ ] KVAZAAR"
 add_port_option "[ ] LADSPA"
 add_port_option "[ ] LAME"
-add_port_option "[ ] LIBBLURAY"
+add_port_option "[x] LIBBLURAY"
 add_port_option "[x] MMX"
 add_port_option "[ ] MODPLUG"
 add_port_option "[ ] NETCDF"
@@ -1396,7 +1329,7 @@ add_port_option "[ ] OPENGL"
 add_port_option "[ ] OPENH264"
 add_port_option "[ ] OPENJPEG"
 add_port_option "[x] OPTIMIZED_CFLAGS"
-add_port_option "[ ] OPUS"
+add_port_option "[x] OPUS"
 add_port_option "[ ] PULSEAUDIO"
 add_port_option "[x] RTCPU"
 add_port_option "[ ] RUBBERBAND"
@@ -1431,7 +1364,7 @@ add_port_option "[ ] ZIMG"
 add_port_option "[ ] ZMQ"
 add_port_option "[ ] ZVBI"
 add_port_option "[x] GPL3"
-add_port_option "[ ] NONFREE"
+add_port_option "[x] NONFREE"
 add_port_option "( ) GCRYPT"
 add_port_option "(*) GMP"
 add_port_option "( ) LIBRTMP"
@@ -1440,7 +1373,6 @@ add_port_option "( ) OPENSSL"
 create_port_options
 
 
-# -- multimedia/gmtk OPTIONS --
 init_port_options "multimedia_gmtk" "gmtk" "1.0.8"
 add_port_option "[ ] ALSA"
 add_port_option "[ ] DOCS"
@@ -1452,45 +1384,43 @@ add_port_option "[ ] PULSEAUDIO"
 create_port_options
 
 
-# -- multimedia/gstreamer OPTIONS --
 init_port_options "multimedia_gstreamer" "gstreamer" "0.10.36_6"
 add_port_option "[ ] LIBCHECK"
 add_port_option "[ ] NLS"
 create_port_options
 
 
-# -- multimedia/gstreamer1 OPTIONS --
 init_port_options "multimedia_gstreamer1" "gstreamer1" "1.8.0_1"
 add_port_option "[ ] LIBCHECK"
 create_port_options
 
 
-# -- multimedia/libass OPTIONS --
+init_port_options "multimedia_gstreamer1-plugins-core" "gstreamer1-plugins-core" "1.12"
+add_port_option "[x] DVD"
+create_port_options
+
+
 init_port_options "multimedia_libass" "libass" "0.13.6_1"
 add_port_option "[x] ASM"
 add_port_option "[x] HARFBUZZ"
 create_port_options
 
 
-# -- multimedia/libbluray OPTIONS --
 init_port_options "multimedia_libbluray" "libbluray" "0.2.2,1"
 add_port_option "[ ] JAVA"
 create_port_options
 
 
-# -- multimedia/libdvdnav OPTIONS --
 init_port_options "multimedia_libdvdnav" "libdvdnav" "4.2.1_2"
 add_port_option "[ ] DEBUG"
 create_port_options
 
 
-# -- multimedia/libdvdread OPTIONS --
 init_port_options "multimedia_libdvdread" "libdvdread" "4.9.9_3"
 add_port_option "[ ] DVDCSS"
 create_port_options
 
 
-# -- multimedia/libmediainfo OPTIONS --
 init_port_options "multimedia_libmediainfo" "libmediainfo" "0.7.94"
 add_port_option "[ ] CURL"
 add_port_option "[ ] MMS"
@@ -1498,20 +1428,17 @@ add_port_option "[x] TINYXML2"
 create_port_options
 
 
-# -- multimedia/libva OPTIONS --
 init_port_options "multimedia_libva" "libva" "1.7.3"
 add_port_option "[ ] DEBUG"
 create_port_options
 
 
-# -- multimedia/libvdpau OPTIONS --
 init_port_options "multimedia_libvdpau" "libvdpau" "1.1.1"
 add_port_option "[ ] DEBUG"
 create_port_options
 
 
-# -- multimedia/libvpx OPTIONS --
-init_port_options "multimedia_libvpx" "libvpx" "1.6.1"
+init_port_options "multimedia_libvpx" "libvpx" "1.6.1_2"
 add_port_option "[ ] DEBUG"
 add_port_option "[x] MULTIRES"
 add_port_option "[x] POSTPROC"
@@ -1523,7 +1450,6 @@ add_port_option "[x] THREADS"
 create_port_options
 
 
-# -- multimedia/libx264 OPTIONS --
 init_port_options "multimedia_libx264" "libx264" "0.148.2728"
 add_port_option "[x] ASM"
 add_port_option "[ ] DEBUG"
@@ -1534,7 +1460,6 @@ add_port_option "[ ] PGO"
 create_port_options
 
 
-# -- multimedia/mplayer OPTIONS --
 init_port_options "multimedia_mplayer" "mplayer" "1.3.0.20161228_4"
 add_port_option "[ ] AALIB"
 add_port_option "[ ] AMR_NB"
@@ -1587,7 +1512,6 @@ add_port_option "[x] XVMC"
 create_port_options
 
 
-# -- multimedia/qmmp-qt5 OPTIONS --
 init_port_options "multimedia_qmmp-qt5" "qmmp-qt5" "1.1.7"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] DOXYGEN"
@@ -1649,7 +1573,6 @@ add_port_option "[x] SID"
 create_port_options
 
 
-# -- multimedia/qt5-multimedia OPTIONS --
 init_port_options "multimedia_qt5-multimedia" "qt5-multimedia" "5.7.1"
 add_port_option "[ ] AUDIOPLUGIN"
 add_port_option "[x] GSTREAMER"
@@ -1659,26 +1582,22 @@ add_port_option "( ) PULSEAUDIO"
 create_port_options
 
 
-# -- multimedia/smplayer OPTIONS --
 init_port_options "multimedia_smplayer" "smplayer" "17.1.0"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
 create_port_options
 
 
-# -- multimedia/xvid OPTIONS --
 init_port_options "multimedia_xvid" "xvid" "1.3.4,1"
 add_port_option "[ ] OPTIMIZED_CFLAGS"
 create_port_options
 
 
-# -- net/gtk-vnc OPTIONS --
 init_port_options "net_gtk-vnc" "gtk-vnc" "0.7.0"
 add_port_option "[ ] PULSEAUDIO"
 create_port_options
 
 
-# -- net/miniupnpd OPTIONS --
 init_port_options "net_miniupnpd" "miniupnpd" "1.9.20160113,1"
 add_port_option "[ ] CHECK_PORTINUSE"
 add_port_option "[x] IPV6"
@@ -1689,13 +1608,11 @@ add_port_option "[ ] UPNP_STRICT"
 create_port_options
 
 
-# -- net/mpd5 OPTIONS --
 init_port_options "net_mpd5" "mpd" "5.7"
 add_port_option "[ ] NG_IPACCT"
 create_port_options
 
 
-# -- net/openldap24-client OPTIONS --
 init_port_options "net_openldap24-client" "openldap-client" "2.4.40_1"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] FETCH"
@@ -1703,7 +1620,6 @@ add_port_option "[ ] GSSAPI"
 create_port_options
 
 
-# -- net/samba46 OPTIONS --
 init_port_options "net_samba46" "samba46" "4.6.1_1"
 add_port_option "[ ] ADS"
 add_port_option "[ ] AD_DC"
@@ -1728,7 +1644,6 @@ add_port_option "( ) MDNSRESPONDER"
 create_port_options
 
 
-# -- net/wireshark-qt5 OPTIONS --
 init_port_options "net_wireshark-qt5" "wireshark-qt5" "2.2.5"
 add_port_option "[ ] ANDROIDDUMP"
 add_port_option "[ ] CARES"
@@ -1746,14 +1661,35 @@ add_port_option "(*) QT5"
 create_port_options
 
 
-# -- ports-mgmt/portmaster OPTIONS --
+init_port_options "net_vde2" "vde2" "2.3.2_2"
+add_port_option "[x] PYTHON"
+create_port_options
+
+
+init_port_options "net-p2p_transmission-cli" "transmission-cli" "2.92"
+add_port_option "[ ] DOCS"
+add_port_option "[ ] LITE"
+add_port_option "(*) OPENSSL"
+add_port_option "( ) POLARSSL"
+add_port_option "( ) WOLFSSL"
+create_port_options
+
+
+init_port_options "net-p2p_transmission-daemon" "transmission-daemon" "2.92"
+add_port_option "[ ] DOCS"
+add_port_option "[ ] LITE"
+add_port_option "(*) OPENSSL"
+add_port_option "( ) POLARSSL"
+add_port_option "( ) WOLFSSL"
+create_port_options
+
+
 init_port_options "ports-mgmt_portmaster" "portmaster" "3.17"
 add_port_option "[ ] BASH"
 add_port_option "[ ] ZSH"
 create_port_options
 
 
-# -- prints/cups OPTIONS --
 init_port_options "print_cups" "cups" "2.2.2_1"
 add_port_option "[ ] AVAHI"
 add_port_option "[x] DBUS"
@@ -1766,7 +1702,6 @@ add_port_option "[ ] X11"
 create_port_options
 
 
-# -- print/fontforge OPTIONS --
 init_port_options "print_fontforge" "fontforge" "20161005"
 add_port_option "[ ] CAIRO"
 add_port_option "[ ] DOCS"
@@ -1775,25 +1710,23 @@ add_port_option "[ ] PYTHON"
 create_port_options
 
 
-# -- print/freetype2 OPTIONS --
-init_port_options "print_freetype2" "freetype2" "2.7.1"
+init_port_options "print_freetype2" "freetype2" "2.8"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] LCD_FILTERING"
 add_port_option "[ ] PNG"
 add_port_option "[ ] TABLE_VALIDATION"
+add_port_option "[ ] TT_SIZE_METRICS"
 add_port_option "[ ] V38"
 add_port_option "[x] V40"
 create_port_options
 
 
-# -- print/qt5-printsupport OPTIONS --
 init_port_options "print_qt5-printsupport" "qt5-printsupport" "5.7.1"
 add_port_option "[x] CUPS"
 create_port_options
 
 
-# -- science/hdf5 OPTIONS --
 init_port_options "science_hdf5" "hdf5" "1.10.0_3"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] EXAMPLES"
@@ -1802,13 +1735,11 @@ add_port_option "[x] SZIP"
 create_port_options
 
 
-# -- security/ca_root_nss OPTIONS --
 init_port_options "security_ca_root_nss" "ca_root_nss" "3.15.5"
 add_port_option "[ ] ETCSYMLINK"
 create_port_options
 
 
-# -- security/cyrus-sasl2 OPTIONS --
 init_port_options "security_cyrus-sasl2" "cyrus-sasl" "2.1.26_12"
 add_port_option "[ ] ALWAYSTRUE"
 add_port_option "[x] AUTHDAEMOND"
@@ -1833,20 +1764,18 @@ add_port_option "( ) SQLITE3"
 create_port_options
 
 
-# -- security/gnutls OPTIONS --
-init_port_options "security_gnutls" "gnutls" "3.4.10"
-add_port_option "[x] CRYWRAP"
+init_port_options "security_gnutls" "gnutls" "3.5.13"
 add_port_option "[ ] DANE"
+add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[x] IDN"
 add_port_option "[ ] NLS"
-add_port_option "[x] P11KIT"
+add_port_option "[ ] P11KIT"
 add_port_option "[ ] TPM"
 add_port_option "[x] ZLIB"
 create_port_options
 
 
-# -- security/libssh2 OPTIONS --
 init_port_options "security_libssh2" "libssh2" "1.8.0,3"
 add_port_option "[ ] GCRYPT"
 add_port_option "[ ] TRACE"
@@ -1854,13 +1783,11 @@ add_port_option "[x] ZLIB"
 create_port_options
 
 
-# -- security/nss OPTIONS --
 init_port_options "security_nss" "nss" "3.17.3"
 add_port_option "[ ] DEBUG"
 create_port_options
 
 
-# -- security/openvpn OPTIONS --
 init_port_options "security_openvpn" "openvpn" "2.4.0"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EASYRSA"
@@ -1876,10 +1803,10 @@ add_port_option "( ) MBEDTLS"
 create_port_options
 
 
-# -- shells/bash OPTIONS --
-init_port_options "shells_bash" "bash" "4.4.5"
+init_port_options "shells_bash" "bash" "4.4.12_2"
 add_port_option "[x] COLONBREAKSWORDS"
 add_port_option "[ ] DOCS"
+add_port_option "[ ] FDESCFS"
 add_port_option "[ ] HELP"
 add_port_option "[ ] NLS"
 add_port_option "[ ] STATIC"
@@ -1887,7 +1814,6 @@ add_port_option "[ ] SYSLOG"
 create_port_options
 
 
-# -- shells/zsh OPTIONS --
 init_port_options "shells_zsh" "zsh" "5.2_2"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DOCS"
@@ -1900,7 +1826,6 @@ add_port_option "[ ] STATIC"
 create_port_options
 
 
-# -- sysutils/cdrtools OPTIONS --
 init_port_options "sysutils_cdrtools" "cdrtools" "3.00_2"
 add_port_option "[ ] CDDA2MP3"
 add_port_option "[ ] CDDA2OGG"
@@ -1910,13 +1835,11 @@ add_port_option "[ ] RSCSI"
 create_port_options
 
 
-# -- sysutils/polkit OPTIONS --
 init_port_options "sysutils_polkit" "polkit" "0.105_1"
 add_port_option "[ ] MANPAGES"
 create_port_options
 
 
-# -- sysutils/tmux OPTIONS --
 init_port_options "sysutils_tmux" "tmux" "2.3_2"
 add_port_option "[ ] BACKSPACE"
 add_port_option "[ ] DOCS"
@@ -1925,7 +1848,6 @@ add_port_option "[ ] LIBEVENT_STATIC"
 create_port_options
 
 
-# -- textproc/aspell OPTIONS --
 init_port_options "textproc_aspell" "aspell" "0.60.6.1_2"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] ISPELL"
@@ -1933,7 +1855,6 @@ add_port_option "[x] NLS"
 create_port_options
 
 
-# -- textproc/docbook-xsl OPTIONS --
 init_port_options "textproc_docbook-xsl" "docbook-xsl" "1.76.1_3"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] ECLIPSE"
@@ -1953,7 +1874,6 @@ add_port_option "[x] XHTML11"
 create_port_options
 
 
-# -- textproc/enchant OPTIONS --
 init_port_options "textproc_enchant" "enchant" "1.6.0_7"
 add_port_option "[ ] ASPELL"
 add_port_option "[ ] HSPELL"
@@ -1963,13 +1883,11 @@ add_port_option "[ ] ZEMBEREK"
 create_port_options
 
 
-# -- textproc/librevenge OPTIONS --
 init_port_options "textproc_librevenge" "librevenge" "0.0.4_3"
 add_port_option "[ ] DOXYGEN"
 create_port_options
 
 
-# -- textproc/libxml2 OPTIONS --
 init_port_options "textproc_libxml2" "libxml2" "2.9.2_3"
 add_port_option "[ ] MEM_DEBUG"
 add_port_option "[x] SCHEMA"
@@ -1980,47 +1898,40 @@ add_port_option "[ ] XMLLINT_HIST"
 create_port_options
 
 
-# -- textproc/libxslt OPTIONS --
 init_port_options "textproc_libxslt" "libxslt" "1.1.28_1"
 add_port_option "[x] CRYPTO"
 add_port_option "[ ] MEM_DEBUG"
 create_port_options
 
 
-# -- textproc/py-docutils OPTIONS --
 init_port_options "textproc_py-docutils" "py27-docutils" "0.12"
 add_port_option "[ ] PYGMENTS"
 create_port_options
 
 
-# -- textproc/py-snowballstemmer OPTIONS --
 init_port_options "textproc_py-snowballstemmer" "py27-snowballstemmer" "1.2.0_1"
 add_port_option "[x] PYSTEMMER"
 create_port_options
 
 
-# -- textproc/rasqal OPTIONS --
 init_port_options "textproc_rasqal" "rasqal" "0.9.33"
 add_port_option "[ ] GMP"
 add_port_option "[ ] MPFR"
 create_port_options
 
 
-# -- textproc/redland OPTIONS --
 init_port_options "textproc_redland" "redland" "1.0.17_4"
 add_port_option "[ ] BDB"
 add_port_option "[ ] THREADS"
 create_port_options
 
 
-# -- textproc/tinyxml OPTIONS --
 init_port_options "textproc_tinyxml" "tinyxml" "2.6.2_1"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] PROFILE"
 create_port_options
 
 
-# -- www/firefox OPTIONS --
 init_port_options "www_firefox" "firefox" "52.0_3,1"
 add_port_option "[x] BUNDLED_CAIRO"
 add_port_option "[ ] CANBERRA"
@@ -2045,8 +1956,7 @@ add_port_option "(*) GTK3"
 create_port_options
 
 
-# -- www/nginx OPTIONS --
-init_port_options "www_nginx" "nginx" "1.10.2_2,2"
+init_port_options "www_nginx" "nginx" "1.12.1_1,2"
 add_port_option "[x] DSO"
 add_port_option "[ ] DEBUG"
 add_port_option "[ ] DEBUGLOG"
@@ -2083,6 +1993,7 @@ add_port_option "[ ] HTTPV2"
 add_port_option "[ ] NJS"
 add_port_option "[ ] STREAM"
 add_port_option "[ ] STREAM_SSL"
+add_port_option "[ ] STREAM_SSL_PREREAD"
 add_port_option "[ ] THREADS"
 add_port_option "[x] WWW"
 add_port_option "[ ] AJP"
@@ -2133,6 +2044,7 @@ add_port_option "[ ] LET"
 add_port_option "[ ] LUA"
 add_port_option "[ ] MEMC"
 add_port_option "[ ] MODSECURITY"
+add_port_option "[ ] MODSECURITY_DEVEL"
 add_port_option "[ ] NAXSI"
 add_port_option "[ ] PASSENGER"
 add_port_option "[ ] POSTGRES"
@@ -2154,19 +2066,16 @@ add_port_option "[ ] XSS"
 create_port_options
 
 
-# -- print/qt4-webkit OPTIONS --
 init_port_options "www_qt4-webkit" "qt4-webkit" "4.8.7_1"
 add_port_option "[x] GSTREAMER"
 create_port_options
 
 
-# -- print/qt5-webkit OPTIONS --
 init_port_options "www_qt5-webkit" "qt5-webkit" "5.7.1"
 add_port_option "[x] GSTREAMER"
 create_port_options
 
 
-# -- www/qupzilla-qt5 OPTIONS --
 init_port_options "www_qupzilla-qt5" "qupzilla-qt5" "1.8.9_2"
 add_port_option "[x] DBUS"
 add_port_option "[ ] DEBUG"
@@ -2175,7 +2084,6 @@ add_port_option "[ ] KWALLET"
 create_port_options
 
 
-# -- www/serf OPTIONS --
 init_port_options "www_serf" "serf" "1.3.8_1"
 add_port_option "[ ] DOCS"
 add_port_option "( ) MIT"
@@ -2184,7 +2092,22 @@ add_port_option "( ) HEIMDAL_BASE"
 create_port_options
 
 
-# -- www/youtube_dl OPTIONS --
+init_port_options "www_thttpd" "thttpd" "2.27"
+add_port_option "[x] FLUSH_LOG"
+add_port_option "[ ] HTACCESS"
+add_port_option "[ ] INDEXES"
+add_port_option "[ ] LOG_UNKNOWN"
+add_port_option "[x] REAL_IP"
+add_port_option "[x] SENDFILE"
+add_port_option "[x] STATS"
+create_port_options
+
+
+init_port_options "www_transmission-web" "transmission-web" "2.80"
+add_port_option "[ ] LITE"
+create_port_options
+
+
 init_port_options "www_youtube_dl" "youtube_dl" "2015.01.25"
 add_port_option "[ ] BASH"
 add_port_option "[ ] FFMPEG"
@@ -2194,13 +2117,11 @@ add_port_option "[ ] ZSH"
 create_port_options
 
 
-# -- x11/babl OPTIONS --
 init_port_options "x11_babl" "babl" "0.1.14"
 add_port_option "[ ] SIMD"
 create_port_options
 
 
-# -- x11/keybinder OPTIONS --
 init_port_options "x11_keybinder" "keybinder" "0.3.1"
 add_port_option "[ ] EXAMPLES"
 add_port_option "[ ] LUA"
@@ -2208,26 +2129,22 @@ add_port_option "[x] PYTHON"
 create_port_options
 
 
-# -- x11/pixman OPTIONS --
 init_port_options "x11_pixman" "pixman" "0.30.0"
 add_port_option "[x] SIMD"
 create_port_options
 
 
-# -- x11/terminator OPTIONS --
 init_port_options "x11_terminator" "terminator" "0.97_1"
 add_port_option "[ ] GCONF"
 add_port_option "[ ] NLS"
 create_port_options
 
 
-# -- x11/xkeyboard-config OPTIONS --
 init_port_options "x11_xkeyboard-config" "xkeyboard-config" "2.9_1"
 add_port_option "[ ] ETERSOFT"
 create_port_options
 
 
-# -- x11/xterm OPTIONS --
 init_port_options "x11_xterm" "xterm" "325"
 add_port_option "[x] 256COLOR"
 add_port_option "[ ] DABBREV"
@@ -2247,14 +2164,12 @@ add_port_option "( ) NEXTAW"
 create_port_options
 
 
-# -- x11-fonts/dejavu OPTIONS --
 init_port_options "x11-fonts_dejavu" "dejavu" "2.33"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] LINKS"
 create_port_options
 
 
-# -- x11-fonts/fontconfig OPTIONS --
 init_port_options "x11-fonts_fontconfig" "fontconfig" "2.12.1,1"
 add_port_option "[ ] DOCS"
 add_port_option "( ) HINTING_NONE"
@@ -2264,7 +2179,6 @@ add_port_option "( ) HINTING_FULL"
 create_port_options
 
 
-# -- x11-servers/xorg-server OPTIONS --
 init_port_options "x11-servers_xorg-server" "xorg-server" "1.7.7_10,1"
 add_port_option "[x] AIGLX"
 add_port_option "[x] SUID"
@@ -2273,20 +2187,17 @@ add_port_option "(*) DEVD"
 create_port_options
 
 
-# -- x11-themes/gtk-engines2 OPTIONS --
 init_port_options "x11-themes_gtk-engines2" "gtk-engines2" "2.20.2_1"
 add_port_option "[ ] ANIMATION"
 create_port_options
 
 
-# -- x11-toolkits/gtk20 OPTIONS --
 init_port_options "x11-toolkits_gtk20" "gtk" "2.24.27"
 add_port_option "[ ] CUPS"
 add_port_option "[ ] DEBUG"
 create_port_options
 
 
-# -- x11-toolkits/gtk30 OPTIONS --
 init_port_options "x11-toolkits_gtk30" "gtk3" "3.16.6"
 add_port_option "[x] BROADWAY"
 add_port_option "[ ] CLOUDPRINT"
@@ -2297,13 +2208,11 @@ add_port_option "[ ] TYPEAHEAD"
 create_port_options
 
 
-# -- x11-toolkits/pango OPTIONS --
 init_port_options "x11-toolkits_pango" "pango" "1.30.1"
 add_port_option "[x] X11"
 create_port_options
 
 
-# -- x11-toolkits/py-gtk2 OPTIONS --
 init_port_options "x11-toolkits_py-gtk2" "py27-gtk2" "2.24.0_4"
 add_port_option "[ ] DOCS"
 add_port_option "[ ] EXAMPLES"
@@ -2311,13 +2220,11 @@ add_port_option "[ ] NUMPY"
 create_port_options
 
 
-# -- x11-toolkits/qt5-widgets OPTIONS --
 init_port_options "x11-toolkits_qt5-widgets" "qt5-widgets" "5.7.1"
 add_port_option "[ ] GTK3"
 create_port_options
 
 
-# -- x11-toolkits/wxgtk30 OPTIONS --
 init_port_options "x11-toolkits_wxgtk30" "wx30-gtk2" "3.0.2_5"
 add_port_option "[x] GSTREAMER"
 add_port_option "[ ] MSPACK"
@@ -2326,7 +2233,6 @@ add_port_option "[ ] WEBKIT"
 create_port_options
 
 
-# -- x11-wm/compton OPTIONS --
 init_port_options "x11-wm_compton" "compton" "20160907_1"
 add_port_option "[x] CONFIG"
 add_port_option "[x] DBUS"
@@ -2338,7 +2244,6 @@ add_port_option "[x] XINERAMA"
 create_port_options
 
 
-# -- x11-wm/openbox OPTIONS --
 init_port_options "x11-wm_openbox" "openbox" "3.5.2_5"
 add_port_option "[x] IMLIB"
 add_port_option "[ ] NLS"

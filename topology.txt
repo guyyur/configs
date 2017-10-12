@@ -1,28 +1,30 @@
 
 tp-link-td-w9970 (vdsl modem)
      |
-odroid-c1 (router)
+nanopi-neo (router)
      |
 d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspire-es1-131 (notebook)
   /  ||||||
  |   msi-h97m-g43 (desktop)
- |   beaglebone-black (vcs)
+ |   orange-pi-one (vcs, packages, ports)
  |   orange-pi-pc (storage)
  |   cubieboard (storage)
  |   qnap-ts-112p (nas)
   \
-   vm-freebsd-releng (devel, export ports)
+   vm-freebsd-releng (devel, src, build ports chroots)
      chroot-fbsd-build-ports-releng-amd64
-   vm-freebsd-head (devel)
+   vm-freebsd-head (devel, src, build ports chroots)
      chroot-fbsd-build-ports-head-amd64
+     chroot-fbsd-build-ports-head-armv7
    vm-netbsd (devel)
    vm-openbsd (devel)
    vm-arch-linux (devel)
 
 asus-k8s-mx (devel)
 asus-p5e-vm-hdmi (devel)
+beaglebone-black (vcs)
 gigabyte-ga-j1800n-d2h (devel)
 orange-pi-one-tf-slot-dead (devel)
-orange-pi-one-tf-slot-occasionally-works (router)
+odroid-c1 (none)
 rpib (devel)
 sdcard-for-beaglebone-black (installation)

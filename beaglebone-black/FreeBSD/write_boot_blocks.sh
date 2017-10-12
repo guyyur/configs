@@ -31,5 +31,10 @@ disk0=mmcsd1
 
 # -- write boot blocks --
 my_prompt "${disk0}" || exit 1
-dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=128k skip=1 seek=1 count=1 conv=sync,notrunc
-dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=384k skip=1 seek=1 count=2 conv=sync,notrunc
+if [ -n "${disk0_removable}" ]; then
+  dd if=/usr/local/share/u-boot/u-boot-beaglebone/MLO of=/dev/"${disk0}" bs=128k seek=1 conv=sync,notrunc
+  dd if=/usr/local/share/u-boot/u-boot-beaglebone/u-boot.img of=/dev/"${disk0}" bs=384k seek=1 conv=sync,notrunc
+else
+  dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=128k skip=1 seek=1 count=1 conv=sync,notrunc
+  dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=384k skip=1 seek=1 count=2 conv=sync,notrunc
+fi

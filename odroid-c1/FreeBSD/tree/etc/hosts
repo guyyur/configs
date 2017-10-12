@@ -1,8 +1,0 @@
-# replace odroid-c1 with real hostname
-# replace fd00:2001:db8:0::X with real ULA prefix+EUI-64
-
-# Host Database
-::1			localhost.localdomain localhost odroid-c1.localdomain odroid-c1
-127.0.0.1		localhost.localdomain localhost odroid-c1.localdomain odroid-c1
-
-fd00:2001:db8:0::1061	packages.localdomain packages

@@ -60,4 +60,6 @@ if [[ -d /var/xdg-cache ]]; then
 else
   compinit -D
 fi
+compdef -d diff
 compdef -d mount
+compdef -d objdump

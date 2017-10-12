@@ -31,7 +31,6 @@ disk1=ada1
 disk2=ada2
 disk3=ada3
 disk4=ada4
-disk5=ada5
 
 
 # -- layout  --
@@ -60,8 +59,3 @@ newfs -U -n -i 34000 /dev/"${disk3}"p1 || exit 1  # ~524288 for 16G
 #   /chroots
 my_prompt "${disk4}" || exit 1
 newfs -U -n -i 34000 /dev/"${disk4}"p1 || exit 1  # ~524288 for 16G
-
-# disk5:
-#   /export/ports
-my_prompt "${disk5}" || exit 1
-newfs -U -n -i 32000 /dev/"${disk5}"p1 || exit 1  # ~262144 for 8G

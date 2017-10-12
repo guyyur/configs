@@ -1,0 +1,2 @@
+/export    *(ro,sync,fsid=0,no_subtree_check)
+/export/guy/sync    *(rw,sync,no_subtree_check)

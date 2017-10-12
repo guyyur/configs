@@ -8,7 +8,6 @@ fi
 
 
 # -- layout --
-umount /mnt/usr/wrkdir || exit 1
 umount /mnt/boot/custom || exit 1
 umount /mnt/home || exit 1
 umount /mnt/tmp || exit 1

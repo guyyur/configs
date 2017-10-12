@@ -1,0 +1,6 @@
+devfs               /chroots/chroot-fbsd-build-ports-releng-amd64/dev                           devfs   rw        0  0
+tmpfs               /chroots/chroot-fbsd-build-ports-releng-amd64/tmp                           tmpfs   rw        0  0
+tmpfs               /chroots/chroot-fbsd-build-ports-releng-amd64/usr/wrkdir                    tmpfs   rw        0  0
+fbsd-ports:/ports   /chroots/chroot-fbsd-build-ports-releng-amd64/usr/ports                     nfs     rw,nfsv4  0  0
+packages:/packages  /chroots/chroot-fbsd-build-ports-releng-amd64/usr/local/db/local_pkg_repos  nfs     rw,nfsv4  0  0
+/usr/src            /chroots/chroot-fbsd-build-ports-releng-amd64/usr/src                       nullfs  ro        0  0

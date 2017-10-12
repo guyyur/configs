@@ -1,17 +1,21 @@
 
 update ports / packages
-  ./remount.sh
-  
-  cp -f /var/run/resolv.conf /mnt/var/run/resolv.conf
-  
-  chroot /mnt su -
-  PS1="[chroot@$(hostname -s)]# "
-  
-  portmaster -gB ...
-  portmaster -agB
-  portmaster --clean-packages
-  pkg repo $(cd /usr/ports && make -V PACKAGES)
-  
-  exit
-  
-  ./unmount.sh
+
+mount -F /chroots/chroot-fbsd-build-ports-releng-amd64/etc/fstab -a
+install -d -m 755 -o root -g wheel /chroots/chroot-fbsd-build-ports-releng-amd64/var/run
+cp -f /var/run/resolv.conf /chroots/chroot-fbsd-build-ports-releng-amd64/var/run/resolv.conf
+
+chroot /chroots/chroot-fbsd-build-ports-releng-amd64 env -i HOME="/root" SHELL="/bin/sh" PATH="/bin:/usr/bin" TERM="$TERM" USER="root" /bin/sh -c "cd /root; . ./.profile; exec sh -i"
+
+PS1="[chroot@$(hostname -s)]# "
+/etc/rc.d/var start
+/etc/rc.d/ldconfig start
+
+portmaster -gB ...
+portmaster -agB
+portmaster --clean-packages
+pkg repo $(cd /usr/ports && make -V PACKAGES)
+
+exit
+
+umount -F /chroots/chroot-fbsd-build-ports-releng-amd64/etc/fstab -a

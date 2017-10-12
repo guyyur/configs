@@ -26,12 +26,7 @@ my_prompt()
 
 
 # -- disk names --
-if [ -z "$1" ]; then
-  echo "disk device not specified" 1>&2
-  exit 1
-fi
-
-disk0=$1
+read -p "Enter device for disk0: " disk0 || exit 1
 
 
 # -- layout  --

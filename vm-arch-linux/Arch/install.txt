@@ -1,0 +1,47 @@
+
+# x86_64
+
+useradd -u 1001 -U -G wheel,games,users -c "Guy Yur" guy
+
+nano /etc/pacman.conf
+  CleanMethod = KeepCurrent
+  
+  comment CheckSpace
+  
+  change SigLevel to
+    SigLevel = Never
+
+# cd to config dir (mounted usb flash, nfs, cifs, ...)
+./partition.sh
+./create_filesystems.sh
+./mount_and_mkdir.sh
+
+./config.sh /mnt
+
+mount -t nfs -orw packages:/packages/archlinux /mnt/var/cache/pacman
+./pacman.sh
+umount /mnt/var/cache/pacman
+
+nano /mnt/etc/pacman.conf
+  DBPath = /usr/db/pacman/
+  
+  CleanMethod = KeepCurrent
+  
+  change SigLevel to
+    SigLevel = Never
+
+nano /mnt/etc/pacman.d/mirrorlist
+  uncomment lines
+
+./write_boot_blocks.sh
+
+./unmount.sh
+
+systemctl poweroff
+
+
+config lxqt-notificationd
+config Terminator
+config PCManFM
+config Parcellite
+config Meld

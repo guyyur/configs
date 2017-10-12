@@ -41,7 +41,7 @@ install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
-install -l s /var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
+install -l s ../var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 chown -h root:wheel "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1

@@ -17,16 +17,25 @@ pkg install \
   dmidecode \
   python3 \
   samba46 \
-  mercurial \
   subversion \
   git \
+  mercurial \
   cscope \
   gdb \
   iperf \
+  dtb \
+  rpi-firmware \
+  u-boot-beaglebone \
+  u-boot-cubieboard \
+  u-boot-nanopi_neo \
+  u-boot-orangepi-one \
+  u-boot-orangepi-pc \
+  u-boot-rpi-custom \
+  sunxi-tools \
   freetype2 \
   fontconfig \
   dbus \
-  consolekit \
+  consolekit2 \
   xorg-server \
   xf86-input-mouse \
   xf86-input-keyboard \
@@ -73,6 +82,7 @@ pkg install \
   adwaita-icon-theme \
   gtk-engines2 \
   clearlooks-phenix-theme \
+  virtualbox-ose-additions \
   py27-xdg \
   openbox \
   openbox-themes \
@@ -86,13 +96,7 @@ pkg install \
   lxappearance \
   lxrandr \
   parcellite \
-  virtualbox-ose-additions \
   lxtask \
   meld \
   geany \
-  dtb \
-  raspberrypi-firmware-boot \
-  odroid-c1-boot-files \
-  u-boot \
-  sunxi-tools \
   || exit 1

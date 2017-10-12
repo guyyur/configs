@@ -1,0 +1,3 @@
+/export -ro
+/export/guy/sync -maproot=nobody
+V4: /export

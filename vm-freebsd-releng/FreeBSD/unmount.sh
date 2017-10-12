@@ -8,7 +8,6 @@ fi
 
 
 # -- layout --
-umount /mnt/export/ports || exit 1
 umount /mnt/chroots || exit 1
 umount /mnt/home || exit 1
 umount /mnt/usr/obj || exit 1

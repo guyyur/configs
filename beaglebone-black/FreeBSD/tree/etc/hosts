@@ -3,4 +3,3 @@
 # Host Database
 ::1			localhost.localdomain localhost beaglebone-black.localdomain beaglebone-black
 127.0.0.1		localhost.localdomain localhost beaglebone-black.localdomain beaglebone-black
-

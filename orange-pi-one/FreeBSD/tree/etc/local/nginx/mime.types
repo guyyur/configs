@@ -1,0 +1,95 @@
+
+types {
+    application/xhtml+xml                 xhtml xht;
+    text/html                             html htm shtml;
+    text/css                              css;
+    text/plain                            txt text conf def list log in c cc cxx cpp h hh;
+    application/xml                       xml xsl;
+    application/xml-dtd                   dtd;
+    application/xslt+xml                  xslt;
+
+    image/jpeg                            jpeg jpg;
+    image/png                             png;
+    image/svg+xml                         svg svgz;
+    image/gif                             gif;
+    image/tiff                            tif tiff;
+    image/x-icon                          ico;
+
+    application/x-gzip                    gz tgz;
+    application/x-bzip2                   bz2;
+    application/zip                       zip;
+    application/x-7z-compressed           7z;
+    application/x-rar-compressed          rar;
+    application/x-tar                     tar;
+
+    text/csv                              csv;
+    text/tab-separated-values             tsv;
+
+    application/pdf                       pdf;
+    application/epub+zip                  epub;
+    application/vnd.ms-xpsdocument        xps;
+    application/postscript                ps eps ai;
+
+    application/java-archive              jar;
+    application/java-vm                   class;
+    application/javascript                js;
+    application/json                      json;
+
+    application/ogg                       ogx;
+    audio/midi                            mid midi rmi kar;
+    audio/mp4                             mp4a;
+    audio/mpeg                            mpga mp2 mp2a mp3 m2a m3a;
+    audio/ogg                             oga ogg spx;
+    audio/x-aac                           aac
+    audio/x-mpegurl                       m3u
+    audio/x-wav                           wav
+    video/mp4                             mp4 mp4v mpg4;
+    video/mpeg                            mpeg mpg mpe m1v m2v;
+    video/ogg                             ogv;
+    video/quicktime                       mov qt;
+    video/x-msvideo                       avi;
+    video/h264                            h264;
+    video/jpm                             jpm jpgm;
+    video/mj2                             mj2 mjp2;
+
+    text/calendar                         ics ifb;
+    application/atom+xml                  atom;
+    application/rss+xml                   rss;
+    application/mathml+xml                mathml;
+
+    application/rtf                       rtf;
+    image/vnd.adobe.photoshop             psd;
+    image/vnd.djvu                        djvu djv;
+    application/vnd.openxmlformats-officedocument.wordprocessingml.document      docx;
+    application/msword                    doc;
+    application/vnd.openxmlformats-officedocument.presentationml.presentation    pptx;
+    application/vnd.ms-powerpoint         ppt;
+    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet            xlsx;
+    application/vnd.ms-excel              xls;
+    application/vnd.oasis.opendocument.chart                odc;
+    application/vnd.oasis.opendocument.formula              odf;
+    application/vnd.oasis.opendocument.graphics             odg;
+    application/vnd.oasis.opendocument.image                odi;
+    application/vnd.oasis.opendocument.presentation         odp;
+    application/vnd.oasis.opendocument.spreadsheet          ods;
+    application/vnd.oasis.opendocument.text                 odt;
+    application/vnd.google-earth.kml+xml  kml;
+    application/vnd.google-earth.kmz      kmz;
+
+    application/x-x509-ca-cert            der pem crt;
+    application/pgp-encrypted             pgp;
+    application/pgp-signature             asc sig;
+    application/pkcs10                    p10;
+    application/pkcs7-mime                p7m p7c;
+    application/pkcs7-signature           p7s;
+    application/pkix-cert                 cer;
+    application/pkix-crl                  crl;
+    application/pkix-pkipath              pkipath;
+    application/pkixcmp                   pki;
+    application/x-pkcs12                  p12 pfx;
+    application/x-pkcs7-certificates      p7b spc;
+    application/x-pkcs7-certreqresp       p7r;
+
+    application/octet-stream              bin exe dll;
+    application/octet-stream              iso img;
+}

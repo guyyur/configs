@@ -1,8 +1,8 @@
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./partition.sh dev
-./newfs.sh dev
-./mount_and_mkdir.sh dev
+./partition.sh
+./newfs.sh
+./mount_and_mkdir.sh
 
 #   head
 #   armv6
@@ -12,12 +12,10 @@
 ./unmount.sh
 
 mount /usr/local/db/local_pkg_repos
-
 mount -u -o rw,noatime /
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./add_pkgs.sh
 
 mount -u -o ro,noatime /
-
 umount /usr/local/db/local_pkg_repos

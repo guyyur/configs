@@ -26,15 +26,16 @@ my_prompt()
 
 
 # -- disk names --
-if [ -z "$1" ]; then
-  echo "disk device not specified" 1>&2
-  exit 1
-fi
-
-disk0=$1
+read -p "Enter device for disk0: " disk0 || exit 1
+disk0_removable=1
 
 
 # -- write boot blocks --
 my_prompt "${disk0}" || exit 1
-dd if=/usr/local/share/u-boot/am335x_boneblack/MLO of=/dev/"${disk0}" bs=128k seek=1 conv=sync,notrunc
-dd if=/usr/local/share/u-boot/am335x_boneblack/u-boot.img of=/dev/"${disk0}" bs=384k seek=1 conv=sync,notrunc
+if [ -n "${disk0_removable}" ]; then
+  dd if=/usr/local/share/u-boot/u-boot-beaglebone/MLO of=/dev/"${disk0}" bs=128k seek=1 conv=sync,notrunc
+  dd if=/usr/local/share/u-boot/u-boot-beaglebone/u-boot.img of=/dev/"${disk0}" bs=384k seek=1 conv=sync,notrunc
+else
+  dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=128k skip=1 seek=1 count=1 conv=sync,notrunc
+  dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=384k skip=1 seek=1 count=2 conv=sync,notrunc
+fi

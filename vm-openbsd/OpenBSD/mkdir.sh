@@ -18,11 +18,7 @@ DESTDIR=${1%/}
 # -- layout --
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g users "${DESTDIR}"/var/xdg-cache/guy || exit 1
-
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy || exit 1
+install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/external_projects || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/misc || exit 1
-install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/modifications || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/projects || exit 1
-install -d -m 1777 -o root -g users "${DESTDIR}"/home/public || exit 1
-install -d -m 1777 -o root -g users "${DESTDIR}"/home/shares || exit 1
-install -d -m 0700 -o guy -g users "${DESTDIR}"/home/shares/guy || exit 1

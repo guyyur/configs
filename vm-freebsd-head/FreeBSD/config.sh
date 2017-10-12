@@ -16,7 +16,7 @@ DESTDIR=${1%/}
 
 
 #
-install -l s /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
+install -l s ../usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/login.conf "${DESTDIR}"/etc/login.conf || exit 1
 if [ -z "${DESTDIR}" ]; then
@@ -54,7 +54,7 @@ install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
-install -l s /var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
+install -l s ../var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
@@ -92,6 +92,7 @@ install -c -m 644 -o root -g wheel tree/etc/syslog.conf "${DESTDIR}"/etc/syslog.
 install -c -m 644 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/newsyslog.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
+install -c -m 644 -o root -g wheel tree/etc/cron.d/at "${DESTDIR}"/etc/cron.d/at || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
@@ -110,7 +111,7 @@ install -c -m 600 -o guy -g guy tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/
 install -c -m 644 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local || exit 1
-install -l s ../../../etc/local "${DESTDIR}"/usr/local/etc || exit 1
+install -l s ../../etc/local "${DESTDIR}"/usr/local/etc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 
@@ -130,7 +131,10 @@ install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/l
 install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/samba || exit 1
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/samba/private || exit 1
+install -c -m 600 -o root -g wheel tree/etc/local/samba/private/passdb-backup.tdb "${DESTDIR}"/etc/local/samba/private/passdb-backup.tdb || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba/private || exit 1
-install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
+install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/local/samba/private/passdb-backup.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/smb.conf "${DESTDIR}"/etc/local/smb.conf || exit 1

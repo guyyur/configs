@@ -31,7 +31,6 @@ disk1=ada1
 disk2=ada2
 disk3=ada3
 disk4=ada4
-disk5=ada5
 
 
 # -- layout --
@@ -81,11 +80,3 @@ gpart create -s GPT -f x "${disk4}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk4}" || exit 1
 gpart commit "${disk4}" || exit 1
 gpart show "${disk4}" || exit 1
-
-# disk5:
-#   /export/ports
-my_prompt "${disk5}" || exit 1
-gpart create -s GPT -f x "${disk5}" || exit 1
-gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk5}" || exit 1
-gpart commit "${disk5}" || exit 1
-gpart show "${disk5}" || exit 1

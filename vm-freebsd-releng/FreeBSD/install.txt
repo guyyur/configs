@@ -19,7 +19,6 @@ dhcpcd lan0
 shutdown -p now
 
 mount /usr/local/db/local_pkg_repos
-
 mount -u -o rw,noatime /
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
@@ -33,5 +32,4 @@ config Parcellite
 config Meld
 
 mount -u -o ro,noatime /
-
 umount /usr/local/db/local_pkg_repos

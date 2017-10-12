@@ -58,4 +58,6 @@ alias whereis='whereis -x'
 # -- completions --
 autoload -Uz compinit
 compinit -d $XDG_CACHE_HOME/zcompdump
+compdef -d diff
 compdef -d mount
+compdef -d objdump

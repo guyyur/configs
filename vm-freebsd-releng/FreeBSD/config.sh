@@ -16,7 +16,7 @@ DESTDIR=${1%/}
 
 
 #
-install -l s /usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
+install -l s ../usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/login.conf "${DESTDIR}"/etc/login.conf || exit 1
 if [ -z "${DESTDIR}" ]; then
@@ -54,7 +54,7 @@ install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
-install -l s /var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
+install -l s ../var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
@@ -109,10 +109,8 @@ install -c -m 600 -o guy -g guy tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/
 
 install -c -m 644 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/portsnap.conf "${DESTDIR}"/etc/portsnap.conf || exit 1
-
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local || exit 1
-install -l s ../../../etc/local "${DESTDIR}"/usr/local/etc || exit 1
+install -l s ../../etc/local "${DESTDIR}"/usr/local/etc || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/xdg || exit 1
 
@@ -136,9 +134,12 @@ install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/l
 install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/samba || exit 1
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/samba/private || exit 1
+install -c -m 600 -o root -g wheel tree/etc/local/samba/private/passdb-backup.tdb "${DESTDIR}"/etc/local/samba/private/passdb-backup.tdb || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba || exit 1
 install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/samba/private || exit 1
-install -c -m 600 -o root -g wheel tree/var/db/samba/private/passdb.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
+install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/local/samba/private/passdb-backup.tdb "${DESTDIR}"/var/db/samba/private/passdb.tdb || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/smb.conf "${DESTDIR}"/etc/local/smb.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/polkit-1 || exit 1
@@ -147,8 +148,8 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/polkit-1/localauthorit
 install -c -m 644 -o root -g wheel tree/etc/local/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla "${DESTDIR}"/etc/local/polkit-1/localauthority/50-local.d/org.freedesktop.consolekit.pkla || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/local/machine-id "${DESTDIR}"/etc/local/machine-id || exit 1
-install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/dbus || exit 1
-install -l s /etc/local/machine-id "${DESTDIR}"/var/db/dbus/machine-id || exit 1
+install -d -m 755 -o root -g wheel "${DESTDIR}"/var/lib/dbus || exit 1
+install -l s ../../../etc/local/machine-id "${DESTDIR}"/var/lib/dbus/machine-id || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/fonts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/fonts/local.conf "${DESTDIR}"/etc/local/fonts/local.conf || exit 1

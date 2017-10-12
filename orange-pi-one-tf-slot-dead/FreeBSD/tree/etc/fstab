@@ -7,7 +7,4 @@
 tmpfs       /var          tmpfs    rw,size=128M,inodes=32768  0  0
 tmpfs       /tmp          tmpfs    rw,size=64M,inodes=16384   0  0
 
-tmpfs       /usr/wrkdir   tmpfs    rw,size=128M               0  0
-
-fbsd-ports:/ports   /usr/ports              nfs  rw,nfsv4,noauto  0  0
-packages:/packages  /usr/local/db/local_pkg_repos  nfs  rw,nfsv4,noauto  0  0
+packages:/packages  /usr/local/db/local_pkg_repos  nfs  ro,nfsv4,noauto  0  0
