@@ -30,7 +30,6 @@ install -d -m 755 -o root -g wheel /mnt/usr/local/db || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db/fontconfig || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db/local_pkg_repos || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db/pkg || exit 1
-install -d -m 755 -o root -g wheel /mnt/usr/local/db/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/xdg-cache/guy || exit 1
 install -d -m 700 -o guy -g guy /mnt/home/guy || exit 1

@@ -1,27 +1,22 @@
 
 update ports / packages
 
-mount -F /chroots/chroot-fbsd-build-ports-head-armv7/etc/fstab -a
-install -d -m 755 -o root -g wheel /chroots/chroot-fbsd-build-ports-head-armv7/var/run
-cp -f /var/run/resolv.conf /chroots/chroot-fbsd-build-ports-head-armv7/var/run/resolv.conf
-
-cp -f /usr/local/bin/qemu-arm-static /chroots/chroot-fbsd-build-ports-head-armv7/root/qemu-arm-static
-
-binmiscctl add armelf --interpreter /root/qemu-arm-static --magic "\x7f\x45\x4c\x46\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00" --mask  "\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff" --size 20 --set-enabled
+./set_up_chroot.sh
 
 chroot /chroots/chroot-fbsd-build-ports-head-armv7 env -i HOME="/root" SHELL="/bin/sh" PATH="/bin:/usr/bin" TERM="$TERM" USER="root" /bin/sh -c "cd /root; . ./.profile; exec sh -i"
 
 PS1="[chroot@$(hostname -s)]# "
 /etc/rc.d/var start
 /etc/rc.d/ldconfig start
+/etc/rc.d/devfs start
 
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 portmaster -gB ...
 portmaster -agB
 portmaster --clean-packages
+portmaster -t --clean-distfiles
 pkg repo $(cd /usr/ports && make -V PACKAGES)
 
 exit
 
-binmiscctl remove armelf
-
-umount -F /chroots/chroot-fbsd-build-ports-head-armv7/etc/fstab -a
+./tear_down_chroot.sh

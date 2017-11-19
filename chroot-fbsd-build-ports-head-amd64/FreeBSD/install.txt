@@ -8,21 +8,19 @@
 ./config.sh /mnt
 
 ./unmount.sh
-
-mount -F /chroots/chroot-fbsd-build-ports-head-amd64/etc/fstab -a
-install -d -m 755 -o root -g wheel /chroots/chroot-fbsd-build-ports-head-amd64/var/run
-cp -f /var/run/resolv.conf /chroots/chroot-fbsd-build-ports-head-amd64/var/run/resolv.conf
+./set_up_chroot.sh
 
 chroot /chroots/chroot-fbsd-build-ports-head-amd64 env -i HOME="/root" SHELL="/bin/sh" PATH="/bin:/usr/bin" TERM="$TERM" USER="root" /bin/sh -c "cd /root; . ./.profile; exec sh -i"
 
 PS1="[chroot@$(hostname -s)]# "
 /etc/rc.d/var start
 /etc/rc.d/ldconfig start
+/etc/rc.d/devfs start
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./write_ports_options.sh
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 ./build_ports.sh
 
 exit
 
-umount -F /chroots/chroot-fbsd-build-ports-head-amd64/etc/fstab -a
+./tear_down_chroot.sh

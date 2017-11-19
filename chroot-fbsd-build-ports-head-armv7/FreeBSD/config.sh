@@ -80,11 +80,14 @@ install -l s ../../etc/local "${DESTDIR}"/usr/local/etc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/local/ports.conf "${DESTDIR}"/etc/local/ports.conf || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/local/portmaster.rc "${DESTDIR}"/etc/local/portmaster.rc || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/local/pkg.conf "${DESTDIR}"/etc/local/pkg.conf || exit 1
+
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/pkg || exit 1
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/pkg/repos || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/pkg/repos/custom.conf "${DESTDIR}"/etc/local/pkg/repos/custom.conf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/pkg/repos/FreeBSD.conf "${DESTDIR}"/etc/local/pkg/repos/FreeBSD.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/local/nanorc "${DESTDIR}"/etc/local/nanorc || exit 1
 

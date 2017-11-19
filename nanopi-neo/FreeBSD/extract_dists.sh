@@ -12,17 +12,20 @@ if [ $# != 2 ]; then
   echo "usage: extract_dists.sh destdir dists-dir" 1>&2
   exit 1
 fi
-DESTDIR=$1
+destdir=$1
 distsdir=$2
 
 
-# -- extract files --
-cd $distsdir || exit 1
+# -- set up params --
+DESTDIR=$destdir
+TARGET_ARCH=armv7
 
-tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
+
+# -- extract files --
+tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/base.txz || exit 1
 rm -f "${DESTDIR}"/root/.login || exit 1
-# tar -Uxp -C "${DESTDIR}" -f base-dbg.txz || exit 1
-# tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
-tar -Uxp -C "${DESTDIR}" -f kernel-MYHW-ROUTER.txz || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/base-dbg.txz || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/doc.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/kernel-MYHW-ROUTER.txz || exit 1
 install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
 install -c /usr/local/share/dtb/arm/sun8i-h3-nanopi-neo.dtb "${DESTDIR}"/boot/custom/sun8i-h3-nanopi-neo.dtb || exit 1

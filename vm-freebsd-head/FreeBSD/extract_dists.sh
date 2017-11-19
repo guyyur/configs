@@ -12,15 +12,18 @@ if [ $# != 2 ]; then
   echo "usage: extract_dists.sh destdir dists-dir" 1>&2
   exit 1
 fi
-DESTDIR=$1
+destdir=$1
 distsdir=$2
 
 
-# -- extract files --
-cd $distsdir || exit 1
+# -- set up params --
+DESTDIR=$destdir
+TARGET_ARCH=amd64
 
-tar -Uxp -C "${DESTDIR}" -f base.txz || exit 1
+
+# -- extract files --
+tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/base.txz || exit 1
 rm -f "${DESTDIR}"/root/.login || exit 1
-# tar -Uxp -C "${DESTDIR}" -f base-dbg.txz || exit 1
-# tar -Uxp -C "${DESTDIR}" -f doc.txz || exit 1
-tar -Uxp -C "${DESTDIR}" -f kernel-MYVIRTHW.txz || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/base-dbg.txz || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/doc.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/kernel-MYVIRTHW.txz || exit 1

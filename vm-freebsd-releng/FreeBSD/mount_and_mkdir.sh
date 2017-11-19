@@ -31,7 +31,6 @@ mount -o noatime /dev/"${disk0}"p3 /mnt/var || exit 1
 mount -t tmpfs tmpfs /mnt/tmp || exit 1
 mount -o noatime /dev/"${disk2}"p1 /mnt/usr/obj || exit 1
 mount -o noatime /dev/"${disk3}"p1 /mnt/home || exit 1
-
 mount -o noatime /dev/"${disk4}"p1 /mnt/chroots || exit 1
 
 install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
