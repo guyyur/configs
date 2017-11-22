@@ -16,9 +16,12 @@ PS1="[chroot@$(hostname -s)]# "
 /etc/rc.d/var start
 /etc/rc.d/ldconfig start
 /etc/rc.d/devfs start
+export MACHINE=$(uname -m)
+export MACHINE_ARCH=$(uname -p)
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+export ABI_FILE=/usr/lib/crt1.o
 ./build_ports.sh
 
 exit
