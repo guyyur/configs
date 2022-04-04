@@ -1,5 +1,0 @@
-# replace sdcard-for-beaglebone-black with real hostname
-
-# Host Database
-::1			localhost.localdomain localhost sdcard-for-beaglebone-black.localdomain sdcard-for-beaglebone-black
-127.0.0.1		localhost.localdomain localhost sdcard-for-beaglebone-black.localdomain sdcard-for-beaglebone-black

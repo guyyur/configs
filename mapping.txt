@@ -3,13 +3,9 @@ Acer Aspire ES1-131-C5FK Notebook + Samsung MUF-32BB/EU USB Flash Drive -> acer-
 ASUS K8S-MX  Motherboard + Hitachi HDT722525DLA380 HDD + Hitachi HDT722516DLA380 HDD -> asus-k8s-mx (devel)
 ASUS P5E-VM HDMI + Western Digital WD30EFRX-68AX9N0 HDD -> asus-p5e-vm-hdmi (devel)
 BeagleBone Black Board -> beaglebone-black (vcs)
-Cubieboard Board + SanDisk SDSDQM-004G-B35 microSDHC Card + Western Digital WD5000BPKT-22PK4T0 HDD -> cubieboard (storage)
 FriendlyARM NanoPi NEO 256M V1.2 Board + SanDisk SDSDQM-008G-B35 microSDHC Card -> nanopi-neo (router)
 Gigabyte GA-J1800N-D2H + Transcend TS128GSSD370 SSD -> gigabyte-ga-j1800n-d2h (devel)
-Hardkernel ODROID C1+ Board -> odroid-c1 (none)
 MSI H97M-G43 Motherboard + Kingston SM2280S3G2/240G SSD + Samsung MZ-7TE120BW SSD + Western Digital WD1003FZEX-00MK2A0 HDD + Western Digital WD60EZRZ-00GZ5B1 HDD -> msi-h97m-g43 (desktop)
-Raspberry Pi Model B Board + SanDisk SDSDH-2048-902 SD Card -> rpib (devel)
-Xunlong Orange Pi One Board + SanDisk SDCZG1-2048 USB Flash Drive -> orange-pi-one-tf-slot-dead (devel)
 Xunlong Orange Pi One Board + Samsung MB-MC32D0/EU microSDHC Memory Card -> orange-pi-one (vcs, packages, ports)
 Xunlong Orange Pi PC Board + SanDisk SDSQUNB-016G-GN3MN microSDHC Card + Western Digital WDBPCK5000ABK HDD -> orange-pi-pc (storage)
 
@@ -28,5 +24,3 @@ VirtualBox VM - Arch Linux (64-bit) -> vm-arch-linux (devel)
 FreeBSD chroot (releng, amd64) -> chroot-fbsd-build-ports-releng-amd64
 FreeBSD chroot (head, amd64) -> chroot-fbsd-build-ports-head-amd64
 FreeBSD chroot (head, armv7) -> chroot-fbsd-build-ports-head-armv7
-
-SanDisk SDSDQM-002G-B35 microSD Card -> sdcard-for-beaglebone-black
