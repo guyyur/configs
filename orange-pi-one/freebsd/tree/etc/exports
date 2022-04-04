@@ -1,6 +1,0 @@
-/export -ro
-/export/guy_share -maproot=nobody
-/export/packages -maproot=root
-/export/public -maproot=root
-/export/sources -maproot=root
-V4: /export
