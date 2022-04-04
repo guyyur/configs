@@ -1,0 +1,15 @@
+# replace hostnames with real hostnames
+# replace fd00:2001:db8:0::1NNN with real ULA prefix+EUI-64
+
+192.168.1.4				tp-link-tl-wa1201.home.arpa tp-link-tl-wa1201
+
+fd00:2001:db8:0::1021			raspberry-pi-2gb.home.arpa raspberry-pi-2gb
+fd00:2001:db8:0::1061			raspberry-pi-8gb.home.arpa raspberry-pi-8gb
+
+fd00:2001:db8:0::1101			vm-freebsd-releng.home.arpa vm-freebsd-releng
+fd00:2001:db8:0::1102			vm-freebsd-head.home.arpa vm-freebsd-head
+fd00:2001:db8:0::1103			vm-netbsd.home.arpa vm-netbsd
+fd00:2001:db8:0::1104			vm-openbsd.home.arpa vm-openbsd
+fd00:2001:db8:0::1105			vm-arch-linux.home.arpa vm-arch-linux
+
+fd00:2001:db8:0::1061			server.home.arpa server

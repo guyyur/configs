@@ -1,26 +1,26 @@
 
-tp-link-td-w9970 (vdsl modem)
+fiber box
      |
-nanopi-neo (router)
+raspberry-pi-4-2gb (router)
      |
-d-link-dgs-1008a-b1 (switch) ---- edimax-ew7416apn (access point) ~~~~ acer-aspire-es1-131 (notebook)
+d-link-dgs-1008a-b1 (switch) ---- tp-link-tl-wa1201 (access point) ~~~~ acer-aspire-es1-131 (notebook)
   /  ||||||
- |   msi-h97m-g43 (desktop)
- |   orange-pi-one (vcs, packages, ports)
- |   orange-pi-pc (storage)
- |   qnap-ts-112p (nas)
+ |   asus-rog-strix-x570-i (desktop)
+ |   raspberry-pi-4-8gb (vcs, packages, ports)
   \
-   vm-freebsd-releng (devel, src, build ports chroots)
+   vm-freebsd-releng (devel, src, build ports jails)
      jail-fbsd-build-ports-releng-aarch64
      jail-fbsd-build-ports-releng-amd64
      jail-fbsd-build-ports-releng-armv7
-   vm-freebsd-head (devel, src, build ports chroots)
+   vm-freebsd-head (devel, src, build ports jails)
      jail-fbsd-build-ports-head-amd64
    vm-netbsd (devel)
    vm-openbsd (devel)
    vm-arch-linux (devel)
 
-asus-k8s-mx (devel)
-asus-p5e-vm-hdmi (devel)
 beaglebone-black (devel)
-gigabyte-ga-j1800n-d2h (devel)
+orange-pi-one (none)
+orange-pi-pc (none)
+orange-pi-pc-2 (none)
+orange-pi-r1plus (none)
+rock64 (none)

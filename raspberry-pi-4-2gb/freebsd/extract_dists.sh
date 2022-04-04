@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# -- check for root --
+if [ "$(id -u)" != "0" ]; then
+  echo "extract_dists.sh: sorry, this must be done as root." 1>&2
+  exit 1
+fi
+
+
+# -- check arguments --
+if [ $# != 1 ]; then
+  echo "usage: extract_dists.sh destdir" 1>&2
+  exit 1
+fi
+destdir=$1
+
+
+# -- set up params --
+DESTDIR=$destdir
+DISTDIR=$destdir/usr/local/db/local_base_repos
+TARGET_ARCH=aarch64
+
+
+# -- extract files --
+tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/base.txz || exit 1
+rm -f "${DESTDIR}"/root/.login || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/base-dbg.txz || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/doc.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/kernel-MYHW-ROUTER.txz || exit 1
+install -d "${DESTDIR}"/boot/ESP/EFI || exit 1
+install -d "${DESTDIR}"/boot/ESP/EFI/BOOT || exit 1
+case ${TARGET_ARCH} in
+  aarch64)
+    install -c "${DESTDIR}"/boot/loader.efi "${DESTDIR}"/boot/ESP/EFI/BOOT/BOOTAA64.EFI || exit 1
+    ;;
+  amd64)
+    install -c "${DESTDIR}"/boot/loader.efi "${DESTDIR}"/boot/ESP/EFI/BOOT/BOOTX64.EFI || exit 1
+    ;;
+  armv7)
+    install -c "${DESTDIR}"/boot/loader.efi "${DESTDIR}"/boot/ESP/EFI/BOOT/BOOTARM.EFI || exit 1
+    ;;
+  *)
+    printf "Unknown TARGET_ARCH=${TARGET_ARCH} for EFI boot\n"
+    exit 1
+    ;;
+esac
+install -d "${DESTDIR}"/boot/ESP/overlays || exit 1
+install -c /usr/local/share/u-boot/u-boot-rpi4/u-boot.bin "${DESTDIR}"/boot/ESP/u-boot.bin || exit 1
+install -c /usr/local/share/rpi-firmware/armstub8-gic.bin "${DESTDIR}"/boot/ESP/armstub8-gic.bin || exit 1
+install -c /usr/local/share/rpi-firmware/start4.elf "${DESTDIR}"/boot/ESP/start4.elf || exit 1
+install -c /usr/local/share/rpi-firmware/fixup4.dat "${DESTDIR}"/boot/ESP/fixup4.dat || exit 1
+install -c /usr/local/share/rpi-firmware/overlays/mmc.dtbo "${DESTDIR}"/boot/ESP/overlays/mmc.dtbo || exit 1
+install -c /usr/local/share/rpi-firmware/overlays/disable-bt.dtbo "${DESTDIR}"/boot/ESP/overlays/disable-bt.dtbo || exit 1
+install -c /usr/local/share/rpi-firmware/config_rpi4.txt "${DESTDIR}"/boot/ESP/config.txt || exit 1
+install -c /usr/local/share/rpi-firmware/bcm2711-rpi-4-b.dtb "${DESTDIR}"/boot/ESP/bcm2711-rpi-4-b.dtb || exit 1
