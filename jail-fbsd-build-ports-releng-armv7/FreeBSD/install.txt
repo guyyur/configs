@@ -1,0 +1,34 @@
+
+mount -u -o rw,noatime /jails
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./mount_and_mkdir.sh
+
+# releng/13.1
+# armv7
+mount -t nfs -o ro,nfsv4,minorversion=1 server:/packages/FreeBSD-base/releng/armv7 /mnt/usr/local/db/local_base_repos
+./extract_dists.sh /mnt
+umount /mnt/usr/local/db/local_base_repos
+cd /usr/src/tools/tools/guy
+./src.sh install-chroot-native-tools
+./config.sh /mnt
+./unmount.sh
+
+mount -u -o ro,noatime /jails
+
+mount -u -o rw,noatime /jails
+jail -c jail-fbsd-build-ports-releng-armv7
+mount -F /jails/jail-fbsd-build-ports-releng-armv7/etc/fstab.jail.packages -a
+
+jexec -l jail-fbsd-build-ports-releng-armv7 /bin/sh -i -c ". ./.profile; [ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; exec sh -i"
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
+./build_ports.sh
+
+exit
+
+umount -F /jails/jail-fbsd-build-ports-releng-armv7/etc/fstab.jail.packages -a
+jail -r jail-fbsd-build-ports-releng-armv7
+mount -u -o ro,noatime /jails

@@ -1,0 +1,23 @@
+
+# update ports / packages
+
+mount -u -o rw,noatime /jails
+jail -c jail-fbsd-build-ports-releng-aarch64
+mount -F /jails/jail-fbsd-build-ports-releng-aarch64/etc/fstab.jail.packages -a
+
+jexec -l jail-fbsd-build-ports-releng-aarch64 /bin/sh -i -c ". ./.profile; [ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; exec sh -i"
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+portmaster -t --clean-distfiles
+
+portmaster -gB ...
+portmaster -agB
+portmaster --clean-packages
+pkg repo $(cd /usr/ports && make -V PACKAGES)
+
+exit
+
+umount -F /jails/jail-fbsd-build-ports-releng-aarch64/etc/fstab.jail.packages -a
+jail -r jail-fbsd-build-ports-releng-aarch64
+mount -u -o ro,noatime /jails

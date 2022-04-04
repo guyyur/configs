@@ -1,0 +1,4 @@
+
+# Host Database
+::1			localhost jail-fbsd-build-ports-releng-aarch64.home.arpa jail-fbsd-build-ports-releng-aarch64
+127.0.0.1		localhost jail-fbsd-build-ports-releng-aarch64.home.arpa jail-fbsd-build-ports-releng-aarch64
