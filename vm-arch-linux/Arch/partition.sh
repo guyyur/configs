@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "partition.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -39,8 +39,8 @@ my_prompt "${disk0}" || exit 1
 parted -s -a optimal /dev/"${disk0}" \
   mklabel msdos \
   unit s \
-  mkpart primary ext4 2048s 10485759s \
-  mkpart primary ext4 10485760s 100% \
+  mkpart primary ext4 2048s 14680063s \
+  mkpart primary ext4 14680064s 100% \
   set 1 boot on \
   || exit 1
 parted -s -a optimal /dev/"${disk0}" unit s print || exit 1

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "write_boot_blocks.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -31,4 +31,4 @@ disk0=sda
 
 # -- write boot blocks --
 my_prompt "${disk0}" || exit 1
-dd if="/mnt/usr/lib/syslinux/bios/mbr.bin" of=/dev/"${disk0}" bs=440 count=1 conv=notrunc || exit 1
+dd if=/mnt/usr/lib/syslinux/bios/mbr.bin of=/dev/"${disk0}" bs=440 count=1 conv=notrunc || exit 1

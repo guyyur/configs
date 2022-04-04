@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "partition.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -26,11 +26,11 @@ my_prompt()
 
 
 # -- disk names --
-disk0=ada0
-disk1=ada1
-disk2=ada2
-disk3=ada3
-disk4=ada4
+disk0=da0
+disk1=da1
+disk2=da2
+disk3=da3
+disk4=da4
 
 
 # -- layout --
@@ -43,7 +43,7 @@ gpart create -s GPT -f x "${disk0}" || exit 1
 gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
 gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
 gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1m -b 2048 -s 10483712 -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1m -b 2048 -s 31455232 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1m -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
@@ -58,7 +58,7 @@ gpart show "${disk1}" || exit 1
 gpart show -l "${disk1}" || exit 1
 
 # disk2:
-#   /usr/obj
+#   /home
 my_prompt "${disk2}" || exit 1
 gpart create -s GPT -f x "${disk2}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
@@ -66,7 +66,7 @@ gpart commit "${disk2}" || exit 1
 gpart show "${disk2}" || exit 1
 
 # disk3:
-#   /home
+#   /usr/obj
 my_prompt "${disk3}" || exit 1
 gpart create -s GPT -f x "${disk3}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
@@ -74,7 +74,7 @@ gpart commit "${disk3}" || exit 1
 gpart show "${disk3}" || exit 1
 
 # disk4:
-#   /chroots
+#   /jails
 my_prompt "${disk4}" || exit 1
 gpart create -s GPT -f x "${disk4}" || exit 1
 gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk4}" || exit 1

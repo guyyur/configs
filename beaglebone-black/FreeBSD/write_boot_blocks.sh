@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "write_boot_blocks.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -26,15 +26,10 @@ my_prompt()
 
 
 # -- disk names --
-disk0=mmcsd1
+read -p "Enter device for disk0: " disk0 || exit 1
 
 
 # -- write boot blocks --
 my_prompt "${disk0}" || exit 1
-if [ -n "${disk0_removable}" ]; then
-  dd if=/usr/local/share/u-boot/u-boot-beaglebone/MLO of=/dev/"${disk0}" bs=128k seek=1 conv=sync,notrunc
-  dd if=/usr/local/share/u-boot/u-boot-beaglebone/u-boot.img of=/dev/"${disk0}" bs=384k seek=1 conv=sync,notrunc
-else
-  dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=128k skip=1 seek=1 count=1 conv=sync,notrunc
-  dd if=/dev/mmcsd0 of=/dev/"${disk0}" bs=384k skip=1 seek=1 count=2 conv=sync,notrunc
-fi
+dd if=/usr/local/share/u-boot/u-boot-beaglebone/MLO of=/dev/"${disk0}" bs=128k seek=1 conv=sync,notrunc
+dd if=/usr/local/share/u-boot/u-boot-beaglebone/u-boot.img of=/dev/"${disk0}" bs=384k seek=1 conv=sync,notrunc

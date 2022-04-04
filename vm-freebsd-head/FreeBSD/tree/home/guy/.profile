@@ -38,7 +38,7 @@ export VISUAL="${EDITOR}"
 
 # -- ls env vars --
 export LSCOLORS=ExFxGxdxCxDxDxhbadacad
-export CLICOLOR
+export CLICOLOR=1
 
 
 # -- PAGER env var --
@@ -57,6 +57,10 @@ export ENV=$HOME/.shrc
 # -- set XDG env vars --
 export XDG_CONFIG_HOME=$HOME/config
 export XDG_CACHE_HOME=/var/xdg-cache/"$USER"
+
+
+# -- private tmp dir --
+install -d -o "$USER" -g "$USER" -m 700 /tmp/"$USER"
 
 
 # -- run zsh if exists --

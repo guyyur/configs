@@ -2,7 +2,7 @@
 # replace fd00:2001:db8:0::X with real ULA prefix+EUI-64
 
 # Host Database
-::1			localhost.localdomain localhost nanopi-neo.localdomain nanopi-neo
-127.0.0.1		localhost.localdomain localhost nanopi-neo.localdomain nanopi-neo
+::1			localhost nanopi-neo.home.arpa nanopi-neo
+127.0.0.1		localhost nanopi-neo.home.arpa nanopi-neo
 
-fd00:2001:db8:0::1061	packages.localdomain packages
+fd00:2001:db8:0::1061	server.home.arpa server

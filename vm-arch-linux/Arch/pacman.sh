@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "pacman.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -44,6 +44,7 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/
   pacman \
   pacman-mirrorlist \
   parted \
+  gptfdisk \
   procps-ng \
   psmisc \
   sed \
@@ -74,11 +75,16 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/
   net-tools \
   ndisc6 \
   traceroute \
+  ipv6calc \
   openssh \
   rpcbind \
   nfsidmap \
   nfs-utils \
   tcpdump \
+  openbsd-netcat \
+  ca-certificates \
+  curl \
+  wget \
   alsa-utils \
   alsa-oss \
   bc \
@@ -97,57 +103,69 @@ pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/
   gdb \
   strace \
   gcc \
-  indent \
+  dos2unix \
+  exfatprogs \
   python \
-  samba \
+  tmux \
   git \
+  iperf \
   dbus \
   polkit \
   xf86-input-libinput \
   xorg-server \
   xorg-xinit \
-  xorg-utils \
-  xorg-xkb-utils \
-  xorg-server-utils \
+  xorg-xkbutils \
   libxkbcommon-x11 \
-  compton \
+  xorg-xbacklight \
+  xorg-xhost \
+  xorg-xinput \
+  xorg-xrandr \
+  xorg-xset \
+  xorg-xdpyinfo \
+  xorg-xdriinfo \
+  xorg-xev \
+  xorg-xprop \
+  xorg-xvinfo \
+  xorg-xwininfo \
+  xorg-xwayland \
   ttf-liberation \
   ttf-dejavu \
   hicolor-icon-theme \
   xterm \
+  ttf-caladea \
+  ttf-carlito \
+  ttf-croscore \
   ttf-junicode \
   libnotify \
-  virtualbox-guest-modules-arch \
-  virtualbox-guest-utils \
-  gtk-engines \
+  picom \
+  hsetroot \
   adwaita-icon-theme \
   gnome-icon-theme \
-  python2-xdg \
+  oxygen-icons \
+  gtk-engines \
+  gnome-themes-extra \
+  gtk-engine-murrine \
+  arc-solid-gtk-theme \
+  qt5-wayland \
+  python-pyxdg \
   openbox \
-  obconf \
-  openbox-themes \
+  obconf-qt \
   tint2 \
-  qt4 \
   gsimplecal \
   lxqt-notificationd \
-  terminator \
+  qterminal \
   gmrun \
   pcmanfm-qt \
   leafpad \
+  featherpad \
   lxappearance \
   lxrandr \
-  parcellite \
   lxtask \
   meld \
   geany \
   || exit 1
 
 echo -n > /tmp/aur_pkg_list
-ls /mnt/var/cache/pacman/AUR_pkg/clearlooks-phenix-gtk-theme-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
-ls /mnt/var/cache/pacman/AUR_pkg/ttf-chromeos-fonts-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
-ls /mnt/var/cache/pacman/AUR_pkg/ttf-caladea-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
-ls /mnt/var/cache/pacman/AUR_pkg/ttf-carlito-*-any.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
-ls /mnt/var/cache/pacman/AUR_pkg/hsetroot-*-x86_64.pkg.tar.xz >> /tmp/aur_pkg_list || exit 1
 
 if [ -s /tmp/aur_pkg_list ]; then
   cat /tmp/aur_pkg_list | pacman -U --root /mnt --dbpath /mnt/usr/db/pacman - || exit 1

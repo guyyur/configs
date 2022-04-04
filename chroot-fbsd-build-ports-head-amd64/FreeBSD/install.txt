@@ -1,29 +1,35 @@
 
+mount -u -o rw,noatime /jails
+
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./mount_and_mkdir.sh
 
-#   head
-#   amd64
-./extract_dists.sh /mnt /path/to/dists
+# head
+# amd64
+mount -t nfs -o ro,nfsv4 server:/packages/FreeBSD-base/head/amd64 /mnt/usr/local/db/local_base_repos
+./extract_dists.sh /mnt
+umount /mnt/usr/local/db/local_base_repos
+cd /usr/src/tools/tools/guy
+DESTDIR=/mnt ./src.sh install-chroot-native-xtools
+# cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./config.sh /mnt
-
 ./unmount.sh
-./set_up_chroot.sh
 
-chroot /chroots/chroot-fbsd-build-ports-head-amd64 env -i HOME="/root" SHELL="/bin/sh" PATH="/bin:/usr/bin" TERM="$TERM" USER="root" /bin/sh -c "cd /root; . ./.profile; exec sh -i"
+mount -u -o ro,noatime /jails
 
-PS1="[chroot@$(hostname -s)]# "
-/etc/rc.d/var start
-/etc/rc.d/ldconfig start
-/etc/rc.d/devfs start
-export MACHINE=$(uname -m)
-export MACHINE_ARCH=$(uname -p)
+mount -u -o rw,noatime /jails
+jail -c jail-fbsd-build-ports-head-amd64
+mount -F /jails/jail-fbsd-build-ports-head-amd64/etc/fstab.jail.packages -a
+
+jexec -l jail-fbsd-build-ports-head-amd64 /bin/sh -i -c ". ./.profile; [ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; exec sh -i"
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-export ABI_FILE=/usr/lib/crt1.o
 ./build_ports.sh
 
 exit
 
-./tear_down_chroot.sh
+umount -F /jails/jail-fbsd-build-ports-head-amd64/etc/fstab.jail.packages -a
+jail -r jail-fbsd-build-ports-head-amd64
+mount -u -o ro,noatime /jails

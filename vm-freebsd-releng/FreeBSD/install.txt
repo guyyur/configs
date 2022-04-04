@@ -1,19 +1,15 @@
 
-ifconfig vtnet0 name lan0
-
-ifconfig lan0 up
-dhcpcd lan0
-
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./partition.sh
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   releng/11.0
-#   amd64
-./extract_dists.sh /mnt /path/to/dists
+# releng/13.1
+# amd64
+mount -t nfs -o ro,nfsv4,minorversion=1 server:/packages/FreeBSD-base/releng/amd64 /mnt/usr/local/db/local_base_repos
+./extract_dists.sh /mnt
+umount /mnt/usr/local/db/local_base_repos
 ./config.sh /mnt
-
 ./unmount.sh
 
 shutdown -p now
@@ -24,12 +20,9 @@ mount -u -o rw,noatime /
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./add_pkgs.sh
 
-service dbus start
-
-config Terminator
-config PCManFM
-config Parcellite
-config Meld
-
 mount -u -o ro,noatime /
 umount /usr/local/db/local_pkg_repos
+
+service dbus start
+config QTerminal
+config Meld

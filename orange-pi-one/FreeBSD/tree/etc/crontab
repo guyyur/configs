@@ -1,7 +1,7 @@
 # /etc/crontab - root's crontab for FreeBSD
 #
 SHELL=/bin/sh
-PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 MAILTO=""
 #
 #minute	hour	mday	month	wday	who	command

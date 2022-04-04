@@ -23,6 +23,8 @@ unsetopt LIST_BEEP
 [[ -z "${terminfo[kcud1]}" ]] || bindkey "${terminfo[kcud1]}" down-line-or-history
 [[ -z "${terminfo[kcub1]}" ]] || bindkey "${terminfo[kcub1]}" backward-char
 [[ -z "${terminfo[kcuf1]}" ]] || bindkey "${terminfo[kcuf1]}" forward-char
+[[ -z "${terminfo[kpp]}" ]] || bindkey "${terminfo[kpp]}" history-beginning-search-backward
+[[ -z "${terminfo[knp]}" ]] || bindkey "${terminfo[knp]}" history-beginning-search-forward
 
 if [[ -n "${terminfo[smkx]}" ]]; then
   function zle-line-init ()
@@ -54,6 +56,8 @@ alias ll='ls -l'
 alias cp='cp -i'
 alias mv='mv -i'
 alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip -color=auto'
 
 # -- completions --
 autoload -Uz compinit

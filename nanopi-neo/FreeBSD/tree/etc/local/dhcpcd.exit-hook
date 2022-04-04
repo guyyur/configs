@@ -1,50 +1,82 @@
 #!/bin/sh
 
-# get addresses without prefixlen and excluding ULA
-if [ "$reason" = "DELEGATED6" -a "$interface" = "lan0" ]; then
-  new_global_ipv6_addresses=""
-  for i in ${new_delegated_dhcp6_prefix}; do
-    first_byte=${i%%??:*/*}
-    case $first_byte in
-      fc|fd|fe|ff) ;;
-      *) new_global_ipv6_addresses="${new_global_ipv6_addresses} ${i%%/*}" ;;
-    esac
-  done
-  new_global_ipv6_addresses="${new_global_ipv6_addresses# }"
-  new_first_global_ipv6_address="${new_global_ipv6_addresses%% *}"
+log_line()
+{
+  local d
   
-  old_global_ipv6_addresses=$(cat /var/run/dhcpcd-"$interface"-old_global_ipv6_addresses 2>/dev/null)
-  echo "${new_global_ipv6_addresses}" > /var/run/dhcpcd-"$interface"-old_global_ipv6_addresses
+  d="$(date '+%b %e %T')"
+  printf "$d $1" >> /var/log/dhcpcd.exit-hook.log
+}
+
+log_line "got $reason for $interface\n"
+
+if [ "$reason" = "DELEGATED6" ]; then
+  log_line "delegating prefixes for $interface: ${new_delegated_dhcp6_prefix}\n"
 fi
 
-# open own ipv6 ports
-if [ "$reason" = "DELEGATED6" -a "$interface" = "lan0" ]; then
-  if [ "${old_global_ipv6_addresses}" != "${new_global_ipv6_addresses}" ]; then
-    sed -e "s@OWN_IPV6_ADDRESSES@${new_global_ipv6_addresses}@" /etc/pf_anchor-own_ipv6.conf.in > /var/run/pf_anchor-own_ipv6.conf
-    if [ $? -eq 0 ]; then
-      pfctl -a own_ipv6 -F rules
-      pfctl -a own_ipv6 -f /var/run/pf_anchor-own_ipv6.conf
-    fi
-  fi
+if [ "$interface" = "wan0" ]; then
+  case $reason in
+    BOUND|RENEW|REBIND|REBOOT|INFORM)
+      if [ -n "${new_ip_address}" ]; then
+        log_line "received ipv4 address: $new_ip_address\n"
+        
+        old_ddnshupd_ipv4_address=$(cat /var/db/ddnshupd-ipv4.address 2>/dev/null)
+        printf "${new_ip_address}" > /var/db/ddnshupd-ipv4.address
+        if [ "${new_ip_address}" != "${old_ddnshupd_ipv4_address}" ]; then
+          log_line "starting dynamic dns ipv4 update\n"
+          /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv4.pid "${new_ip_address}" /usr/local/etc/ddnshupd-ipv4.conf
+        fi
+      fi
+      ;;
+    NOCARRIER|EXPIRE|STOP)
+      log_line "stopping dynamic dns ipv4 update\n"
+      
+      ddnshupd_ipv4_pid=$(cat /var/run/ddnshupd-ipv4.pid 2>/dev/null)
+      [ -n "$ddnshupd_ipv4_pid" ] && kill -TERM "$ddnshupd_ipv4_pid"
+      ;;
+  esac
 fi
 
-# update dynamic dns
-case $reason in
-  DELEGATED6|ROUTERADVERT|BOUND6|RENEW6|REBIND6|REBOOT6|INFORM6)
-    if [ "$interface" = "lan0" -a -n "${new_first_global_ipv6_address}" -a "${old_global_ipv6_addresses}" != "${new_global_ipv6_addresses}" ]; then
-      /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv6.pid "${new_first_global_ipv6_address}" /usr/local/etc/ddnshupd-ipv6.conf
-    fi
-    ;;
-  NOCARRIER)
-    if [ "$interface" = "lan0" ]; then
+if [ "$interface" = "wan0" ]; then
+  case $reason in
+    BOUND6|RENEW6|REBIND6|REBOOT6|INFORM6)
+      if [ -n "${new_dhcp6_ia_na1_ia_addr1}" ]; then
+        log_line "received ipv6 address: $new_dhcp6_ia_na1_ia_addr1\n"
+        
+        old_own_ipv6_address=$(cat /var/run/dhcpcd-"$interface"-old_own_ipv6_address 2>/dev/null)
+        printf "${new_dhcp6_ia_na1_ia_addr1}" > /var/run/dhcpcd-"$interface"-old_own_ipv6_address
+        if [ "${new_dhcp6_ia_na1_ia_addr1}" != "${old_own_ipv6_address}" ]; then
+          log_line "open ports for own ipv6\n"
+          if [ -n "${old_own_ipv6_address}" ]; then
+            pfctl -a own_ipv6 -F rules
+          fi
+          sed -e "s@OWN_IPV6_ADDRESSES@${new_dhcp6_ia_na1_ia_addr1}@" /etc/pf_anchor-own_ipv6.conf.in > /var/run/pf_anchor-own_ipv6.conf
+          if [ $? -eq 0 ]; then
+            pfctl -a own_ipv6 -f /var/run/pf_anchor-own_ipv6.conf
+          fi
+        fi
+        
+        old_ddnshupd_ipv6_address=$(cat /var/db/ddnshupd-ipv6.address 2>/dev/null)
+        printf "${new_dhcp6_ia_na1_ia_addr1}" > /var/db/ddnshupd-ipv6.address
+        if [ "${new_dhcp6_ia_na1_ia_addr1}" != "${old_ddnshupd_ipv6_address}" ]; then
+          log_line "starting dynamic dns ipv6 update\n"
+          /usr/local/sbin/ddnshupd -p /var/run/ddnshupd-ipv6.pid "${new_dhcp6_ia_na1_ia_addr1}" /usr/local/etc/ddnshupd-ipv6.conf
+        fi
+      fi
+      ;;
+    NOCARRIER|EXPIRE6|STOP6)
+      log_line "stopping dynamic dns ipv6 update\n"
+      
       ddnshupd_ipv6_pid=$(cat /var/run/ddnshupd-ipv6.pid 2>/dev/null)
       [ -n "$ddnshupd_ipv6_pid" ] && kill -TERM "$ddnshupd_ipv6_pid"
-    fi
-    ;;
-  STOP6)
-    ddnshupd_ipv6_pid=$(cat /var/run/ddnshupd-ipv6.pid 2>/dev/null)
-    [ -n "$ddnshupd_ipv6_pid" ] && kill -TERM "$ddnshupd_ipv6_pid"
-    ;;
-esac
+      
+      if [ -e /var/run/dhcpcd-"$interface"-old_own_ipv6_address ]; then
+        rm -f /var/run/dhcpcd-"$interface"-old_own_ipv6_address
+        log_line "closing own ipv6 ports\n"
+        pfctl -a own_ipv6 -F rules
+      fi
+      ;;
+  esac
+fi
 
 true

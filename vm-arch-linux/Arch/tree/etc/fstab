@@ -1,14 +1,15 @@
 # 
 # /etc/fstab: static file system information
 #
-# <file system>	<dir>	<type>	<options>	<dump>	<pass>
+# <file system>  <dir>  <type>  <options>  <dump>  <pass>
+
 /dev/sda1  /      ext4  defaults,ro,noatime  0  1
 /dev/sda2  /var   ext4  defaults,noatime     0  2
 /dev/sdb1  swap   swap  defaults             0  0
 /dev/sdc1  /home  ext4  defaults,noatime     0  2
 
-tmpfs      /tmp   tmpfs   mode=1777,noatime,noexec,nosuid,nodev,size=512m,nr_inodes=32k   0  0
+tmpfs  /tmp  tmpfs  mode=1777,noatime,noexec,nosuid,nodev,size=512m,nr_inodes=32k  0  0
 
-packages:/packages/archlinux  /var/cache/pacman  nfs  rw,noauto  0  0
+server:/packages/archlinux  /var/cache/pacman  nfs  rw,nfsvers=4.1,noauto  0  0
 
-/home/guy/sync  /export/guy/sync  none  bind  0  0
+/home/guy/share  /export/guy_share  none  bind  0  0

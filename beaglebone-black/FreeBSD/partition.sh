@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "partition.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -26,19 +26,19 @@ my_prompt()
 
 
 # -- disk names --
-disk0=mmcsd1
+read -p "Enter device for disk0: " disk0 || exit 1
 
 
 # -- layout --
 # disk0:
-#   /boot/custom
+#   /boot/ESP
 #   /
 #   dump
 #   /home
 my_prompt "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
-gpart add -b 8192 -s 28M -t ms-basic-data -f x "${disk0}" || exit 1
-gpart add -a 4M -s 992M -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -b 8192 -s 28M -t efi -f x "${disk0}" || exit 1
+gpart add -a 4M -s 1248M -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 4M -s 64M -t freebsd-swap -f x "${disk0}" || exit 1
 gpart add -a 4M -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1

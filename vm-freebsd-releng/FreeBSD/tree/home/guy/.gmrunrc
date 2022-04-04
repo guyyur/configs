@@ -36,5 +36,5 @@ URL_http = firefox -remote "openURL(%u, new-window)"
 URL_file = pcmanfm-qt %s
 
 # extension handlers
-EXT:txt,cc,cpp,h,java,html,htm,epl,tex,latex,js,css,xml,xsl,am = leafpad %s
-EXT:pdf = epdfview %s
+EXT:txt,cc,cpp,h,java,html,htm,epl,tex,latex,js,css,xml,xsl,am = featherpad %s
+EXT:pdf = qpdfview %s

@@ -1,4 +1,4 @@
 
 # Host Database
-::1			localhost.localdomain localhost chroot-fbsd-build-ports-releng-amd64.localdomain chroot-fbsd-build-ports-releng-amd64
-127.0.0.1		localhost.localdomain localhost chroot-fbsd-build-ports-releng-amd64.localdomain chroot-fbsd-build-ports-releng-amd64
+::1			localhost jail-fbsd-build-ports-releng-amd64.home.arpa jail-fbsd-build-ports-releng-amd64
+127.0.0.1		localhost jail-fbsd-build-ports-releng-amd64.home.arpa jail-fbsd-build-ports-releng-amd64

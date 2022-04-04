@@ -1,4 +1,0 @@
-
-# Host Database
-::1			localhost.localdomain localhost chroot-fbsd-build-ports-head-armv7.localdomain chroot-fbsd-build-ports-head-armv7
-127.0.0.1		localhost.localdomain localhost chroot-fbsd-build-ports-head-armv7.localdomain chroot-fbsd-build-ports-head-armv7

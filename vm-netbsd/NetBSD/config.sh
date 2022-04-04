@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "config.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -13,15 +13,20 @@ if [ -z "$1" ]; then
   exit 1
 fi
 DESTDIR=${1%/}
+TARGET_ARCH=x86_64
 
 
 #
 install -c -m 644 -o root -g wheel tree/etc/login.conf "${DESTDIR}"/etc/login.conf || exit 1
 if [ -z "${DESTDIR}" ]; then
   cap_mkdb /etc/login.conf || exit 1
-fi
-if [ -n "${DESTDIR}" ]; then
-  cap_mkdb -l "${DESTDIR}"/etc/login.conf || exit 1
+else
+  if [ "${TARGET_ARCH}" = "x86_64" ]; then
+    cap_mkdb -l "${DESTDIR}"/etc/login.conf || exit 1
+  else
+    printf "script is missing login.conf endian for ${TARGET_ARCH}\n" 1>&2
+    exit 1
+  fi
 fi
 
 install -c -m 644 -o root -g wheel tree/etc/usermgmt.conf "${DESTDIR}"/etc/usermgmt.conf || exit 1
@@ -30,14 +35,22 @@ install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit
 install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
 if [ -z "${DESTDIR}" ]; then
   pwd_mkdb -p /etc/master.passwd.new || exit 1
-fi
-if [ -n "${DESTDIR}" ]; then
-  pwd_mkdb -d "${DESTDIR}" -L -p "${DESTDIR}"/etc/master.passwd.new || exit 1
+else
+  if [ "${TARGET_ARCH}" = "x86_64" ]; then
+    pwd_mkdb -d "${DESTDIR}" -L -p "${DESTDIR}"/etc/master.passwd.new || exit 1
+  else
+    printf "script is missing master.passwd.new endian for ${TARGET_ARCH}\n" 1>&2
+    exit 1
+  fi
 fi
 
 install -c -m 644 -o root -g wheel tree/boot.cfg "${DESTDIR}"/boot.cfg || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
+
+install -c -m 644 -o root -g root tree/etc/myname "${DESTDIR}"/etc/myname || exit 1
+
+install -c -m 644 -o root -g wheel tree/etc/ifconfig.vioif0 "${DESTDIR}"/etc/ifconfig.vioif0 || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
@@ -63,22 +76,24 @@ install -l h "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
 install -c -m 644 -o guy -g users tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
 install -c -m 644 -o guy -g users tree/home/guy/.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/dhcpcd.duid "${DESTDIR}"/etc/dhcpcd.duid || exit 1
-install -c -m 400 -o root -g wheel tree/etc/dhcpcd.secret "${DESTDIR}"/etc/dhcpcd.secret || exit 1
+install -c -m 644 -o root -g wheel tree/etc/dhcpcd.duid.backup "${DESTDIR}"/etc/dhcpcd.duid.backup || exit 1
+install -c -m 644 -o root -g wheel "${DESTDIR}"/etc/dhcpcd.duid.backup "${DESTDIR}"/var/db/dhcpcd/duid || exit 1
+install -c -m 600 -o root -g wheel tree/etc/dhcpcd.secret.backup "${DESTDIR}"/etc/dhcpcd.secret.backup || exit 1
+install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/dhcpcd.secret.backup "${DESTDIR}"/var/db/dhcpcd/secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1
+install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
 install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
 
-install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-install -l s /dev/null "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key-cert.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key-cert.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key || exit 1

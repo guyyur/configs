@@ -15,10 +15,9 @@ nano /etc/pacman.conf
 ./partition.sh
 ./create_filesystems.sh
 ./mount_and_mkdir.sh
-
 ./config.sh /mnt
 
-mount -t nfs -orw packages:/packages/archlinux /mnt/var/cache/pacman
+mount -t nfs -orw server:/packages/archlinux /mnt/var/cache/pacman
 ./pacman.sh
 umount /mnt/var/cache/pacman
 
@@ -34,14 +33,11 @@ nano /mnt/etc/pacman.d/mirrorlist
   uncomment lines
 
 ./write_boot_blocks.sh
-
 ./unmount.sh
 
 systemctl poweroff
 
 
 config lxqt-notificationd
-config Terminator
-config PCManFM
-config Parcellite
+config QTerminal
 config Meld

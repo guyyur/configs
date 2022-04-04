@@ -33,6 +33,10 @@ export XDG_CONFIG_HOME=$HOME/config
 export XDG_CACHE_HOME=/var/xdg-cache/"$USER"
 
 
+# -- private tmp dir --
+install -d -o "$USER" -g "$USER" -m 700 /tmp/"$USER"
+
+
 # -- run zsh if exists --
 if [ -x /usr/local/bin/zsh ]; then
   export SHELL=/usr/local/bin/zsh

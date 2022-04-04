@@ -1,0 +1,6 @@
+
+# My rules
+[devfsrules_common=10]
+add path 'md*' mode 0660
+add path 'da*' mode 0660
+add path 'msdosfs/*' mode 0660

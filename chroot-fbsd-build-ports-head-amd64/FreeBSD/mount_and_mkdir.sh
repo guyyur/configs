@@ -1,18 +1,19 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "mount_and_mkdir.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
 
 # -- disk names --
-path0=/chroots/chroot-fbsd-build-ports-head-amd64
+path0=/jails/jail-fbsd-build-ports-head-amd64
 
 
 # -- layout --
 install -d -m 755 -o root -g wheel "${path0}" || exit 1
+
 mount -t nullfs "${path0}" /mnt || exit 1
 install -d -m 555 -o root -g wheel /mnt/dev || exit 1
 install -d -m 755 -o root -g wheel /mnt/var || exit 1
@@ -27,9 +28,11 @@ install -d -m 755 -o root -g wheel /mnt/usr/ports || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db || exit 1
-install -d -m 755 -o root -g wheel /mnt/usr/local/db/fontconfig || exit 1
+install -d -m 755 -o root -g wheel /mnt/usr/local/db/local_base_repos || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db/local_pkg_repos || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db/pkg || exit 1
+install -d -m 1777 -o root -g wheel /mnt/var/tmp || exit 1
+install -d -m 700 -o guy -g guy /mnt/var/tmp/guy || exit 1
 install -d -m 755 -o root -g wheel /mnt/var/xdg-cache || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/xdg-cache/guy || exit 1
 install -d -m 700 -o guy -g guy /mnt/home/guy || exit 1

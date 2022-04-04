@@ -34,9 +34,6 @@ if ($?prompt) then
   if ( $?tcsh ) then
     bindkey "^W" backward-delete-word
     
-    # bindkey -k up history-search-backward   # instead of history-up
-    # bindkey -k down history-search-forward
-    
     set key_ic="`echotc -s kI`"               # Insert Key
     if ( "$key_ic" != "" ) then
       bindkey "$key_ic" overwrite-mode
@@ -51,13 +48,13 @@ if ($?prompt) then
     
     set key_ppage="`echotc -s kP`"            # Page Up Key
     if ( "$key_ppage" != "" ) then
-      bindkey "$key_ppage" undefined-key
+      bindkey "$key_ppage" history-search-backward
     endif
     unset key_ppage
     
     set key_npage="`echotc -s kN`"            # Page Down Key
     if ( "$key_npage" != "" ) then
-      bindkey "$key_npage" undefined-key
+      bindkey "$key_npage" history-search-forward
     endif
     unset key_npage
   endif
@@ -86,7 +83,5 @@ if ($?prompt) then
     complete unsetenv       'n/*/e/'
     
     complete pkg            'p/1/`pkg -l`/' 'n/info/`pkg query "%n-%v"`/' 'N/info/`pkg query "%n-%v"`/' 'n/delete/`pkg query "%n-%v"`/'
-    
-    complete portsnap       'p/1/(fetch extract update)/' 'n/-*/(fetch extract update)/' 'n/fetch/(extract update)/' 'n@extract@D:/usr/ports@'
   endif
 endif

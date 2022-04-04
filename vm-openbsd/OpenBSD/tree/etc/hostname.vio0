@@ -1,0 +1,7 @@
+# replace fd00:2001:db8:0 with real ULA prefix
+
+dhcp
+-soii
+inet6 fd00:2001:db8:0:: 64 eui64
+inet6 autoconf autoconfprivacy
+up

@@ -1,31 +1,47 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "extract_dists.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
 
 # -- check arguments --
-if [ $# != 2 ]; then
-  echo "usage: extract_dists.sh destdir dists-dir" 1>&2
+if [ $# != 1 ]; then
+  echo "usage: extract_dists.sh destdir" 1>&2
   exit 1
 fi
 destdir=$1
-distsdir=$2
 
 
 # -- set up params --
 DESTDIR=$destdir
+DISTDIR=$destdir/usr/local/db/local_base_repos
 TARGET_ARCH=armv7
 
 
 # -- extract files --
-tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/base.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/base.txz || exit 1
 rm -f "${DESTDIR}"/root/.login || exit 1
-# tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/base-dbg.txz || exit 1
-# tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/doc.txz || exit 1
-tar -Uxp -C "${DESTDIR}" -f "$distsdir"/"${TARGET_ARCH}"/kernel-MYHW-ROUTER.txz || exit 1
-install -c "${DESTDIR}"/boot/ubldr.bin "${DESTDIR}"/boot/custom/ubldr.bin || exit 1
-install -c /usr/local/share/dtb/arm/sun8i-h3-nanopi-neo.dtb "${DESTDIR}"/boot/custom/sun8i-h3-nanopi-neo.dtb || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/base-dbg.txz || exit 1
+# tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/doc.txz || exit 1
+tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/kernel-MYHW-ROUTER.txz || exit 1
+install -d "${DESTDIR}"/boot/ESP/EFI || exit 1
+install -d "${DESTDIR}"/boot/ESP/EFI/BOOT || exit 1
+case ${TARGET_ARCH} in
+  aarch64)
+    install -c "${DESTDIR}"/boot/loader.efi "${DESTDIR}"/boot/ESP/EFI/BOOT/BOOTAA64.EFI || exit 1
+    ;;
+  amd64)
+    install -c "${DESTDIR}"/boot/loader.efi "${DESTDIR}"/boot/ESP/EFI/BOOT/BOOTX64.EFI || exit 1
+    ;;
+  armv7)
+    install -c "${DESTDIR}"/boot/loader.efi "${DESTDIR}"/boot/ESP/EFI/BOOT/BOOTARM.EFI || exit 1
+    ;;
+  *)
+    printf "Unknown TARGET_ARCH=${TARGET_ARCH} for EFI boot\n"
+    exit 1
+    ;;
+esac
+install -c "${DESTDIR}"/boot/dtb/sun8i-h3-nanopi-neo.dtb "${DESTDIR}"/boot/ESP/sun8i-h3-nanopi-neo.dtb || exit 1

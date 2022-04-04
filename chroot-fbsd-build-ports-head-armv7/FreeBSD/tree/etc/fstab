@@ -1,6 +1,0 @@
-devfs               /chroots/chroot-fbsd-build-ports-head-armv7/dev                           devfs   rw        0  0
-tmpfs               /chroots/chroot-fbsd-build-ports-head-armv7/tmp                           tmpfs   rw        0  0
-tmpfs               /chroots/chroot-fbsd-build-ports-head-armv7/usr/wrkdir                    tmpfs   rw        0  0
-fbsd-ports:/ports   /chroots/chroot-fbsd-build-ports-head-armv7/usr/ports                     nfs     rw,nfsv4  0  0
-packages:/packages  /chroots/chroot-fbsd-build-ports-head-armv7/usr/local/db/local_pkg_repos  nfs     rw,nfsv4  0  0
-/usr/src            /chroots/chroot-fbsd-build-ports-head-armv7/usr/src                       nullfs  ro        0  0

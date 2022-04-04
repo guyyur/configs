@@ -1,12 +1,12 @@
 
-# 6.0
+# 6.3
 # amd64
 
 installcd
   (I)nstall, (U)pgrade or (S)hell? I
   
   Choose your keyboard layout ('?' or 'L' for list) [default]
-  System hostname? (short form, e.g. 'foo') vm6
+  System hostname? (short form, e.g. 'foo') vm-openbsd
   
   Which network interface do you wish to configure? (or 'done') [vio0]
   IPv4 address for vio0? (or 'none' or 'dhcp') [dhcp]
@@ -27,46 +27,56 @@ installcd
   Which timezone are you in? [Asia/Jerusalem]
   
   Which disk is the root disk? (or 'done') [sd0]
-  Use (W)hole disk or (E)dit the MBR? W
+  Use (W)hole disk MBR, whole disk (G)PT, (O)penBSD area or (E)dit? W
   Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout? [a] C
   
   > a a
-    offset: [64]
+    offset: [1024]
     size: [?] 14680064
     FS type: [4.2BSD]
     mount point: [none] /
   > a d
-    offset: [14680128]
-    size: [?] 524288
+    offset: [?]
+    size: [?]
     FS type: [4.2BSD]
     mount point: [none] /var
-  > a e
-    offset: [15204416]
-    size [?]
-    FS type: [4.2BSD]
-    mount point: [none] /home
   > p m
   > q
   Write new label? [y]
   
   Which one do you wish to initialize? (or 'done') [done] sd1
-  Use (W)hole disk or (E)dit the MBR? W
+  Use (W)hole disk MBR, whole disk (G)PT, (O)penBSD area or (E)dit? G
+  An EFI/GPT disk may not boot. Proceed? [no] yes
   
   > a b
-    offset: [64]
+    offset: [1024]
     size: [?]
     FS type: [swap]
   > p m
   > q
   Write new label? [y]
   
-  Location of sets? (cd disk ftp http or 'done') [cd0]
-  Pathname to the sets? (or 'done') [6.0/amd64]
+  Which one do you wish to initialize? (or 'done') [done] sd2
+  Use (W)hole disk MBR, whole disk (G)PT, (O)penBSD area or (E)dit? G
+  An EFI/GPT disk may not boot. Proceed? [no] yes
   
+  > a d
+    offset: [1024]
+    size: [?]
+    FS type: [4.2BSD]
+    mount point: [none] /home
+  > p m
+  > q
+  Write new label? [y]
+  
+  Location of sets? (cd disk ftp http or 'done') [cd0]
+  Pathname to the sets? (or 'done') [6.3/amd64]
+  Set name(s)? (or 'abort' or 'done') [done] -game* -x*
   Set name(s)? (or 'abort' or 'done') [done]
   
   Location of sets? (cd disk ftp http or 'done') [done]
   
+  Exit to (S)hell, (H)alt or (R)reboot? [reboot] S
   # echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
   echo "swap /tmp mfs rw,nodev,nosuid,-s=131072 0 0" >> /mnt/etc/fstab
   
@@ -80,6 +90,7 @@ useradd -d /home/guy -g users -u 1001 guy
 ./config.sh /
 
 shutdown -r now
+
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./add_pkgs.sh

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "config.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -13,6 +13,7 @@ if [ -z "$1" ]; then
   exit 1
 fi
 DESTDIR=${1%/}
+TARGET_ARCH=amd64
 
 
 #
@@ -24,13 +25,18 @@ install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit
 install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
 if [ -z "${DESTDIR}" ]; then
   pwd_mkdb -p /etc/master.passwd.new || exit 1
-fi
-if [ -n "${DESTDIR}" ]; then
-  # endian flag not supported, run on same endianness
-  pwd_mkdb -d "${DESTDIR}"/etc -p "${DESTDIR}"/etc/master.passwd.new || exit 1
+else
+  if [ "${TARGET_ARCH}" != "$(uname -p)" ]; then
+    printf "pwd_mkdb does not support an endian flag, run on same endianness ${TARGET_ARCH}\n" 1>&2
+    exit 1
+  else
+    pwd_mkdb -d "${DESTDIR}"/etc -p "${DESTDIR}"/etc/master.passwd.new || exit 1
+  fi
 fi
 
 install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
+
+install -c -m 644 -o root -g wheel tree/etc/hostname.vio0 "${DESTDIR}"/etc/hostname.vio0 || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
 
@@ -49,14 +55,14 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1
+install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
 install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
 
-ln -sfh /dev/null "${DESTDIR}"/etc/ssh/ssh_host_dsa_key || exit 1
-ln -sfh /dev/null "${DESTDIR}"/etc/ssh/ssh_host_dsa_key.pub || exit 1
-ln -sfh /dev/null "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key || exit 1
-ln -sfh /dev/null "${DESTDIR}"/etc/ssh/ssh_host_ecdsa_key.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key-cert.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key-cert.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1

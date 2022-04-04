@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "config.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -13,6 +13,7 @@ if [ -z "$1" ]; then
   exit 1
 fi
 DESTDIR=${1%/}
+TARGET_ARCH=armv7
 
 
 #
@@ -21,9 +22,13 @@ install -l s ../usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || 
 install -c -m 644 -o root -g wheel tree/etc/login.conf "${DESTDIR}"/etc/login.conf || exit 1
 if [ -z "${DESTDIR}" ]; then
   cap_mkdb /etc/login.conf || exit 1
-fi
-if [ -n "${DESTDIR}" ]; then
-  cap_mkdb -l "${DESTDIR}"/etc/login.conf || exit 1
+else
+  if [ "${TARGET_ARCH}" = "aarch64" -o "${TARGET_ARCH}" = "amd64" -o "${TARGET_ARCH}" = "armv7" ]; then
+    cap_mkdb -l "${DESTDIR}"/etc/login.conf || exit 1
+  else
+    printf "script is missing login.conf endian for ${TARGET_ARCH}\n" 1>&2
+    exit 1
+  fi
 fi
 
 install -c -m 640 -o root -g wheel tree/etc/pw.conf "${DESTDIR}"/etc/pw.conf || exit 1
@@ -39,12 +44,14 @@ fi
 install -c -m 644 -o root -g wheel tree/etc/make.conf "${DESTDIR}"/etc/make.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/src.conf "${DESTDIR}"/etc/src.conf || exit 1
 
+install -c -m 444 -o root -g wheel tree/boot/device.hints "${DESTDIR}"/boot/device.hints || exit 1
+
 install -c -m 644 -o root -g wheel tree/boot/loader.conf "${DESTDIR}"/boot/loader.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/devfs.conf "${DESTDIR}"/etc/devfs.conf || exit 1
 install -c -m 644 -o root -g wheel tree/etc/devfs.rules "${DESTDIR}"/etc/devfs.rules || exit 1
 
-install -l s 'abort:false,junk:false' "${DESTDIR}"/etc/malloc.conf || exit 1
+install -c -m 644 -o root -g wheel tree/etc/rc.conf.lan0 "${DESTDIR}"/etc/rc.conf.lan0 || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/hostid "${DESTDIR}"/etc/hostid || exit 1
 
@@ -57,7 +64,6 @@ install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit
 install -l s ../var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
-install -c -m 644 -o root -g wheel tree/etc/host.conf "${DESTDIR}"/etc/host.conf || exit 1
 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/ssl/certs || exit 1
 install -d -m 700 -o root -g wheel "${DESTDIR}"/etc/ssl/private || exit 1
@@ -73,14 +79,11 @@ install -c -m 640 -o root -g wheel tree/etc/exports "${DESTDIR}"/etc/exports || 
 install -c -m 640 -o root -g wheel tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
 install -c -m 640 -o root -g wheel tree/root/.shrc "${DESTDIR}"/root/.shrc || exit 1
 install -l h "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
-install -c -m 644 -o root -g wheel tree/etc/skel/dot.profile "${DESTDIR}"/etc/skel/dot.profile || exit 1
-install -c -m 644 -o root -g wheel tree/etc/skel/dot.shrc "${DESTDIR}"/etc/skel/dot.shrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/.cshrc "${DESTDIR}"/root/.cshrc || exit 1
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
-install -c -m 644 -o root -g wheel tree/etc/skel/dot.cshrc "${DESTDIR}"/etc/skel/dot.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/.init.ee "${DESTDIR}"/root/.init.ee || exit 1
@@ -102,10 +105,14 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
 install -c -m 600 -o guy -g guy tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
 
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key-cert.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key-cert.pub || exit 1
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
@@ -133,11 +140,12 @@ install -c -m 644 -o guy -g guy tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshr
 
 install -c -m 644 -o root -g wheel tree/etc/local/tmux.conf "${DESTDIR}"/etc/local/tmux.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid "${DESTDIR}"/etc/local/dhcpcd.duid || exit 1
-install -c -m 400 -o root -g wheel tree/etc/local/dhcpcd.secret "${DESTDIR}"/etc/local/dhcpcd.secret || exit 1
+install -d -m 755 -o root -g wheel "${DESTDIR}"/var/db/dhcpcd || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.duid.backup "${DESTDIR}"/etc/local/dhcpcd.duid.backup || exit 1
+install -c -m 644 -o root -g wheel "${DESTDIR}"/etc/local/dhcpcd.duid.backup "${DESTDIR}"/var/db/dhcpcd/duid || exit 1
+install -c -m 600 -o root -g wheel tree/etc/local/dhcpcd.secret.backup "${DESTDIR}"/etc/local/dhcpcd.secret.backup || exit 1
+install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/local/dhcpcd.secret.backup "${DESTDIR}"/var/db/dhcpcd/secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
-install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/nginx || exit 1
-install -c -m 644 -o root -g wheel tree/etc/local/nginx/mime.types "${DESTDIR}"/etc/local/nginx/mime.types || exit 1
-install -c -m 600 -o guy -g guy tree/etc/local/nginx/htpasswd_guy_vcs "${DESTDIR}"/etc/local/nginx/htpasswd_guy_vcs || exit 1
-install -c -m 644 -o root -g wheel tree/etc/local/nginx/nginx_guy.conf "${DESTDIR}"/etc/local/nginx/nginx_guy.conf || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/git || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/git/config "${DESTDIR}"/home/guy/config/git/config || exit 1

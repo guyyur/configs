@@ -1,21 +1,26 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "add_pkgs.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
 
+# -- chroot path --
+
+
+# -- pkg list --
+pkgs="pkg"
+pkgs="${pkgs} nano"
+pkgs="${pkgs} zsh"
+pkgs="${pkgs} tmux"
+pkgs="${pkgs} ca_root_nss"
+pkgs="${pkgs} dhcpcd"
+pkgs="${pkgs} git"
+pkgs="${pkgs} gdb"
+pkgs="${pkgs} iperf"
+
+
 # -- add pkgs --
-pkg install \
-  pkg \
-  nano \
-  zsh \
-  tmux \
-  dhcpcd \
-  git \
-  fcgiwrap \
-  nginx \
-  iperf \
-  || exit 1
+pkg install ${pkgs} || exit 1

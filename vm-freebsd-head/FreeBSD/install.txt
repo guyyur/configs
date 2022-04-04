@@ -1,19 +1,15 @@
 
-ifconfig vtnet0 name lan0
-
-ifconfig lan0 up
-dhcpcd lan0
-
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./partition.sh
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   head
-#   amd64
-./extract_dists.sh /mnt /path/to/dists
+# head
+# amd64
+mount -t nfs -o ro,nfsv4 server:/packages/FreeBSD-base/head/amd64 /mnt/usr/local/db/local_base_repos
+./extract_dists.sh /mnt
+umount /mnt/usr/local/db/local_base_repos
 ./config.sh /mnt
-
 ./unmount.sh
 
 shutdown -p now

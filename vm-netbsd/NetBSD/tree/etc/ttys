@@ -8,4 +8,3 @@ ttyE0	"/usr/libexec/getty Pc"		vt220	off secure
 ttyE1	"/usr/libexec/getty Pc"		wsvt25	on secure
 ttyE2	"/usr/libexec/getty Pc"		wsvt25	on secure
 ttyE3	"/usr/libexec/getty Pc"		wsvt25	on secure
-tty00	"/usr/libexec/getty std.115200"	putty on secure

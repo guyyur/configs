@@ -1,0 +1,4 @@
+# replace fd00:2001:db8:0 with real ULA prefix
+
+up
+inet6 fd00:2001:db8:0:: eui64

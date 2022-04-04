@@ -1,3 +1,0 @@
-# replace 16:11:12:13:14:15 with a locally administered address
-
-ifconfig wan0 ether 16:11:12:13:14:15

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "mkdir.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -23,3 +23,4 @@ install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/external_projects || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/misc || exit 1
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/projects || exit 1
+install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/remove || exit 1

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "newfs.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -26,11 +26,11 @@ my_prompt()
 
 
 # -- disk names --
-disk0=ada0
-disk1=ada1
-disk2=ada2
-disk3=ada3
-disk4=ada4
+disk0=da0
+disk1=da1
+disk2=da2
+disk3=da3
+disk4=da4
 
 
 # -- layout  --
@@ -39,23 +39,23 @@ disk4=ada4
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
-newfs -U -n -i 50000 /dev/"${disk0}"p2 || exit 1  # ~131072 for 5G
+newfs -U -n -i 50000 /dev/"${disk0}"p2 || exit 1  # ~262144 for 15G
 newfs -U -n -i 40000 /dev/"${disk0}"p3 || exit 1  #  ~25600 for 1G
 
 # disk1:
 #   swap
 
 # disk2:
-#   /usr/obj
+#   /home
 my_prompt "${disk2}" || exit 1
-newfs -U -n -i 68000 /dev/"${disk2}"p1 || exit 1  # ~262144 for 16G
+newfs -U -n -i 34000 /dev/"${disk2}"p1 || exit 1  # ~524288 for 16G
 
 # disk3:
-#   /home
+#   /usr/obj
 my_prompt "${disk3}" || exit 1
-newfs -U -n -i 34000 /dev/"${disk3}"p1 || exit 1  # ~524288 for 16G
+newfs -U -n -i 120000 /dev/"${disk3}"p1 || exit 1  # ~393216 for 48G
 
 # disk4:
-#   /chroots
+#   /jails
 my_prompt "${disk4}" || exit 1
-newfs -U -n -i 34000 /dev/"${disk4}"p1 || exit 1  # ~524288 for 16G
+newfs -U -n -i 51000 /dev/"${disk4}"p1 || exit 1  # ~524288 for 24G

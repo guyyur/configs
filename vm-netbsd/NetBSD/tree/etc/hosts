@@ -1,6 +1,5 @@
 # replace vm-netbsd with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost vm-netbsd.localdomain vm-netbsd
-127.0.0.1		localhost.localdomain localhost vm-netbsd.localdomain vm-netbsd
-
+::1			localhost vm-netbsd.home.arpa vm-netbsd
+127.0.0.1		localhost vm-netbsd.home.arpa vm-netbsd

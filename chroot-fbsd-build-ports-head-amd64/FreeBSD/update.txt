@@ -1,25 +1,23 @@
 
-update ports / packages
+# update ports / packages
 
-./set_up_chroot.sh
+mount -u -o rw,noatime /jails
+jail -c jail-fbsd-build-ports-head-amd64
+mount -F /jails/jail-fbsd-build-ports-head-amd64/etc/fstab.jail.packages -a
 
-chroot /chroots/chroot-fbsd-build-ports-head-amd64 env -i HOME="/root" SHELL="/bin/sh" PATH="/bin:/usr/bin" TERM="$TERM" USER="root" /bin/sh -c "cd /root; . ./.profile; exec sh -i"
-
-PS1="[chroot@$(hostname -s)]# "
-/etc/rc.d/var start
-/etc/rc.d/ldconfig start
-/etc/rc.d/devfs start
-export MACHINE=$(uname -m)
-export MACHINE_ARCH=$(uname -p)
+jexec -l jail-fbsd-build-ports-head-amd64 /bin/sh -i -c ". ./.profile; [ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; exec sh -i"
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-export ABI_FILE=/usr/lib/crt1.o
+
+portmaster -t --clean-distfiles
+
 portmaster -gB ...
 portmaster -agB
 portmaster --clean-packages
-portmaster -t --clean-distfiles
 pkg repo $(cd /usr/ports && make -V PACKAGES)
 
 exit
 
-./tear_down_chroot.sh
+umount -F /jails/jail-fbsd-build-ports-head-amd64/etc/fstab.jail.packages -a
+jail -r jail-fbsd-build-ports-head-amd64
+mount -u -o ro,noatime /jails

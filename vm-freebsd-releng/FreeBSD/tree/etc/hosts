@@ -1,5 +1,5 @@
 # replace vm-freebsd-releng with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost vm-freebsd-releng.localdomain vm-freebsd-releng
-127.0.0.1		localhost.localdomain localhost vm-freebsd-releng.localdomain vm-freebsd-releng
+::1			localhost vm-freebsd-releng.home.arpa vm-freebsd-releng
+127.0.0.1		localhost vm-freebsd-releng.home.arpa vm-freebsd-releng

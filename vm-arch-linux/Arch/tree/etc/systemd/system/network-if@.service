@@ -1,0 +1,14 @@
+[Unit]
+Description=Network Interface Setup for %I
+Wants=network.target
+Before=network.target dhcpcd.service
+BindsTo=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/sh /etc/network-if.sh %I
+
+[Install]
+WantedBy=multi-user.target

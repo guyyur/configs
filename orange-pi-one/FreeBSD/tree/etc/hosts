@@ -1,5 +1,5 @@
 # replace orange-pi-one with real hostname
 
 # Host Database
-::1			localhost.localdomain localhost orange-pi-one.localdomain orange-pi-one
-127.0.0.1		localhost.localdomain localhost orange-pi-one.localdomain orange-pi-one
+::1			localhost orange-pi-one.home.arpa orange-pi-one
+127.0.0.1		localhost orange-pi-one.home.arpa orange-pi-one

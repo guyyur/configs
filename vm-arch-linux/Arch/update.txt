@@ -1,6 +1,9 @@
 
-update packages
-  mount /var/cache/pacman
-  pacman -Sc
-  pacman -Syu
-  umount /var/cache/pacman
+# update packages
+
+mount /var/cache/pacman
+mount -orw,noatime,remount /
+pacman -Sc
+pacman -Syu
+mount -oro,noatime,remount /
+umount /var/cache/pacman

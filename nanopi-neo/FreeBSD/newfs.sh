@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "newfs.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -31,9 +31,11 @@ read -p "Enter device for disk0: " disk0 || exit 1
 
 # -- layout  --
 # disk0:
-#   /boot/custom
-#   freebsd label
-#     /
+#   /boot/ESP
+#   /
+#   dump
+#   /home
 my_prompt "${disk0}" || exit 1
-newfs_msdos -F 16 -c 8 -r 2 -o 8192 -m 0xF8 /dev/"${disk0}"s1 || exit 1
-newfs -U -n -i 28000 /dev/"${disk0}"s2a || exit 1  # ~262144 for 7G
+newfs_msdos -F 16 -c 8 -r 2 -o 8192 -m 0xF8 /dev/"${disk0}"p1 || exit 1
+newfs -U -n -i 20000 /dev/"${disk0}"p2 || exit 1  # ~131072 for 2016M
+newfs -U -n -i 42000 /dev/"${disk0}"p4 || exit 1  # ~262144 for 12G

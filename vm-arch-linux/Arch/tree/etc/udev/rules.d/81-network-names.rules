@@ -1,1 +1,1 @@
-ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:03.0", NAME="lan0"
+ACTION=="add", SUBSYSTEM=="net", KERNELS=="0000:00:05.0", NAME="lan0"

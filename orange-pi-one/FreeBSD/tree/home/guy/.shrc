@@ -4,20 +4,14 @@
 
 
 # -- prompt --
-PS1="[$USER@`hostname -s`]"
-if [ ! "`id -u`" = "0" ]; then
-  PS1="${PS1}$ "
-else
-  PS1="${PS1}# "
-fi
-
-
-# -- options --
-set -o emacs
+PS1="[\h:\w]\\$ "
 
 
 # -- history --
 HISTSIZE=500
+case "$KSH_VERSION" in Version*)
+  HISTFILE=/dev/null;;
+esac
 
 
 # -- aliases --

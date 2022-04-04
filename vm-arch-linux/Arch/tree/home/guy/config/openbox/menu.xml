@@ -23,7 +23,7 @@
   </item>
   <item label="Openbox Configuration Manager">
     <action name="Execute">
-      <command>obconf</command>
+      <command>obconf-qt</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -36,9 +36,9 @@
 </menu>
 
 <menu id="root-menu" label="Openbox 3">
-  <item label="Terminator">
+  <item label="QTerminal">
     <action name="Execute">
-      <command>terminator</command>
+      <command>qterminal</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -57,12 +57,9 @@
       </startupnotify>
     </action>
   </item>
-  <item label="Leafpad">
+  <item label="FeatherPad">
     <action name="Execute">
-      <command>leafpad</command>
-      <startupnotify>
-        <enabled>yes</enabled>
-      </startupnotify>
+      <command>featherpad</command>
     </action>
   </item>
   <separator />

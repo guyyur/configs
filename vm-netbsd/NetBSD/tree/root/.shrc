@@ -4,9 +4,9 @@ case "$-" in
   *i*)
     # -- prompt --
     if [ -n "$KSH_VERSION" ]; then
-      PS1='[`hostname -s`:$PWD]# '
+      PS1='[$(hostname -s):$PWD]# '
     else
-      PS1="[`hostname -s`]# "
+      PS1="[$(hostname -s)]# "
     fi
     
     

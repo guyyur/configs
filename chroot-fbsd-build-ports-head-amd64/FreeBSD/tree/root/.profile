@@ -46,7 +46,7 @@ export VISUAL="${EDITOR}"
 
 # -- ls env vars --
 export LSCOLORS=ExFxGxdxCxDxDxhbadacad
-export CLICOLOR
+export CLICOLOR=1
 
 
 # -- PAGER env var --

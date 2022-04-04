@@ -5,15 +5,19 @@
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-#   head
-#   armv7
-./extract_dists.sh /mnt /path/to/dists
+# releng/13.1
+# armv7
+mount -t nfs -o ro,nfsv4,minorversion=1 server:/packages/FreeBSD-base/releng/armv7 /mnt/usr/local/db/local_base_repos
+./extract_dists.sh /mnt
+umount /mnt/usr/local/db/local_base_repos
 ./config.sh /mnt
-
 ./unmount.sh
 
 mount /usr/local/db/local_pkg_repos
 mount -u -o rw,noatime /
+
+# generate manually until fixed to generate during crosscompile build
+service kldxref onestart
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./add_pkgs.sh

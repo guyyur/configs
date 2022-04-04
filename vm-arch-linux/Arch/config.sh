@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # -- check for root --
-if [ "`id -u`" != "0" ]; then
+if [ "$(id -u)" != "0" ]; then
   echo "config.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
@@ -68,24 +68,20 @@ install -c -m 644 -o root -g root tree/etc/security/limits.conf "${DESTDIR}"/etc
 
 install -c -m 644 -o root -g root tree/etc/hostname "${DESTDIR}"/etc/hostname || exit 1
 
-install -c -m 644 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
+install -c -m 444 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
 
 ln -sfn ../run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
-
-install -c -m 755 -o root -g root tree/etc/network-start.sh "${DESTDIR}"/etc/network-start.sh || exit 1
-install -c -m 644 -o root -g root tree/etc/systemd/system/network.service "${DESTDIR}"/etc/systemd/system/network.service || exit 1
-ln -sfn /etc/systemd/system/network.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/network.service || exit 1
 
 install -c -m 644 -o root -g root tree/etc/fstab "${DESTDIR}"/etc/fstab || exit 1
 
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.timer || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.service || exit 1
 
-install -c -m 640 -o root -g root tree/etc/exports "${DESTDIR}"/etc/exports || exit 1
+install -c -m 640 -o root -g root tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
 
-ln -sfn /usr/lib/systemd/system/nfs-server.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-server.service || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
 
 install -c -m 640 -o root -g root tree/root/.bashrc "${DESTDIR}"/root/.bashrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.bashrc "${DESTDIR}"/home/guy/.bashrc || exit 1
@@ -97,9 +93,22 @@ install -c -m 640 -o root -g root tree/root/.zshrc "${DESTDIR}"/root/.zshrc || e
 install -c -m 644 -o guy -g guy tree/home/guy/.zprofile "${DESTDIR}"/home/guy/.zprofile || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
 
-install -c -m 644 -o root -g root tree/etc/dhcpcd.duid "${DESTDIR}"/etc/dhcpcd.duid || exit 1
-install -c -m 400 -o root -g root tree/etc/dhcpcd.secret "${DESTDIR}"/etc/dhcpcd.secret || exit 1
+install -c -m 755 -o root -g root tree/etc/network-if.sh "${DESTDIR}"/etc/network-if.sh || exit 1
+install -c -m 644 -o root -g root tree/etc/systemd/system/network-if@.service "${DESTDIR}"/etc/systemd/system/network-if@.service || exit 1
+
+ln -sfn /etc/systemd/system/network-if@.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/network-if@lan0.service || exit 1
+
+install -d -m 700 -o dhcpcd -g dhcpcd "${DESTDIR}"/var/lib/dhcpcd || exit 1
+install -d -m 755 -o root -g root "${DESTDIR}"/var/lib/dhcpcd/var || exit 1
+install -d -m 755 -o root -g root "${DESTDIR}"/var/lib/dhcpcd/var/lib || exit 1
+install -d -m 755 -o dhcpcd -g dhcpcd "${DESTDIR}"/var/lib/dhcpcd/var/lib/dhcpcd || exit 1
+install -c -m 644 -o root -g root tree/etc/dhcpcd.duid.backup "${DESTDIR}"/etc/dhcpcd.duid.backup || exit 1
+install -c -m 644 -o dhcpcd -g dhcpcd "${DESTDIR}"/etc/dhcpcd.duid.backup "${DESTDIR}"/var/lib/dhcpcd/var/lib/dhcpcd/duid || exit 1
+install -c -m 600 -o root -g root tree/etc/dhcpcd.secret.backup "${DESTDIR}"/etc/dhcpcd.secret.backup || exit 1
+install -c -m 600 -o dhcpcd -g dhcpcd "${DESTDIR}"/etc/dhcpcd.secret.backup "${DESTDIR}"/var/lib/dhcpcd/var/lib/dhcpcd/secret || exit 1
 install -c -m 644 -o root -g root tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
+
+
 ln -sfn /usr/lib/systemd/system/dhcpcd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/dhcpcd.service || exit 1
 
 install -d -m 755 -o root -g root "${DESTDIR}"/etc/ssh || exit 1
@@ -107,10 +116,14 @@ install -c -m 644 -o root -g root tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/
 install -c -m 644 -o root -g root tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
 
 install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
+install -c -m 600 -o guy -g guy tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
 install -c -m 600 -o guy -g guy tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
 
 install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
+install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ed25519_key-cert.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key-cert.pub || exit 1
 install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
 install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
 install -c -m 640 -o root -g root tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
@@ -119,18 +132,17 @@ ln -sfn /usr/lib/systemd/system/sshd.service "${DESTDIR}"/etc/systemd/system/mul
 
 install -c -m 600 -o guy -g guy tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
 
+install -c -m 640 -o root -g root tree/etc/exports "${DESTDIR}"/etc/exports || exit 1
+
+ln -sfn /usr/lib/systemd/system/nfs-server.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-server.service || exit 1
+
 install -c -m 644 -o root -g root tree/root/.toprc "${DESTDIR}"/root/.toprc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.toprc "${DESTDIR}"/home/guy/.toprc || exit 1
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/samba || exit 1
-install -d -m 700 -o root -g root "${DESTDIR}"/etc/samba/private || exit 1
-install -c -m 600 -o root -g root tree/etc/samba/private/passdb-backup.tdb "${DESTDIR}"/etc/samba/private/passdb-backup.tdb || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/var/lib/samba || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/var/lib/samba/private || exit 1
-install -c -m 600 -o root -g root "${DESTDIR}"/etc/samba/private/passdb-backup.tdb "${DESTDIR}"/var/lib/samba/private/passdb.tdb || exit 1
-install -c -m 644 -o root -g root tree/etc/samba/smb.conf "${DESTDIR}"/etc/samba/smb.conf || exit 1
-ln -sfn /usr/lib/systemd/system/smbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/smbd.service || exit 1
-ln -sfn /usr/lib/systemd/system/nmbd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nmbd.service || exit 1
+install -c -m 644 -o root -g root tree/etc/tmux.conf "${DESTDIR}"/etc/tmux.conf || exit 1
+
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/git || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/git/config "${DESTDIR}"/home/guy/config/git/config || exit 1
 
 install -d -m 755 -o root -g root "${DESTDIR}"/etc/fonts || exit 1
 install -c -m 644 -o root -g root tree/etc/fonts/local.conf "${DESTDIR}"/etc/fonts/local.conf || exit 1
@@ -164,5 +176,12 @@ install -c -m 644 -o guy -g guy tree/home/guy/config/tint2/tint2rc "${DESTDIR}"/
 
 install -c -m 644 -o guy -g guy tree/home/guy/.gmrunrc "${DESTDIR}"/home/guy/.gmrunrc || exit 1
 
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt || exit 1
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt/default || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/pcmanfm-qt/default/settings.conf "${DESTDIR}"/home/guy/config/pcmanfm-qt/default/settings.conf || exit 1
+
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
+
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/featherpad || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/featherpad/fp.conf "${DESTDIR}"/home/guy/config/featherpad/fp.conf || exit 1

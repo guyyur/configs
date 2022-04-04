@@ -1,5 +1,6 @@
 /export -ro
-/export/guy/sync -maproot=nobody
+/export/guy_share -maproot=nobody
 /export/packages -maproot=root
-/export/ports -maproot=root
+/export/public -maproot=root
+/export/sources -maproot=root
 V4: /export

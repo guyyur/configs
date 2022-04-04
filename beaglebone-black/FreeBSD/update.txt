@@ -1,5 +1,5 @@
 
-update ports / packages
+# update ports / packages
 
 mount /usr/local/db/local_pkg_repos
 mount -u -o rw,noatime /

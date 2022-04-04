@@ -1,6 +1,6 @@
 
-# 7.0
-# i386
+# 8.0
+# x86_64
 
 installcd
   * a: Installation messages in English
@@ -15,7 +15,7 @@ installcd
     * b: Yes
   
   Available disks
-    * a: wd0
+    * a: sd0
   
   This disk matches the following BIOS disk:
     * a: This is the correct geometry
@@ -31,12 +31,12 @@ installcd
     * Change input units (sectors/cylinders/MB)
       c: Sectors
     MB      Sectors      Filesystem
-    2048    4194304      /
+    7168    14680512     /
     0       0            swap
     0       0            tmp (tmpfs)
     0       0            /usr
-    256     524288       /var
-    *       *            /home
+    *       *            /var
+    0       0            /home
     * x: Accept partition sizes.  ...
     * x: Partition sizes ok
   
@@ -92,57 +92,23 @@ installcd
   NetBSD-<ver> Utilities
     * a: Run /bin/sh
     
-    fdisk -u -0 wd1
-      Do you want to change out idea of what BIOS thinks? [n]
-      sysid: [0..255 default: 169]
-      start: [...]
-      size: [...]
-      bootmenu: []
-      Should we write new partition table? [n] y
-    disklabel -i wd1
-      partition> a
-      Filesystem type [?] [4.2BSD]: unused
-      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 0
-      Partition size ('$' for all remaining) [?c, ?s, ?M]: 0
-      partition> e
-      Filesystem type [?] [4.2BSD]: unused
-      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 0
-      Partition size ('$' for all remaining) [?c, ?s, ?M]: 0
-      partition> b
-      Filesystem type [?] [unused]: swap
-      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]:
-      Partition size ('$' for all remaining) [0c, 0s, 0M]: $
-      partition> E
-      partition> W
-      Label disk [n]? y
-      partition> Q
+    gpt create sd1
+    gpt add -a 1M -t swap -l swap sd1
     
-    fdisk -u -0 wd2
-      Do you want to change out idea of what BIOS thinks? [n]
-      sysid: [0..255 default: 169]
-      start: [...]
-      size: [...]
-      bootmenu: []
-      Should we write new partition table? [n] y
-    disklabel -i wd2
-      partition> a
-      Filesystem type [?] [4.2BSD]: unused
-      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 0
-      Partition size ('$' for all remaining) [?c, ?s, ?M]: 0
-      partition> e
-      Filesystem type [?] [4.2BSD]:
-      Start offset ('x' to start after partition 'x') [0c, 0s, 0M]: 1024s
-      Partition size ('$' for all remaining) [?c, ?s, ?M]: $
-      partition> E
-      partition> W
-      Label disk [n]? y
-      partition> Q
-    newfs -O 2 -n 262144 /dev/rwd2e
+    gpt create sd2
+    gpt add -a 1M -t ffs sd2
+    newfs -O 2 -n 524288 /dev/rdk1    # disk wedge number may change
     
-    mount -onoatime /dev/wd0a /mnt
+    gpt create sd3
+    gpt add -a 1M -t ffs sd3
+    newfs -O 2 -n 262144 /dev/rdk2    # disk wedge number may change
+    
+    mount -onoatime /dev/sd0a /mnt
     mkdir /mnt/usr/pkgsrc
-    echo "/dev/wd1b  none  swap  sw,dp  0 0" >> /mnt/etc/fstab
-    echo "/dev/wd2e  /usr/pkgsrc  ffs  rw,log  1 2" >> /mnt/etc/fstab
+    mkdir /mnt/home
+    echo "/dev/dk0  none  swap  sw,dp  0 0" >> /mnt/etc/fstab
+    echo "/dev/dk1  /home  ffs  rw,log,noatime  1 2" >> /mnt/etc/fstab
+    echo "/dev/dk2  /usr/pkgsrc  ffs  rw,log,noatime  1 2" >> /mnt/etc/fstab
     echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
     umount /mnt
     exit
@@ -155,7 +121,6 @@ installcd
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 useradd -d /home/guy -g users -u 1001 guy
-./cleanup.sh /
 ./mkdir.sh /
 ./config.sh /
 
