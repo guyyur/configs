@@ -25,4 +25,5 @@ umount /usr/local/db/local_pkg_repos
 
 service dbus start
 config QTerminal
+config Xed
 config Meld

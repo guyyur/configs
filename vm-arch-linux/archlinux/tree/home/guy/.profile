@@ -1,38 +1,33 @@
 
-# -- locale --
-export LANG=en_IL.UTF-8
-export LC_COLLATE=en_IL.UTF-8
-export LC_CTYPE=en_IL.UTF-8
-export LC_MESSAGES=en_IL.UTF-8
-export LC_MONETARY=en_IL.UTF-8
-export LC_NUMERIC=en_IL.UTF-8
-export LC_TIME=en_IL.UTF-8
-export LC_PAPER=en_IL.UTF-8
-export LC_NAME=en_IL.UTF-8
-export LC_ADDRESS=en_IL.UTF-8
-export LC_TELEPHONE=en_IL.UTF-8
-export LC_MEASUREMENT=en_IL.UTF-8
-export LC_IDENTIFICATION=C
+# -- terminfo --
+export TERMINFO=/usr/share/terminfo-lite-unmodified
 
-
-# -- EDITOR, VISUAL env vars --
+# -- editors --
 export EDITOR=nano
 export VISUAL="${EDITOR}"
 
-
-# -- PAGER env var --
+# -- pager --
 export PAGER=less
 
-
-# -- less env vars --
+# -- less --
 export LESS="-QR"
 export LESSHISTFILE="-"
 
+# -- systemd --
+export SYSTEMD_LESS="QRSMK"
 
-# -- set XDG env vars --
+# -- XDG --
 export XDG_CONFIG_HOME=$HOME/config
 export XDG_CACHE_HOME=/var/xdg-cache/"$USER"
 
+# -- openssl --
+export RANDFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/rnd
 
-# -- private tmp dir --
-install -d -o "$USER" -g "$USER" -m 700 /tmp/"$USER"
+# -- go --
+export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}"/go
+
+# -- X --
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+
+# -- private temp dir --
+install -d -o "$USER" -g "$(id -g)" -m 700 /tmp/"$USER"

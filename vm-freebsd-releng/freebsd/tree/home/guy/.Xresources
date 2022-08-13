@@ -7,5 +7,5 @@ XTerm*faceName:           monospace
 XTerm*faceSize:           10
 XTerm*foreground:         gray
 XTerm*geometry:           100x30
-XTerm*saveLines:          3000
+XTerm*saveLines:          6000
 XTerm*selectToClipboard:  true

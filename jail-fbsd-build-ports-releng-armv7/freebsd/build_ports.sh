@@ -10,20 +10,11 @@ fi
 # target="config-conditional"
 # target="config-recursive"
 target="install clean"
-overlays=$(cd /usr/ports && make -V OVERLAYS)
 
 
 build_port()
 {
-  local port_dir
-  for d in $overlays /usr/ports; do
-    port_dir="$d/$1"
-    if [ -d "$port_dir" ]; then
-      cd "$port_dir" && make $target || exit 1
-      return
-    fi
-  done
-  exit 1
+  cd /usr/ports/"$1" && make $target || exit 1
 }
 
 
@@ -46,14 +37,8 @@ build_port net/miniupnpc
 build_port net/libnatpmp
 build_port security/openvpn
 build_port devel/git
-build_port www/fcgiwrap
-build_port www/nginx
 build_port devel/gdb
-build_port textproc/aspell
-build_port textproc/en-aspell
-build_port hebrew/aspell
 build_port benchmarks/iperf
-build_port comms/sunxi-tools
 
 pkg_repo_path=$(cd /usr/ports && make -V PACKAGES)
 [ -z "$pkg_repo_path" ] && { echo "PACKAGES var is empty" 1>&2; exit 1; }

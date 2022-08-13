@@ -84,9 +84,6 @@ install -c -m 640 -o root -g wheel tree/root/.cshrc "${DESTDIR}"/root/.cshrc || 
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 
-install -c -m 640 -o root -g wheel tree/root/.init.ee "${DESTDIR}"/root/.init.ee || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.init.ee "${DESTDIR}"/home/guy/.init.ee || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/mergemaster.rc "${DESTDIR}"/etc/mergemaster.rc || exit 1
 
 install -c -m 640 -o root -g wheel tree/etc/dhclient.conf "${DESTDIR}"/etc/dhclient.conf || exit 1
@@ -149,6 +146,8 @@ install -c -m 600 -o root -g wheel tree/etc/local/dhcpcd.secret.backup "${DESTDI
 install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/local/dhcpcd.secret.backup "${DESTDIR}"/var/db/dhcpcd/secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
 
+install -c -m 644 -o root -g wheel tree/etc/local/gitconfig "${DESTDIR}"/etc/local/gitconfig || exit 1
+
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/git || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/git/config "${DESTDIR}"/home/guy/config/git/config || exit 1
 
@@ -159,13 +158,10 @@ install -l s ../../../etc/local/machine-id "${DESTDIR}"/var/lib/dbus/machine-id 
 install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/fonts || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/fonts/local.conf "${DESTDIR}"/etc/local/fonts/local.conf || exit 1
 
-install -c -m 755 -o guy -g guy tree/home/guy/.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.Xresources "${DESTDIR}"/home/guy/.Xresources || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.xserverrc "${DESTDIR}"/home/guy/.xserverrc || exit 1
 install -c -m 755 -o guy -g guy tree/home/guy/.xinitrc "${DESTDIR}"/home/guy/.xinitrc || exit 1
-
-install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/xdg/menus || exit 1
-install -c -m 644 -o root -g wheel tree/etc/local/xdg/menus/all-applications.menu "${DESTDIR}"/etc/local/xdg/menus/all-applications.menu || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-2.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkfilechooser.ini "${DESTDIR}"/home/guy/config/gtk-2.0/gtkfilechooser.ini || exit 1
@@ -174,6 +170,12 @@ install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkrc "${DESTDIR}"/
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-3.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/settings.ini "${DESTDIR}"/home/guy/config/gtk-3.0/settings.ini || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/bookmarks "${DESTDIR}"/home/guy/config/gtk-3.0/bookmarks || exit 1
+
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/qt5ct || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/qt5ct/qt5ct.conf "${DESTDIR}"/home/guy/config/qt5ct/qt5ct.conf || exit 1
+
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local/xdg/menus || exit 1
+install -c -m 644 -o root -g wheel tree/etc/local/xdg/menus/all-applications.menu "${DESTDIR}"/etc/local/xdg/menus/all-applications.menu || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/openbox || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/menu.xml "${DESTDIR}"/home/guy/config/openbox/menu.xml || exit 1
@@ -187,9 +189,6 @@ install -c -m 644 -o guy -g guy tree/home/guy/.gmrunrc "${DESTDIR}"/home/guy/.gm
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt/default || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/pcmanfm-qt/default/settings.conf "${DESTDIR}"/home/guy/config/pcmanfm-qt/default/settings.conf || exit 1
-
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/featherpad || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/featherpad/fp.conf "${DESTDIR}"/home/guy/config/featherpad/fp.conf || exit 1

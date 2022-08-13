@@ -1,17 +1,18 @@
-#
-# This is the default .profile file.
-# Users are expected to edit it to meet their own needs.
-#
-# The commands in this file are executed when an sh user first
-# logs in.
-#
-# See sh(1) for details.
-#
+# .profile - Bourne Shell startup script for login shells
 
+# -- set ENV to a file invoked each time sh is started --
+export ENV=$HOME/.shrc
 
 # -- path --
 export PATH=/sbin:/bin:/usr/pkg/sbin:/usr/pkg/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/games:/usr/X11R7/bin:$HOME/bin
 
+# -- editors --
+if [ -x /usr/pkg/bin/nano ]; then
+  export EDITOR=nano
+else
+  export EDITOR=vi
+fi
+export VISUAL="${EDITOR}"
 
 # -- locale --
 export MM_CHARSET=UTF-8
@@ -23,41 +24,26 @@ export LC_MONETARY=he_IL.UTF-8
 export LC_NUMERIC=en_US.UTF-8
 export LC_TIME=en_GB.UTF-8
 
-
-# -- BLOCKSIZE env var --
+# -- block size --
 export BLOCKSIZE=1k
 
-
-# -- EDITOR, VISUAL env vars --
-if [ -x /usr/pkg/bin/nano ]; then
-  export EDITOR=nano
-else
-  export EDITOR=vi
-fi
-export VISUAL="${EDITOR}"
-
-
-# -- PAGER env var --
+# -- pager --
 export PAGER=less
 
-
-# -- less env vars --
+# -- less --
 export LESS="-QR"
 export LESSHISTFILE="-"
 
-
-# -- set ENV to a file invoked each time sh is started --
-export ENV=$HOME/.shrc
-
-
-# -- set XDG env vars --
+# -- XDG --
 export XDG_CONFIG_HOME=$HOME/config
+export XDG_RUNTIME_DIR=/tmp/"$USER"
 export XDG_CACHE_HOME=/var/xdg-cache/"$USER"
 
+# -- openssl --
+export RANDFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/rnd
 
-# -- private tmp dir --
-install -d -o "$USER" -g "$USER" -m 700 /tmp/"$USER"
-
+# -- private temp dir --
+install -d -o "$USER" -g "$(id -g)" -m 700 /tmp/"$USER"
 
 # -- run zsh if exists --
 if [ -x /usr/pkg/bin/zsh ]; then

@@ -1,5 +1,5 @@
 
-# 8.0
+# 9.2
 # x86_64
 
 installcd
@@ -17,37 +17,33 @@ installcd
   Available disks
     * a: sd0
   
+  The disk seems not to have been partitioned before. ...
+    * a: Guid Partition Table (GPT)
+  
   This disk matches the following BIOS disk:
-    * a: This is the correct geometry
+    * a: Use on of these disks
+    Choose disk:  [0]:
   
-  Which would you like to do?
-    * b: Use the entire disk
-  
-  Do you want to install the NetBSD bootcode?
-    * a: Yes
+  What would you like to do?
+    * a: Set sizes of NetBSD partitions
   
   Choose your installation
-    * a: Set sizes of NetBSD partitions
-    * Change input units (sectors/cylinders/MB)
-      c: Sectors
+    * i: Change input units (sectors/cylinders/MB/GB)
+      d: Sectors
     MB      Sectors      Filesystem
     7168    14680512     /
     0       0            swap
     0       0            tmp (tmpfs)
     0       0            /usr
     *       *            /var
-    0       0            /home
-    * x: Accept partition sizes.  ...
+    * x: Go on ...
     * x: Partition sizes ok
-  
-  Please enter a name for your NetBSD disk []:
   
   Shall we continue?
     * b: Yes
   
   Bootblocks selection
     * a: Use BIOS console
-    * x: Exit
   
   Select your distribution
     * d: Custom installation
@@ -56,17 +52,19 @@ installcd
     Distributuin set            Selected
     --------------------------- --------
     a: Kernel (GENERIC)            Yes
-    b: Kernel modules              Yes
-    c: Base                        Yes
-    d: Configuration files (/etc)  Yes
-    e: Compiler tools              Yes
-    f: Games                        No
-    g: Manual pages                Yes
-    h: Miscellaneous               Yes
-    i: Text programs               Yes
-    j: Text processing tools       Yes
-    k: X11 sets                    None
-    l: Source and debug sets       None
+    b: Kernel (GENERIC_KASLR)      No
+    c: Kernel modules              Yes
+    d: Base                        Yes
+    e: Configuration files (/etc)  Yes
+    f: Compiler tools              Yes
+    g: Games                       No
+    h: Manual pages                Yes
+    i: Miscellaneous               Yes
+    j: Recovery tools              Yes
+    k: Test programs               No
+    l: Text processing tools       Yes
+    m: X11 sets                    None
+    n: Source and debug sets       None
     * x: Install selected sets
   
   Install from
@@ -97,18 +95,13 @@ installcd
     
     gpt create sd2
     gpt add -a 1M -t ffs sd2
-    newfs -O 2 -n 524288 /dev/rdk1    # disk wedge number may change
+    newfs -O 2 -n 524288 /dev/rdk3    # disk wedge number may change
     
-    gpt create sd3
-    gpt add -a 1M -t ffs sd3
-    newfs -O 2 -n 262144 /dev/rdk2    # disk wedge number may change
-    
-    mount -onoatime /dev/sd0a /mnt
+    mount -onoatime /dev/dk0 /mnt
     mkdir /mnt/usr/pkgsrc
     mkdir /mnt/home
-    echo "/dev/dk0  none  swap  sw,dp  0 0" >> /mnt/etc/fstab
-    echo "/dev/dk1  /home  ffs  rw,log,noatime  1 2" >> /mnt/etc/fstab
-    echo "/dev/dk2  /usr/pkgsrc  ffs  rw,log,noatime  1 2" >> /mnt/etc/fstab
+    echo "/dev/dk2  none  swap  sw,dp  0 0" >> /mnt/etc/fstab
+    echo "/dev/dk3  /home  ffs  rw,log,noatime  1 2" >> /mnt/etc/fstab
     echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
     umount /mnt
     exit
@@ -130,8 +123,5 @@ vi /etc/fstab
 shutdown -r now
 
 
-tar -xpzf pkgsrc-*.tar.gz -C /usr
-# restore distfiles
-
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./build_pkgsrc_packages.sh
+./add_pkgs.sh

@@ -84,9 +84,6 @@ install -c -m 640 -o root -g wheel tree/root/.cshrc "${DESTDIR}"/root/.cshrc || 
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 
-install -c -m 640 -o root -g wheel tree/root/.init.ee "${DESTDIR}"/root/.init.ee || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.init.ee "${DESTDIR}"/home/guy/.init.ee || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/mergemaster.rc "${DESTDIR}"/etc/mergemaster.rc || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/ntp.conf "${DESTDIR}"/etc/ntp.conf || exit 1

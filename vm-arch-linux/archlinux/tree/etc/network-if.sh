@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # replace fd00:2001:db8:0 with real ULA prefix
 

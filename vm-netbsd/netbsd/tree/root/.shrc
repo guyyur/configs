@@ -1,32 +1,21 @@
+# .shrc - bourne shell startup file (for interactive shell)
 
 # -- interactive shell --
-case "$-" in
-  *i*)
+case "$-" in *i*)
     # -- prompt --
-    if [ -n "$KSH_VERSION" ]; then
-      PS1='[$(hostname -s):$PWD]# '
+    PS1="[$(hostname -s)]"
+    if [ "$(id -u)" != "0" ]; then
+      PS1="${PS1}$ "
     else
-      PS1="[$(hostname -s)]# "
+      PS1="${PS1}# "
     fi
-    
     
     # -- options --
     set -o emacs
-    
-    if [ -z "$KSH_VERSION" ]; then
-      set -o tabcomplete
-    fi
-    if [ -n "$KSH_VERSION" ]; then
-      set -o braceexpand
-    fi
-    
+    set -o tabcomplete
     
     # -- history --
     HISTSIZE=500
-    case "$KSH_VERSION" in Version*)
-      HISTFILE=/dev/null;;
-    esac
-    
     
     # -- aliases --
     alias la='ls -A'

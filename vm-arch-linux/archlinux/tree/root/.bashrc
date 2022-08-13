@@ -1,16 +1,18 @@
 
-# -- prompt --
-PS1='[\h:\w]# '
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
+[[ $DISPLAY ]] && shopt -s checkwinsize
+
+# -- prompt --
+PS1='[\h:\w]\$ '
 
 # -- history --
 unset HISTFILE
 export HISTCONTROL=erasedups
 
-
 # -- builtins --
 enable -n kill
-
 
 # -- aliases --
 alias ls='ls --color=auto'

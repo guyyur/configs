@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 my_dpi_arg=$(awk '/Xft.dpi/ { print "-dpi " $2 }' ~/.Xresources)
 exec X "$@" ${my_dpi_arg} -nolisten tcp vt${XDG_VTNR}

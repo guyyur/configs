@@ -25,3 +25,5 @@ X11Forwarding no
 UseDNS no
 
 DisableForwarding yes
+
+Subsystem sftp internal-sftp

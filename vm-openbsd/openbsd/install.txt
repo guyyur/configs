@@ -1,5 +1,5 @@
 
-# 6.3
+# 7.0
 # amd64
 
 installcd
@@ -9,8 +9,8 @@ installcd
   System hostname? (short form, e.g. 'foo') vm-openbsd
   
   Which network interface do you wish to configure? (or 'done') [vio0]
-  IPv4 address for vio0? (or 'none' or 'dhcp') [dhcp]
-  IPv6 address for vio0? (or 'rtsol' or 'none') [none]
+  IPv4 address for vio0? (or 'autoconf' or 'none') [autoconf]
+  IPv6 address for vio0? (or 'autoconf' or 'none') [none] autoconf
   Which network interface do you wish to configure? (or 'done') [done]
   
   Password for root account? (will not echo)
@@ -69,12 +69,12 @@ installcd
   > q
   Write new label? [y]
   
-  Location of sets? (cd disk ftp http or 'done') [cd0]
-  Pathname to the sets? (or 'done') [6.3/amd64]
+  Location of sets? (cd disk http nfs or 'done') [cd0]
+  Pathname to the sets? (or 'done') [7.0/amd64]
   Set name(s)? (or 'abort' or 'done') [done] -game* -x*
   Set name(s)? (or 'abort' or 'done') [done]
-  
-  Location of sets? (cd disk ftp http or 'done') [done]
+  Directory does not contain SHA256.sig. Continue without verification? [no] yes
+  Location of sets? (cd disk http nfs or 'done') [done]
   
   Exit to (S)hell, (H)alt or (R)reboot? [reboot] S
   # echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab

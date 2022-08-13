@@ -16,10 +16,6 @@ DESTDIR=${1%/}
 
 
 #
-rm -f "${DESTDIR}"/etc/skel/.ssh/authorized_keys || exit 1
-if [ -d "${DESTDIR}"/etc/skel/.ssh ]; then
-  rmdir "${DESTDIR}"/etc/skel/.ssh || exit 1
-fi
+rm -f "${DESTDIR}"/root/.cvsrc || exit 1
 
-rm -f "${DESTDIR}"/etc/skel/.Xdefaults || exit 1
 rm -f "${DESTDIR}"/root/.Xdefaults || exit 1

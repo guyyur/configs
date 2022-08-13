@@ -79,17 +79,17 @@ install -c -m 644 -o root -g root tree/etc/fstab "${DESTDIR}"/etc/fstab || exit 
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.timer || exit 1
 ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.service || exit 1
 
-install -c -m 640 -o root -g root tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
+install -c -m 644 -o root -g root tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
 
 install -c -m 644 -o guy -g guy tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
 
-install -c -m 640 -o root -g root tree/root/.bashrc "${DESTDIR}"/root/.bashrc || exit 1
+install -c -m 644 -o root -g root tree/root/.bashrc "${DESTDIR}"/root/.bashrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.bashrc "${DESTDIR}"/home/guy/.bashrc || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
 
-install -c -m 640 -o root -g root tree/root/.zprofile "${DESTDIR}"/root/.zprofile || exit 1
-install -c -m 640 -o root -g root tree/root/.zshrc "${DESTDIR}"/root/.zshrc || exit 1
+install -c -m 644 -o root -g root tree/root/.zprofile "${DESTDIR}"/root/.zprofile || exit 1
+install -c -m 644 -o root -g root tree/root/.zshrc "${DESTDIR}"/root/.zshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.zprofile "${DESTDIR}"/home/guy/.zprofile || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
 
@@ -136,9 +136,6 @@ install -c -m 640 -o root -g root tree/etc/exports "${DESTDIR}"/etc/exports || e
 
 ln -sfn /usr/lib/systemd/system/nfs-server.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-server.service || exit 1
 
-install -c -m 644 -o root -g root tree/root/.toprc "${DESTDIR}"/root/.toprc || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.toprc "${DESTDIR}"/home/guy/.toprc || exit 1
-
 install -c -m 644 -o root -g root tree/etc/tmux.conf "${DESTDIR}"/etc/tmux.conf || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/git || exit 1
@@ -147,7 +144,7 @@ install -c -m 644 -o guy -g guy tree/home/guy/config/git/config "${DESTDIR}"/hom
 install -d -m 755 -o root -g root "${DESTDIR}"/etc/fonts || exit 1
 install -c -m 644 -o root -g root tree/etc/fonts/local.conf "${DESTDIR}"/etc/fonts/local.conf || exit 1
 
-install -c -m 755 -o guy -g guy tree/home/guy/.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.Xresources "${DESTDIR}"/home/guy/.Xresources || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.xserverrc "${DESTDIR}"/home/guy/.xserverrc || exit 1
 install -c -m 755 -o guy -g guy tree/home/guy/.xinitrc "${DESTDIR}"/home/guy/.xinitrc || exit 1
@@ -159,6 +156,12 @@ install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkrc "${DESTDIR}"/
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-3.0 || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/settings.ini "${DESTDIR}"/home/guy/config/gtk-3.0/settings.ini || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/bookmarks "${DESTDIR}"/home/guy/config/gtk-3.0/bookmarks || exit 1
+
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/qt5ct || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/qt5ct/qt5ct.conf "${DESTDIR}"/home/guy/config/qt5ct/qt5ct.conf || exit 1
+
+install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/qt6ct || exit 1
+install -c -m 644 -o guy -g guy tree/home/guy/config/qt6ct/qt6ct.conf "${DESTDIR}"/home/guy/config/qt6ct/qt6ct.conf || exit 1
 
 install -d -m 755 -o root -g root "${DESTDIR}"/etc/xdg/autostart || exit 1
 
@@ -179,9 +182,6 @@ install -c -m 644 -o guy -g guy tree/home/guy/.gmrunrc "${DESTDIR}"/home/guy/.gm
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt || exit 1
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt/default || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/pcmanfm-qt/default/settings.conf "${DESTDIR}"/home/guy/config/pcmanfm-qt/default/settings.conf || exit 1
-
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/leafpad || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/leafpad/leafpadrc "${DESTDIR}"/home/guy/config/leafpad/leafpadrc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/featherpad || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/featherpad/fp.conf "${DESTDIR}"/home/guy/config/featherpad/fp.conf || exit 1

@@ -2,6 +2,6 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine
 
 gtk-theme-name="Arc-Lighter-solid"
-gtk-icon-theme-name="Adwaita"
+gtk-icon-theme-name="elementary"
 gtk-font-name="sans-serif 10"
 gtk-cursor-theme-name="Adwaita"

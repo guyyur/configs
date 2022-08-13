@@ -1,8 +1,4 @@
-#
 # .cshrc - csh resource script, read at beginning of execution by each shell
-#
-# see also csh(1), environ(7).
-
 
 # -- interactive shell --
 if ($?prompt) then
@@ -10,8 +6,6 @@ if ($?prompt) then
   if ( $?tcsh ) then
     set prompt = "[%m:%~]%# "
     set promptchars = ">#"
-  else
-    set prompt = "[`hostname -s`]% "
   endif
   
   

@@ -1,6 +1,6 @@
 # Device  Mountpoint  FStype  Options  Dump  Pass#
 
-/dev/da0p1  /boot/ESP         msdosfs  ro,noatime,longnames,failok  0  0
+/dev/da0p1  /efi              msdosfs  ro,noatime,longnames,failok  0  0
 /dev/da0p2  /                 ufs      ro,noatime                   0  0
 /dev/da0p3  none              swap     xx                           0  0
 /dev/da0p4  /export/packages  ufs      rw,noatime                   2  2

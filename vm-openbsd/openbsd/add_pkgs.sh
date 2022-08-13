@@ -7,8 +7,15 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 
-# -- install --
+# -- params --
 export PKG_PATH=http://www.mirrorservice.org/pub/OpenBSD/"$(uname -r)"/packages/"$(uname -m)"/
 
-pkg_add nano
-pkg_add zsh
+
+# -- pkg list --
+pkgs=""
+pkgs="${pkgs} nano"
+pkgs="${pkgs} zsh"
+
+
+# -- add pkgs --
+pkg_add ${pkgs} || exit 1

@@ -21,3 +21,5 @@ UsePAM no
 HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
 
 DisableForwarding yes
+
+Subsystem sftp internal-sftp

@@ -1,25 +1,26 @@
+# .shrc - bourne shell startup file (for interactive shell)
 
 # -- prompt --
 if [ -n "$KSH_VERSION" ]; then
   PS1="[\\h:\\w]\\$ "
 else
-  PS1="[$(hostname -s)]# "
+  PS1="[$(hostname -s)]"
+  if [ "$(id -u)" != "0" ]; then
+    PS1="${PS1}$ "
+  else
+    PS1="${PS1}# "
+  fi
 fi
-
 
 # -- options --
-if [ -r /usr/share/misc/terminfo.db ]; then
-  set -o emacs
-fi
+set -o emacs
 
 if [ -n "$KSH_VERSION" ]; then
   set -o braceexpand
 fi
 
-
 # -- history --
 HISTSIZE=500
-
 
 # -- aliases --
 alias la='ls -A'

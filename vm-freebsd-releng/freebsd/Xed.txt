@@ -1,0 +1,36 @@
+
+Guy
+===
+Menu Bar/Edit/Preferences
+-------------------------
+[Editor]
+  x Use the system fixed width font (...)
+  x Display line numbers
+  - Display overview map
+  - Display right margin
+  - Draw whitespace
+  - Highlight the current line
+  x Highlight matching brackets
+    Tab width [4 ]
+  - Use spaces instead of tabs
+  - Automatic indentation
+  - Word wrap
+  - Allow mouse wheel scrolling to change tabs
+
+[Save]
+  - Create a backup copy of files before saving
+  - Autosave files
+  x Ensure Trailing Newline
+
+[Theme]
+
+[Plugins]
+  - Bracket Completion
+  x Document Statistics
+  - File Browser Pane
+  x Insert Date/Time
+  - Modelines
+  - Save Without Trailing Spaces
+  - Spell Checker
+  - Tag list
+  - Word Completion

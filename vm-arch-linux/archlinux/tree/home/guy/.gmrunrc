@@ -2,10 +2,14 @@
 # gmrun is (C) Mihai Bazon, <mishoo@infoiasi.ro>
 # GPL v2.0 applies
 
+SHELL_RUN = 1
+
+USE_GLIB_XDG = 0
+
 # Set terminal
 Terminal = xterm
 TermExec = ${Terminal} -e
-AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man
+AlwaysInTerm = ssh lynx nano vi vim man
 
 # Set window geometry (except height)
 Width = 400
@@ -26,15 +30,3 @@ ShowDotFiles = 0
 # Timeout (in milliseconds) after which gmrun will simulate a TAB press
 # Set this to NULL if don't like this feature.
 TabTimeout = 0
-
-# URL handlers
-# If the entered text is "http://www.google.com" then:
-#   - %u gets replaced with the whole URL ("http://www.google.com")
-#   - %s gets replaced with "//www.google.com".  This is useful for URL-s
-#     like "man:printf" --> %s will get replaced with "printf"
-URL_http = firefox -remote "openURL(%u, new-window)"
-URL_file = pcmanfm-qt %s
-
-# extension handlers
-EXT:txt,cc,cpp,h,java,html,htm,epl,tex,latex,js,css,xml,xsl,am = featherpad %s
-EXT:pdf = qpdfview %s

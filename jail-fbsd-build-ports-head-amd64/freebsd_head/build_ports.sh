@@ -10,20 +10,11 @@ fi
 # target="config-conditional"
 # target="config-recursive"
 target="install clean"
-overlays=$(cd /usr/ports && make -V OVERLAYS)
 
 
 build_port()
 {
-  local port_dir
-  for d in $overlays /usr/ports; do
-    port_dir="$d/$1"
-    if [ -d "$port_dir" ]; then
-      cd "$port_dir" && make $target || exit 1
-      return
-    fi
-  done
-  exit 1
+  cd /usr/ports/"$1" && make $target || exit 1
 }
 
 

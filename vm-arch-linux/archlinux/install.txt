@@ -40,4 +40,5 @@ systemctl poweroff
 
 config lxqt-notificationd
 config QTerminal
+config Xed
 config Meld

@@ -84,9 +84,6 @@ install -c -m 640 -o root -g wheel tree/root/.cshrc "${DESTDIR}"/root/.cshrc || 
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 
-install -c -m 640 -o root -g wheel tree/root/.init.ee "${DESTDIR}"/root/.init.ee || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.init.ee "${DESTDIR}"/home/guy/.init.ee || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/mergemaster.rc "${DESTDIR}"/etc/mergemaster.rc || exit 1
 
 install -c -m 640 -o root -g wheel tree/etc/dhclient.conf "${DESTDIR}"/etc/dhclient.conf || exit 1
@@ -144,6 +141,8 @@ install -c -m 644 -o root -g wheel "${DESTDIR}"/etc/local/dhcpcd.duid.backup "${
 install -c -m 600 -o root -g wheel tree/etc/local/dhcpcd.secret.backup "${DESTDIR}"/etc/local/dhcpcd.secret.backup || exit 1
 install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/local/dhcpcd.secret.backup "${DESTDIR}"/var/db/dhcpcd/secret || exit 1
 install -c -m 644 -o root -g wheel tree/etc/local/dhcpcd.conf "${DESTDIR}"/etc/local/dhcpcd.conf || exit 1
+
+install -c -m 644 -o root -g wheel tree/etc/local/gitconfig "${DESTDIR}"/etc/local/gitconfig || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/git || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/config/git/config "${DESTDIR}"/home/guy/config/git/config || exit 1

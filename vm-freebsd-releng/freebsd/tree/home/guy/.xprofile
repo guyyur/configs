@@ -1,9 +1,13 @@
-#!/bin/sh
 
-export XDG_MENU_PREFIX=all-
+export XKB_DEFAULT_LAYOUT=us,il
+export XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle,caps:shift
 
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+export XDG_MENU_PREFIX=all-
+
 export VISUAL=featherpad
 
-export GIT_EDITOR=leafpad
+export GIT_EDITOR="featherpad -s"

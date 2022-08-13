@@ -58,8 +58,8 @@ alias grep='grep --color=auto'
 
 # -- completions --
 autoload -Uz compinit
-if [[ -d /var/xdg-cache ]]; then
-  compinit -d /var/xdg-cache/zcompdump-root
+if [[ -n $XDG_CACHE_HOME ]]; then
+  compinit -d $XDG_CACHE_HOME/zcompdump
 else
   compinit -D
 fi

@@ -20,7 +20,7 @@ mount -u -o rw,noatime /jails
 jail -c jail-fbsd-build-ports-releng-amd64
 mount -F /jails/jail-fbsd-build-ports-releng-amd64/etc/fstab.jail.packages -a
 
-jexec -l jail-fbsd-build-ports-releng-amd64 /bin/sh -i -c ". ./.profile; [ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; exec sh -i"
+jexec -l jail-fbsd-build-ports-releng-amd64 /bin/sh -c "[ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; . /etc/profile; . .profile; exec sh -i"
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 

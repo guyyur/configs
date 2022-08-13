@@ -10,20 +10,11 @@ fi
 # target="config-conditional"
 # target="config-recursive"
 target="install clean"
-overlays=$(cd /usr/ports && make -V OVERLAYS)
 
 
 build_port()
 {
-  local port_dir
-  for d in $overlays /usr/ports; do
-    port_dir="$d/$1"
-    if [ -d "$port_dir" ]; then
-      cd "$port_dir" && make $target || exit 1
-      return
-    fi
-  done
-  exit 1
+  cd /usr/ports/"$1" && make $target || exit 1
 }
 
 
@@ -36,17 +27,16 @@ build_port shells/zsh
 build_port ftp/curl
 build_port lang/python3
 build_port sysutils/tmux
-build_port sysutils/juexec
 build_port net/dhcpcd
 build_port security/doas
 build_port sysutils/cdrtools
 build_port editors/hexedit
 build_port archivers/unrar
-build_port archivers/p7zip
+build_port archivers/7-zip
 build_port sysutils/dmidecode
 build_port sysutils/smartmontools
 build_port net/rsync
-build_port lang/go
+# build_port lang/go
 build_port ftp/wget
 build_port dns/dnsmasq
 build_port net/samba413
@@ -58,6 +48,7 @@ build_port security/openvpn
 build_port net/wireguard-kmod
 build_port net/wireguard-tools
 build_port devel/git
+build_port net/gitup
 build_port devel/mercurial
 build_port www/thttpd
 build_port www/fcgiwrap
@@ -101,10 +92,10 @@ build_port x11-fonts/sourcecodepro-ttf
 build_port x11-fonts/liberation-fonts-ttf
 build_port hebrew/culmus
 build_port x11-fonts/junicode
-build_port x11-fonts/sbl-hebrew
 # build_port graphics/tesseract
 build_port devel/dbus
-build_port graphics/drm-kmod
+build_port sysutils/seatd
+build_port graphics/drm-510-kmod
 build_port x11-servers/xorg-server
 build_port x11-drivers/xf86-input-mouse
 build_port x11-drivers/xf86-input-keyboard
@@ -133,7 +124,6 @@ build_port x11/xwininfo
 build_port x11/xterm
 build_port x11-themes/xcursor-themes
 build_port x11/xorg-docs
-build_port x11-servers/xwayland
 build_port x11-drivers/xf86-video-ati
 build_port x11-drivers/xf86-video-vmware
 build_port x11-wm/picom
@@ -142,29 +132,30 @@ build_port x11/hsetroot
 build_port x11/slock
 build_port accessibility/atk
 build_port x11-toolkits/gtk20
-build_port x11-themes/adwaita-icon-theme
-build_port x11-toolkits/gtk30
 build_port x11-themes/gtk-engines2
+build_port x11-themes/clearlooks-phenix-theme
+build_port x11-themes/adwaita-icon-theme
+build_port x11-themes/gnome-icons-elementary
+build_port x11-toolkits/gtk30
 build_port devel/qt5-core
 build_port x11-toolkits/qt5-widgets
 build_port graphics/qt5-wayland
-build_port x11-themes/clearlooks-phenix-theme
-build_port devel/py-xdg
+build_port misc/qt5ct
+build_port graphics/scrot
 build_port x11-wm/openbox
 build_port x11-wm/obconf-qt
 build_port x11/tint
+build_port devel/py-xdg
 build_port deskutils/lxqt-notificationd
 build_port deskutils/gsimplecal
 build_port x11/qterminal
 build_port x11/gmrun
 build_port x11-fm/pcmanfm-qt
-build_port editors/leafpad
 build_port editors/featherpad
+build_port editors/xed
 build_port x11-themes/lxappearance
-build_port x11/lxrandr
 build_port sysutils/lxtask
 build_port textproc/meld
-build_port graphics/scrot
 # build_port www/firefox
 # build_port www/falkon
 # build_port mail/thunderbird

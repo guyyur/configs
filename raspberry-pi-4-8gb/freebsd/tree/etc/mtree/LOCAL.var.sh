@@ -13,4 +13,5 @@
 /usr/bin/install -d -m 0700 -o guy -g guy /var/tmp/guy
 /usr/bin/install -d -m 0755 -o guy -g guy /var/tmp/guy/nginx
 /usr/bin/install -d -m 0755 -o root -g wheel /var/xdg-cache
+/usr/bin/install -d -m 0700 -o root -g wheel /var/xdg-cache/root
 /usr/bin/install -d -m 0700 -o guy -g guy /var/xdg-cache/guy

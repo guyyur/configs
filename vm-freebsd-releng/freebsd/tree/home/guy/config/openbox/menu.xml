@@ -11,9 +11,14 @@
       </startupnotify>
     </action>
   </item>
-  <item label="LXRandR">
+  <item label="Qt5 Settings">
     <action name="Execute">
-      <command>lxrandr</command>
+      <command>qt5ct</command>
+    </action>
+  </item>
+  <item label="LXQt Notification">
+    <action name="Execute">
+      <command>lxqt-config-notificationd</command>
     </action>
   </item>
   <item label="Openbox Configuration Manager">

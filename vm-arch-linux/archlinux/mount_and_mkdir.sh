@@ -13,9 +13,6 @@ disk1p=sdb
 disk2p=sdc
 
 
-# -- params --
-
-
 # -- layout --
 mount -o noatime /dev/"${disk0p}"1 /mnt || exit 1
 install -d -m 755 -o root -g root /mnt/boot || exit 1
@@ -46,6 +43,7 @@ install -d -m 755 -o root -g root /mnt/var/cache/pacman || exit 1
 install -d -m 755 -o root -g root /mnt/var/lib || exit 1
 install -d -m 755 -o root -g root /mnt/var/log || exit 1
 install -d -m 755 -o root -g root /mnt/var/xdg-cache || exit 1
+install -d -m 700 -o root -g root /mnt/var/xdg-cache/root || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/xdg-cache/guy || exit 1
 install -d -m 755 -o guy -g guy /mnt/var/xdg-cache/guy/thumbnails || exit 1
 install -d -m 700 -o guy -g guy /mnt/home/guy || exit 1

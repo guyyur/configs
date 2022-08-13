@@ -86,9 +86,6 @@ install -c -m 640 -o root -g wheel tree/root/.cshrc "${DESTDIR}"/root/.cshrc || 
 install -l h "${DESTDIR}"/root/.cshrc "${DESTDIR}"/.cshrc || exit 1
 install -c -m 644 -o guy -g guy tree/home/guy/.cshrc "${DESTDIR}"/home/guy/.cshrc || exit 1
 
-install -c -m 640 -o root -g wheel tree/root/.init.ee "${DESTDIR}"/root/.init.ee || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.init.ee "${DESTDIR}"/home/guy/.init.ee || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/mergemaster.rc "${DESTDIR}"/etc/mergemaster.rc || exit 1
 
 install -c -m 640 -o root -g wheel tree/etc/dhclient.conf "${DESTDIR}"/etc/dhclient.conf || exit 1
@@ -125,6 +122,8 @@ install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/local || exit 1
 install -l s ../../etc/local "${DESTDIR}"/usr/local/etc || exit 1
 
 install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
+
+install -c -m 644 -o root -g wheel tree/etc/local/gitup.conf "${DESTDIR}"/etc/local/gitup.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/local/pkg.conf "${DESTDIR}"/etc/local/pkg.conf || exit 1
 

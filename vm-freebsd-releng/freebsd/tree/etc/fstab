@@ -12,7 +12,8 @@ tmpfs  /var/spool/lock  tmpfs  rw,size=1M,inodes=128  0  0
 
 tmpfs  /tmp  tmpfs  rw,size=512M,inodes=32768  0  0
 
-proc  /proc  procfs  rw  0  0
+proc     /proc               procfs     rw  0  0
+linproc  /compat/linux/proc  linprocfs  rw  0  0
 
 server:/packages/FreeBSD-base/releng/amd64  /usr/local/db/local_base_repos  nfs  ro,nfsv4,minorversion=1,noauto  0  0
 server:/packages/FreeBSD/releng/amd64  /usr/local/db/local_pkg_repos  nfs  ro,nfsv4,minorversion=1,noauto  0  0

@@ -3,22 +3,19 @@
 <openbox_menu xmlns="http://openbox.org/3.4/menu">
 
 <menu id="settings-menu" label="Settings">
-  <item label="LXAppearance">
+  <item label="Qt5 Settings">
     <action name="Execute">
-      <command>lxappearance</command>
-      <startupnotify>
-        <enabled>yes</enabled>
-      </startupnotify>
+      <command>qt5ct</command>
+    </action>
+  </item>
+  <item label="Qt6 Settings">
+    <action name="Execute">
+      <command>qt6ct</command>
     </action>
   </item>
   <item label="LXQt Notification">
     <action name="Execute">
       <command>lxqt-config-notificationd</command>
-    </action>
-  </item>
-  <item label="LXRandR">
-    <action name="Execute">
-      <command>lxrandr</command>
     </action>
   </item>
   <item label="Openbox Configuration Manager">

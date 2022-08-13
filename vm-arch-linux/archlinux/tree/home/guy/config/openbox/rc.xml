@@ -225,11 +225,6 @@
         <command>gmrun</command>
       </action>
     </keybind>
-    <keybind key="C-S-Escape">
-      <action name="Execute">
-        <command>lxtask</command>
-      </action>
-    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>8</dragThreshold>

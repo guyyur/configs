@@ -1,17 +1,11 @@
 # .shrc - bourne shell startup file (for interactive shell)
-#
-
 
 # -- prompt --
 PS1="[\h:\w]\\$ "
 
-
 # -- history --
 HISTSIZE=500
-case "$KSH_VERSION" in Version*)
-  HISTFILE=/dev/null;;
-esac
-
+HISTFILE=
 
 # -- aliases --
 alias la='ls -A'

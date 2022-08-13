@@ -10,20 +10,11 @@ fi
 # target="config-conditional"
 # target="config-recursive"
 target="install clean"
-overlays=$(cd /usr/ports && make -V OVERLAYS)
 
 
 build_port()
 {
-  local port_dir
-  for d in $overlays /usr/ports; do
-    port_dir="$d/$1"
-    if [ -d "$port_dir" ]; then
-      cd "$port_dir" && make $target || exit 1
-      return
-    fi
-  done
-  exit 1
+  cd /usr/ports/"$1" && make $target || exit 1
 }
 
 
@@ -40,10 +31,9 @@ build_port net/dhcpcd
 build_port security/doas
 build_port editors/hexedit
 build_port archivers/unrar
-build_port archivers/p7zip
+build_port archivers/7-zip
 build_port sysutils/smartmontools
 build_port net/rsync
-# build_port lang/go
 build_port ftp/wget
 build_port dns/dnsmasq
 build_port net/samba413
@@ -54,6 +44,7 @@ build_port security/openvpn
 build_port net/wireguard-kmod
 build_port net/wireguard-tools
 build_port devel/git
+build_port net/gitup
 build_port www/fcgiwrap
 build_port www/nginx
 build_port devel/gdb
@@ -63,7 +54,6 @@ build_port hebrew/aspell
 build_port benchmarks/iperf
 build_port www/tidy-devel
 build_port graphics/p5-Image-ExifTool
-build_port comms/sunxi-tools
 build_port audio/flac
 build_port audio/lame
 build_port multimedia/ffmpeg

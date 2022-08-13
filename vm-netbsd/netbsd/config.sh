@@ -17,18 +17,6 @@ TARGET_ARCH=x86_64
 
 
 #
-install -c -m 644 -o root -g wheel tree/etc/login.conf "${DESTDIR}"/etc/login.conf || exit 1
-if [ -z "${DESTDIR}" ]; then
-  cap_mkdb /etc/login.conf || exit 1
-else
-  if [ "${TARGET_ARCH}" = "x86_64" ]; then
-    cap_mkdb -l "${DESTDIR}"/etc/login.conf || exit 1
-  else
-    printf "script is missing login.conf endian for ${TARGET_ARCH}\n" 1>&2
-    exit 1
-  fi
-fi
-
 install -c -m 644 -o root -g wheel tree/etc/usermgmt.conf "${DESTDIR}"/etc/usermgmt.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit 1
@@ -59,8 +47,6 @@ chown -h root:wheel "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/COPYRIGHT "${DESTDIR}"/etc/COPYRIGHT || exit 1
-
 install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/mk.conf "${DESTDIR}"/etc/mk.conf || exit 1
@@ -87,9 +73,9 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/
 
 install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1
 install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
+install -c -m 644 -o guy -g users tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
 install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
+install -c -m 644 -o guy -g users tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
 
 install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
 install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
@@ -104,9 +90,12 @@ install -c -m 600 -o guy -g users tree/home/guy/.ssh/authorized_keys "${DESTDIR}
 
 install -c -m 640 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 
+install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/pkg || exit 1
+install -l s ../../etc/pkg "${DESTDIR}"/usr/pkg/etc || exit 1
+
 install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/config || exit 1
 
-install -c -m 644 -o root -g wheel tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
+install -c -m 644 -o root -g wheel tree/etc/pkg/nanorc "${DESTDIR}"/etc/pkg/nanorc || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/.zshrc "${DESTDIR}"/root/.zshrc || exit 1
 install -c -m 644 -o guy -g users tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1

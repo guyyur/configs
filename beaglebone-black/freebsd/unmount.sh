@@ -9,7 +9,7 @@ fi
 
 # -- layout --
 umount /mnt/home || exit 1
-umount /mnt/boot/ESP || exit 1
+umount /mnt/efi || exit 1
 umount /mnt/tmp || exit 1
 umount /mnt/var || exit 1
 umount /mnt/dev || exit 1

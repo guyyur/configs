@@ -1,16 +1,11 @@
-
 # .cshrc - csh resource script, read at beginning of execution by each shell
-#
-# see also csh(1), environ(7).
-
 
 # -- interactive shell --
 if ($?prompt) then
   # -- prompt --
   if ( $?tcsh ) then
     set prompt = "[%m:%~]%# "
-  else
-    set prompt = "[`hostname -s`]# "
+    set promptchars = ">#"
   endif
   
   
@@ -20,7 +15,7 @@ if ($?prompt) then
   # set savehist = (500 merge)
   set histdup = erase
   set ignoreeof
-  set mail = (/var/mail/root)
+  set mail = (/var/mail/$USER)
   
   if ( $?tcsh ) then
     set autolist = ambiguous
@@ -72,16 +67,16 @@ if ($?prompt) then
   
   # -- completions --
   if ( $?tcsh ) then
-    complete cd             p/1/d/          # Directories only
-    complete chdir          p/1/d/
-    complete pushd          p/1/d/
-    complete popd           p/1/d/
+    complete cd         p/1/d/          # Directories only
+    complete chdir      p/1/d/
+    complete pushd      p/1/d/
+    complete popd       p/1/d/
     
-    complete set            'c/*=/f/' 'p/1/s/=' 'n/=/f/'
-    complete unset          'n/*/s/'
-    complete setenv         'p/1/e/' 'c/*:/f/'
-    complete unsetenv       'n/*/e/'
+    complete set        'c/*=/f/' 'p/1/s/=' 'n/=/f/'
+    complete unset      'n/*/s/'
+    complete setenv     'p/1/e/' 'c/*:/f/'
+    complete unsetenv   'n/*/e/'
     
-    complete pkg            'p/1/`pkg -l`/' 'n/info/`pkg query "%n-%v"`/' 'N/info/`pkg query "%n-%v"`/' 'n/delete/`pkg query "%n-%v"`/'
+    complete pkg        'p/1/`pkg -l`/' 'n/info/`pkg query "%n-%v"`/' 'N/info/`pkg query "%n-%v"`/' 'n/delete/`pkg query "%n-%v"`/'
   endif
 endif

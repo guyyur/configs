@@ -7,168 +7,171 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 
+# -- pkg list --
+pkgs=""
+echo -n > /tmp/local_pkg_list
+pkgs="${pkgs} bash"
+pkgs="${pkgs} binutils"
+pkgs="${pkgs} bzip2"
+pkgs="${pkgs} coreutils"
+pkgs="${pkgs} cryptsetup"
+pkgs="${pkgs} dash"
+pkgs="${pkgs} device-mapper"
+pkgs="${pkgs} diffutils"
+pkgs="${pkgs} e2fsprogs"
+pkgs="${pkgs} dosfstools"
+pkgs="${pkgs} file"
+pkgs="${pkgs} filesystem"
+pkgs="${pkgs} findutils"
+pkgs="${pkgs} gawk"
+pkgs="${pkgs} gcc-libs"
+pkgs="${pkgs} gdisk"
+pkgs="${pkgs} gettext"
+pkgs="${pkgs} glibc"
+pkgs="${pkgs} grep"
+pkgs="${pkgs} gzip"
+pkgs="${pkgs} kmod"
+pkgs="${pkgs} linux"
+pkgs="${pkgs} linux-api-headers"
+pkgs="${pkgs} linux-firmware"
+pkgs="${pkgs} less"
+pkgs="${pkgs} licenses"
+pkgs="${pkgs} logrotate"
+pkgs="${pkgs} man-db"
+pkgs="${pkgs} man-pages"
+pkgs="${pkgs} mkinitcpio"
+pkgs="${pkgs} nano"
+pkgs="${pkgs} pacman"
+pkgs="${pkgs} pacman-mirrorlist"
+pkgs="${pkgs} parted"
+pkgs="${pkgs} gptfdisk"
+pkgs="${pkgs} procps-ng"
+pkgs="${pkgs} psmisc"
+pkgs="${pkgs} sed"
+pkgs="${pkgs} shadow"
+pkgs="${pkgs} sysfsutils"
+pkgs="${pkgs} systemd"
+pkgs="${pkgs} tar"
+pkgs="${pkgs} tzdata"
+echo /mnt/var/cache/pacman/my_pkg/terminfo-lite-unmodified-*.pkg.tar.* >> /tmp/local_pkg_list || exit 1
+pkgs="${pkgs} util-linux"
+pkgs="${pkgs} vi"
+pkgs="${pkgs} which"
+pkgs="${pkgs} syslinux"
+pkgs="${pkgs} zsh"
+pkgs="${pkgs} sharutils"
+pkgs="${pkgs} lsof"
+pkgs="${pkgs} pciutils"
+pkgs="${pkgs} libusb"
+pkgs="${pkgs} usbutils"
+pkgs="${pkgs} dmidecode"
+pkgs="${pkgs} sysstat"
+pkgs="${pkgs} time"
+pkgs="${pkgs} openresolv"
+pkgs="${pkgs} dhcpcd"
+pkgs="${pkgs} inetutils"
+pkgs="${pkgs} iputils"
+pkgs="${pkgs} iproute2"
+pkgs="${pkgs} ethtool"
+pkgs="${pkgs} net-tools"
+pkgs="${pkgs} ndisc6"
+pkgs="${pkgs} traceroute"
+pkgs="${pkgs} ipv6calc"
+pkgs="${pkgs} openssh"
+pkgs="${pkgs} rpcbind"
+pkgs="${pkgs} nfsidmap"
+pkgs="${pkgs} nfs-utils"
+pkgs="${pkgs} tcpdump"
+pkgs="${pkgs} openbsd-netcat"
+pkgs="${pkgs} ca-certificates"
+pkgs="${pkgs} curl"
+pkgs="${pkgs} wget"
+pkgs="${pkgs} alsa-utils"
+pkgs="${pkgs} alsa-oss"
+pkgs="${pkgs} bc"
+pkgs="${pkgs} kbd"
+pkgs="${pkgs} autoconf"
+pkgs="${pkgs} automake"
+pkgs="${pkgs} bison"
+pkgs="${pkgs} ed"
+pkgs="${pkgs} fakeroot"
+pkgs="${pkgs} flex"
+pkgs="${pkgs} libtool"
+pkgs="${pkgs} m4"
+pkgs="${pkgs} make"
+pkgs="${pkgs} patch"
+pkgs="${pkgs} pkg-config"
+pkgs="${pkgs} gdb"
+pkgs="${pkgs} strace"
+pkgs="${pkgs} gcc"
+pkgs="${pkgs} dos2unix"
+pkgs="${pkgs} exfatprogs"
+pkgs="${pkgs} f2fs-tools"
+pkgs="${pkgs} python"
+pkgs="${pkgs} go"
+pkgs="${pkgs} tmux"
+pkgs="${pkgs} git"
+pkgs="${pkgs} iperf"
+pkgs="${pkgs} dbus"
+pkgs="${pkgs} polkit"
+pkgs="${pkgs} xf86-input-libinput"
+pkgs="${pkgs} xorg-server"
+pkgs="${pkgs} xorg-xinit"
+pkgs="${pkgs} xorg-xkbutils"
+pkgs="${pkgs} libxkbcommon-x11"
+pkgs="${pkgs} xorg-xbacklight"
+pkgs="${pkgs} xorg-xhost"
+pkgs="${pkgs} xorg-xinput"
+pkgs="${pkgs} xorg-xrandr"
+pkgs="${pkgs} xorg-xset"
+pkgs="${pkgs} xorg-xdpyinfo"
+pkgs="${pkgs} xorg-xdriinfo"
+pkgs="${pkgs} xorg-xev"
+pkgs="${pkgs} xorg-xprop"
+pkgs="${pkgs} xorg-xvinfo"
+pkgs="${pkgs} xorg-xwininfo"
+pkgs="${pkgs} xorg-xwayland"
+pkgs="${pkgs} ttf-liberation"
+pkgs="${pkgs} ttf-dejavu"
+pkgs="${pkgs} hicolor-icon-theme"
+pkgs="${pkgs} xterm"
+pkgs="${pkgs} ttf-caladea"
+pkgs="${pkgs} ttf-carlito"
+pkgs="${pkgs} ttf-croscore"
+pkgs="${pkgs} ttf-junicode"
+pkgs="${pkgs} libnotify"
+pkgs="${pkgs} picom"
+pkgs="${pkgs} hsetroot"
+pkgs="${pkgs} adwaita-icon-theme"
+pkgs="${pkgs} elementary-icon-theme"
+pkgs="${pkgs} oxygen-icons"
+pkgs="${pkgs} gnome-themes-extra"
+pkgs="${pkgs} arc-solid-gtk-theme"
+pkgs="${pkgs} qt5-wayland"
+pkgs="${pkgs} qt5ct"
+pkgs="${pkgs} qt6-wayland"
+pkgs="${pkgs} qt6ct"
+pkgs="${pkgs} python-pyxdg"
+pkgs="${pkgs} openbox"
+pkgs="${pkgs} obconf-qt"
+pkgs="${pkgs} tint2"
+pkgs="${pkgs} gsimplecal"
+pkgs="${pkgs} lxqt-notificationd"
+pkgs="${pkgs} qterminal"
+pkgs="${pkgs} gmrun"
+pkgs="${pkgs} pcmanfm-qt"
+pkgs="${pkgs} featherpad"
+pkgs="${pkgs} xed"
+pkgs="${pkgs} meld"
+pkgs="${pkgs} geany"
+
+
 # -- install --
 pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/pkg -Sy || exit 1
-pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/pkg -S \
-  bash \
-  binutils \
-  bzip2 \
-  coreutils \
-  cryptsetup \
-  dash \
-  device-mapper \
-  diffutils \
-  e2fsprogs \
-  dosfstools \
-  file \
-  filesystem \
-  findutils \
-  gawk \
-  gcc-libs \
-  gdisk \
-  gettext \
-  glibc \
-  grep \
-  gzip \
-  kmod \
-  linux \
-  linux-api-headers \
-  linux-firmware \
-  less \
-  licenses \
-  logrotate \
-  man-db \
-  man-pages \
-  mkinitcpio \
-  nano \
-  pacman \
-  pacman-mirrorlist \
-  parted \
-  gptfdisk \
-  procps-ng \
-  psmisc \
-  sed \
-  shadow \
-  sysfsutils \
-  systemd \
-  tar \
-  tzdata \
-  util-linux \
-  vi \
-  which \
-  syslinux \
-  zsh \
-  sharutils \
-  lsof \
-  pciutils \
-  libusb \
-  usbutils \
-  dmidecode \
-  sysstat \
-  time \
-  openresolv \
-  dhcpcd \
-  inetutils \
-  iputils \
-  iproute2 \
-  ethtool \
-  net-tools \
-  ndisc6 \
-  traceroute \
-  ipv6calc \
-  openssh \
-  rpcbind \
-  nfsidmap \
-  nfs-utils \
-  tcpdump \
-  openbsd-netcat \
-  ca-certificates \
-  curl \
-  wget \
-  alsa-utils \
-  alsa-oss \
-  bc \
-  kbd \
-  autoconf \
-  automake \
-  bison \
-  ed \
-  fakeroot \
-  flex \
-  libtool \
-  m4 \
-  make \
-  patch \
-  pkg-config \
-  gdb \
-  strace \
-  gcc \
-  dos2unix \
-  exfatprogs \
-  python \
-  tmux \
-  git \
-  iperf \
-  dbus \
-  polkit \
-  xf86-input-libinput \
-  xorg-server \
-  xorg-xinit \
-  xorg-xkbutils \
-  libxkbcommon-x11 \
-  xorg-xbacklight \
-  xorg-xhost \
-  xorg-xinput \
-  xorg-xrandr \
-  xorg-xset \
-  xorg-xdpyinfo \
-  xorg-xdriinfo \
-  xorg-xev \
-  xorg-xprop \
-  xorg-xvinfo \
-  xorg-xwininfo \
-  xorg-xwayland \
-  ttf-liberation \
-  ttf-dejavu \
-  hicolor-icon-theme \
-  xterm \
-  ttf-caladea \
-  ttf-carlito \
-  ttf-croscore \
-  ttf-junicode \
-  libnotify \
-  picom \
-  hsetroot \
-  adwaita-icon-theme \
-  gnome-icon-theme \
-  oxygen-icons \
-  gtk-engines \
-  gnome-themes-extra \
-  gtk-engine-murrine \
-  arc-solid-gtk-theme \
-  qt5-wayland \
-  python-pyxdg \
-  openbox \
-  obconf-qt \
-  tint2 \
-  gsimplecal \
-  lxqt-notificationd \
-  qterminal \
-  gmrun \
-  pcmanfm-qt \
-  leafpad \
-  featherpad \
-  lxappearance \
-  lxrandr \
-  lxtask \
-  meld \
-  geany \
-  || exit 1
+pacman --root /mnt --dbpath /mnt/usr/db/pacman --cachedir /mnt/var/cache/pacman/pkg -S ${pkgs} || exit 1
 
-echo -n > /tmp/aur_pkg_list
-
-if [ -s /tmp/aur_pkg_list ]; then
-  cat /tmp/aur_pkg_list | pacman -U --root /mnt --dbpath /mnt/usr/db/pacman - || exit 1
+if [ -s /tmp/local_pkg_list ]; then
+  cat /tmp/local_pkg_list | pacman -U --root /mnt --dbpath /mnt/usr/db/pacman - || exit 1
 fi
 
 chroot /mnt locale-gen || exit 1

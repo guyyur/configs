@@ -3,7 +3,9 @@
 
 mount /var/cache/pacman
 mount -orw,noatime,remount /
+
 pacman -Sc
 pacman -Syu
+
 mount -oro,noatime,remount /
 umount /var/cache/pacman

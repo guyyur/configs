@@ -31,7 +31,7 @@ read -p "Enter device for disk0: " disk0 || exit 1
 
 # -- layout --
 # disk0:
-#   /boot/ESP
+#   /efi
 #   /
 #   dump
 #   /export/packages

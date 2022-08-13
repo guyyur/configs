@@ -36,6 +36,9 @@ mount -o noatime /dev/"${disk2}"p1 /mnt/home || exit 1
 mount -o noatime /dev/"${disk3}"p1 /mnt/usr/obj || exit 1
 mount -o noatime /dev/"${disk4}"p1 /mnt/jails || exit 1
 
+install -d -m 755 -o root -g wheel /mnt/compat || exit 1
+install -d -m 755 -o root -g wheel /mnt/compat/linux || exit 1
+install -d -m 755 -o root -g wheel /mnt/compat/linux/proc || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/wrkdir || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db || exit 1
@@ -46,6 +49,7 @@ install -d -m 755 -o root -g wheel /mnt/usr/local/db/pkg || exit 1
 install -d -m 1777 -o root -g wheel /mnt/var/tmp || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/tmp/guy || exit 1
 install -d -m 755 -o root -g wheel /mnt/var/xdg-cache || exit 1
+install -d -m 700 -o root -g wheel /mnt/var/xdg-cache/root || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/xdg-cache/guy || exit 1
 install -d -m 755 -o guy -g guy /mnt/var/xdg-cache/guy/thumbnails || exit 1
 install -d -m 700 -o guy -g guy /mnt/home/guy || exit 1

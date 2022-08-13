@@ -8,11 +8,11 @@ fi
 
 #
 . ~/.xprofile
+xrdb -merge "$HOME/.Xresources"
 
 
 #
-xrdb -merge "$HOME/.Xresources"
-setxkbmap -option grp:alt_shift_toggle,caps:shift us,il
+setxkbmap -layout ${XKB_DEFAULT_LAYOUT} -option ${XKB_DEFAULT_OPTIONS}
 
 xrandr --output default --mode 1440x900
 
