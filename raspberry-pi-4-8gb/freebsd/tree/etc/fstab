@@ -3,11 +3,14 @@
 /dev/da0p1  /efi              msdosfs  ro,noatime,longnames,failok  0  0
 /dev/da0p2  /                 ufs      ro,noatime                   0  0
 /dev/da0p3  none              swap     xx                           0  0
-/dev/da0p4  /export/packages  ufs      rw,noatime                   2  2
-/dev/da0p5  /export/sources   ufs      rw,noatime                   2  2
-/dev/da0p6  /home             ufs      rw,noatime                   2  2
+/dev/da0p4  /var              ufs      rw,noatime                   2  2
+/dev/da0p5  /export/packages  ufs      rw,noatime                   2  2
+/dev/da0p6  /export/sources   ufs      rw,noatime                   2  2
+/dev/da0p7  /jails            ufs      ro,noatime                   2  2
+/dev/da0p8  /home             ufs      rw,noatime                   2  2
 
-tmpfs  /var  tmpfs  rw,size=128M,inodes=32768  0  0
+tmpfs  /var/run         tmpfs  rw,size=8M,inodes=512  0  0
+tmpfs  /var/spool/lock  tmpfs  rw,size=1M,inodes=128  0  0
 
 tmpfs  /tmp  tmpfs  rw,size=512M,inodes=32768  0  0
 

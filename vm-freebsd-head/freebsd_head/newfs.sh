@@ -33,14 +33,22 @@ disk3=da3
 disk4=da4
 
 
+# -- file system params --
+part_root_inode_density=50000     # ~262144 inodes for 15G
+part_var_inode_density=40000      # ~25600 inodes for 1G
+part_home_inode_density=34000     # ~524288 inodes for 16G
+part_usr_obj_inode_density=90000  # ~393216 inodes for 32G
+part_jails_inode_density=51000    # ~524288 inodes for 24G
+
+
 # -- layout  --
 # disk0:
 #   freebsd-boot
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
-newfs -U -n -i 50000 /dev/"${disk0}"p2 || exit 1  # ~262144 for 15G
-newfs -U -n -i 40000 /dev/"${disk0}"p3 || exit 1  #  ~25600 for 1G
+newfs -U -n -i ${part_root_inode_density} /dev/"${disk0}"p2 || exit 1
+newfs -U -n -i ${part_var_inode_density} /dev/"${disk0}"p3 || exit 1
 
 # disk1:
 #   swap
@@ -48,14 +56,14 @@ newfs -U -n -i 40000 /dev/"${disk0}"p3 || exit 1  #  ~25600 for 1G
 # disk2:
 #   /home
 my_prompt "${disk2}" || exit 1
-newfs -U -n -i 34000 /dev/"${disk2}"p1 || exit 1  # ~524288 for 16G
+newfs -U -n -i ${part_home_inode_density} /dev/"${disk2}"p1 || exit 1
 
 # disk3:
 #   /usr/obj
 my_prompt "${disk3}" || exit 1
-newfs -U -n -i 90000 /dev/"${disk3}"p1 || exit 1  # ~393216 for 32G
+newfs -U -n -i ${part_usr_obj_inode_density} /dev/"${disk3}"p1 || exit 1
 
 # disk4:
 #   /jails
 my_prompt "${disk4}" || exit 1
-newfs -U -n -i 51000 /dev/"${disk4}"p1 || exit 1  # ~524288 for 24G
+newfs -U -n -i ${part_jails_inode_density} /dev/"${disk4}"p1 || exit 1

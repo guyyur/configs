@@ -18,7 +18,6 @@ destdir=$1
 # -- set up params --
 DESTDIR=$destdir
 DISTDIR=$destdir/usr/local/db/local_base_repos
-TARGET_ARCH=amd64
 
 
 # -- extract files --

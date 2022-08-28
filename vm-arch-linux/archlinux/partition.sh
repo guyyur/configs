@@ -31,6 +31,11 @@ disk1=sdb
 disk2=sdc
 
 
+# -- partition sizes --
+part_root_end=14680063s
+part_var_begin=14680064s
+
+
 # -- layout --
 # disk0:
 #   /
@@ -39,8 +44,8 @@ my_prompt "${disk0}" || exit 1
 parted -s -a optimal /dev/"${disk0}" \
   mklabel msdos \
   unit s \
-  mkpart primary ext4 2048s 14680063s \
-  mkpart primary ext4 14680064s 100% \
+  mkpart primary ext4 2048s ${part_root_end} \
+  mkpart primary ext4 ${part_var_begin} 100% \
   set 1 boot on \
   || exit 1
 parted -s -a optimal /dev/"${disk0}" unit s print || exit 1

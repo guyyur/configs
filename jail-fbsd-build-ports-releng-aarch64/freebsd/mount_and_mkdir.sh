@@ -11,9 +11,6 @@ fi
 path0=/jails/jail-fbsd-build-ports-releng-aarch64
 
 
-# -- params --
-
-
 # -- layout --
 install -d -m 755 -o root -g wheel "${path0}" || exit 1
 

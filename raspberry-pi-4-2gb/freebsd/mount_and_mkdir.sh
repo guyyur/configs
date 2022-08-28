@@ -11,9 +11,6 @@ fi
 read -p "Enter device for disk0: " disk0 || exit 1
 
 
-# -- params --
-
-
 # -- layout --
 mount -o noatime /dev/"${disk0}"p2 /mnt || exit 1
 install -d -m 555 -o root -g wheel /mnt/dev || exit 1
@@ -22,13 +19,13 @@ install -d -m 1777 -o root -g wheel /mnt/tmp || exit 1
 install -d -m 755 -o root -g wheel /mnt/efi || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr || exit 1
 install -d -m 755 -o root -g wheel /mnt/home || exit 1
-install -d -m 755 -o root -g wheel /mnt/export || exit 1
+install -d -m 755 -o root -g wheel /mnt/backup || exit 1
 
 mount -t devfs devfs /mnt/dev || exit 1
 mount -t tmpfs tmpfs /mnt/var || exit 1
 mount -t tmpfs tmpfs /mnt/tmp || exit 1
 mount -t msdosfs -o noatime,longnames /dev/"${disk0}"p1 /mnt/efi || exit 1
-mount -o noatime /dev/"${disk0}"p4 /mnt/home || exit 1
+mount -o noatime /dev/"${disk0}"p4 /mnt/backup || exit 1
 
 install -d -m 755 -o root -g wheel /mnt/usr/local || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db || exit 1

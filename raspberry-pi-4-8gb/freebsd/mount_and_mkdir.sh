@@ -11,9 +11,6 @@ fi
 read -p "Enter device for disk0: " disk0 || exit 1
 
 
-# -- params --
-
-
 # -- layout --
 mount -o noatime /dev/"${disk0}"p2 /mnt || exit 1
 install -d -m 555 -o root -g wheel /mnt/dev || exit 1
@@ -28,12 +25,13 @@ install -d -m 755 -o root -g wheel /mnt/export/sources || exit 1
 install -d -m 755 -o root -g wheel /mnt/jails || exit 1
 
 mount -t devfs devfs /mnt/dev || exit 1
-mount -t tmpfs tmpfs /mnt/var || exit 1
+mount -o noatime /dev/"${disk0}"p4 /mnt/var || exit 1
 mount -t tmpfs tmpfs /mnt/tmp || exit 1
 mount -t msdosfs -o noatime,longnames /dev/"${disk0}"p1 /mnt/efi || exit 1
-mount -o noatime /dev/"${disk0}"p4 /mnt/export/packages || exit 1
-mount -o noatime /dev/"${disk0}"p5 /mnt/export/sources || exit 1
-mount -o noatime /dev/"${disk0}"p6 /mnt/home || exit 1
+mount -o noatime /dev/"${disk0}"p5 /mnt/export/packages || exit 1
+mount -o noatime /dev/"${disk0}"p6 /mnt/export/sources || exit 1
+mount -o noatime /dev/"${disk0}"p7 /mnt/jails || exit 1
+mount -o noatime /dev/"${disk0}"p8 /mnt/home || exit 1
 
 install -d -m 755 -o root -g wheel /mnt/usr/local || exit 1
 install -d -m 755 -o root -g wheel /mnt/usr/local/db || exit 1
@@ -45,7 +43,7 @@ install -d -m 755 -o root -g wheel /mnt/var/log || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/log/guy || exit 1
 install -d -m 1777 -o root -g wheel /mnt/var/tmp || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/tmp/guy || exit 1
-install -d -m 755 -o 0755 -o guy -g guy /var/tmp/guy/nginx || exit 1
+install -d -m 755 -o 0755 -o guy -g guy /mnt/var/tmp/guy/nginx || exit 1
 install -d -m 755 -o root -g wheel /mnt/var/xdg-cache || exit 1
 install -d -m 700 -o root -g wheel /mnt/var/xdg-cache/root || exit 1
 install -d -m 700 -o guy -g guy /mnt/var/xdg-cache/guy || exit 1

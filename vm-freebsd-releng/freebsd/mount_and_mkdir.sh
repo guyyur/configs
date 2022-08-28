@@ -15,9 +15,6 @@ disk3=da3
 disk4=da4
 
 
-# -- params --
-
-
 # -- layout --
 mount -o noatime /dev/"${disk0}"p2 /mnt || exit 1
 install -d -m 555 -o root -g wheel /mnt/dev || exit 1

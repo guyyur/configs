@@ -7,9 +7,6 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 
-# -- chroot path --
-
-
 # -- pkg list --
 pkgs="pkg"
 pkgs="${pkgs} nano"

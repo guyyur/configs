@@ -11,9 +11,6 @@ fi
 read -p "Enter device for disk0: " disk0 || exit 1
 
 
-# -- params --
-
-
 # -- layout --
 mount -o noatime /dev/"${disk0}"p2 /mnt || exit 1
 install -d -m 555 -o root -g wheel /mnt/dev || exit 1

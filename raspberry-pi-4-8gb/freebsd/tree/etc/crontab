@@ -6,6 +6,9 @@ MAILTO=""
 #
 #minute	hour	mday	month	wday	who	command
 #
+# Save some entropy so that /dev/random can re-seed on boot.
+*/11	*	*	*	*	operator /usr/libexec/save-entropy
+#
 # Rotate log files every hour, if necessary.
 0	*	*	*	*	root	newsyslog
 #

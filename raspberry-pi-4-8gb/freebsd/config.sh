@@ -12,6 +12,9 @@ if [ -z "$1" ]; then
   echo "usage: config.sh destdir" 1>&2
   exit 1
 fi
+
+
+# -- set up params --
 DESTDIR=${1%/}
 TARGET_ARCH=aarch64
 
@@ -72,8 +75,6 @@ install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/fstab "${DESTDIR}"/etc/fstab || exit 1
 
-install -c -m 755 -o root -g wheel tree/etc/mtree/LOCAL.var.sh "${DESTDIR}"/etc/mtree/LOCAL.var.sh || exit 1
-
 install -c -m 640 -o root -g wheel tree/etc/exports "${DESTDIR}"/etc/exports || exit 1
 
 install -c -m 640 -o root -g wheel tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
@@ -115,6 +116,8 @@ install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}
 install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
 
 install -c -m 600 -o guy -g guy tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+
+install -c -m 644 -o root -g wheel tree/etc/jail.conf "${DESTDIR}"/etc/jail.conf || exit 1
 
 install -c -m 644 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
 

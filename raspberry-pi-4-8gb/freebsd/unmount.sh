@@ -9,6 +9,7 @@ fi
 
 # -- layout --
 umount /mnt/home || exit 1
+umount /mnt/jails || exit 1
 umount /mnt/export/sources || exit 1
 umount /mnt/export/packages || exit 1
 umount /mnt/efi || exit 1

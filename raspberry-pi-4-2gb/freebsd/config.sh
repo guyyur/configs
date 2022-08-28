@@ -12,6 +12,9 @@ if [ -z "$1" ]; then
   echo "usage: config.sh destdir" 1>&2
   exit 1
 fi
+
+
+# -- set up params --
 DESTDIR=${1%/}
 TARGET_ARCH=aarch64
 

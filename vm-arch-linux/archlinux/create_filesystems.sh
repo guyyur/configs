@@ -34,13 +34,19 @@ disk2=sdc
 disk2p=sdc
 
 
+# -- file system params --
+part_root_inodes=262144
+part_var_inodes=81920
+part_home_inodes=262144
+
+
 # -- layout --
 # disk0:
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
-mke2fs -t ext4 -N 262144 -O ^64bit /dev/"${disk0p}"1 || exit 1
-mke2fs -t ext4 -N 81920 -O ^64bit /dev/"${disk0p}"2 || exit 1
+mke2fs -t ext4 -N ${part_root_inodes} -O ^64bit /dev/"${disk0p}"1 || exit 1
+mke2fs -t ext4 -N ${part_var_inodes} -O ^64bit /dev/"${disk0p}"2 || exit 1
 
 # disk1:
 #   swap
@@ -50,4 +56,4 @@ mkswap /dev/"${disk1p}"1
 # disk2:
 #   /home
 my_prompt "${disk2}" || exit 1
-mke2fs -t ext4 -N 262144 -O ^64bit /dev/"${disk2p}"1 || exit 1
+mke2fs -t ext4 -N ${part_home_inodes} -O ^64bit /dev/"${disk2p}"1 || exit 1
