@@ -1,0 +1,5 @@
+# replace vm-arch-linux with real hostname
+
+# Host Database
+::1			vm-arch-linux.home.arpa vm-arch-linux localhost
+127.0.0.1		vm-arch-linux.home.arpa vm-arch-linux localhost

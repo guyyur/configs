@@ -1,5 +1,5 @@
 # replace vm-openbsd with real hostname
 
 # Host Database
-::1			localhost vm-openbsd.home.arpa vm-openbsd
-127.0.0.1		localhost vm-openbsd.home.arpa vm-openbsd
+::1			vm-openbsd.home.arpa vm-openbsd localhost
+127.0.0.1		vm-openbsd.home.arpa vm-openbsd localhost

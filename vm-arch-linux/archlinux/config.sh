@@ -70,6 +70,8 @@ install -c -m 644 -o root -g root tree/etc/hostname "${DESTDIR}"/etc/hostname ||
 
 install -c -m 444 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
 
+install -c -m 644 -o root -g root tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
+
 ln -sfn ../run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
 
 install -c -m 644 -o root -g root tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1

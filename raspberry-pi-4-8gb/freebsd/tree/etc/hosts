@@ -1,5 +1,5 @@
 # replace raspberry-pi-4-8gb with real hostname
 
 # Host Database
-::1			localhost raspberry-pi-4-8gb.home.arpa raspberry-pi-4-8gb
-127.0.0.1		localhost raspberry-pi-4-8gb.home.arpa raspberry-pi-4-8gb
+::1			raspberry-pi-4-8gb.home.arpa raspberry-pi-4-8gb localhost
+127.0.0.1		raspberry-pi-4-8gb.home.arpa raspberry-pi-4-8gb localhost
