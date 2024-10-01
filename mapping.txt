@@ -1,7 +1,6 @@
 
 Acer Aspire ES1-131-C5FK Notebook + Samsung MUF-32BB/EU USB Flash Drive -> acer-aspire-es1-131 (notebook)
 ASUS ROG STRIX X570-I GAMING Motherboard + Samsung MZ-V7S1T0 (970 EVO Plus NVMe M.2 1TB SSD) M.2 2280 MVME SSD + Western Digital WD100EFAX-68LHPN0 HDD -> asus-rog-strix-x570-i (desktop)
-BeagleBone Black Board + SanDisk SDSDQM-002G-B35 microSD Card -> beaglebone-black (devel)
 PINE64 ROCK64-4G Board + ? -> rock64 (none)
 Raspberry Pi 4 Model B 2GB RAM Board + SanDisk SDSQXAF-032G-GN6MN (Extreme) microSDHC Memory Card -> raspberry-pi-2gb (router)
 Raspberry Pi 4 Model B 8GB RAM Board (1421) + Western Digital WDBAGF0020BGY-0C (My Passport SSD 2TB) USB SSD -> raspberry-pi-8gb (vcs, packages, ports)

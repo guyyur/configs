@@ -1,5 +1,0 @@
-# replace beaglebone-black with real hostname
-
-# Host Database
-::1			beaglebone-black.home.arpa beaglebone-black localhost
-127.0.0.1		beaglebone-black.home.arpa beaglebone-black localhost

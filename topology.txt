@@ -18,7 +18,6 @@ d-link-dgs-1008a-b1 (switch) ---- tp-link-tl-wa1201 (access point) ~~~~ acer-asp
    vm-openbsd (devel)
    vm-arch-linux (devel)
 
-beaglebone-black (devel)
 orange-pi-one (none)
 orange-pi-pc (none)
 orange-pi-pc-2 (none)
