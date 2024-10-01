@@ -1,5 +1,4 @@
-# replace vm-openbsd with real hostname
 
 # Host Database
-::1			vm-openbsd.home.arpa vm-openbsd localhost
-127.0.0.1		vm-openbsd.home.arpa vm-openbsd localhost
+::1			REPLACE_HOSTNAME[qemu-vm-openbsd].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-openbsd] localhost
+127.0.0.1		REPLACE_HOSTNAME[qemu-vm-openbsd].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-openbsd] localhost

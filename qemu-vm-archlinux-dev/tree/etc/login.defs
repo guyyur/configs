@@ -1,33 +1,13 @@
 #
-# /etc/login.defs - Configuration control definitions for the login package.
+# /etc/login.defs - Configuration control definitions for the shadow package.
 #
-# Three items must be defined:  MAIL_DIR, ENV_SUPATH, and ENV_PATH.
-# If unspecified, some arbitrary (and possibly incorrect) value will
-# be assumed.  All other items are optional - if not specified then
-# the described action or option will be inhibited.
-#
-# Comment lines (lines beginning with "#") and blank lines are ignored.
-#
-# Modified for Linux.  --marekm
 
 FAIL_DELAY		1
 
 LOG_UNKFAIL_ENAB	no
-LOG_OK_LOGINS		no
 
-SYSLOG_SU_ENAB		yes
-SYSLOG_SG_ENAB		yes
+MOTD_FILE
 
-CONSOLE		/etc/securetty
-#CONSOLE	console:tty01:tty02:tty03:tty04
-
-#SULOG_FILE	/var/log/sulog
-
-#TTYTYPE_FILE	/etc/ttytype
-
-SU_NAME		su
-
-#QMAIL_DIR	Maildir
 MAIL_DIR	/var/spool/mail
 
 HUSHLOGIN_FILE	.hushlogin
@@ -39,9 +19,10 @@ ENV_PATH	PATH=/usr/local/sbin:/usr/local/bin:/usr/bin
 TTYGROUP	tty
 TTYPERM		0600
 
-ERASECHAR	0177
-KILLCHAR	025
-UMASK		077
+# ERASECHAR is currently not supported
+# KILLCHAR is currently not supported
+
+UMASK		022
 
 PASS_MAX_DAYS	99999
 PASS_MIN_DAYS	0
@@ -53,11 +34,19 @@ UID_MAX			60000
 SYS_UID_MIN		  500
 SYS_UID_MAX		  999
 
+SUB_UID_MIN		   100000
+SUB_UID_MAX		600100000
+SUB_UID_COUNT		    65536
+
 GID_MIN			 1000
 GID_MAX			60000
 
 SYS_GID_MIN		  500
 SYS_GID_MAX		  999
+
+SUB_GID_MIN		   100000
+SUB_GID_MAX		600100000
+SUB_GID_COUNT		    65536
 
 LOGIN_RETRIES		5
 
@@ -65,14 +54,10 @@ LOGIN_TIMEOUT		60
 
 CHFN_RESTRICT		rwh
 
-#CONSOLE_GROUPS		floppy:audio:cdrom
+ENCRYPT_METHOD SHA512
 
 DEFAULT_HOME	yes
 
-#USERDEL_CMD	/usr/bin/userdel_local
+NONEXISTENT	/nonexistent
 
 USERGROUPS_ENAB yes
-
-MOTD_FILE
-
-ENCRYPT_METHOD	SHA512

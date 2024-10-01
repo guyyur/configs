@@ -1,101 +1,223 @@
 #!/bin/sh
 
+# -- check arguments --
+if [ "$1" = "-N" ]; then
+  echo_mode=1
+  shift
+fi
+if [ -z "$1" ]; then
+  echo "usage: config.sh [-N] destdir" 1>&2
+  exit 1
+fi
+
+
 # -- check for root --
-if [ "$(id -u)" != "0" ]; then
+if [ -z "${echo_mode}" -a "$(id -u)" != "0" ]; then
   echo "config.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
 
-# -- check arguments --
-if [ -z "$1" ]; then
-  echo "usage: config.sh destdir" 1>&2
-  exit 1
+# -- verify endian --
+uname_p=$(uname -p)
+if [ "${uname_p}" != "x86_64" ]; then
+  case ${uname_p} in
+    x86_64) ;;
+    *)
+      echo "config.sh: endian mismatch between host arch and target arch or unsupported host arch." 1>&2
+      exit 1
+      ;;
+  esac
 fi
-DESTDIR=${1%/}
-TARGET_ARCH=x86_64
 
+
+# -- set up params --
+DESTDIR=${1%/}
+
+
+# -- functions --
+install_dir()
+{
+  mode=$1
+  owner=$2
+  group=$3
+  path=$4
+  
+  if [ -z "${echo_mode}" ]; then
+    install -d -m ${mode} -o ${owner} -g ${group} "${DESTDIR}"${path} || exit 1
+  else
+    echo install -d -m ${mode} -o ${owner} -g ${group} ${DESTDIR}${path}
+  fi
+}
+
+install_file()
+{
+  mode=$1
+  owner=$2
+  group=$3
+  src=$4
+  dst=${5:-${src}}
+  
+  if [ -z "${echo_mode}" ]; then
+    install -c -m ${mode} -o ${owner} -g ${group} tree${src} "${DESTDIR}"${dst} || exit 1
+  else
+    echo install -c -m ${mode} -o ${owner} -g ${group} tree${src} ${DESTDIR}${dst}
+  fi
+}
+
+install_empty_file()
+{
+  mode=$1
+  owner=$2
+  group=$3
+  dst=$4
+  
+  if [ -z "${echo_mode}" ]; then
+    install -c -m ${mode} -o ${owner} -g ${group} /dev/null "${DESTDIR}"${dst} || exit 1
+  else
+    echo install -c -m ${mode} -o ${owner} -g ${group} /dev/null ${DESTDIR}${dst}
+  fi
+}
+
+install_hardlink()
+{
+  src=$1
+  dst=$2
+  
+  if [ -z "${echo_mode}" ]; then
+    install -l h "${DESTDIR}"${src} "${DESTDIR}"${dst} || exit 1
+  else
+    echo install -l h ${DESTDIR}${src} ${DESTDIR}${dst}
+  fi
+}
+
+install_symlink()
+{
+  src=$1
+  dst=$2
+  
+  if [ -z "${echo_mode}" ]; then
+    install -l s ${src} "${DESTDIR}"${dst} || exit 1
+  else
+    echo install -l s ${src} ${DESTDIR}${dst}
+  fi
+}
+
+chown_symlink()
+{
+  owner=$1
+  group=$2
+  file=$3
+  
+  if [ -z "${echo_mode}" ]; then
+    chown -h ${owner}:${group} "${DESTDIR}"${file} || exit 1
+  else
+    echo chown -h ${owner}:${group} ${DESTDIR}${file}
+  fi
+}
+
+pwd_mkdb_file()
+{
+  dir=$1
+  file=$2
+  
+  if [ -z "${echo_mode}" ]; then
+    pwd_mkdb -d "${DESTDIR}"${dir} -p "${DESTDIR}"${file} || exit 1
+  else
+    echo pwd_mkdb -d ${DESTDIR}${dir} -p ${DESTDIR}${file}
+  fi
+}
 
 #
-install -c -m 644 -o root -g wheel tree/etc/usermgmt.conf "${DESTDIR}"/etc/usermgmt.conf || exit 1
+install_file 644 root wheel /etc/usermgmt.conf
 
-install -c -m 644 -o root -g wheel tree/etc/group "${DESTDIR}"/etc/group || exit 1
-install -c -m 600 -o root -g wheel tree/etc/master.passwd "${DESTDIR}"/etc/master.passwd.new || exit 1
-if [ -z "${DESTDIR}" ]; then
-  pwd_mkdb -p /etc/master.passwd.new || exit 1
-else
-  if [ "${TARGET_ARCH}" = "x86_64" ]; then
-    pwd_mkdb -d "${DESTDIR}" -L -p "${DESTDIR}"/etc/master.passwd.new || exit 1
-  else
-    printf "script is missing master.passwd.new endian for ${TARGET_ARCH}\n" 1>&2
-    exit 1
-  fi
-fi
+install_file 644 root wheel /etc/group
 
-install -c -m 644 -o root -g wheel tree/boot.cfg "${DESTDIR}"/boot.cfg || exit 1
+install_file 600 root wheel /etc/master.passwd /etc/master.passwd.new
+pwd_mkdb_file /etc /etc/master.passwd.new
 
-install -c -m 644 -o root -g wheel tree/etc/ttys "${DESTDIR}"/etc/ttys || exit 1
+install_dir 755 root wheel /var/cache
 
-install -c -m 644 -o root -g root tree/etc/myname "${DESTDIR}"/etc/myname || exit 1
+install_dir 700 guy users /home/guy
+install_dir 755 guy users /home/guy/misc
+install_dir 755 guy users /home/guy/projects
+install_dir 755 guy users /home/guy/remove
 
-install -c -m 644 -o root -g wheel tree/etc/ifconfig.vioif0 "${DESTDIR}"/etc/ifconfig.vioif0 || exit 1
+install_file 644 root wheel /boot.cfg
 
-install -c -m 644 -o root -g wheel tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
+install_file 644 root wheel /etc/ttys
 
-install -l s ../var/run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
-chown -h root:wheel "${DESTDIR}"/etc/resolv.conf || exit 1
+install_file 644 root wheel /etc/myname
 
-install -c -m 644 -o root -g wheel tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
+install_file 644 root wheel /etc/hosts
 
-install -c -m 644 -o root -g wheel tree/etc/motd "${DESTDIR}"/etc/motd || exit 1
+install_symlink ../var/run/resolv.conf /etc/resolv.conf
+# chown_symlink root wheel /etc/resolv.conf
 
-install -c -m 644 -o root -g wheel tree/etc/mk.conf "${DESTDIR}"/etc/mk.conf || exit 1
+install_file 644 root wheel /etc/resolvconf.conf
 
-install -c -m 640 -o root -g wheel tree/etc/syslog.conf "${DESTDIR}"/etc/syslog.conf || exit 1
-install -c -m 640 -o root -g wheel tree/etc/newsyslog.conf "${DESTDIR}"/etc/newsyslog.conf || exit 1
+install_file 644 root wheel /etc/nsswitch.conf
 
-install -c -m 600 -o root -g wheel tree/etc/crontab "${DESTDIR}"/etc/crontab || exit 1
+install_file 644 root wheel /etc/motd
 
-install -c -m 640 -o root -g wheel tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
-install -c -m 640 -o root -g wheel tree/root/.shrc "${DESTDIR}"/root/.shrc || exit 1
-install -l h "${DESTDIR}"/root/.profile "${DESTDIR}"/.profile || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/.shrc "${DESTDIR}"/home/guy/.shrc || exit 1
+install_file 644 root wheel /etc/mk.conf
 
-install -c -m 644 -o root -g wheel tree/etc/dhcpcd.duid.backup "${DESTDIR}"/etc/dhcpcd.duid.backup || exit 1
-install -c -m 644 -o root -g wheel "${DESTDIR}"/etc/dhcpcd.duid.backup "${DESTDIR}"/var/db/dhcpcd/duid || exit 1
-install -c -m 600 -o root -g wheel tree/etc/dhcpcd.secret.backup "${DESTDIR}"/etc/dhcpcd.secret.backup || exit 1
-install -c -m 600 -o root -g wheel "${DESTDIR}"/etc/dhcpcd.secret.backup "${DESTDIR}"/var/db/dhcpcd/secret || exit 1
-install -c -m 644 -o root -g wheel tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
+install_file 640 root wheel /root/.profile
+install_file 640 root wheel /root/.shrc
+install_hardlink /root/.profile /.profile
 
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
+install_file 644 guy users /home/guy/.profile
+install_file 644 guy users /home/guy/.shrc
 
-install -d -m 700 -o guy -g users "${DESTDIR}"/home/guy/.ssh || exit 1
-install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
-install -c -m 600 -o guy -g users tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
+install_file 640 root wheel /etc/syslog.conf
 
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_ed25519_key-cert.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key-cert.pub || exit 1
-install -c -m 600 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
-install -c -m 644 -o root -g wheel tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
-install -c -m 600 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key || exit 1
-install -c -m 644 -o root -g wheel /dev/null "${DESTDIR}"/etc/ssh/ssh_host_key.pub || exit 1
-install -c -m 640 -o root -g wheel tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
+install_file 640 root wheel /etc/newsyslog.conf
 
-install -c -m 600 -o guy -g users tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+install_file 600 root wheel /etc/crontab
 
-install -c -m 640 -o root -g wheel tree/etc/rc.conf "${DESTDIR}"/etc/rc.conf || exit 1
+install_file 644 root wheel /var/db/dhcpcd/duid
+install_file 600 root wheel /var/db/dhcpcd/secret
+install_file 644 root wheel /etc/dhcpcd.conf /etc/dhcpcd.conf
 
-install -d -m 755 -o root -g wheel "${DESTDIR}"/etc/pkg || exit 1
-install -l s ../../etc/pkg "${DESTDIR}"/usr/pkg/etc || exit 1
+install_file 644 root wheel /etc/ssh/ssh_known_hosts
+install_file 644 root wheel /etc/ssh/ssh_config
 
-install -d -m 755 -o guy -g users "${DESTDIR}"/home/guy/config || exit 1
+install_dir 700 guy users /home/guy/.ssh
+install_file 600 guy users /home/guy/.ssh/id_ed25519
+install_file 644 guy users /home/guy/.ssh/id_ed25519.pub
+install_file 600 guy users /home/guy/.ssh/id_rsa
+install_file 644 guy users /home/guy/.ssh/id_rsa.pub
 
-install -c -m 644 -o root -g wheel tree/etc/pkg/nanorc "${DESTDIR}"/etc/pkg/nanorc || exit 1
+install_file 600 root wheel /etc/ssh/ssh_host_rsa_key
+install_file 644 root wheel /etc/ssh/ssh_host_rsa_key.pub
+install_file 600 root wheel /etc/ssh/ssh_host_ed25519_key
+install_file 644 root wheel /etc/ssh/ssh_host_ed25519_key.pub
+install_file 644 root wheel /etc/ssh/ssh_host_ed25519_key-cert.pub
+install_empty_file 600 root wheel /etc/ssh/ssh_host_key
+install_empty_file 644 root wheel /etc/ssh/ssh_host_key.pub
+install_file 640 root wheel /etc/ssh/sshd_config
 
-install -c -m 640 -o root -g wheel tree/root/.zshrc "${DESTDIR}"/root/.zshrc || exit 1
-install -c -m 644 -o guy -g users tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
+install_file 600 guy users /home/guy/.ssh/authorized_keys
+
+install_file 640 root wheel /etc/rc.conf
+
+install_dir 755 root wheel /usr/pkg
+
+install_dir 755 root wheel /etc/pkg
+install_symlink ../../etc/pkg /usr/pkg/etc
+
+install_dir 755 root wheel /var/cache/xdg
+install_dir 700 root wheel /var/cache/xdg/root
+install_dir 755 root wheel /var/db/xdg
+install_dir 700 root wheel /var/db/xdg/root
+
+install_dir 700 guy users /var/cache/xdg/guy
+install_dir 700 guy users /var/db/xdg/guy
+
+install_dir 755 guy users /home/guy/config
+
+install_file 644 root wheel /etc/pkg/nanorc
+
+install_file 640 root wheel /root/.zshrc
+
+install_file 644 guy users /home/guy/.zshrc

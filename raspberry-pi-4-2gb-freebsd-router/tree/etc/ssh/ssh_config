@@ -1,5 +1,4 @@
 
-# Port 22
-
-CanonicalDomains home.arpa
-CanonicalizeHostname yes
+Host *
+  CanonicalDomains REPLACE_DOMAIN
+  CanonicalizeHostname yes

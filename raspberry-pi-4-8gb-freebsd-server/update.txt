@@ -1,10 +1,15 @@
 
-# update ports / packages
+mount /usr/local/db/local_pkg_repo
 
-mount /usr/local/db/local_pkg_repos
 mount -u -o rw,noatime /
 
+# update packages
 pkg upgrade
 
+# or install all packages again from scratch
+pkg delete -f -a
+./add_pkgs.sh
+
 mount -u -o ro,noatime /
-umount /usr/local/db/local_pkg_repos
+
+umount /usr/local/db/local_pkg_repo

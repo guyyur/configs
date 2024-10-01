@@ -1,3 +1,0 @@
-
-# Files to always avoid comparing
-IGNORE_FILES='/.cshrc /.profile /etc/crontab /etc/cron.d/at /etc/devfs.conf /etc/group /etc/hosts /etc/login.conf /etc/master.passwd /etc/motd /etc/newsyslog.conf /etc/nsswitch.conf /etc/sysctl.conf /etc/syslog.conf /etc/ttys /root/.cshrc /root/.login /root/.profile /root/.shrc'

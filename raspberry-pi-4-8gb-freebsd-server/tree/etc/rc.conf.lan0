@@ -1,4 +1,0 @@
-# replace fd00:2001:db8:0 with real ULA prefix
-
-ifconfig_lan0="up"
-ifconfig_lan0_ipv6="inet6 fd00:2001:db8:0:: eui64"

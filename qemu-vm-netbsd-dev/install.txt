@@ -103,7 +103,9 @@ installcd
     echo "/dev/dk2  none  swap  sw,dp  0 0" >> /mnt/etc/fstab
     echo "/dev/dk3  /home  ffs  rw,log,noatime  1 2" >> /mnt/etc/fstab
     echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
+    
     umount /mnt
+    
     exit
     
     * x: Exit
@@ -114,7 +116,6 @@ installcd
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 useradd -d /home/guy -g users -u 1001 guy
-./mkdir.sh /
 ./config.sh /
 
 vi /etc/fstab
@@ -125,3 +126,6 @@ shutdown -r now
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./add_pkgs.sh
+
+
+restore snapshots

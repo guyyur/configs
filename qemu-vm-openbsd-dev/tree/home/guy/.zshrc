@@ -6,6 +6,7 @@ WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # -- options --
 setopt AUTO_LIST
+unsetopt AUTOREMOVESLASH
 unsetopt BEEP
 unsetopt HIST_BEEP
 setopt HIST_IGNORE_ALL_DUPS

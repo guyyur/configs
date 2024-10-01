@@ -31,23 +31,18 @@ disk1=da1
 disk2=da2
 disk3=da3
 disk4=da4
-
-
-# -- partition sizes --
-part_root_size=31455232
+disk5=da5
 
 
 # -- layout --
 # disk0:
-#   freebsd-boot
+#   /efi
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
-gpart bootcode -b /boot/pmbr -f x "${disk0}" || exit 1
-gpart add -b 64 -s 448 -t freebsd-boot -f x "${disk0}" || exit 1
-gpart bootcode -p /boot/gptboot -i 1 -f x "${disk0}" || exit 1
-gpart add -a 1M -b 2048 -s ${part_root_size} -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 1M -b 8192 -s 28M -t efi -f x "${disk0}" || exit 1
+gpart add -a 1M -s 31455232 -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart add -a 1M -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
@@ -62,15 +57,15 @@ gpart show "${disk1}" || exit 1
 gpart show -l "${disk1}" || exit 1
 
 # disk2:
-#   /home
+#   /usr/obj
 my_prompt "${disk2}" || exit 1
 gpart create -s GPT -f x "${disk2}" || exit 1
-gpart add -a 1m -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
+gpart add -a 1M -b 2048 -t freebsd-ufs -f x "${disk2}" || exit 1
 gpart commit "${disk2}" || exit 1
 gpart show "${disk2}" || exit 1
 
 # disk3:
-#   /usr/obj
+#   /jails
 my_prompt "${disk3}" || exit 1
 gpart create -s GPT -f x "${disk3}" || exit 1
 gpart add -a 1M -b 2048 -t freebsd-ufs -f x "${disk3}" || exit 1
@@ -78,9 +73,17 @@ gpart commit "${disk3}" || exit 1
 gpart show "${disk3}" || exit 1
 
 # disk4:
-#   /jails
+#   /home
 my_prompt "${disk4}" || exit 1
 gpart create -s GPT -f x "${disk4}" || exit 1
 gpart add -a 1M -b 2048 -t freebsd-ufs -f x "${disk4}" || exit 1
 gpart commit "${disk4}" || exit 1
 gpart show "${disk4}" || exit 1
+
+# disk5:
+#   /usr/wrkdir_large
+my_prompt "${disk5}" || exit 1
+gpart create -s GPT -f x "${disk5}" || exit 1
+gpart add -a 1M -b 2048 -t freebsd-ufs -f x "${disk5}" || exit 1
+gpart commit "${disk5}" || exit 1
+gpart show "${disk5}" || exit 1

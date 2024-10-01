@@ -3,13 +3,16 @@
 #
 # <file system>  <dir>  <type>  <options>  <dump>  <pass>
 
-/dev/sda1  /      ext4  defaults,ro,noatime  0  1
-/dev/sda2  /var   ext4  defaults,noatime     0  2
+/dev/sda2  /      ext4  defaults,ro,noatime  0  1
+/dev/sda1  /efi   vfat  defaults,ro,noatime  0  0
+/dev/sda3  /var   ext4  defaults,noatime     0  2
 /dev/sdb1  swap   swap  defaults             0  0
 /dev/sdc1  /home  ext4  defaults,noatime     0  2
 
 tmpfs  /tmp  tmpfs  mode=1777,noatime,noexec,nosuid,nodev,size=512m,nr_inodes=32k  0  0
 
-server:/packages/archlinux  /var/cache/pacman  nfs  rw,nfsvers=4.1,noauto  0  0
+efivarfs  /sys/firmware/efi/efivars  efivarfs  ro,nosuid,nodev,noexec,noatime  0  0
+
+server:/packages/archlinux  /var/cache/pacman  nfs  rw,noatime,noauto  0  0
 
 /home/guy/share  /export/guy_share  none  bind  0  0

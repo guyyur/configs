@@ -3,32 +3,30 @@ mount -u -o rw,noatime /jails
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./mount_and_mkdir.sh
+install -c -m 644 -o root -g wheel jail_files/fstab /jails/ports-builder-fbsd.fstab
 
-# releng/13.1
+# 14.1
 # aarch64
-mount -t nfs -o ro,nfsv4,minorversion=1 server:/packages/FreeBSD-base/releng/aarch64 /mnt/usr/local/db/local_base_repos
+mount -t nfs -o ro,nfsv4,noatime server:/packages/freebsd-base/14.1/aarch64 /mnt/usr/dists
 ./extract_dists.sh /mnt
-umount /mnt/usr/local/db/local_base_repos
-cd /usr/src/tools/tools/guy
-./src.sh install-chroot-native-tools
+umount /mnt/usr/dists
+
 ./config.sh /mnt
+
+[ "$(uname -p)" != "aarch64" ] && install -d /mnt/usr/local/bin
+[ "$(uname -p)" != "aarch64" ] && install -c /usr/local/bin/qemu-aarch64-static /mnt/usr/local/bin/qemu-aarch64-static
+
+chroot /mnt /etc/rc.d/var start
+chroot /mnt /etc/rc.d/ldconfig start
+
+(cd /usr/src/tools/tools/guy && DESTDIR=/mnt ./src.sh bootstrap-chroot-config)
+
+[ "$(uname -p)" != "aarch64" ] && rm -f /mnt/usr/local/bin/qemu-aarch64-static
+
 ./unmount.sh
 
 mount -u -o ro,noatime /jails
 
-mount -u -o rw,noatime /jails
-jail -c jail-fbsd-build-ports-releng-aarch64
-mount -F /jails/jail-fbsd-build-ports-releng-aarch64/etc/fstab.jail.packages -a
+# configure programs ...
 
-jexec -l jail-fbsd-build-ports-releng-aarch64 /bin/sh -c "[ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; . /etc/profile; . .profile; exec sh -i"
-
-export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
-
-# cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./build_ports.sh
-
-exit
-
-umount -F /jails/jail-fbsd-build-ports-releng-aarch64/etc/fstab.jail.packages -a
-jail -r jail-fbsd-build-ports-releng-aarch64
-mount -u -o ro,noatime /jails
+restore snapshots

@@ -1,0 +1,19 @@
+
+log_line()
+{
+  local d
+  
+  d="$(date '+%b %e %T')"
+  printf "$d $1" >> /var/log/dhclient-exit-hooks.log
+}
+
+log_line "got $reason for $interface\n"
+
+case $reason in
+  BOUND|RENEW|REBIND|REBOOT)
+    if [ -n "${new_ip_address}" ]; then
+      log_line "received ipv4 address: $new_ip_address\n"
+    fi
+    ;;
+esac
+

@@ -1,23 +1,30 @@
 
-# update ports / packages
-
 mount -u -o rw,noatime /jails
-jail -c jail-fbsd-build-ports-releng-amd64
-mount -F /jails/jail-fbsd-build-ports-releng-amd64/etc/fstab.jail.packages -a
 
-jexec -l jail-fbsd-build-ports-releng-amd64 /bin/sh -c "[ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; . /etc/profile; . .profile; exec sh -i"
+jail -c ports-builder-fbsd
+
+jexec -l ports-builder-fbsd /bin/sh -c "[ -e /etc/cross-build-env.sh ] && . /etc/cross-build-env.sh; . /etc/profile; . .profile; exec sh -i"
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
+# update ports
 portmaster -t --clean-distfiles
 
 portmaster -gB ...
 portmaster -agB
 portmaster --clean-packages
 pkg repo $(cd /usr/ports && make -V PACKAGES)
+rm -f /var/tmp/*.core
+# rm -f /var/cache/pkg/*
+
+# or build all packages again from scratch
+pkg delete -f -a
+./build_ports.sh
+rm -f /var/tmp/*.core
+# rm -f /var/cache/pkg/*
 
 exit
 
-umount -F /jails/jail-fbsd-build-ports-releng-amd64/etc/fstab.jail.packages -a
-jail -r jail-fbsd-build-ports-releng-amd64
+jail -r ports-builder-fbsd
+
 mount -u -o ro,noatime /jails

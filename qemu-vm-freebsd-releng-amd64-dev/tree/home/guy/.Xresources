@@ -10,3 +10,6 @@ XTerm*geometry:           100x30
 XTerm*saveLines:          6000
 XTerm*selectToClipboard:  true
 XTerm*ttyModes:           erase ^H erase2 ^?
+XTerm.vt100.translations: #override \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD)

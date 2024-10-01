@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# wlr-randr --output Virtual-1 --scale 1.10  # scaling fonts instead
+
+if [ "$WLR_BACKENDS" = "headless" ]; then
+  wlr-randr --output HEADLESS-1 --custom-mode 1600x900@60
+fi
+
+# xrdb -merge ~/.Xresources  # will always start Xwayland - even if not planning on running any X program
+
+dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+swaybg -i "$(shuf -n1 $XDG_CONFIG_HOME/wallpapers.list 2>/dev/null)" -m fit -c '#202020' >/dev/null 2>&1 &
+
+wf-panel >/dev/null 2>&1 &
+
+mako >/dev/null 2>&1 &
+
+wayvnc >/dev/null 2>&1 &

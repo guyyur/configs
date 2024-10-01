@@ -1,5 +1,0 @@
-# replace vm-freebsd-head with real hostname
-
-# Host Database
-::1			vm-freebsd-head.home.arpa vm-freebsd-head localhost
-127.0.0.1		vm-freebsd-head.home.arpa vm-freebsd-head localhost

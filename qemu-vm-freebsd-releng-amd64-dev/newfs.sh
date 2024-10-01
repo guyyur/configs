@@ -7,6 +7,19 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 
+# -- verify endian --
+uname_p=$(uname -p)
+if [ "${uname_p}" != "amd64" ]; then
+  case ${uname_p} in
+    aarch64|amd64|armv7|riscv64) ;;
+    *)
+      echo "newfs.sh: endian mismatch between host arch and target arch or unsupported host arch." 1>&2
+      exit 1
+      ;;
+  esac
+fi
+
+
 # -- my_prompt(dev) --
 my_prompt()
 {
@@ -31,39 +44,38 @@ disk1=da1
 disk2=da2
 disk3=da3
 disk4=da4
-
-
-# -- file system params --
-part_root_inode_density=50000      # ~262144 inodes for 15G
-part_var_inode_density=40000       # ~25600 inodes for 1G
-part_home_inode_density=34000      # ~524288 inodes for 16G
-part_usr_obj_inode_density=120000  # ~393216 inodes for 48G
-part_jails_inode_density=51000     # ~524288 inodes for 24G
+disk5=da5
 
 
 # -- layout  --
 # disk0:
-#   freebsd-boot
+#   /efi
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
-newfs -U -n -i ${part_root_inode_density} /dev/"${disk0}"p2 || exit 1
-newfs -U -n -i ${part_var_inode_density} /dev/"${disk0}"p3 || exit 1
+newfs_msdos -A -F 16 -c 8 -o 8192 -m 0xF8 /dev/"${disk0}"p1 || exit 1
+newfs -U -n -i 50000 /dev/"${disk0}"p2 || exit 1  # ~262144 inodes for 31455232
+newfs -U -n -i 40000 /dev/"${disk0}"p3 || exit 1  # ~25600 inodes for 1G
 
 # disk1:
 #   swap
 
 # disk2:
-#   /home
+#   /usr/obj
 my_prompt "${disk2}" || exit 1
-newfs -U -n -i ${part_home_inode_density} /dev/"${disk2}"p1 || exit 1
+newfs -U -n -i 120000 /dev/"${disk2}"p1 || exit 1  # ~393216 inodes for 48G
 
 # disk3:
-#   /usr/obj
+#   /jails
 my_prompt "${disk3}" || exit 1
-newfs -U -n -i ${part_usr_obj_inode_density} /dev/"${disk3}"p1 || exit 1
+newfs -U -n -i 51000 /dev/"${disk3}"p1 || exit 1  # ~524288 inodes for 24G
 
 # disk4:
-#   /jails
+#   /home
 my_prompt "${disk4}" || exit 1
-newfs -U -n -i ${part_jails_inode_density} /dev/"${disk4}"p1 || exit 1
+newfs -U -n -i 34000 /dev/"${disk4}"p1 || exit 1  # ~524288 inodes for 16G
+
+# disk5:
+#   /usr/wrkdir_large
+my_prompt "${disk5}" || exit 1
+newfs -U -n -i 68000 /dev/"${disk5}"p1 || exit 1  # ~524288 inodes for 32G

@@ -1,7 +1,0 @@
-
-own_ipv6_address = "{ OWN_IPV6_ADDRESSES }"
-own_ipv6_tcp_ports = "{ 22 }"
-own_ipv6_udp_ports = "{ 1194 }"
-
-pass in quick inet6 proto tcp from any to $own_ipv6_address port $own_ipv6_tcp_ports
-pass in quick inet6 proto udp from any to $own_ipv6_address port $own_ipv6_udp_ports

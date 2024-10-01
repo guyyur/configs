@@ -1,0 +1,4 @@
+
+# Host Database
+::1			REPLACE_HOSTNAME[qemu-vm-freebsd-head-amd64].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-freebsd-head-amd64] localhost
+127.0.0.1		REPLACE_HOSTNAME[qemu-vm-freebsd-head-amd64].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-freebsd-head-amd64] localhost

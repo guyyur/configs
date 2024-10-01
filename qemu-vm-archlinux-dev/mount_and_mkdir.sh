@@ -14,46 +14,23 @@ disk2p=sdc
 
 
 # -- layout --
-mount -o noatime /dev/"${disk0p}"1 /mnt || exit 1
-install -d -m 755 -o root -g root /mnt/boot || exit 1
+mount -o noatime /dev/"${disk0p}"2 /mnt || exit 1
+install -d -m 755 -o root -g root /mnt/efi || exit 1
 install -d -m 755 -o root -g root /mnt/run || exit 1
 install -d -m 755 -o root -g root /mnt/var || exit 1
 install -d -m 1777 -o root -g root /mnt/tmp || exit 1
-install -d -m 755 -o root -g root /mnt/usr || exit 1
 install -d -m 755 -o root -g root /mnt/home || exit 1
 install -d -m 755 -o root -g root /mnt/export || exit 1
 install -d -m 555 -o root -g root /mnt/proc || exit 1
 install -d -m 555 -o root -g root /mnt/sys || exit 1
 install -d -m 755 -o root -g root /mnt/dev || exit 1
 
-mount -t tmpfs tmpfs /mnt/run || exit 1
-mount -o noatime /dev/"${disk0p}"2 /mnt/var || exit 1
-mount -t tmpfs tmpfs /mnt/tmp || exit 1
+mount -o noatime /dev/"${disk0p}"1 /mnt/efi || exit 1
+mount -o noatime /dev/"${disk0p}"3 /mnt/var || exit 1
 mount -o noatime /dev/"${disk2p}"1 /mnt/home || exit 1
+
 mount -o bind /proc /mnt/proc || exit 1
 mount -o bind /sys /mnt/sys || exit 1
 mount -o bind /dev /mnt/dev || exit 1
-
-install -d -m 755 -o root -g root /mnt/usr/db || exit 1
-install -d -m 755 -o root -g root /mnt/usr/db/fontconfig || exit 1
-install -d -m 755 -o root -g root /mnt/usr/db/pacman || exit 1
-ln -sfn ../../../var/cache/pacman/sync /mnt/usr/db/pacman/sync || exit 1
-install -d -m 755 -o root -g root /mnt/var/cache || exit 1
-install -d -m 755 -o root -g root /mnt/var/cache/pacman || exit 1
-install -d -m 755 -o root -g root /mnt/var/lib || exit 1
-install -d -m 755 -o root -g root /mnt/var/log || exit 1
-install -d -m 755 -o root -g root /mnt/var/xdg-cache || exit 1
-install -d -m 700 -o root -g root /mnt/var/xdg-cache/root || exit 1
-install -d -m 700 -o guy -g guy /mnt/var/xdg-cache/guy || exit 1
-install -d -m 755 -o guy -g guy /mnt/var/xdg-cache/guy/thumbnails || exit 1
-install -d -m 700 -o guy -g guy /mnt/home/guy || exit 1
-install -d -m 755 -o guy -g guy /mnt/home/guy/external_projects || exit 1
-install -d -m 755 -o guy -g guy /mnt/home/guy/github || exit 1
-install -d -m 755 -o guy -g guy /mnt/home/guy/misc || exit 1
-install -d -m 755 -o guy -g guy /mnt/home/guy/projects || exit 1
-install -d -m 755 -o guy -g guy /mnt/home/guy/remove || exit 1
-install -d -m 700 -o guy -g guy /mnt/home/guy/share || exit 1
-install -d -m 755 -o guy -g guy /mnt/home/guy/tests || exit 1
-ln -sfn ../../var/xdg-cache/guy/thumbnails /mnt/home/guy/.thumbnails || exit 1
-chown -h guy:guy /mnt/home/guy/.thumbnails || exit 1
-install -d -m 700 -o guy -g guy /mnt/export/guy_share || exit 1
+mount -t tmpfs tmpfs /mnt/run || exit 1
+mount -t tmpfs tmpfs /mnt/tmp || exit 1

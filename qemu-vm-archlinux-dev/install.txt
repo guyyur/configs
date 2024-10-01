@@ -4,12 +4,17 @@
 useradd -u 1001 -U -G wheel,games,users -c "Guy Yur" guy
 
 nano /etc/pacman.conf
-  CleanMethod = KeepCurrent
+  change CleanMethod to
+    CleanMethod = KeepCurrent
   
-  comment CheckSpace
+  comment out
+    CheckSpace
   
   change SigLevel to
     SigLevel = Never
+  
+  comment out
+    DownloadUser = alpm
 
 # cd to config dir (mounted usb flash, nfs, cifs, ...)
 ./partition.sh
@@ -17,28 +22,36 @@ nano /etc/pacman.conf
 ./mount_and_mkdir.sh
 ./config.sh /mnt
 
-mount -t nfs -orw server:/packages/archlinux /mnt/var/cache/pacman
+mount -t nfs -o rw,noatime server:/packages/archlinux /mnt/var/cache/pacman
 ./pacman.sh
 umount /mnt/var/cache/pacman
 
 nano /mnt/etc/pacman.conf
-  DBPath = /usr/db/pacman/
+  change DBPath to
+    DBPath = /usr/db/pacman/
   
-  CleanMethod = KeepCurrent
+  change CleanMethod to
+    CleanMethod = KeepCurrent
   
   change SigLevel to
     SigLevel = Never
+  
+  comment out
+    DownloadUser = alpm
 
 nano /mnt/etc/pacman.d/mirrorlist
   uncomment lines
 
-./write_boot_blocks.sh
+./convert_config_files.sh /mnt
+
 ./unmount.sh
 
 systemctl poweroff
 
-
+# configure programs ...
+$XDG_CONFIG_HOME/import_gsettings.sh
 config lxqt-notificationd
-config QTerminal
 config Xed
 config Meld
+
+restore snapshots

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+
+<labwc_config>
+  <core>
+    <gap>10</gap>
+  </core>
+  <placement>
+    <policy>automatic</policy>
+  </placement>
+  <resistance>
+    <screenEdgeStrength>20</screenEdgeStrength>
+  </resistance>
+  <focus>
+    <followMouse>no</followMouse>
+    <raiseOnFocus>no</raiseOnFocus>
+  </focus>
+  <theme>
+    <name></name>
+    <cornerRadius>8</cornerRadius>
+    <font place="ActiveWindow">
+      <name>sans</name>
+      <size>10</size>
+      <slant>normal</slant>
+      <weight>normal</weight>
+    </font>
+    <font place="MenuItem">
+      <name>sans</name>
+      <size>10</size>
+      <slant>normal</slant>
+      <weight>normal</weight>
+    </font>
+    <font place="OnScreenDisplay">
+      <name>sans</name>
+      <size>10</size>
+      <slant>normal</slant>
+      <weight>normal</weight>
+    </font>
+  </theme>
+  <desktops>
+    <names>
+      <name>Primary</name>
+      <name>Secondary</name>
+    </names>
+    <popupTime>875</popupTime>
+  </desktops>
+  <keyboard>
+    <!-- Keybindings for desktop switching -->
+    <keybind key="W-Left">
+      <action name="GoToDesktop" to="left" />
+    </keybind>
+    <keybind key="W-Right">
+      <action name="GoToDesktop" to="right" />
+    </keybind>
+    <keybind key="W-A-Left">
+      <action name="SendToDesktop" to="left" />
+    </keybind>
+    <keybind key="W-A-Right">
+      <action name="SendToDesktop" to="right" />
+    </keybind>
+    <keybind key="W-1">
+      <action name="GoToDesktop" to="1" />
+    </keybind>
+    <keybind key="W-2">
+      <action name="GoToDesktop" to="2" />
+    </keybind>
+<!--
+    <keybind key="W-d">
+      <action name="..." />
+    </keybind>
+-->
+    <!-- Keybindings for windows -->
+    <keybind key="A-F4">
+      <action name="Close" />
+    </keybind>
+    <keybind key="A-F11">
+      <action name="ToggleFullscreen" />
+    </keybind>
+    <keybind key="A-Space">
+      <action name="ShowMenu" menu="client-menu" />
+    </keybind>
+    <!-- Keybindings for window switching -->
+    <keybind key="A-Tab">
+      <action name="NextWindow" />
+    </keybind>
+    <keybind key="W-Tab">
+      <!-- should be between all desktops -->
+      <action name="NextWindow" />
+    </keybind>
+    <keybind key="W-S-Tab">
+      <!-- should be between all desktops -->
+      <action name="PreviousWindow" />
+    </keybind>
+    <!-- Keybindings for displaying menus -->
+    <keybind key="W-Escape">
+      <action name="ShowMenu" menu="root-menu" />
+    </keybind>
+    <!-- Keybindings for running applications -->
+    <keybind key="W-A-Backspace">
+      <action name="Exit" />
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute" command="gmrun" />
+    </keybind>
+    <keybind key="C-S-Escape">
+      <action name="Execute" command="lxtask" />
+    </keybind>
+  </keyboard>
+  <mouse>
+    <default />
+    <context name="Root">
+      <mousebind button="Left" action="Press">
+        <action name="None" />
+      </mousebind>
+      <mousebind button="Middle" action="Press">
+        <action name="ShowMenu" menu="client-menu" />
+      </mousebind>
+      <mousebind button="Right" action="Press">
+        <action name="ShowMenu" menu="root-menu" />
+      </mousebind>
+    </context>
+  </mouse>
+</labwc_config>

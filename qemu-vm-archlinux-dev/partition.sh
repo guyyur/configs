@@ -31,41 +31,29 @@ disk1=sdb
 disk2=sdc
 
 
-# -- partition sizes --
-part_root_end=14680063s
-part_var_begin=14680064s
-
-
 # -- layout --
 # disk0:
+#   /efi
 #   /
 #   /var
 my_prompt "${disk0}" || exit 1
-parted -s -a optimal /dev/"${disk0}" \
-  mklabel msdos \
-  unit s \
-  mkpart primary ext4 2048s ${part_root_end} \
-  mkpart primary ext4 ${part_var_begin} 100% \
-  set 1 boot on \
-  || exit 1
-parted -s -a optimal /dev/"${disk0}" unit s print || exit 1
+sgdisk -Z /dev/"${disk0}" || exit 1
+sgdisk -n 1:8192:65535 -t 1:ef00 \
+       -n 2:0:7G -t 2:8304 -u 2:b9d8c763-cd9d-4c52-8d2a-0a11809c7b83 \
+       -N 3 -t 3:8310 \
+       /dev/"${disk0}" || exit 1
+sgdisk -p /dev/"${disk0}" || exit 1
 
 # disk1:
 #   swap
 my_prompt "${disk1}" || exit 1
-parted -s -a optimal /dev/"${disk1}" \
-  mklabel msdos \
-  unit s \
-  mkpart primary linux-swap 2048s 100% \
-  || exit 1
-parted -s -a optimal /dev/"${disk1}" unit s print || exit 1
+sgdisk -Z /dev/"${disk1}" || exit 1
+sgdisk -N 1 -t 1:8200 /dev/"${disk1}" || exit 1
+sgdisk -p /dev/"${disk1}" || exit 1
 
 # disk2:
 #   /home
 my_prompt "${disk2}" || exit 1
-parted -s -a optimal /dev/"${disk2}" \
-  mklabel msdos \
-  unit s \
-  mkpart primary ext4 2048s 100% \
-  || exit 1
-parted -s -a optimal /dev/"${disk2}" unit s print || exit 1
+sgdisk -Z /dev/"${disk2}" || exit 1
+sgdisk -N 1 -t 1:8302 /dev/"${disk2}" || exit 1
+sgdisk -p /dev/"${disk2}" || exit 1

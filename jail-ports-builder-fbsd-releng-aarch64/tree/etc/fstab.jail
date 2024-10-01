@@ -1,3 +1,0 @@
-# Device  Mountpoint  FStype  Options  Dump  Pass#
-
-tmpfs  /jails/jail-fbsd-build-ports-releng-aarch64/tmp  tmpfs  rw  0  0

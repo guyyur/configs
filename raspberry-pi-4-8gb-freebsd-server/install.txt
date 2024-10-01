@@ -4,22 +4,32 @@
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-# releng/13.1
+# 14.1
 # aarch64
-mount -t nfs -o ro,nfsv4,minorversion=1 server:/packages/FreeBSD-base/releng/aarch64 /mnt/usr/local/db/local_base_repos
+mount -t nfs -o ro,nfsv4,noatime server:/packages/freebsd-base/14.1/aarch64 /mnt/usr/dists
 ./extract_dists.sh /mnt
-umount /mnt/usr/local/db/local_base_repos
+umount /mnt/usr/dists
+
 ./config.sh /mnt
+
+[ "$(uname -p)" != "aarch64" ] && install -d /mnt/usr/local/bin
+[ "$(uname -p)" != "aarch64" ] && install -c /usr/local/bin/qemu-aarch64-static /mnt/usr/local/bin/qemu-aarch64-static
+
+chroot /mnt /etc/rc.d/var start
+chroot /mnt /etc/rc.d/ldconfig start
+
+mount -t nfs -o ro,nfsv4,noatime server:/packages/freebsd-pkgrepo/14.1/aarch64 /mnt/usr/local/db/local_pkg_repo
+./add_pkgs.sh /mnt
+umount /mnt/usr/local/db/local_pkg_repo
+./convert_pkgs_config_files.sh /mnt
+
+[ "$(uname -p)" != "aarch64" ] && rm -f /mnt/usr/local/bin/qemu-aarch64-static
+
 ./unmount.sh
 
-mount /usr/local/db/local_pkg_repos
-mount -u -o rw,noatime /
+# configure programs ...
+create base-jail-aarch64 jail template
+# create ...-jail-aarch64 jail
+# uncomment ...-jail in /etc/jail.conf
 
-# generate manually until fixed to generate during crosscompile build
-service kldxref onestart
-
-# cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./add_pkgs.sh
-
-mount -u -o ro,noatime /
-umount /usr/local/db/local_pkg_repos
+restore snapshots

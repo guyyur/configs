@@ -10,4 +10,6 @@ fi
 # -- layout --
 umount /mnt/tmp || exit 1
 umount /mnt/dev || exit 1
+umount /mnt/var/spool/lock || exit 1
+umount /mnt/var/run || exit 1
 umount /mnt || exit 1

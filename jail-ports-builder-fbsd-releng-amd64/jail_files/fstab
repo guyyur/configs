@@ -1,0 +1,16 @@
+# Device  Mountpoint  FStype  Options  Dump  Pass#
+
+tmpfs  /jails/ports-builder-fbsd/var/run         tmpfs  rw,size=8M,inodes=512  0  0
+tmpfs  /jails/ports-builder-fbsd/var/spool/lock  tmpfs  rw,size=1M,inodes=128  0  0
+
+tmpfs  /jails/ports-builder-fbsd/tmp  tmpfs  rw,size=512M,inodes=65536  0  0
+
+/usr/wrkdir_large  /jails/ports-builder-fbsd/usr/wrkdir_large  nullfs  rw  0  0
+
+tmpfs  /jails/ports-builder-fbsd/usr/wrkdir_tmp  tmpfs  rw  0  0
+
+server:/sources/freebsd-ports  /jails/ports-builder-fbsd/usr/ports         nfs     rw,nfsv4,noatime  0  0
+/usr/src                       /jails/ports-builder-fbsd/usr/src           nullfs  ro                0  0
+/usr/obj                       /jails/ports-builder-fbsd/usr/obj           nullfs  ro                0  0
+
+server:/packages/freebsd-pkgrepo/14.1/amd64  /jails/ports-builder-fbsd/usr/local/db/local_pkg_repo  nfs  rw,nfsv4,noatime  0  0

@@ -3,6 +3,7 @@
 # sshd_config(5) for more information.
 
 Port 22
+Port REPLACE_SSHD_EXTERNAL_PORT
 
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key

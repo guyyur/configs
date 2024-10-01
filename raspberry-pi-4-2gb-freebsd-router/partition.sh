@@ -29,13 +29,6 @@ my_prompt()
 read -p "Enter device for disk0: " disk0 || exit 1
 
 
-# -- partition sizes --
-part_efi_start=8192
-part_efi_size=28M
-part_root_size=3040M
-part_swap_size=128M
-
-
 # -- layout --
 # disk0:
 #   /efi
@@ -44,9 +37,9 @@ part_swap_size=128M
 #   /backup
 my_prompt "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
-gpart add -a 4M -b ${part_efi_start} -s ${part_efi_size} -t efi -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_root_size} -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_swap_size} -t freebsd-swap -f x "${disk0}" || exit 1
+gpart add -a 4M -b 8192 -s 28M -t efi -f x "${disk0}" || exit 1
+gpart add -a 4M -s 3040M -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 4M -s 128M -t freebsd-swap -f x "${disk0}" || exit 1
 gpart add -a 4M -t freebsd-ufs -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1

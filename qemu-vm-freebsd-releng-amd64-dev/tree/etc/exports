@@ -1,4 +1,4 @@
-/export -ro
+V4: /export
 /export/guy_share -maproot=nobody
 /export/obj -ro -maproot=root
-V4: /export
+/export/src -ro -maproot=root

@@ -8,9 +8,9 @@ fi
 
 
 # -- layout --
+umount /mnt/tmp || exit 1
+umount /mnt/dev || exit 1
+umount /mnt/var || exit 1
 umount /mnt/backup || exit 1
 umount /mnt/efi || exit 1
-umount /mnt/tmp || exit 1
-umount /mnt/var || exit 1
-umount /mnt/dev || exit 1
 umount /mnt || exit 1

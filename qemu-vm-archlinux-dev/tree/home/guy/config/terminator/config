@@ -1,0 +1,20 @@
+[global_config]
+  enabled_plugins = ,
+[keybindings]
+[profiles]
+  [[default]]
+    scrollback_lines = 6000
+    use_custom_command = True
+    custom_command = env TERM=vte-256color $SHELL
+    copy_on_selection = True
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+      size = 980, 600
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]

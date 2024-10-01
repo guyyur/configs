@@ -1,4 +1,0 @@
-/export -ro
-/export/guy_share -maproot=nobody
-/export/obj -ro -maproot=root
-V4: /export

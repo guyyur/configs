@@ -4,26 +4,37 @@
 ./newfs.sh
 ./mount_and_mkdir.sh
 
-# releng/13.1
+# 14.1
 # amd64
-mount -t nfs -o ro,nfsv4,minorversion=1 server:/packages/FreeBSD-base/releng/amd64 /mnt/usr/local/db/local_base_repos
+mount -t nfs -o ro,nfsv4,noatime server:/packages/freebsd-base/14.1/amd64 /mnt/usr/dists
 ./extract_dists.sh /mnt
-umount /mnt/usr/local/db/local_base_repos
+umount /mnt/usr/dists
+
 ./config.sh /mnt
+
+[ "$(uname -p)" != "amd64" ] && install -d /mnt/usr/local/bin
+[ "$(uname -p)" != "amd64" ] && install -c /usr/local/bin/qemu-x86_64-static /mnt/usr/local/bin/qemu-x86_64-static
+
+chroot /mnt /etc/rc.d/var start
+chroot /mnt /etc/rc.d/ldconfig start
+
+mount -t nfs -o ro,nfsv4,noatime server:/packages/freebsd-pkgrepo/14.1/amd64 /mnt/usr/local/db/local_pkg_repo
+./add_pkgs.sh /mnt
+umount /mnt/usr/local/db/local_pkg_repo
+./convert_pkgs_config_files.sh /mnt
+
+[ "$(uname -p)" != "amd64" ] && rm -f /mnt/usr/local/bin/qemu-x86_64-static
+
 ./unmount.sh
 
 shutdown -p now
 
-mount /usr/local/db/local_pkg_repos
-mount -u -o rw,noatime /
-
-# cd to config dir (mounted usb flash, nfs, smbfs, ...)
-./add_pkgs.sh
-
-mount -u -o ro,noatime /
-umount /usr/local/db/local_pkg_repos
-
-service dbus start
-config QTerminal
+# configure programs ...
+$XDG_CONFIG_HOME/import_gsettings.sh
 config Xed
 config Meld
+create ports-builder-fbsd-amd64 jail
+
+restore snapshots
+
+(cd /usr/src/tools/tools/guy && ./src.sh bootstrap-config)

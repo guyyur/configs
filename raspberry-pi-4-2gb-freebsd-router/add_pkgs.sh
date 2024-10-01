@@ -7,21 +7,28 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 
+# -- set up params --
+if [ -n "${1%/}" ]; then
+  chroot_arg="-c ${1%/}"
+else
+  chroot_arg=""
+fi
+
+
 # -- pkg list --
 pkgs="pkg"
 pkgs="${pkgs} nano"
 pkgs="${pkgs} zsh"
+pkgs="${pkgs} ncurses"
+pkgs="${pkgs} terminfo-db"
 pkgs="${pkgs} tmux"
 pkgs="${pkgs} ca_root_nss"
-pkgs="${pkgs} ddnshupd"
 pkgs="${pkgs} dhcpcd"
 pkgs="${pkgs} dnsmasq"
-pkgs="${pkgs} miniupnpd"
+pkgs="${pkgs} dhcp6"
 pkgs="${pkgs} openvpn"
-pkgs="${pkgs} wireguard-kmod"
-pkgs="${pkgs} wireguard-tools"
 pkgs="${pkgs} iperf"
 
 
 # -- add pkgs --
-pkg install ${pkgs} || exit 1
+pkg ${chroot_arg} install ${pkgs} || exit 1

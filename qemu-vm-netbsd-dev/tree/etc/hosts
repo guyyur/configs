@@ -1,5 +1,4 @@
-# replace vm-netbsd with real hostname
 
 # Host Database
-::1			vm-netbsd.home.arpa vm-netbsd localhost
-127.0.0.1		vm-netbsd.home.arpa vm-netbsd localhost
+::1			REPLACE_HOSTNAME[qemu-vm-netbsd].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-netbsd] localhost
+127.0.0.1		REPLACE_HOSTNAME[qemu-vm-netbsd].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-netbsd] localhost

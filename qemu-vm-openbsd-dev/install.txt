@@ -6,7 +6,7 @@ installcd
   (I)nstall, (U)pgrade or (S)hell? I
   
   Choose your keyboard layout ('?' or 'L' for list) [default]
-  System hostname? (short form, e.g. 'foo') vm-openbsd
+  System hostname? (short form, e.g. 'foo') REPLACE_HOSTNAME[qemu-vm-openbsd]
   
   Which network interface do you wish to configure? (or 'done') [vio0]
   IPv4 address for vio0? (or 'autoconf' or 'none') [autoconf]
@@ -77,8 +77,12 @@ installcd
   Location of sets? (cd disk http nfs or 'done') [done]
   
   Exit to (S)hell, (H)alt or (R)reboot? [reboot] S
-  # echo "tmpfs  /tmp  tmpfs  rw,-s128M" >> /mnt/etc/fstab
+  
+  # echo "tmpfs  /tmp  tmpfs  rw,-s131072" >> /mnt/etc/fstab
   echo "swap /tmp mfs rw,nodev,nosuid,-s=131072 0 0" >> /mnt/etc/fstab
+  
+  vi /mnt/etc/rc
+    remove "sysctl -n kern.version" ... writing to /etc/motd
   
   halt -p
 
@@ -86,7 +90,6 @@ installcd
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 useradd -d /home/guy -g users -u 1001 guy
 ./cleanup.sh /
-./mkdir.sh /
 ./config.sh /
 
 shutdown -r now
@@ -94,5 +97,7 @@ shutdown -r now
 
 # cd to config dir (mounted usb flash, nfs, smbfs, ...)
 ./add_pkgs.sh
+
+restore snapshots
 
 shutdown -hp now

@@ -1,0 +1,6 @@
+address=0.0.0.0
+# enable_auth=true
+# username=guy
+# password=<password>
+# private_key_file=/home/guy/config/wayvnc/key.pem
+# certificate_file=/home/guy/config/wayvnc/cert.pem

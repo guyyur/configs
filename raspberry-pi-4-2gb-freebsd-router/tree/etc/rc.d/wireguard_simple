@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+#
+# wireguard_simple_enable (bool):    Set to "YES" to enable wireguard.
+#                                    (default: "NO")
+#
+# wireguard_simple_interfaces (str): List of interfaces to configure
+#                                    on start/stop. (eg: "wg0 wg1")
+#                                    (default: "")
+# wireguard_env (str):               Environment variables for the userspace
+#                                    implementation. (eg: "LOG_LEVEL=debug")
+
+. /etc/rc.subr
+
+name="wireguard_simple"
+rcvar=wireguard_simple_enable
+extra_commands="reload status"
+
+start_cmd="${name}_start"
+stop_cmd=":"
+reload_cmd="${name}_reload"
+status_cmd="${name}_status"
+
+wireguard_simple_start()
+{
+	${wireguard_simple_env:+eval export $wireguard_simple_env}
+
+	for interface in ${wireguard_simple_interfaces}; do
+		/usr/bin/wg setconf ${interface} /etc/wireguard/${interface}.conf
+	done
+}
+
+wireguard_simple_reload()
+{
+	${wireguard_simple_env:+eval export $wireguard_simple_env}
+
+	for interface in ${wireguard_simple_interfaces}; do
+		/usr/bin/wg syncconf ${interface} /etc/wireguard/${interface}.conf
+	done
+}
+
+wireguard_simple_status()
+{
+	${wireguard_simple_env:+eval export $wireguard_simple_env}
+	wireguard_status="0"
+
+	for interface in ${wireguard_simple_interfaces}; do
+		/usr/bin/wg show ${interface} || wireguard_status="1"
+	done
+
+	return ${wireguard_status}
+}
+
+load_rc_config $name
+
+: ${wireguard_simple_enable="NO"}
+: ${wireguard_simple_interfaces=""}
+: ${wireguard_simple_env=""}
+
+run_rc_command "$1"

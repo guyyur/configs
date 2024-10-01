@@ -1,8 +1,5 @@
-# replace raspberry-pi-4-2gb with real hostname
-# replace fd00:2001:db8:0::X with real ULA prefix+EUI-64
-
 # Host Database
-::1			raspberry-pi-4-2gb.home.arpa raspberry-pi-4-2gb localhost
-127.0.0.1		raspberry-pi-4-2gb.home.arpa raspberry-pi-4-2gb localhost
+::1			REPLACE_HOSTNAME[raspberry-pi-4-2gb].REPLACE_DOMAIN REPLACE_HOSTNAME[raspberry-pi-4-2gb] localhost
+127.0.0.1		REPLACE_HOSTNAME[raspberry-pi-4-2gb].REPLACE_DOMAIN REPLACE_HOSTNAME[raspberry-pi-4-2gb] localhost
 
-fd00:2001:db8:0::1061	server.home.arpa server
+REPLACE_IPV6_ULA_SITE_PREFIX:REPLACE_NET_LAN_IPV6_SUBNET_ID:REPLACE_IPV6_INTERFACE_ID[REPLACE_HOST_CNAME[server]]	server.REPLACE_DOMAIN server

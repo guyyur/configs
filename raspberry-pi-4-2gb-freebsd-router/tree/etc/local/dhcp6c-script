@@ -1,0 +1,65 @@
+#!/bin/sh
+
+log_line()
+{
+  local d
+  
+  d="$(date '+%b %e %T')"
+  printf "$d $1" >> /var/log/dhcp6c-script.log
+}
+
+log_line "got $REASON\n"
+
+NL="
+"
+
+case $REASON in
+  REQUEST|RENEW|REBIND)
+    log_line "received domain name servers: $new_domain_name_servers\n"
+    for x in ${new_domain_name_servers}; do
+      conf="${conf}nameserver $x$NL"
+    done
+    printf %s "$conf" | resolvconf -a wan0.dhcp6
+    
+    new_dhcp6_ia_na1_ia_addr1=$(ifconfig wan0 inet6 | awk '/inet6 / { if ($2 ~ /^(fe80|fd)/) next; print $2; exit }' 2>/dev/null)
+    
+    if [ -n "${new_dhcp6_ia_na1_ia_addr1}" ]; then
+      log_line "received ipv6 address: $new_dhcp6_ia_na1_ia_addr1\n"
+    fi
+    ;;
+  RELEASE|EXIT)
+    log_line "deleting resolvconf entries\n"
+    resolvconf -d wan0.dhcp6 -f
+    ;;
+esac
+
+case $REASON in
+  REQUEST|RENEW|REBIND)
+    # modified wide-dhcpv6 to use 1489 as interface id so can be sure :: will be for interface id so can use: sub(/::[[:xdigit:]]+/, "", $2)
+    # using subnet id 1 so can be sure prefix will be full so can also use: match($2, /^[[:xdigit:]]+:[[:xdigit:]]+:[[:xdigit:]]+:[[:xdigit:]]+/, arr) and use arr[0]
+    new_lan_delegated_dhcp6_prefix=$(ifconfig lan0 inet6 | awk '/inet6 / { if ($2 ~ /^(fe80|fd)/) next; sub(/::[[:xdigit:]]+/, "", $2); l = l " " $2 } END { if (l) print substr(l, 2) }' 2>/dev/null)
+    
+    if [ -n "${new_lan_delegated_dhcp6_prefix}" ]; then
+      log_line "received lan ipv6 prefixes: $new_lan_delegated_dhcp6_prefix\n"
+    fi
+    ;;
+esac
+
+case $REASON in
+  REQUEST|RENEW|REBIND)
+    if [ -n "${new_lan_delegated_dhcp6_prefix}" ]; then
+      log_line "open ports for pd ipv6\n"
+      /etc/pf_update_pd_ipv6_lan.sh up "${new_lan_delegated_dhcp6_prefix}"
+    fi
+    ;;
+  RELEASE|EXIT)
+    log_line "closing pd ipv6 ports\n"
+    /etc/pf_update_pd_ipv6_lan.sh down
+    ;;
+esac
+
+# TODO: find address from lan0 and replace sla-id, ... for ovpn0 to assign address and generate dynamic address pool, ...
+
+# TODO: find address from wg0, strip interface id and generate dynamic AllowedIPs
+
+true

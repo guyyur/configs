@@ -1,0 +1,3 @@
+# open ports for server (REPLACE_HOST_CNAME[server])
+# pass in quick inet6 proto tcp from any to { LAN_DELEGATED_PREFIX:REPLACE_IPV6_INTERFACE_ID[REPLACE_HOST_CNAME[server]] } port { ... }
+# pass in quick inet6 proto udp from any to { LAN_DELEGATED_PREFIX:REPLACE_IPV6_INTERFACE_ID[REPLACE_HOST_CNAME[server]] } port { ... }

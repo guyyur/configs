@@ -1,13 +1,15 @@
 # Device  Mountpoint  FStype  Options  Dump  Pass#
 
-/dev/da0p2  /         ufs   ro,noatime  1  1
-/dev/da0p3  /var      ufs   rw,noatime  2  2
-/dev/da1p1  none      swap  sw,late     0  0
-/dev/da2p1  /home     ufs   rw,noatime  2  2
-/dev/da3p1  /usr/obj  ufs   rw,noatime  0  0
-/dev/da4p1  /jails    ufs   ro,noatime  2  2
+/dev/da0p1  /efi      msdosfs  ro,noatime,longnames,failok  0  0
+/dev/da0p2  /         ufs      ro,noatime                   1  1
+/dev/da0p3  /var      ufs      rw,noatime                   2  2
+/dev/da1p1  none      swap     sw,late                      0  0
+/dev/da2p1  /usr/obj  ufs      rw,noatime                   0  0
+/dev/da3p1  /jails    ufs      ro,noatime                   2  2
+/dev/da4p1  /home     ufs      rw,noatime                   2  2
+/dev/da5p1  /usr/wrkdir_large  ufs      rw,noatime                   0  0
 
-tmpfs  /var/run         tmpfs  rw,size=8M,inodes=256  0  0
+tmpfs  /var/run         tmpfs  rw,size=8M,inodes=512  0  0
 tmpfs  /var/spool/lock  tmpfs  rw,size=1M,inodes=128  0  0
 
 tmpfs  /tmp  tmpfs  rw,size=512M,inodes=32768  0  0
@@ -15,13 +17,15 @@ tmpfs  /tmp  tmpfs  rw,size=512M,inodes=32768  0  0
 proc     /proc               procfs     rw  0  0
 linproc  /compat/linux/proc  linprocfs  rw  0  0
 
-server:/packages/FreeBSD-base/releng/amd64  /usr/local/db/local_base_repos  nfs  ro,nfsv4,minorversion=1,noauto  0  0
-server:/packages/FreeBSD/releng/amd64  /usr/local/db/local_pkg_repos  nfs  ro,nfsv4,minorversion=1,noauto  0  0
+server:/packages/freebsd-base/14.1/amd64  /usr/dists  nfs  ro,nfsv4,noatime,noauto  0  0
+server:/packages/freebsd-pkgrepo/14.1/amd64  /usr/local/db/local_pkg_repo  nfs  ro,nfsv4,noatime,noauto  0  0
 
 /home/guy/misc/fbsd-src  /usr/src  nullfs  ro  0  0
 
-tmpfs  /usr/wrkdir  tmpfs  rw,size=3G,inodes=49152  0  0
+tmpfs  /usr/wrkdir_tmp  tmpfs  rw,size=3G,inodes=49152  0  0
 
 /home/guy/share  /export/guy_share  nullfs  rw  0  0
 
 /usr/obj  /export/obj  nullfs  ro  0  0
+
+/home/guy/misc/fbsd-src  /export/src  nullfs  ro  0  0

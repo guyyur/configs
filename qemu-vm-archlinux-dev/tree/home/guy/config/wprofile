@@ -1,0 +1,27 @@
+
+export WLR_NO_HARDWARE_CURSORS=1
+
+export XKB_DEFAULT_LAYOUT=us,il
+export XKB_DEFAULT_OPTIONS=grp:alt_shift_toggle,caps:shift
+
+export XDG_SESSION_TYPE=wayland
+# export GDK_BACKEND=wayland  # default
+export QT_QPA_PLATFORM=wayland
+# export QT_WAYLAND_DECORATION=gtk3  # if using client decorations
+# [ "$XDG_CURRENT_DESKTOP" = "sway" ] && export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# export SDL_VIDEODRIVER=wayland  # drawing artifacts for QEMU window, no window title with CSD
+export MOZ_ENABLE_WAYLAND=1
+export CLUTTER_BACKEND=wayland
+
+export GDK_DPI_SCALE=1.04
+
+export QT_FONT_DPI=100
+
+# for both qt5ct and qt6ct
+export QT_QPA_PLATFORMTHEME=qt5ct
+
+export XDG_MENU_PREFIX=all-
+
+export VISUAL=featherpad
+
+export GIT_EDITOR="featherpad -s"

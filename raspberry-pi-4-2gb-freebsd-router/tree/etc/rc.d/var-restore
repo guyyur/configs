@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# REQUIRE: var
+# BEFORE: FILESYSTEMS
+
+. /etc/rc.subr
+
+name="var-restore"
+desc="Restore /var from backup"
+stop_cmd=':'
+
+load_rc_config $name
+
+if [ -d /etc/var.backup ]; then
+  cp -af /etc/var.backup/* /var/
+fi

@@ -1,189 +1,314 @@
 #!/bin/sh
 
+# -- check arguments --
+if [ "$1" = "-N" ]; then
+  echo_mode=1
+  shift
+fi
+if [ -z "$1" ]; then
+  echo "usage: config.sh [-N] destdir" 1>&2
+  exit 1
+fi
+
+
 # -- check for root --
-if [ "$(id -u)" != "0" ]; then
+if [ -z "${echo_mode}" -a "$(id -u)" != "0" ]; then
   echo "config.sh: sorry, this must be done as root." 1>&2
   exit 1
 fi
 
 
-# -- check arguments --
-if [ -z "$1" ]; then
-  echo "usage: config.sh destdir" 1>&2
-  exit 1
-fi
+# -- set up params --
 DESTDIR=${1%/}
 
 
+# -- functions --
+install_dir()
+{
+  mode=$1
+  owner=$2
+  group=$3
+  path=$4
+  
+  if [ -z "${echo_mode}" ]; then
+    install -d -m ${mode} -o ${owner} -g ${group} "${DESTDIR}"${path} || exit 1
+  else
+    echo install -d -m ${mode} -o ${owner} -g ${group} ${DESTDIR}${path}
+  fi
+}
+
+install_file()
+{
+  mode=$1
+  owner=$2
+  group=$3
+  src=$4
+  dst=${5:-${src}}
+  
+  if [ -z "${echo_mode}" ]; then
+    install -c -m ${mode} -o ${owner} -g ${group} tree${src} "${DESTDIR}"${dst} || exit 1
+  else
+    echo install -c -m ${mode} -o ${owner} -g ${group} tree${src} ${DESTDIR}${dst}
+  fi
+}
+
+install_hardlink()
+{
+  src=$1
+  dst=$2
+  
+  if [ -z "${echo_mode}" ]; then
+    ln -fn "${DESTDIR}"${src} "${DESTDIR}"${dst} || exit 1
+  else
+    echo ln -fn ${DESTDIR}${src} ${DESTDIR}${dst}
+  fi
+}
+
+install_symlink()
+{
+  src=$1
+  dst=$2
+  
+  if [ -z "${echo_mode}" ]; then
+    ln -sfn ${src} "${DESTDIR}"${dst} || exit 1
+  else
+    echo ln -sfn ${src} ${DESTDIR}${dst}
+  fi
+}
+
+chown_symlink()
+{
+  owner=$1
+  group=$2
+  file=$3
+  
+  if [ -z "${echo_mode}" ]; then
+    chown -h ${owner}:${group} "${DESTDIR}"${file} || exit 1
+  else
+    echo chown -h ${owner}:${group} ${DESTDIR}${file}
+  fi
+}
+
+
 #
-install -d -m 755 -o root -g root "${DESTDIR}"/etc || exit 1
+install_dir 755 root root /etc
 
-ln -sfn ../usr/share/zoneinfo/Asia/Jerusalem "${DESTDIR}"/etc/localtime || exit 1
+install_symlink ../usr/share/zoneinfo/Asia/Jerusalem /etc/localtime
 
-install -c -m 644 -o root -g root tree/etc/login.defs "${DESTDIR}"/etc/login.defs || exit 1
+install_file 644 root root /etc/login.defs
 
-install -c -m 600 -o root -g root tree/etc/gshadow "${DESTDIR}"/etc/gshadow || exit 1
-install -c -m 644 -o root -g root tree/etc/group "${DESTDIR}"/etc/group || exit 1
-install -c -m 600 -o root -g root tree/etc/shadow "${DESTDIR}"/etc/shadow || exit 1
-install -c -m 644 -o root -g root tree/etc/passwd "${DESTDIR}"/etc/passwd || exit 1
+install_file 600 root root /etc/gshadow
+install_file 644 root root /etc/group
 
-install -d -m 750 -o root -g root "${DESTDIR}"/root || exit 1
+install_file 600 root root /etc/shadow
+install_file 644 root root /etc/passwd
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/xdg || exit 1
+install_dir 755 root root /var/cache
+install_dir 755 root root /var/lib
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config || exit 1
+install_dir 755 root root /usr
 
-install -c -m 644 -o root -g root tree/etc/locale.gen "${DESTDIR}"/etc/locale.gen || exit 1
-install -c -m 644 -o root -g root tree/etc/locale.conf "${DESTDIR}"/etc/locale.conf || exit 1
+install_dir 755 root root /usr/db
 
-install -c -m 644 -o root -g root tree/etc/inputrc "${DESTDIR}"/etc/inputrc || exit 1
+install_dir 750 root root /root
 
-ln -sfn ../usr/lib/os-release "${DESTDIR}"/etc/os-release || exit 1
+install_dir 700 guy guy /home/guy
+install_dir 755 guy guy /home/guy/external_projects
+install_dir 755 guy guy /home/guy/github
+install_dir 755 guy guy /home/guy/misc
+install_dir 755 guy guy /home/guy/projects
+install_dir 755 guy guy /home/guy/remove
+install_dir 755 guy guy /home/guy/tests
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system/multi-user.target.wants || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system/remote-fs.target.wants || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/systemd/system/sockets.target.wants || exit 1
+install_dir 755 root root /var/cache/pacman
+install_dir 755 root root /usr/db/pacman
+install_symlink ../../../var/cache/pacman/sync /usr/db/pacman/sync
 
-install -d -m 755 -o root -g root "${DESTDIR}"/boot/syslinux || exit 1
-install -c -m 644 -o root -g root tree/boot/syslinux/syslinux.cfg "${DESTDIR}"/boot/syslinux/syslinux.cfg || exit 1
+install_dir 755 root root /var/cache/xdg
+install_dir 700 root root /var/cache/xdg/root
+install_dir 755 root root /var/lib/xdg
+install_dir 700 root root /var/lib/xdg/root
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/modprobe.d || exit 1
-install -c -m 644 -o root -g root tree/etc/modprobe.d/my_blacklist.conf "${DESTDIR}"/etc/modprobe.d/my_blacklist.conf || exit 1
+install_dir 700 guy guy /var/cache/xdg/guy
+install_dir 700 guy guy /var/lib/xdg/guy
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/udev || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/udev/rules.d || exit 1
+install_dir 755 root root /etc/xdg
 
-install -c -m 644 -o root -g root tree/etc/udev/rules.d/81-network-names.rules "${DESTDIR}"/etc/udev/rules.d/81-network-names.rules || exit 1
+install_dir 755 guy guy /home/guy/config
+install_symlink config /home/guy/.config
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/sysctl.d || exit 1
-install -c -m 644 -o root -g root tree/etc/sysctl.d/40-ipv6.conf "${DESTDIR}"/etc/sysctl.d/40-ipv6.conf || exit 1
-ln -sfn /dev/null "${DESTDIR}"/etc/sysctl.d/50-coredump.conf || exit 1
-install -c -m 644 -o root -g root tree/etc/sysctl.d/99-sysctl.conf "${DESTDIR}"/etc/sysctl.d/99-sysctl.conf || exit 1
+install_file 644 root root /etc/locale.gen
+install_file 644 root root /etc/locale.conf
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/security || exit 1
+install_file 644 root root /etc/inputrc
 
-install -c -m 644 -o root -g root tree/etc/security/limits.conf "${DESTDIR}"/etc/security/limits.conf || exit 1
+install_symlink ../usr/lib/os-release /etc/os-release
 
-install -c -m 644 -o root -g root tree/etc/hostname "${DESTDIR}"/etc/hostname || exit 1
+install_dir 755 root root /etc/systemd
+install_dir 755 root root /etc/systemd/system
+install_dir 755 root root /etc/systemd/system/multi-user.target.wants
+install_dir 755 root root /etc/systemd/system/remote-fs.target.wants
+install_dir 755 root root /etc/systemd/system/sockets.target.wants
 
-install -c -m 444 -o root -g root tree/etc/machine-id "${DESTDIR}"/etc/machine-id || exit 1
+install_dir 755 root root /efi/EFI
+install_dir 755 root root /efi/EFI/BOOT
+install_file 644 root root /efi/EFI/BOOT/refind.conf
 
-install -c -m 644 -o root -g root tree/etc/hosts "${DESTDIR}"/etc/hosts || exit 1
+install_dir 755 root root /etc/modprobe.d
+install_file 644 root root /etc/modprobe.d/my_blacklist.conf
 
-ln -sfn ../run/resolv.conf "${DESTDIR}"/etc/resolv.conf || exit 1
+install_dir 755 root root /etc/udev
 
-install -c -m 644 -o root -g root tree/etc/nsswitch.conf "${DESTDIR}"/etc/nsswitch.conf || exit 1
+install_dir 755 root root /etc/udev/hwdb.d
 
-install -c -m 644 -o root -g root tree/etc/fstab "${DESTDIR}"/etc/fstab || exit 1
+install_dir 755 root root /etc/udev/rules.d
 
-ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.timer || exit 1
-ln -sfn /dev/null "${DESTDIR}"/etc/systemd/system/systemd-tmpfiles-clean.service || exit 1
+install_file 644 root root /etc/udev/rules.d/81-network-names.rules
 
-install -c -m 644 -o root -g root tree/root/.profile "${DESTDIR}"/root/.profile || exit 1
+install_dir 755 root root /etc/sysctl.d
+install_file 644 root root /etc/sysctl.d/40-ipv6.conf
+install_symlink /dev/null /etc/sysctl.d/50-coredump.conf
+install_file 644 root root /etc/sysctl.d/99-sysctl.conf
 
-install -c -m 644 -o guy -g guy tree/home/guy/.profile "${DESTDIR}"/home/guy/.profile || exit 1
+install_dir 755 root root /etc/security
 
-install -c -m 644 -o root -g root tree/root/.bashrc "${DESTDIR}"/root/.bashrc || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.bashrc "${DESTDIR}"/home/guy/.bashrc || exit 1
+install_file 644 root root /etc/security/limits.conf
 
-install -c -m 644 -o root -g root tree/etc/nanorc "${DESTDIR}"/etc/nanorc || exit 1
+install_file 644 root root /etc/hostname
 
-install -c -m 644 -o root -g root tree/root/.zprofile "${DESTDIR}"/root/.zprofile || exit 1
-install -c -m 644 -o root -g root tree/root/.zshrc "${DESTDIR}"/root/.zshrc || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.zprofile "${DESTDIR}"/home/guy/.zprofile || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.zshrc "${DESTDIR}"/home/guy/.zshrc || exit 1
+install_file 444 root root /etc/machine-id
 
-install -c -m 755 -o root -g root tree/etc/network-if.sh "${DESTDIR}"/etc/network-if.sh || exit 1
-install -c -m 644 -o root -g root tree/etc/systemd/system/network-if@.service "${DESTDIR}"/etc/systemd/system/network-if@.service || exit 1
+install_file 644 root root /etc/hosts
 
-ln -sfn /etc/systemd/system/network-if@.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/network-if@lan0.service || exit 1
+install_symlink ../run/resolv.conf /etc/resolv.conf
 
-install -d -m 700 -o dhcpcd -g dhcpcd "${DESTDIR}"/var/lib/dhcpcd || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/var/lib/dhcpcd/var || exit 1
-install -d -m 755 -o root -g root "${DESTDIR}"/var/lib/dhcpcd/var/lib || exit 1
-install -d -m 755 -o dhcpcd -g dhcpcd "${DESTDIR}"/var/lib/dhcpcd/var/lib/dhcpcd || exit 1
-install -c -m 644 -o root -g root tree/etc/dhcpcd.duid.backup "${DESTDIR}"/etc/dhcpcd.duid.backup || exit 1
-install -c -m 644 -o dhcpcd -g dhcpcd "${DESTDIR}"/etc/dhcpcd.duid.backup "${DESTDIR}"/var/lib/dhcpcd/var/lib/dhcpcd/duid || exit 1
-install -c -m 600 -o root -g root tree/etc/dhcpcd.secret.backup "${DESTDIR}"/etc/dhcpcd.secret.backup || exit 1
-install -c -m 600 -o dhcpcd -g dhcpcd "${DESTDIR}"/etc/dhcpcd.secret.backup "${DESTDIR}"/var/lib/dhcpcd/var/lib/dhcpcd/secret || exit 1
-install -c -m 644 -o root -g root tree/etc/dhcpcd.conf "${DESTDIR}"/etc/dhcpcd.conf || exit 1
+install_file 644 root root /etc/resolvconf.conf
 
+install_file 644 root root /etc/nsswitch.conf
 
-ln -sfn /usr/lib/systemd/system/dhcpcd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/dhcpcd.service || exit 1
+install_file 644 root root /etc/fstab
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/ssh || exit 1
-install -c -m 644 -o root -g root tree/etc/ssh/ssh_known_hosts "${DESTDIR}"/etc/ssh/ssh_known_hosts || exit 1
-install -c -m 644 -o root -g root tree/etc/ssh/ssh_config "${DESTDIR}"/etc/ssh/ssh_config || exit 1
+install_symlink /dev/null /etc/systemd/system/systemd-tmpfiles-clean.timer
+install_symlink /dev/null /etc/systemd/system/systemd-tmpfiles-clean.service
 
-install -d -m 700 -o guy -g guy "${DESTDIR}"/home/guy/.ssh || exit 1
-install -c -m 600 -o guy -g guy tree/home/guy/.ssh/id_ed25519 "${DESTDIR}"/home/guy/.ssh/id_ed25519 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_ed25519.pub "${DESTDIR}"/home/guy/.ssh/id_ed25519.pub || exit 1
-install -c -m 600 -o guy -g guy tree/home/guy/.ssh/id_rsa "${DESTDIR}"/home/guy/.ssh/id_rsa || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.ssh/id_rsa.pub "${DESTDIR}"/home/guy/.ssh/id_rsa.pub || exit 1
+install_file 644 root root /root/.profile
 
-install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_ed25519_key "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key || exit 1
-install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ed25519_key.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key.pub || exit 1
-install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_ed25519_key-cert.pub "${DESTDIR}"/etc/ssh/ssh_host_ed25519_key-cert.pub || exit 1
-install -c -m 600 -o root -g root tree/etc/ssh/ssh_host_rsa_key "${DESTDIR}"/etc/ssh/ssh_host_rsa_key || exit 1
-install -c -m 644 -o root -g root tree/etc/ssh/ssh_host_rsa_key.pub "${DESTDIR}"/etc/ssh/ssh_host_rsa_key.pub || exit 1
-install -c -m 640 -o root -g root tree/etc/ssh/sshd_config "${DESTDIR}"/etc/ssh/sshd_config || exit 1
-install -c -m 644 -o root -g root tree/etc/systemd/system/sshdgenkeys.service "${DESTDIR}"/etc/systemd/system/sshdgenkeys.service || exit 1
-ln -sfn /usr/lib/systemd/system/sshd.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/sshd.service || exit 1
+install_file 644 guy guy /home/guy/.profile
 
-install -c -m 600 -o guy -g guy tree/home/guy/.ssh/authorized_keys "${DESTDIR}"/home/guy/.ssh/authorized_keys || exit 1
+install_file 644 root root /root/.bashrc
 
-install -c -m 640 -o root -g root tree/etc/exports "${DESTDIR}"/etc/exports || exit 1
+install_file 644 guy guy /home/guy/.bashrc
 
-ln -sfn /usr/lib/systemd/system/nfs-server.service "${DESTDIR}"/etc/systemd/system/multi-user.target.wants/nfs-server.service || exit 1
+install_dir 755 root root /etc/ssh
 
-install -c -m 644 -o root -g root tree/etc/tmux.conf "${DESTDIR}"/etc/tmux.conf || exit 1
+install_file 644 root root /etc/ssh/ssh_known_hosts
+install_file 644 root root /etc/ssh/ssh_config
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/git || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/git/config "${DESTDIR}"/home/guy/config/git/config || exit 1
+install_dir 700 guy guy /home/guy/.ssh
+install_file 600 guy guy /home/guy/.ssh/id_ed25519
+install_file 644 guy guy /home/guy/.ssh/id_ed25519.pub
+install_file 600 guy guy /home/guy/.ssh/id_rsa
+install_file 644 guy guy /home/guy/.ssh/id_rsa.pub
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/fonts || exit 1
-install -c -m 644 -o root -g root tree/etc/fonts/local.conf "${DESTDIR}"/etc/fonts/local.conf || exit 1
+install_file 600 root root /etc/ssh/ssh_host_rsa_key
+install_file 644 root root /etc/ssh/ssh_host_rsa_key.pub
+install_file 600 root root /etc/ssh/ssh_host_ed25519_key
+install_file 644 root root /etc/ssh/ssh_host_ed25519_key.pub
+install_file 644 root root /etc/ssh/ssh_host_ed25519_key-cert.pub
+install_file 640 root root /etc/ssh/sshd_config
+install_file 644 root root /etc/systemd/system/sshdgenkeys.service
+install_symlink /usr/lib/systemd/system/sshd.service /etc/systemd/system/multi-user.target.wants/sshd.service
 
-install -c -m 644 -o guy -g guy tree/home/guy/.xprofile "${DESTDIR}"/home/guy/.xprofile || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.Xresources "${DESTDIR}"/home/guy/.Xresources || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/.xserverrc "${DESTDIR}"/home/guy/.xserverrc || exit 1
-install -c -m 755 -o guy -g guy tree/home/guy/.xinitrc "${DESTDIR}"/home/guy/.xinitrc || exit 1
+install_file 600 guy guy /home/guy/.ssh/authorized_keys
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-2.0 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkfilechooser.ini "${DESTDIR}"/home/guy/config/gtk-2.0/gtkfilechooser.ini || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-2.0/gtkrc "${DESTDIR}"/home/guy/config/gtk-2.0/gtkrc || exit 1
+install_dir 700 guy guy /home/guy/share
+install_dir 700 guy guy /export/guy_share
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/gtk-3.0 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/settings.ini "${DESTDIR}"/home/guy/config/gtk-3.0/settings.ini || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/gtk-3.0/bookmarks "${DESTDIR}"/home/guy/config/gtk-3.0/bookmarks || exit 1
+install_file 640 root root /etc/exports
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/qt5ct || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/qt5ct/qt5ct.conf "${DESTDIR}"/home/guy/config/qt5ct/qt5ct.conf || exit 1
+install_symlink /usr/lib/systemd/system/nfs-server.service /etc/systemd/system/multi-user.target.wants/nfs-server.service
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/qt6ct || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/qt6ct/qt6ct.conf "${DESTDIR}"/home/guy/config/qt6ct/qt6ct.conf || exit 1
+install_file 644 root root /etc/nanorc
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/xdg/autostart || exit 1
+install_file 644 root root /root/.zprofile
+install_file 644 root root /root/.zshrc
 
-install -c -m 644 -o root -g root tree/etc/xdg/autostart/lxqt-notifications-OPENBOX.desktop "${DESTDIR}"/etc/xdg/autostart/lxqt-notifications-OPENBOX.desktop || exit 1
+install_file 644 guy guy /home/guy/.zprofile
+install_file 644 guy guy /home/guy/.zshrc
 
-install -d -m 755 -o root -g root "${DESTDIR}"/etc/xdg/menus || exit 1
-install -c -m 644 -o root -g root tree/etc/xdg/menus/all-applications.menu "${DESTDIR}"/etc/xdg/menus/all-applications.menu || exit 1
+install_file 644 root root /etc/tmux.conf
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/openbox || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/menu.xml "${DESTDIR}"/home/guy/config/openbox/menu.xml || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/openbox/rc.xml "${DESTDIR}"/home/guy/config/openbox/rc.xml || exit 1
+install_dir 750 root root /var/lib/dhcpcd
+install_file 644 root root /var/lib/dhcpcd/duid
+install_file 600 root root /var/lib/dhcpcd/secret
+install_file 644 root root /etc/dhcpcd.conf
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/tint2 || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/tint2/tint2rc "${DESTDIR}"/home/guy/config/tint2/tint2rc || exit 1
+install_symlink /usr/lib/systemd/system/dhcpcd.service /etc/systemd/system/multi-user.target.wants/dhcpcd.service
 
-install -c -m 644 -o guy -g guy tree/home/guy/.gmrunrc "${DESTDIR}"/home/guy/.gmrunrc || exit 1
+install_dir 755 guy guy /home/guy/config/git
+install_file 644 guy guy /home/guy/config/git/config
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt || exit 1
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/pcmanfm-qt/default || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/pcmanfm-qt/default/settings.conf "${DESTDIR}"/home/guy/config/pcmanfm-qt/default/settings.conf || exit 1
+install_dir 755 root root /usr/db/fontconfig
+install_dir 755 root root /etc/fonts
+install_file 644 root root /etc/fonts/local.conf
 
-install -d -m 755 -o guy -g guy "${DESTDIR}"/home/guy/config/featherpad || exit 1
-install -c -m 644 -o guy -g guy tree/home/guy/config/featherpad/fp.conf "${DESTDIR}"/home/guy/config/featherpad/fp.conf || exit 1
+install_symlink /usr/lib/systemd/system/seatd.service /etc/systemd/system/multi-user.target.wants/seatd.service
+
+install_dir 755 guy guy /var/cache/xdg/guy/thumbnails
+install_symlink ../../var/cache/xdg/guy/thumbnails /home/guy/.thumbnails
+chown_symlink guy guy /home/guy/.thumbnails
+
+install_file 644 guy guy /home/guy/.xprofile
+install_file 644 guy guy /home/guy/.Xresources
+install_hardlink /home/guy/.Xresources /home/guy/.Xdefaults
+install_file 755 guy guy /home/guy/.xinitrc
+
+install_file 644 guy guy /home/guy/config/picom.conf
+
+install_dir 755 guy guy /home/guy/config/gtk-3.0
+install_file 644 guy guy /home/guy/config/gtk-3.0/settings.ini
+install_file 644 guy guy /home/guy/config/gtk-3.0/bookmarks
+
+install_dir 755 guy guy /home/guy/config/qt5ct
+install_file 644 guy guy /home/guy/config/qt5ct/qt5ct.conf
+
+install_dir 755 guy guy /home/guy/config/qt6ct
+install_file 644 guy guy /home/guy/config/qt6ct/qt6ct.conf
+
+install_file 755 guy guy /home/guy/config/import_gsettings.sh
+
+install_dir 755 root root /etc/xdg/menus
+install_file 644 root root /etc/xdg/menus/all-applications.menu
+
+install_dir 755 guy guy /home/guy/config/openbox
+install_file 755 guy guy /home/guy/config/openbox/autostart
+install_file 644 guy guy /home/guy/config/openbox/menu.xml
+install_file 644 guy guy /home/guy/config/openbox/rc.xml
+
+install_dir 755 guy guy /home/guy/config/tint2
+install_file 644 guy guy /home/guy/config/tint2/tint2rc
+
+install_file 644 guy guy /home/guy/config/wprofile
+
+install_file 644 guy guy /home/guy/config/wayfire.ini
+install_file 644 guy guy /home/guy/config/wf-shell.ini
+
+install_dir 755 guy guy /home/guy/config/labwc
+install_file 755 guy guy /home/guy/config/labwc/autostart
+install_file 644 guy guy /home/guy/config/labwc/menu.xml
+install_file 644 guy guy /home/guy/config/labwc/rc.xml
+
+install_dir 755 guy guy /home/guy/config/terminator
+install_file 644 guy guy /home/guy/config/terminator/config
+
+install_file 644 guy guy /home/guy/.gmrunrc
+
+install_dir 755 guy guy /home/guy/config/pcmanfm-qt
+install_dir 755 guy guy /home/guy/config/pcmanfm-qt/default
+install_file 644 guy guy /home/guy/config/pcmanfm-qt/default/settings.conf
+
+install_dir 755 guy guy /home/guy/config/featherpad
+install_file 644 guy guy /home/guy/config/featherpad/fp.conf
+
+install_dir 755 guy guy /home/guy/config/geany
+install_file 644 guy guy /home/guy/config/geany/geany.conf

@@ -17,11 +17,13 @@ destdir=$1
 
 # -- set up params --
 DESTDIR=$destdir
-DISTDIR=$destdir/usr/local/db/local_base_repos
+DISTDIR=$destdir/usr/dists
 
 
 # -- extract files --
 tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/base.txz || exit 1
 rm -f "${DESTDIR}"/root/.login || exit 1
+rm -f "${DESTDIR}"/.profile || exit 1
+rm -f "${DESTDIR}"/.cshrc || exit 1
 # tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/base-dbg.txz || exit 1
 # tar -Uxp -C "${DESTDIR}" -f "${DISTDIR}"/doc.txz || exit 1

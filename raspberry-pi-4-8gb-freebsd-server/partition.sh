@@ -29,17 +29,6 @@ my_prompt()
 read -p "Enter device for disk0: " disk0 || exit 1
 
 
-# -- partition sizes --
-part_efi_start=8192
-part_efi_size=28M
-part_root_size=3936M
-part_swap_size=128M
-part_var_size=256M
-part_export_packages_size=14G
-part_export_sources_size=12G
-part_jails_size=4G
-
-
 # -- layout --
 # disk0:
 #   /efi
@@ -52,13 +41,14 @@ part_jails_size=4G
 #   /home
 my_prompt "${disk0}" || exit 1
 gpart create -s GPT -f x "${disk0}" || exit 1
-gpart add -a 4M -b ${part_efi_start} -s ${part_efi_size} -t efi -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_root_size} -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_swap_size} -t freebsd-swap -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_var_size} -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_export_packages_size} -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_export_sources_size} -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 4M -s ${part_jails_size} -t freebsd-ufs -f x "${disk0}" || exit 1
-gpart add -a 4M -t freebsd-ufs -f x "${disk0}" || exit 1
+gpart add -a 4M -b 8192 -s 28M -t efi -l efi -f x "${disk0}" || exit 1
+gpart add -a 4M -s 3936M -t freebsd-ufs -l root -f x "${disk0}" || exit 1
+gpart add -a 4M -s 128M -t freebsd-swap -l dump -f x "${disk0}" || exit 1
+gpart add -a 4M -s 256M -t freebsd-ufs -l var -f x "${disk0}" || exit 1
+gpart add -a 4M -s 14G -t freebsd-ufs -l packages -f x "${disk0}" || exit 1
+gpart add -a 4M -s 12G -t freebsd-ufs -l sources -f x "${disk0}" || exit 1
+gpart add -a 4M -s 4G -t freebsd-ufs -l jails -f x "${disk0}" || exit 1
+gpart add -a 4M -t freebsd-ufs -l home -f x "${disk0}" || exit 1
 gpart commit "${disk0}" || exit 1
 gpart show "${disk0}" || exit 1
+gpart show -l "${disk0}" || exit 1

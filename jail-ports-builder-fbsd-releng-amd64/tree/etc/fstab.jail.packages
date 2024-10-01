@@ -1,8 +1,0 @@
-# Device  Mountpoint  FStype  Options  Dump  Pass#
-
-tmpfs                          /jails/jail-fbsd-build-ports-releng-amd64/usr/wrkdir  tmpfs   rw                       0  0
-server:/sources/freebsd-ports  /jails/jail-fbsd-build-ports-releng-amd64/usr/ports   nfs     rw,nfsv4,minorversion=1  0  0
-/usr/src                       /jails/jail-fbsd-build-ports-releng-amd64/usr/src     nullfs  ro                       0  0
-/usr/obj                       /jails/jail-fbsd-build-ports-releng-amd64/usr/obj     nullfs  ro                       0  0
-
-server:/packages/FreeBSD/releng/amd64  /jails/jail-fbsd-build-ports-releng-amd64/usr/local/db/local_pkg_repos  nfs  rw,nfsv4,minorversion=1  0  0

@@ -1,5 +1,4 @@
-# replace vm-freebsd-releng with real hostname
 
 # Host Database
-::1			vm-freebsd-releng.home.arpa vm-freebsd-releng localhost
-127.0.0.1		vm-freebsd-releng.home.arpa vm-freebsd-releng localhost
+::1			REPLACE_HOSTNAME[qemu-vm-freebsd-releng-amd64].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-freebsd-releng-amd64] localhost
+127.0.0.1		REPLACE_HOSTNAME[qemu-vm-freebsd-releng-amd64].REPLACE_DOMAIN REPLACE_HOSTNAME[qemu-vm-freebsd-releng-amd64] localhost

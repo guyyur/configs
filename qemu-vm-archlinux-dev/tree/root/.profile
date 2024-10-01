@@ -1,7 +1,4 @@
 
-# -- terminfo --
-export TERMINFO=/usr/share/terminfo-lite-unmodified
-
 # -- editors --
 export EDITOR=nano
 export VISUAL="${EDITOR}"
@@ -13,12 +10,16 @@ export PAGER=less
 export LESS="-QR"
 export LESSHISTFILE="-"
 
+# -- grep --
+export GREP_COLORS=ne
+
 # -- systemd --
 export SYSTEMD_LESS="QRSMK"
 
 # -- XDG --
 export XDG_CONFIG_HOME=$HOME/config
-export XDG_CACHE_HOME=/var/xdg-cache/"$USER"
+export XDG_CACHE_HOME=/var/cache/xdg/"$USER"
+export XDG_STATE_HOME=/var/lib/xdg/"$USER"
 
 # -- openssl --
 export RANDFILE="${XDG_STATE_HOME:-$HOME/.local/state}"/rnd

@@ -1,4 +1,4 @@
 
 # Host Database
-::1			jail-fbsd-build-ports-releng-aarch64.home.arpa jail-fbsd-build-ports-releng-aarch64 localhost
-127.0.0.1		jail-fbsd-build-ports-releng-aarch64.home.arpa jail-fbsd-build-ports-releng-aarch64 localhost
+::1			ports-builder-fbsd.REPLACE_DOMAIN ports-builder-fbsd localhost
+127.0.0.1		ports-builder-fbsd.REPLACE_DOMAIN ports-builder-fbsd localhost
