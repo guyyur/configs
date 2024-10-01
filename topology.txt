@@ -1,25 +1,19 @@
 
 fiber box
      |
-raspberry-pi-4-2gb (router)
+friendlyarm-nanopi-r4se (router) / raspberry-pi-4-2gb (router)
      |
-d-link-dgs-1008a-b1 (switch) ---- tp-link-tl-wa1201 (access point) ~~~~ acer-aspire-es1-131 (notebook)
+d-link-dgs-1008a-b1 (switch) ---- tp-link-tl-wa1201 (access point) ~~~~ mobile phone
   /  ||||||
  |   asus-rog-strix-x570-i (desktop)
  |   raspberry-pi-4-8gb (vcs, packages, ports)
   \
-   vm-freebsd-releng (devel, src, build ports jails)
-     jail-fbsd-build-ports-releng-aarch64
-     jail-fbsd-build-ports-releng-amd64
-     jail-fbsd-build-ports-releng-armv7
-   vm-freebsd-head (devel, src, build ports jails)
-     jail-fbsd-build-ports-head-amd64
-   vm-netbsd (devel)
-   vm-openbsd (devel)
-   vm-arch-linux (devel)
-
-orange-pi-one (none)
-orange-pi-pc (none)
-orange-pi-pc-2 (none)
-orange-pi-r1plus (none)
-rock64 (none)
+   qemu-vm-freebsd-releng-amd64 (devel, src, build ports jails)
+     jail-ports-builder-fbsd-releng-amd64
+   qemu-vm-freebsd-releng-aarch64 (build ports jails)
+     jail-ports-builder-fbsd-releng-aarch64
+   qemu-vm-freebsd-head (devel, src, build ports jails)
+     jail-ports-builder-fbsd-head-amd64
+   qemu-vm-netbsd (devel)
+   qemu-vm-openbsd (devel)
+   qemu-vm-archlinux (devel)

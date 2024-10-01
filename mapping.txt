@@ -1,24 +1,19 @@
 
-Acer Aspire ES1-131-C5FK Notebook + Samsung MUF-32BB/EU USB Flash Drive -> acer-aspire-es1-131 (notebook)
 ASUS ROG STRIX X570-I GAMING Motherboard + Samsung MZ-V7S1T0 (970 EVO Plus NVMe M.2 1TB SSD) M.2 2280 MVME SSD + Western Digital WD100EFAX-68LHPN0 HDD -> asus-rog-strix-x570-i (desktop)
-PINE64 ROCK64-4G Board + ? -> rock64 (none)
 Raspberry Pi 4 Model B 2GB RAM Board + SanDisk SDSQXAF-032G-GN6MN (Extreme) microSDHC Memory Card -> raspberry-pi-2gb (router)
 Raspberry Pi 4 Model B 8GB RAM Board (1421) + Western Digital WDBAGF0020BGY-0C (My Passport SSD 2TB) USB SSD -> raspberry-pi-8gb (vcs, packages, ports)
-Xunlong Orange Pi One Board + ? -> orange-pi-one (none)
-Xunlong Orange Pi PC Board +  -> orange-pi-pc (none)
-Xunlong Orange Pi PC 2 Board + ? -> orange-pi-pc-2 (none)
-Xunlong Orange Pi R1 Plus Board + ? -> orange-pi-r1plus (none)
+FriendlyARM NanoPi R4SE (2205) (4GB, 32G eMMC, MAC) Board + SanDisk SDSQXAF-032G-GN6MN (Extreme) microSDHC Memory Card -> friendlyarm-nanopi-r4se (router)
 
 D-Link DGS-1008A/B1 Switch -> d-link-dgs-1008a-b1 (switch)
 TP-Link TL-WA1201 WiFi Access Point -> tp-link-tl-wa1201 (access point)
 
-QEMU VM (Linux Host) - FreeBSD (64-bit) -> vm-freebsd-releng (devel, src, build ports jails)
-QEMU VM (Linux Host) - FreeBSD (64-bit) -> vm-freebsd-head (devel, src, build ports jails)
-QEMU VM (Linux Host) - NetBSD (64-bit) -> vm-netbsd (devel)
-QEMU VM (Linux Host) - OpenBSD (64-bit) -> vm-openbsd (devel)
-QEMU VM (Linux Host) - Arch Linux (64-bit) -> vm-arch-linux (devel)
+QEMU VM (Linux Host, x86_64, FreeBSD) -> qemu-vm-freebsd-releng-amd64 (devel, src, build ports jails)
+QEMU VM (Linux Host, x86_64, FreeBSD) -> qemu-vm-freebsd-head (devel, src, build ports jails)
+QEMU VM (Linux Host, x86_64, NetBSD) -> qemu-vm-netbsd (devel)
+QEMU VM (Linux Host, x86_64, OpenBSD) -> qemu-vm-openbsd (devel)
+QEMU VM (Linux Host, x86_64, Arch Linux) -> qemu-vm-archlinux (devel)
+QEMU VM (Linux Host, aarch64, FreeBSD) -> qemu-vm-freebsd-releng-aarch64 (build ports jails)
 
-FreeBSD jail (releng, amd64) -> jail-fbsd-build-ports-releng-amd64
-FreeBSD jail (releng, aarch64) -> jail-fbsd-build-ports-releng-aarch64
-FreeBSD jail (releng, armv7) -> jail-fbsd-build-ports-releng-armv7
-FreeBSD jail (head, amd64) -> jail-fbsd-build-ports-head-amd64
+FreeBSD jail (releng, amd64) -> jail-ports-builder-fbsd-releng-amd64
+FreeBSD jail (releng, aarch64) -> jail-ports-builder-fbsd-releng-aarch64
+FreeBSD jail (head, amd64) -> jail-ports-builder-fbsd-head-amd64
